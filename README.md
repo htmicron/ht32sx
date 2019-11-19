@@ -1,4 +1,3 @@
-![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU5nD7vdCyJJ-B5bpjBog3HQLh75bYE4Wkp3XIIb4RRiYkjYFe5g)
 ## HT32SX - HT Micron's Sigfox Monarch SiP
 
 ![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesenrhZDRBpVRdUHpQ5ouT6wUTu0t0zaYtSI5GZqXJjGc2tor4Q&s)
