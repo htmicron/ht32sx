@@ -1,5 +1,7 @@
 ![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU5nD7vdCyJJ-B5bpjBog3HQLh75bYE4Wkp3XIIb4RRiYkjYFe5g)
-## HT32SX - HT Micron's SiP enabled for Sigfox technology
+## HT32SX - HT Micron's Sigfox Monarch SiP
+
+![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesenrhZDRBpVRdUHpQ5ouT6wUTu0t0zaYtSI5GZqXJjGc2tor4Q&s)
 
 The purpose of this repository is to track the development and the design of the Sigfox SiP System using Cadence Allegro SiP Designer. The repository folders description are given bellow.  
 
@@ -10,12 +12,3 @@ The purpose of this repository is to track the development and the design of the
 
 ---
 
-## Git Good Practices
-
-Next, you’ll add a new file to this repository.
-Good tutorials websites are listed bellow:
-
-1.  [Git simple guide](http://rogerdudler.github.io/git-guide/) 
-2.  [Git simple good practices](https://www.git-tower.com/learn/git/ebook/en/desktop-gui/appendix/best-practices) 
-3.  [Git references](https://git-scm.com/book/en/v2) 
-4.  [Git good practices - video](http://cds.cern.ch/record/1644783?ln=en)
