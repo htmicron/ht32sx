@@ -1,6 +1,7 @@
 ## HT32SX - HT Micron's Sigfox Monarch SiP
-
-![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesenrhZDRBpVRdUHpQ5ouT6wUTu0t0zaYtSI5GZqXJjGc2tor4Q&s)
+<div align="center">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesenrhZDRBpVRdUHpQ5ouT6wUTu0t0zaYtSI5GZqXJjGc2tor4Q&s">
+</div>
 
 The purpose of this repository is to track the development and the design of the Sigfox SiP System using Cadence Allegro SiP Designer. The repository folders description are given bellow.  
 
