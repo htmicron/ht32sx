@@ -1,5 +1,5 @@
 ![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU5nD7vdCyJJ-B5bpjBog3HQLh75bYE4Wkp3XIIb4RRiYkjYFe5g)
-## HT Micron Advanced Technologies Team
+## HT32SX - HT Micron's SiP enabled for Sigfox technology
 
 The purpose of this repository is to track the development and the design of the Sigfox SiP System using Cadence Allegro SiP Designer. The repository folders description are given bellow.  
 
