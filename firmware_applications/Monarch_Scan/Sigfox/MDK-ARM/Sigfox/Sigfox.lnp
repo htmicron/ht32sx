@@ -10,6 +10,7 @@
 "sigfox\usart.o"
 "sigfox\stm32l0xx_it.o"
 "sigfox\stm32l0xx_hal_msp.o"
+"sigfox\monarch_app.o"
 "sigfox\stm32l0xx_hal_rtc.o"
 "sigfox\stm32l0xx_hal_rtc_ex.o"
 "sigfox\stm32l0xx_hal_spi.o"

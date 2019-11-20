@@ -442,6 +442,11 @@
               <FileType>1</FileType>
               <FilePath>../Src/stm32l0xx_hal_msp.c</FilePath>
             </File>
+            <File>
+              <FileName>monarch_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\monarch_app.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

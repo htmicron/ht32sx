@@ -1,10 +1,7 @@
 /*!
 * \file mcu_api_stm32.c
 * \brief Sigfox MCU functions
-* \author  R&D HT Micron, 
-					Hêndrick Bataglin Gonçalves, 
-					Vilson Petry, 
-					STMicroelectronics
+* \author  R&D HT Micron
 * \version 1.0
 * \date Sept 2, 2019
 *

@@ -77,3 +77,4 @@ sigfox\main.o: ..\ST_API\inc\st_mcu_api.h
 sigfox\main.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\main.o: ..\ST_API\inc\st_rf_api.h
 sigfox\main.o: ..\Sigfox_libs\inc\sigfox_types.h
+sigfox\main.o: ../Inc/monarch_app.h

@@ -87,6 +87,26 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
+/*!******************************************************************
+ * \fn void MCU_Config(void)
+ * \brief Starts the MCU peripherals configuration and get credentials from Flash memory
+ *
+ * \param[in]  none
+ * \param[out] none
+ *******************************************************************/
+ 
+void MCU_Config(void);
+
+/*!******************************************************************
+ * \fn void ST_Init(void)
+ * \brief Configure the MCU peripherals needed for the transceiver operation.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *******************************************************************/
+
+void ST_Init(void);
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
