@@ -17,5 +17,6 @@ In summary you'll find here:
 *  Examples - codes, aplication notes and design tips.
  
 Enjoy! =)
+If you need help, please send a message to suppot_iot@htmicron.com.br 
 
 ---
