@@ -14,7 +14,7 @@ region via Monarch feature and publishes the found network region after a motion
 
 * Monarch mode: the device scans for available SigFox™ networks through the Monarch feature and stores the network 
 configuration it finds for later use. 
-* POC mode, the device publishes found SigFox™ network configuration after detecting a valid motion.
+* Move-ME mode, the device publishes found SigFox™ network configuration after detecting a valid motion.
 
 The user may press USER BUTTON (blue button) to change the device mode (Monarch mode or POC mode) as many times as desired. 
 Press RESET BUTTON (purple button) to revert the device to initial condition.
