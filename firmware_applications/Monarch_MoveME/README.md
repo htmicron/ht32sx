@@ -9,7 +9,7 @@ region via Monarch feature and publishes the found network region after a motion
 
 This application was shown on Sigfox CONNECT 2019 to show our product capability and allow users to experience it. 
 
-The application target device is the HT Micron's HT32SX_DK evaluation board and the STMicroelectronic's X-NUCLEO-IKS01A2 expansion board.
+The application target device is the HT Micron's iMCP evaluation board and the STMicroelectronic's X-NUCLEO-IKS01A2 expansion board.
 
 The application prints status messages via terminal, and is useful for evaluation and test purposes.
 
@@ -25,9 +25,9 @@ The application implements two main device modes:
 
 Necessary itens to run this example application:
 
-* HT Micron's HT32SX_DK evaluation board;
+* HT Micron's iMCP evaluation board;
 * STMicroelectronic's X-NUCLEO-IKS01A2;
-* A 915 MHz male SMA RF antennae; 
+* A 826 - 928 MHz male SMA RF antennae; 
 * A mini USB cable;
 * (Optional) A PC with terminal to check outputs from device;
 
