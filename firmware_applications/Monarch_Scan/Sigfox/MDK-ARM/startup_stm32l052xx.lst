@@ -381,11 +381,12 @@ ARM Macro Assembler    Page 6
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
 work --depend=sigfox\startup_stm32l052xx.d -osigfox\startup_stm32l052xx.o -I.\R
-TE\_Sigfox -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include -IC:\Keil_v
-5\ARM\PACK\Keil\STM32L0xx_DFP\2.0.1\Drivers\CMSIS\Device\ST\STM32L0xx\Include -
--predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 527" --prede
-fine="_RTE_ SETA 1" --predefine="STM32L052xx SETA 1" --list=startup_stm32l052xx
-.lst startup_stm32l052xx.s
+TE\_Sigfox -IC:\Users\hendrick.goncalves\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.
+0\CMSIS\Core\Include -IC:\Users\hendrick.goncalves\AppData\Local\Arm\Packs\Keil
+\STM32L0xx_DFP\2.0.1\Drivers\CMSIS\Device\ST\STM32L0xx\Include --predefine="__M
+ICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 528" --predefine="_RTE_ SET
+A 1" --predefine="STM32L052xx SETA 1" --list=startup_stm32l052xx.lst startup_st
+m32l052xx.s
 
 
 
