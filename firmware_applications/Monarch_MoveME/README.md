@@ -1,6 +1,6 @@
 ## HT32SX - Monarch Move-ME
 <div align="center">
-  <img src="eval_accel.png" width="182" height="285" >
+  <img src="eval_accel.png" width="273" height="427" >
 </div>
 
 The HT32SX is a System-in-Package device build for the Internet of Things providing a ready-to-use connectivity solution.
