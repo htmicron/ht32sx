@@ -20,3 +20,6 @@ Note that every device operation and status is outputed via serial interface. Us
 * Flow control: none.
 
 Recomended terminal application is [Termite](https://www.compuphase.com/software_termite.htm), with "Received text" option checked as "monospaced".
+
+Enjoy! =)
+If you need help, please send a message to suppot_iot@htmicron.com.br 
