@@ -1,4 +1,4 @@
-sigfox\monarch_app.o: monarch_app.c
+sigfox\monarch_app.o: ..\Src\monarch_app.c
 sigfox\monarch_app.o: ../Inc/monarch_app.h
 sigfox\monarch_app.o: ../Inc/main.h
 sigfox\monarch_app.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h

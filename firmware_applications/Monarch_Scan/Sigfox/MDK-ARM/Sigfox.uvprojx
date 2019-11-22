@@ -445,7 +445,7 @@
             <File>
               <FileName>monarch_app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\monarch_app.c</FilePath>
+              <FilePath>..\Src\monarch_app.c</FilePath>
             </File>
           </Files>
         </Group>
