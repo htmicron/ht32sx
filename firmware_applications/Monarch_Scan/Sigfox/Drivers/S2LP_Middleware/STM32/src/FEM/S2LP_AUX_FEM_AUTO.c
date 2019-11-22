@@ -124,7 +124,7 @@ __weak void FEM_Operation(FEM_OperationType operation)
   switch (operation)
   {
 		case FEM_SHUTDOWN: 
-				//printf("SHUTDOWN\n");      
+				printf("SHUTDOWN\n");      
 
 				tmp[0]=LOW;
 				tmp[1]=LOW;
@@ -134,17 +134,17 @@ __weak void FEM_Operation(FEM_OperationType operation)
 						 
 			break;
 		case FEM_TX_BYPASS: 
-				//printf("TX BYPASS\n");
+				printf("TX BYPASS\n");
 		
 				tmp[0]=HIGH;
-				tmp[1]=LOW;
+				tmp[1]=HIGH; //LOW
 				tmp[2]=HIGH;
 				
 				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
 		
 			break;
 		case FEM_TX: 
-				//printf("TX\n");
+				printf("TX\n");
 				
 				tmp[0]=HIGH;
 				tmp[1]=HIGH;
@@ -154,7 +154,7 @@ __weak void FEM_Operation(FEM_OperationType operation)
 			
 			break;    
 		case FEM_RX:  
-				//printf("RX\n");
+				printf("RX\n");
 				
 				tmp[0]=HIGH;
 				tmp[1]=LOW;

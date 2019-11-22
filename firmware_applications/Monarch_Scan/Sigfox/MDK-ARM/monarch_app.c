@@ -17,13 +17,13 @@ void configRegion(void) {
 	
 	switch(rc_bit){
 		case RCZ1:
-			SIGFOX_MONARCH_API_stop_rc_scan();	
+			SIGFOX_MONARCH_API_stop_rc_scan();
+			ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);		
 			open_err = St_Sigfox_Open_RCZ(RCZ1);
-			
+
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
-		
-			ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
+					
 			sendFrameRCZ(RCZ1);
 			closeSigfoxLib();
 			scan = 1;
@@ -31,12 +31,12 @@ void configRegion(void) {
 			break;
 		case RCZ2:
 			SIGFOX_MONARCH_API_stop_rc_scan();
+			ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
 			open_err = St_Sigfox_Open_RCZ(RCZ2);
 			
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
 			
-			ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
 			sendFrameRCZ(RCZ2);
 			closeSigfoxLib();
 			scan = 1;
@@ -45,11 +45,10 @@ void configRegion(void) {
 		case RCZ3:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ3);
-			
+			//ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
 			
-			ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
 			sendFrameRCZ(RCZ3);
 			closeSigfoxLib();
 			scan = 1;
@@ -58,11 +57,10 @@ void configRegion(void) {
 		case RCZ4:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ4);
-			
+			ST_RF_API_reduce_output_power(RCZ4_OUTPUT_POWER);
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
 			
-			ST_RF_API_reduce_output_power(RCZ4_OUTPUT_POWER);
 			sendFrameRCZ(RCZ4);
 			closeSigfoxLib();
 			scan = 1;
@@ -71,11 +69,10 @@ void configRegion(void) {
 		case RCZ5:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ5);
-			
+			//ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
 			
-			ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
 			sendFrameRCZ(RCZ5);
 			closeSigfoxLib();
 			scan = 1;
@@ -84,11 +81,11 @@ void configRegion(void) {
 		case RCZ6:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ6);
+			ST_RF_API_reduce_output_power(RCZ6_OUTPUT_POWER);
 			
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
 			
-			ST_RF_API_reduce_output_power(RCZ6_OUTPUT_POWER);
 			sendFrameRCZ(RCZ6);
 			closeSigfoxLib();
 			scan = 1;

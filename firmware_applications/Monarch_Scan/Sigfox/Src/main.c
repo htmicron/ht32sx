@@ -118,7 +118,7 @@ int main(void)
 		}
 	
 		configRegion();
-		
+			
   }
   /* USER CODE END 3 */
 }
@@ -211,7 +211,7 @@ void MCU_Config(void) {
   ST_MCU_API_TimerCalibration(500);
 #endif
 	
-	printf("Sigfox Monarch\n");
+	printf("Sigfox Monarch iMCP HT32SX\n");
   printf("ID: %.8X - PAC: ", sfxConfiguration.id);               
 	
 	for(uint16_t i = 0; i < sizeof(sfxConfiguration.pac); i++)
@@ -223,7 +223,6 @@ void MCU_Config(void) {
   ST_RF_API_set_freq_offset(sfxConfiguration.freqOffset); 
 	ST_RF_API_set_rssi_offset(sfxConfiguration.rssiOffset);
 	ST_RF_API_set_lbt_thr_offset(sfxConfiguration.lbtOffset);
-	ST_RF_API_set_tcxo(0);
 }
 
 /*!******************************************************************

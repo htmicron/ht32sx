@@ -336,7 +336,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--diag_suppress=951 --wchar32</MiscControls>
-              <Define>USE_HAL_DRIVER,STM32L052xx,STM32L053xx,USE_HAL_DRIVER, FOR_ALL, USE_FLASH, USE_STM32L0XX_NUCLEO,  USE_SYSTICK_DELAY, MONARCH_FEATURE_ENABLED, MON_REF_DES</Define>
+              <Define>USE_HAL_DRIVER,STM32L052xx,STM32L053xx,USE_HAL_DRIVER, FOR_ALL, USE_FLASH, USE_STM32L0XX_NUCLEO,  USE_SYSTICK_DELAY,MONARCH_FEATURE_ENABLED</Define>
               <Undefine></Undefine>
               <IncludePath>../Inc;                                    ../Drivers/STM32L0xx_HAL_Driver/Inc;                                    ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;                                    ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;                                    ../Drivers/CMSIS/Include;                                    ..\Sigfox_libs\inc;                                    ..\ST_libs\inc;                                    ..\Drivers\S2LP_Middleware\STM32\inc;                                    ..\ST_API\inc;                                    ..\Drivers\Utils\STM32\inc;                                    ..\Utils\CLI\inc;                                    ..\Sigfox_libs\bin;                                    ..\Utils\CLI\inc</IncludePath>
             </VariousControls>
@@ -445,7 +445,7 @@
             <File>
               <FileName>monarch_app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Src\monarch_app.c</FilePath>
+              <FilePath>.\monarch_app.c</FilePath>
             </File>
           </Files>
         </Group>
