@@ -7,7 +7,7 @@
 The HT32SX is a System-in-Package (SiP) device build for the Internet of Things providing a **ready-to-use** connectivity solution.
 It means that you’ll have strong reduction in your BOM cost, aiming a fast integration, simple design and the lowest **time-to-market**. It provides both uplink (transmit) and downlink (receive) network communications. As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamlessly roam across the planet taking advantage of the global SigFox™ network coverage without need of reconfiguration, this setup is done automatically.
 
-## The SMALLEST SiP Sigfox Monarch Module in the WORLD!
+## The SMALLEST SiP Sigfox Monarch in the WORLD!
 
 In this repository you can find all the information you'll need to star to build your IoT aplication using the HT32SX and the Sigfox network. You can develop aplications based in our examples (/firmware_aplications folder) using the Keil uVision IDE (https://www.keil.com/download/product/). 
 
