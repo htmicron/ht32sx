@@ -124,9 +124,9 @@ void ST_Init(void);
 
 #define RCZ1_OUTPUT_POWER 2
 #define RCZ2_OUTPUT_POWER	-27
-#define RCZ3_OUTPUT_POWER	-5
+#define RCZ3_OUTPUT_POWER	18
 #define RCZ4_OUTPUT_POWER	-30
-#define RCZ5_OUTPUT_POWER	-5
+#define RCZ5_OUTPUT_POWER	18
 #define RCZ6_OUTPUT_POWER	-2
 
 /* USER CODE END Private defines */

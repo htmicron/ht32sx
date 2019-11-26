@@ -45,7 +45,7 @@ void configRegion(void) {
 		case RCZ3:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ3);
-			//ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
+			ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
 			
@@ -69,7 +69,7 @@ void configRegion(void) {
 		case RCZ5:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ5);
-			//ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
+			ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
 			
@@ -90,6 +90,7 @@ void configRegion(void) {
 			closeSigfoxLib();
 			scan = 1;
 		
+	
 			break;
 		default:
 			break;

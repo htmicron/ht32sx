@@ -101,7 +101,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	
 	MCU_Config();
-
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -116,7 +116,7 @@ int main(void)
 			MonarchScan(ALL_REGIONS, 10, SFX_TIME_M);
 			setScanStatus(0);
 		}
-	
+		
 		configRegion();
 			
   }
@@ -223,6 +223,7 @@ void MCU_Config(void) {
   ST_RF_API_set_freq_offset(sfxConfiguration.freqOffset); 
 	ST_RF_API_set_rssi_offset(sfxConfiguration.rssiOffset);
 	ST_RF_API_set_lbt_thr_offset(sfxConfiguration.lbtOffset);
+	
 }
 
 /*!******************************************************************
