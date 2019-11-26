@@ -113,7 +113,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 		
 		if(getScanStatus()) {
-			MonarchScan(ALL_REGIONS, 10, SFX_TIME_M);
+			MonarchScan(ALL_REGIONS, 6, SFX_TIME_M);
 			setScanStatus(0);
 		}
 		
