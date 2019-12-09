@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : gpio.c
-  * Description        : This file provides code for the configuration
+  * @file		           : gpio.c
+  * @brief		         : This file provides code for the configuration
   *                      of all used GPIO pins.
   ******************************************************************************
   * @attention
@@ -261,10 +261,6 @@ void ST_MCU_API_GpioIRQ(sfx_u8 pin, sfx_u8 new_state, sfx_u8 trigger)
 void ST_MCU_API_LowPower(sfx_u8 low_power_flag)
 {
   low_power = low_power_flag;
-}
-
-void setLowPowerFlag(uint8_t lowPower) {
-	low_power = lowPower;
 }
 
 uint8_t getLowPowerFlag(void) {

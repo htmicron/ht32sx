@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : USART.h
-  * Description        : This file provides code for the configuration
+  * @file		           : USART.h
+  * @brief 		         : This file provides code for the configuration
   *                      of the USART instances.
   ******************************************************************************
   * @attention
@@ -39,7 +39,7 @@ extern UART_HandleTypeDef huart1;
 void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-extern void printUart(char *buffer);
+
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

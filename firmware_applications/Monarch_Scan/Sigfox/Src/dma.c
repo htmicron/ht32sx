@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : dma.c
-  * Description        : This file provides code for the configuration
+  * @file		           : dma.c
+  * @brief		         : This file provides code for the configuration
   *                      of all the requested memory to memory DMA transfers.
   ******************************************************************************
   * @attention

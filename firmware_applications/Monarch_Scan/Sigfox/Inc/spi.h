@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : SPI.h
-  * Description        : This file provides code for the configuration
+  * @file		           : SPI.h
+  * @brief		         : This file provides code for the configuration
   *                      of the SPI instances.
   ******************************************************************************
   * @attention
@@ -48,7 +48,6 @@ void MX_SPI1_Init(void);
  * @retval ErrorStatus: error status @ref ErrorStatus
  *         This parameter can be: SUCCESS or ERROR.
  */
-
 extern uint16_t S2LPSpiWriteRegisters(uint8_t address, uint8_t n_bytes, uint8_t* buffer);
 
 /**
@@ -60,11 +59,32 @@ extern uint16_t S2LPSpiWriteRegisters(uint8_t address, uint8_t n_bytes, uint8_t*
  *         This parameter can be: SUCCESS or ERROR.
  */
 extern uint16_t S2LPSpiReadRegisters(uint8_t RegisterAddr, uint8_t NumByteToRead, uint8_t* pBuffer);
+
+/*!******************************************************************
+ * \fn void S2LPSetSpiInUse(uint8_t state)
+ * \brief Set the S2LP in use flag. 
+ *
+ * \param[in]  state												1 if in use, else 0                        
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/ 
+extern void S2LPSetSpiInUse(uint8_t state);
+
+/*!******************************************************************
+ * \fn uint8_t S2LPGetSpiInUse(void)
+ * \brief Get the S2LP in use flag. 
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval spi_in_use												 1 if in use, else 0
+ *******************************************************************/ 
+extern uint8_t S2LPGetSpiInUse(void);
+
 extern uint16_t S2LPSpiCommandStrobes(uint8_t command);
 extern uint16_t S2LPSpiReadFifo(uint8_t n_bytes, uint8_t* buffer);
 extern uint16_t S2LPSpiWriteFifo(uint8_t n_bytes, uint8_t* buffer);
-extern void S2LPSetSpiInUse(uint8_t state);
-extern uint8_t S2LPGetSpiInUse(void);
 
 /* USER CODE END Prototypes */
 

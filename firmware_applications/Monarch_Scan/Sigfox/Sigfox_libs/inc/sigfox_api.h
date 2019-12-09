@@ -16,16 +16,7 @@
   ----------------------------------------------
  \endif
   ----------------------------------------------*/
-
-/*!
-    \mainpage Sigfox Protocol V1 library API documentation
-
-    Library implementing Sigfox protocol V1.
-    The picture below describes the architecture of a Sigfox Device organized as software Layers.<br>
- 
-    \htmlonly <style>div.image img[src="sw_architecture.png"]{width:100%;height=100%}</style> \endhtmlonly
-    @image html sw_architecture.png 
-*/
+	
 /*!
  * \file sigfox_api.h
  * \brief Sigfox user functions

@@ -95,7 +95,7 @@ void Error_Handler(void);
  * \param[out] none
  *******************************************************************/
  
-void MCU_Config(void);
+void mcuConfig(void);
 
 /*!******************************************************************
  * \fn void ST_Init(void)

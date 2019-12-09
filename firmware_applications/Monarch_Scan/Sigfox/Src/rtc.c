@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : RTC.c
-  * Description        : This file provides code for the configuration
+  * @file		           : RTC.c
+  * @brief 		         : This file provides code for the configuration
   *                      of the RTC instances.
   ******************************************************************************
   * @attention
@@ -26,7 +26,6 @@ static volatile uint8_t rtc_in_use = 0;
 static volatile uint8_t rtc_in_use_for_cs = 0;
 
 static volatile uint32_t next_rtc_wakeup = 0;
-
 static volatile uint16_t rtc_presc=2375;
 
 /* USER CODE END 0 */

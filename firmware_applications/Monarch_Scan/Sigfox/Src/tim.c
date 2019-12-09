@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : TIM.c
-  * Description        : This file provides code for the configuration
+  * @file		           : TIM.c
+  * @brief		         : This file provides code for the configuration
   *                      of the TIM instances.
   ******************************************************************************
   * @attention
@@ -108,13 +108,6 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 
 /* USER CODE BEGIN 1 */
 
-/**
-* @brief  Computes two integer value prescaler and period such that Cycles = prescaler * period.
-* @param  lCycles the specified cycles for the desired timer value.
-* @param  pnPrescaler prescaler factor.
-* @param  pnCounter period factor.
-* @retval None.
-*/
 void SdkEvalTimersFindFactors(uint32_t lCycles, uint16_t *pnPrescaler, uint16_t *pnCounter)
 {
   uint16_t b0;
@@ -143,16 +136,6 @@ void SdkEvalTimersFindFactors(uint32_t lCycles, uint16_t *pnPrescaler, uint16_t 
   *pnCounter = b0;
 }
 
-/**
-* @brief  Configures the specified timer to raise an interrupt every time the counter
-*         reaches the nPeriod value counting with a prescaler of nPrescaler.
-* @note   The specified timer is configured but not enabled.
-* @param  TIM_TimeBaseStructure Timer Handler of the timer to be set.
-*          This parameter can be a pointer to @ref TIM_HandleTypeDef .
-* @param  nPrescaler prescaler factor.
-* @param  nPeriod period factor.
-* @retval None.
-*/
 void SdkEvalTimersTimConfig(TIM_HandleTypeDef* TIM_TimeBaseStructure, uint16_t nPrescaler, uint16_t nPeriod)
 {
   TIM_TypeDef *xTim=TIM_TimeBaseStructure->Instance;

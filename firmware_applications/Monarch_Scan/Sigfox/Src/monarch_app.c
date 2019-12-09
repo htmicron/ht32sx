@@ -1,11 +1,12 @@
 /*!
-* \file mcu_api_stm32.c
-* \brief Sigfox MCU functions
-* \author  R&D HT Micron
-* \version 1.0
-* \date November 20, 2019
-*
-*/
+ * \file monarch_app.c
+ * \brief Monarch Application HT32SX iMCP SiP Sigfox
+ * \author HT Micron Advanced R&D
+ * \version 1.0
+ * \date November 20, 2019
+ *
+ * This file defines the Monarch Scan Application.
+ */
 
 #include "monarch_app.h"
 
@@ -117,7 +118,7 @@ void sendFrameRCZ(rc_mask RCZ) {
 	printf("Send Frame error: %X\n", err);
 }
 
-void MonarchScan(sfx_u8 rc_capabilities_bit_mask, sfx_u16 timer, sfx_timer_unit_enum_t unit){
+void monarchScan(sfx_u8 rc_capabilities_bit_mask, sfx_u16 timer, sfx_timer_unit_enum_t unit){
   sfx_error_t err;
 
 	err = SIGFOX_MONARCH_API_execute_rc_scan(rc_capabilities_bit_mask, timer, unit, callback);

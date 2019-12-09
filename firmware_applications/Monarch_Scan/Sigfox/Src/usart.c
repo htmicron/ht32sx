@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : USART.c
-  * Description        : This file provides code for the configuration
+  * @file		           : USART.c
+  * @brief 			       : This file provides code for the configuration
   *                      of the USART instances.
   ******************************************************************************
   * @attention

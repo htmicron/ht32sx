@@ -100,7 +100,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 	
-	MCU_Config();
+	mcuConfig();
 	
   /* USER CODE END 2 */
 
@@ -113,7 +113,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 		
 		if(getScanStatus()) {
-			MonarchScan(ALL_REGIONS, 6, SFX_TIME_M);
+			monarchScan(ALL_REGIONS, 6, SFX_TIME_M);
 			setScanStatus(0);
 		}
 		
@@ -171,16 +171,7 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-
-/*!******************************************************************
- * \fn void MCU_Config(void)
- * \brief Starts the MCU peripherals configuration and get credentials from Flash memory
- *
- * \param[in]  none
- * \param[out] none
- *******************************************************************/
-
-void MCU_Config(void) {
+void mcuConfig(void) {
 	ST_SFX_ERR stSfxRetErr;
 	
 	ST_Init();
@@ -225,14 +216,6 @@ void MCU_Config(void) {
 	ST_RF_API_set_lbt_thr_offset(sfxConfiguration.lbtOffset);
 	
 }
-
-/*!******************************************************************
- * \fn void ST_Init(void)
- * \brief Configure the MCU peripherals needed for the transceiver operation.
- *
- * \param[in]  none
- * \param[out] none
- *******************************************************************/
 
 void ST_Init(void)
 {

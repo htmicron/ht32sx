@@ -16,16 +16,6 @@
   ----------------------------------------------
  \endif
   ----------------------------------------------*/
-/*!
-    \mainpage Sigfox RF and Protocol API documentation
-
-    The picture below describes the architecture of a Sigfox Device organized as software Layers.<br>
-    <br>
-    The Addon Sigfox RF and Protocol is one application firmware - as described below.
-    <br> 
-    \htmlonly <style>div.image img[src="sw_architecture.png"]{width:100%;height=100%}</style> \endhtmlonly
-    @image html sw_architecture.png 
-*/
 
 /*!
  * \file addon_sigfox_rf_protocol_api.h

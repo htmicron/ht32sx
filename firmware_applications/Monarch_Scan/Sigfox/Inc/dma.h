@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : dma.h
-  * Description        : This file contains all the function prototypes for
+  * @file		           : dma.h
+  * @brief       			 : This file contains all the function prototypes for
   *                      the dma.c file
   ******************************************************************************
   * @attention

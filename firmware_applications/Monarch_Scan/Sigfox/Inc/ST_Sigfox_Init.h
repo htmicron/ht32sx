@@ -1,3 +1,12 @@
+/*!
+* \file ST_Sigfox_Init.h
+* \brief Sigfox MCU functions
+* \author  Advanced R&D HT Micron, STMicroelectronics
+* \version 1.0
+* \date Sept 2, 2019
+*
+*/
+
 #include "S2LP_AUX_UTILS.h"
 #include "S2LP_Middleware_Config.h"
 #include "nvm_api.h"

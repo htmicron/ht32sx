@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : SPI.c
-  * Description        : This file provides code for the configuration
+  * @file		           : SPI.c
+  * @brief 	  	       : This file provides code for the configuration
   *                      of the SPI instances.
   ******************************************************************************
   * @attention
@@ -47,11 +47,10 @@
 
 																					
 static volatile uint8_t spi_in_use = 0;
-
+static uint8_t waiting_irq = 0;
+																					
 static uint8_t tx_buff[128];
 static uint8_t rx_buff[128];
-
-static uint8_t waiting_irq = 0;
 
 /* USER CODE END 0 */
 
