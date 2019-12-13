@@ -21,5 +21,7 @@ Note that every device operation and status is outputed via serial interface. Us
 
 Recomended terminal application is [Termite](https://www.compuphase.com/software_termite.htm), with "Received text" option checked as "monospaced".
 
+More code informations can be found at [HT Micron's Monarch Scan Application](https://htmicron.github.io/MonarchScan/html/index.html) page.
+
 Enjoy! =)
 If you need help, please send a message to suppot_iot@htmicron.com.br 
