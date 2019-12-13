@@ -19,7 +19,7 @@ In summary you'll find here:
 *  Technical Documentation
 *  Examples - codes, aplication notes and design tips.
  
-More informations can be found at [HT Micron Application Note](https://htmicron.github.io/index.html) page.
+More code informations can be found at [HT Micron Application Note](https://htmicron.github.io/index.html) page.
 
 Enjoy! =)
 If you need help, please send a message to support_iot@htmicron.com.br 
