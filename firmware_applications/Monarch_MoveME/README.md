@@ -5,13 +5,9 @@
 </div>
 
 This application explain how the SigFox™ network can be accessed using the **HT32SX** , that searches the available SigFox™ network 
-region via Monarch feature and publishes the found network region after a motion detection. The motion detection is developed with the help of the ST Microelectronics X-NUCLEO-IKS01A2 board (https://www.st.com/en/ecosystems/x-nucleo-iks01a2.html), using an **accelerometer**. 
+region via Monarch feature and publishes the found network region after a motion detection. The motion detection is developed with the help of the ST Microelectronics [X-NUCLEO-IKS01A2 board](https://www.st.com/en/ecosystems/x-nucleo-iks01a2.html), using an **accelerometer**. 
 
 This application was shown on Sigfox CONNECT 2019 to show our product capability and allow users to experience it. 
-
-The application target device is the HT Micron's iMCP evaluation board and the STMicroelectronic's X-NUCLEO-IKS01A2 expansion board.
-
-The application prints status messages via terminal, and is useful for evaluation and test purposes.
 
 ## Device modes 
 
@@ -26,10 +22,12 @@ The application implements two main device modes:
 Necessary itens to run this example application:
 
 * HT Micron's iMCP evaluation board;
-* STMicroelectronic's X-NUCLEO-IKS01A2;
+* STMicroelectronic's X-NUCLEO-IKS01A2 expansion board;
 * A 826 - 928 MHz male SMA RF antennae; 
 * A mini USB cable;
+* [Keil uVision IDE](https://www.keil.com/download/product/).
 * (Optional) A PC with terminal to check outputs from device;
+
 
 ## Terminal configuration
 
