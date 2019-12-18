@@ -16,5 +16,3 @@ More code informations about the HT32SX can be found at [HT Micron's Application
 Enjoy! =)
 
 If you still need help, please send a message to: suppot_iot@htmicron.com.br 
-
----
