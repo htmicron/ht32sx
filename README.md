@@ -9,7 +9,7 @@ It means that you’ll have strong reduction in your BOM cost, aiming a fast int
 
 ## The SMALLEST Sigfox™ Monarch SiP in the world!
 
-In this repository you can find all the information you'll need to star to build your IoT aplication using the HT32SX and the Sigfox network. You can develop aplications based in our [examples](/firmware_applications) using the [Keil uVision IDE](https://www.keil.com/download/product/). 
+In this repository you can find all the information you'll need to star to build your IoT aplication using the HT32SX and the Sigfox™ network. You can develop aplications based in our [examples](/firmware_applications) using the [Keil uVision IDE](https://www.keil.com/download/product/). 
 
 The HT32SX SiP uses an ARM M0+ Core powered by ST Microelectronics (STM32L052x8) that provides to software developers working with STM32 devices [a **free-to-use** tool suite](https://www2.keil.com/stmicroelectronics-stm32/mdk). The MDK-Essential for STM32F0, STM32G0 and STM32L0 edition includes the Arm C/C++ Compiler, the Keil RTX5 real-time operating system kernel, and the µVision IDE/Debugger. It only works with STM32 devices based on the Cortex-M0/M0+ cores and is limited to a code size of 256 KB. The STM32 peripherals can be configured using [STM32 CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html) and the resulting project exported to MDK.
 
@@ -23,9 +23,9 @@ We have some applications that you can use to start developing your own solution
 
 | Application        | Brief                                                          |
 |:-------------------|:---------------------------------------------------------------|
-| [MOVE-ME](firmware_applications/Monarch_MoveME) | Scan a SigFox beacon and send frame via motion detection  |
-| [Monarch Scan](firmware_applications/Monarch_Scan) | Scan a SigFox beacon and send frame to found region automatically |
-| [SigFox Push-Button](firmware_applications/Push_Button/) | Send a SigFox frame after a button is pressed |
+| [MOVE-ME](firmware_applications/Monarch_MoveME) | Scan a SigFox™ beacon and send frame via motion detection  |
+| [Monarch Scan](firmware_applications/Monarch_Scan) | Scan a SigFox™ beacon and send frame to found region automatically |
+| [SigFox Push-Button](firmware_applications/Push_Button/) | Send a SigFox™ frame after a button is pressed |
 
 
 More code informations can be found at [HT Micron's Application Notes](https://htmicron.github.io/index.html) page.
