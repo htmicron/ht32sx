@@ -159,9 +159,9 @@ __weak void FEM_Operation(FEM_OperationType operation)
 				//printf("RX\n");
 				//HAL_UART_Transmit(&huart2, (uint8_t *)debug, strlen(debug), 10); 
 				
-				tmp[0]=HIGH;
+				tmp[0]=LOW;
 				tmp[1]=LOW;
-				tmp[2]=LOW;
+				tmp[2]=HIGH;
 				
 				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
 				
