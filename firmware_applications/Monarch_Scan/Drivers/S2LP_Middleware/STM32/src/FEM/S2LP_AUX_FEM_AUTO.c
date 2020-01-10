@@ -156,9 +156,9 @@ __weak void FEM_Operation(FEM_OperationType operation)
 		case FEM_RX:  
 				//printf("RX\n");
 				
-				tmp[0]=HIGH;
+				tmp[0]=LOW;
 				tmp[1]=LOW;
-				tmp[2]=LOW;
+				tmp[2]=HIGH;
 				
 				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
 				

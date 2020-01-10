@@ -39,7 +39,11 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#ifdef DOWNLINK_FLAG
+	static uint8_t downlink_request = 1;
+#else
+	static uint8_t downlink_request = 0;
+#endif
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -212,7 +216,17 @@ sfx_error_t sendFrameRC2(void) {
 	/********** THE LAST ONE IS TO REQUEST DOWNLINK ************/
 	/********** 1 - YES, 0 - NO	 ******************************/
 	
-  err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 2, 0);
+  err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 3, downlink_request);
+	
+	if(downlink_request) {
+		printf("Constumer resp: {");
+  
+		for(uint16_t i = 0; i < 7; i++) 
+			printf("0x%x,", customer_resp[i]);
+			
+		printf("0x%x}\n\r", customer_resp[7]);
+	}
+	
 	printf("\nError Send Frame: %X\n", err);
 	
 	return err;
