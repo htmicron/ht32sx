@@ -3,9 +3,9 @@
 <title>Static Call Graph - [Sigfox\Sigfox.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Sigfox\Sigfox.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Jan 10 08:02:03 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Jan 15 11:07:52 2020
 <BR><P>
-<H3>Maximum Stack Usage =        908 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        916 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; configRegion &rArr; sendFrameRCZ &rArr; SIGFOX_API_send_frame &rArr; SIGFOX_INT_execute_communication_sequence &rArr; SIGFOX_INT_process_downlink &rArr; SIGFOX_INT_get_received_frames &rArr; RF_API_wait_frame &rArr; ST_MCU_API_WaitForInterrupt &rArr; ST_RF_API_S2LP_IRQ_CB &rArr; ST_MONARCH_API_AFTHR_GPIO_CB &rArr; NextFrequencyRequest &rArr; RF_API_change_frequency &rArr; priv_ST_MANUF_ReadRegisters &rArr; ST_MCU_API_SpiRaw &rArr; S2LPSpiRaw &rArr; HAL_SPI_TransmitReceive_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 <P>
@@ -2588,8 +2588,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configRegion
 </UL>
 
-<P><STRONG><a name="[16d]"></a>configRegion</STRONG> (Thumb, 236 bytes, Stack size 16 bytes, monarch_app.o(i.configRegion))
-<BR><BR>[Stack]<UL><LI>Max Depth = 908<LI>Call Chain = configRegion &rArr; sendFrameRCZ &rArr; SIGFOX_API_send_frame &rArr; SIGFOX_INT_execute_communication_sequence &rArr; SIGFOX_INT_process_downlink &rArr; SIGFOX_INT_get_received_frames &rArr; RF_API_wait_frame &rArr; ST_MCU_API_WaitForInterrupt &rArr; ST_RF_API_S2LP_IRQ_CB &rArr; ST_MONARCH_API_AFTHR_GPIO_CB &rArr; NextFrequencyRequest &rArr; RF_API_change_frequency &rArr; priv_ST_MANUF_ReadRegisters &rArr; ST_MCU_API_SpiRaw &rArr; S2LPSpiRaw &rArr; HAL_SPI_TransmitReceive_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
+<P><STRONG><a name="[16d]"></a>configRegion</STRONG> (Thumb, 238 bytes, Stack size 24 bytes, monarch_app.o(i.configRegion))
+<BR><BR>[Stack]<UL><LI>Max Depth = 916<LI>Call Chain = configRegion &rArr; sendFrameRCZ &rArr; SIGFOX_API_send_frame &rArr; SIGFOX_INT_execute_communication_sequence &rArr; SIGFOX_INT_process_downlink &rArr; SIGFOX_INT_get_received_frames &rArr; RF_API_wait_frame &rArr; ST_MCU_API_WaitForInterrupt &rArr; ST_RF_API_S2LP_IRQ_CB &rArr; ST_MONARCH_API_AFTHR_GPIO_CB &rArr; NextFrequencyRequest &rArr; RF_API_change_frequency &rArr; priv_ST_MANUF_ReadRegisters &rArr; ST_MCU_API_SpiRaw &rArr; S2LPSpiRaw &rArr; HAL_SPI_TransmitReceive_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_switch8
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;St_Sigfox_Open_RCZ
@@ -2671,7 +2671,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[20]"></a>main</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 908<LI>Call Chain = main &rArr; configRegion &rArr; sendFrameRCZ &rArr; SIGFOX_API_send_frame &rArr; SIGFOX_INT_execute_communication_sequence &rArr; SIGFOX_INT_process_downlink &rArr; SIGFOX_INT_get_received_frames &rArr; RF_API_wait_frame &rArr; ST_MCU_API_WaitForInterrupt &rArr; ST_RF_API_S2LP_IRQ_CB &rArr; ST_MONARCH_API_AFTHR_GPIO_CB &rArr; NextFrequencyRequest &rArr; RF_API_change_frequency &rArr; priv_ST_MANUF_ReadRegisters &rArr; ST_MCU_API_SpiRaw &rArr; S2LPSpiRaw &rArr; HAL_SPI_TransmitReceive_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 916<LI>Call Chain = main &rArr; configRegion &rArr; sendFrameRCZ &rArr; SIGFOX_API_send_frame &rArr; SIGFOX_INT_execute_communication_sequence &rArr; SIGFOX_INT_process_downlink &rArr; SIGFOX_INT_get_received_frames &rArr; RF_API_wait_frame &rArr; ST_MCU_API_WaitForInterrupt &rArr; ST_RF_API_S2LP_IRQ_CB &rArr; ST_MONARCH_API_AFTHR_GPIO_CB &rArr; NextFrequencyRequest &rArr; RF_API_change_frequency &rArr; priv_ST_MANUF_ReadRegisters &rArr; ST_MCU_API_SpiRaw &rArr; S2LPSpiRaw &rArr; HAL_SPI_TransmitReceive_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setScanStatus
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;monarchScan
