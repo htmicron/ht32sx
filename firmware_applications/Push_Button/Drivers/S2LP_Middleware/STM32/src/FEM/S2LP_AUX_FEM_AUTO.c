@@ -134,10 +134,10 @@ __weak void FEM_Operation(FEM_OperationType operation)
 						 
 			break;
 		case FEM_TX_BYPASS: 
-				printf("TX BYPASS\n");
+				printf("TX\n");
 		
 				tmp[0]=HIGH;
-				tmp[1]=LOW;
+				tmp[1]=HIGH;
 				tmp[2]=HIGH;
 				
 				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
