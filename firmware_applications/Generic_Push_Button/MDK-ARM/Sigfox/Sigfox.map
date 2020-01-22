@@ -3728,43 +3728,43 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        56          4          0          0          0        814   dma.o
-       646         86          0          2          0      13688   gpio.o
-       842        256          0         64          0      10480   main.o
-       178         14          7          1        500      25327   mcu_api_stm32.o
-       534         30          0         16          0       6845   nvm_api.o
-      4266        260       1042        160          0      52323   rf_api.o
-       400         86          0         12         36       7745   rtc.o
-       240         20          0          0         88       3794   s2lp_aux_eeprom.o
-       180         18          0          3          0       3644   s2lp_aux_fem_auto.o
-        72         36          0          8          0       4401   s2lp_aux_utils.o
-       380         20          0          4        268       6593   sdk_utils_flash.o
-       836         66          0          2        488       6607   spi.o
-       422         26        232          0          0     415732   st_sigfox_init.o
-        28          8        192          0       1024        676   startup_stm32l052xx.o
-       144         20          0          4          0       4047   stm32l0xx_hal.o
-       164         30          0          0          0      11515   stm32l0xx_hal_cortex.o
-       460         12          0          0          0       3839   stm32l0xx_hal_dma.o
-       448         60          0          0         24       6239   stm32l0xx_hal_flash.o
-       268         36          0          0          0       4284   stm32l0xx_hal_flash_ex.o
-       412         36          0          0          0       3119   stm32l0xx_hal_gpio.o
-        24          4          0          0          0        474   stm32l0xx_hal_msp.o
-        68         12          0          0          0       1223   stm32l0xx_hal_pwr.o
-      1706         92          0          0          0       5832   stm32l0xx_hal_rcc.o
-       376         14          0          0          0       1556   stm32l0xx_hal_rcc_ex.o
-       748         14          0          0          0       5504   stm32l0xx_hal_rtc.o
-       428         18          0          0          0       4131   stm32l0xx_hal_rtc_ex.o
-      1464         22          0          0          0      12959   stm32l0xx_hal_spi.o
-       586         20          0          0          0       8858   stm32l0xx_hal_tim.o
-        60          0          0          0          0       1284   stm32l0xx_hal_tim_ex.o
-      1270         76          0          0          0       7433   stm32l0xx_hal_uart.o
-       206         32          0          4          0       5751   stm32l0xx_it.o
-        84         18         33          4          0       1335   system_stm32l0xx.o
-      1154        132         60         72         60       9902   tim.o
-       304         28          0          0        272       2460   usart.o
+        56          4          0          0          0        822   dma.o
+       646         86          0          2          0      13784   gpio.o
+       842        256          0         64          0      10532   main.o
+       178         14          7          1        500      25395   mcu_api_stm32.o
+       534         30          0         16          0       6893   nvm_api.o
+      4266        260       1042        160          0      52551   rf_api.o
+       400         86          0         12         36       7821   rtc.o
+       240         20          0          0         88       3818   s2lp_aux_eeprom.o
+       180         18          0          3          0       3680   s2lp_aux_fem_auto.o
+        72         36          0          8          0       4437   s2lp_aux_utils.o
+       380         20          0          4        268       6641   sdk_utils_flash.o
+       836         66          0          2        488       6675   spi.o
+       422         26        232          0          0     415848   st_sigfox_init.o
+        28          8        192          0       1024        680   startup_stm32l052xx.o
+       144         20          0          4          0       4083   stm32l0xx_hal.o
+       164         30          0          0          0      11539   stm32l0xx_hal_cortex.o
+       460         12          0          0          0       3867   stm32l0xx_hal_dma.o
+       448         60          0          0         24       6295   stm32l0xx_hal_flash.o
+       268         36          0          0          0       4308   stm32l0xx_hal_flash_ex.o
+       412         36          0          0          0       3147   stm32l0xx_hal_gpio.o
+        24          4          0          0          0        478   stm32l0xx_hal_msp.o
+        68         12          0          0          0       1235   stm32l0xx_hal_pwr.o
+      1706         92          0          0          0       5864   stm32l0xx_hal_rcc.o
+       376         14          0          0          0       1564   stm32l0xx_hal_rcc_ex.o
+       748         14          0          0          0       5544   stm32l0xx_hal_rtc.o
+       428         18          0          0          0       4159   stm32l0xx_hal_rtc_ex.o
+      1464         22          0          0          0      13043   stm32l0xx_hal_spi.o
+       586         20          0          0          0       8926   stm32l0xx_hal_tim.o
+        60          0          0          0          0       1292   stm32l0xx_hal_tim_ex.o
+      1270         76          0          0          0       7465   stm32l0xx_hal_uart.o
+       206         32          0          4          0       5823   stm32l0xx_it.o
+        84         18         33          4          0       1355   system_stm32l0xx.o
+      1154        132         60         72         60       9986   tim.o
+       304         28          0          0        272       2488   usart.o
 
     ----------------------------------------------------------------------
-     19502       1606       1600        364       2760     660414   Object Totals
+     19502       1606       1600        364       2760     662038   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         48          0          2          8          0          0   (incl. Padding)
 
@@ -3824,8 +3824,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     30116       1938       2368        496       2976     652792   Grand Totals
-     30116       1938       2368         76       2976     652792   ELF Image Totals (compressed)
+     30116       1938       2368        496       2976     654416   Grand Totals
+     30116       1938       2368         76       2976     654416   ELF Image Totals (compressed)
      30116       1938       2368         76          0          0   ROM Totals
 
 ==============================================================================
