@@ -42,7 +42,7 @@ static NVM_RW_RESULTS _setBlockState(uint32_t addr, uint64_t state)
   if(state == NVM_BLOCK_INVALID)
   {
     wrState = NVM_BLOCK_INVALID_2;
-    tRet = NVM_Write(addr, BLOCK_HEADER_SIZE/2, (uint8_t*)&wrState, NVM_WRITE_MODE_ERASE);
+    tRet = NVM_Write(addr, BLOCK_HEADER_SIZE/2, (uint8_t*)&wrState, NVM_WRITE_MODE_WRITEOVER);
   }
   else if(state == NVM_BLOCK_VALID)
   {
