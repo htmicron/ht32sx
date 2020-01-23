@@ -140,16 +140,6 @@ FLS_RW_StatusTypeDef FlashRead(uint32_t nAddress, uint16_t cNbBytes, uint8_t* pc
   return frRetStatus;
 }
 
-void configureFlash(void) {
-	FLASH_AdvOBProgramInitTypeDef pAdvOBInit;
-	
-	pAdvOBInit.OptionType = OPTIONBYTE_WRP;
-	pAdvOBInit.PCROPState = OB_WRPSTATE_DISABLE;
-	pAdvOBInit.PCROPSector = OB_WRP_AllPages;
-	
-	HAL_FLASHEx_AdvOBProgram(&pAdvOBInit);
-}
-
 FLS_RW_StatusTypeDef FlashWrite(uint32_t nAddress, uint16_t cNbBytes, uint8_t* pcBuffer, uint8_t eraseBeforeWrite)
 {
   uint8_t i, count4;
@@ -172,20 +162,17 @@ FLS_RW_StatusTypeDef FlashWrite(uint32_t nAddress, uint16_t cNbBytes, uint8_t* p
   nAddress = FLASH_USER_START_ADDR;
 #endif
 
-	configureFlash();
-	
-  if (eraseBeforeWrite) {
-		frRetStatus = FlashErase(nAddress, GetNumberOfPagesByBytes(cNbBytes));
-	}
-		
+  if (eraseBeforeWrite)
+    frRetStatus = FlashErase(nAddress, GetNumberOfPagesByBytes(cNbBytes));
+
   if(frRetStatus == FLS_RW_OK)
   {
     temp_word = 0;
 
     /* Unlock the Flash to enable the flash control register access */
     HAL_FLASH_Unlock();
-    
-		for(i=0; i<cNbBytes; i++)
+
+    for(i=0; i<cNbBytes; i++)
     {
       count4  = i-((i/4)*4);	/* Counts 0...3 and restarts */
       pageIdx = (i/4)*4; 	/* Every 4 bytes writes page */

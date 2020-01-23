@@ -40,7 +40,6 @@
 "sigfox\s2lp_aux_utils.o"
 "sigfox\s2lp_aux_fem_auto.o"
 "sigfox\s2lp_aux_eeprom.o"
-"sigfox\s2lp_aux_tcxo_auto.o"
 "sigfox\nvm_api.o"
 "sigfox\rf_api.o"
 "sigfox\mcu_api_stm32.o"

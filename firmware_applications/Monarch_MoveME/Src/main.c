@@ -405,9 +405,9 @@ void MCU_Config(void) {
 			memset(sfxConfiguration.pac, 0x00, 8);
 			sfxConfiguration.rcz = 0;
     
-		} else {
-				printf("[MCU CONFIG] Error reading credentials!\n");
-			}
+		} else 
+				printf("Error!\n");
+			
 	}
 	
 	  /* Calibrate RTC in case of STM32*/
@@ -418,19 +418,19 @@ void MCU_Config(void) {
   ST_MCU_API_TimerCalibration(500);
 #endif
 	
-	printf("Sigfox CLI demo");
-  printf("\nID: %.8X - PAC: ", sfxConfiguration.id);       
+	printf("Sigfox Monarch iMCP HT32SX\n");
+  printf("ID: %.8X - PAC: ", sfxConfiguration.id);               
 	
 	for(uint16_t i = 0; i < sizeof(sfxConfiguration.pac); i++)
-  {
 		printf("%.2X", sfxConfiguration.pac[i]);
-	}
+	
 	printf("\n");
 	
 	ST_RF_API_set_xtal_freq(50000000); 
-  ST_RF_API_set_freq_offset(32000); 
-	ST_RF_API_set_tcxo(0);
-  ST_RF_API_set_lbt_thr_offset(-10);
+  ST_RF_API_set_freq_offset(sfxConfiguration.freqOffset); 
+	ST_RF_API_set_rssi_offset(sfxConfiguration.rssiOffset);
+	ST_RF_API_set_lbt_thr_offset(sfxConfiguration.lbtOffset);
+	
 }
 
 /*!******************************************************************
@@ -477,9 +477,6 @@ void ST_Init(void)
 
     /* FEM Initialization */
   FEM_Init();
-    
-    /* TCXO Initialization */
-  //TCXO_Init();
 	
 }
 

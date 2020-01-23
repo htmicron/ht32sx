@@ -323,28 +323,6 @@ void mcuConfig(void) {
 	
 	ST_RF_API_set_rssi_offset(sfxConfiguration.rssiOffset);
 	printf("RSSI %d \n", sfxConfiguration.rssiOffset);
-	
-  //ST_RF_API_set_tcxo(0);
-	
-	/*			SET PA GAIN IN USE																*/
-	/*			ALWAYS SET IT AS 1																*/
-	
- // ST_RF_API_set_pa(1);
-  
-	/*			SET OUTPUT POWER TO 22 dBm												*/
-	/*			THIS VALUE CHANGES TO EACH REGION									*/
-	
-	
-	/*********** RCZ1 ************ 				02 				**********************/
-	/*********** RCZ2 ************ 			-	27 				**********************/
-	/*********** RCZ3 ************ 			-	05 				**********************/
-	/*********** RCZ4 ************ 			-	30	 			**********************/
-	/*********** RCZ5 ************ 			-	05 				**********************/
-	/*********** RCZ6 ************ 			-	02 				**********************/
-
-
-  //ST_RF_API_reduce_output_power(-27);
-		
 }
 
 void ST_Init(void)

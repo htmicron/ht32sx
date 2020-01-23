@@ -124,7 +124,6 @@ __weak void FEM_Operation(FEM_OperationType operation)
   switch (operation)
   {
 		case FEM_SHUTDOWN: 
-				printf("SHUTDOWN\n");
 
 				tmp[0]=LOW;
 				tmp[1]=LOW;
@@ -165,7 +164,6 @@ __weak void FEM_Operation(FEM_OperationType operation)
 			break;
 		 default: 
 			/* !!!Error */
-				printf("DEFAULT\n");
 				
 				tmp[0]=LOW;
 				tmp[1]=LOW;
