@@ -1,15 +1,3 @@
-/*!
-* \file mcu_api_stm32.c
-* \brief Sigfox MCU functions
-* \author  R&D HT Micron, 
-					Hêndrick Bataglin Gonçalves, 
-					Vilson Petry, 
-					STMicroelectronics
-* \version 1.0
-* \date Sept 2, 2019
-*
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -247,20 +235,19 @@ NVM_RW_RESULTS NVM_UpdateOffset(NVM_UPDATE_OFFSET updateWhat, int32_t data)
 
     if(ret == NVM_RW_OK)
     {
-			if(updateWhat == NVM_FREQ_OFFSET)
-				originalData[48] = data;
-			else if(updateWhat == NVM_RSSI_OFFSET)
-				originalData[52] = data;
-			else if(updateWhat == NVM_LBT_OFFSET)
-				originalData[56] = data;
-			else
-				ret = NVM_WRITE_ERROR;
+	if(updateWhat == NVM_FREQ_OFFSET)
+	  originalData[48] = data;
+	else if(updateWhat == NVM_RSSI_OFFSET)
+	  originalData[52] = data;
+	else if(updateWhat == NVM_LBT_OFFSET)
+	  originalData[56] = data;
+	else
+	  ret = NVM_WRITE_ERROR;
     }
 
     if(ret == NVM_RW_OK)
-			return NVM_Write(_boardDataAddress, 64, &originalData[0], NVM_WRITE_MODE_ERASE);
+	return NVM_Write(_boardDataAddress, 64, &originalData[0], NVM_WRITE_MODE_ERASE);
   }
 
   return ret;
 }
-

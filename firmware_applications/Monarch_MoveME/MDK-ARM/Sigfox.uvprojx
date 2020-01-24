@@ -612,11 +612,6 @@
               <FileType>1</FileType>
               <FilePath>..\Drivers\S2LP_Middleware\STM32\src\S2LP_AUX_EEPROM.c</FilePath>
             </File>
-            <File>
-              <FileName>S2LP_AUX_TCXO_AUTO.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Drivers\S2LP_Middleware\STM32\src\TCXO\S2LP_AUX_TCXO_AUTO.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
