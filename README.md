@@ -30,7 +30,7 @@ We have some applications that you can use to start developing your own solution
 | [MOVE-ME](firmware_applications/Monarch_MoveME) | Scan a SigFox™ beacon and send frame via motion detection  |
 | [Monarch Scan](firmware_applications/Monarch_Scan) | Scan a SigFox™ beacon and send frame to found region automatically |
 | [SigFox Push-Button](firmware_applications/Push_Button/) | Send a SigFox™ frame after a button is pressed |
-| [Generic_Push_Button](firmware_applications/Generic_Push_Button/) | Optimazed Push_Button code example. Easily reconfigurable |
+| [Generic_Push_Button](firmware_applications/Generic_Push_Button/) | Optimized Push_Button code example. Easily reconfigurable |
 
 <hr>
 
