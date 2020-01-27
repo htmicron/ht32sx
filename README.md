@@ -33,7 +33,6 @@ We have some applications that you can use to start developing your own solution
 
 Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html) or send an email to suppot_iot@htmicron.com.br. 
 
-<br/>
 <hr>
 
 More code informations can be found at [HT Micron's Application Notes](https://htmicron.github.io/index.html) page.
