@@ -26,12 +26,15 @@ We have some applications that you can use to start developing your own solution
 | [MOVE-ME](firmware_applications/Monarch_MoveME) | Scan a SigFox™ beacon and send frame via motion detection  |
 | [Monarch Scan](firmware_applications/Monarch_Scan) | Scan a SigFox™ beacon and send frame to found region automatically |
 | [SigFox Push-Button](firmware_applications/Push_Button/) | Send a SigFox™ frame after a button is pressed |
+| [Generic_Push_Button](firmware_applications/Generic_Push_Button/) | Optimazed code and easily reconfigurable |
 
+
+## FAQ
+
+Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html) or send an email to suppot_iot@htmicron.com.br. 
 
 More code informations can be found at [HT Micron's Application Notes](https://htmicron.github.io/index.html) page.
 
 Enjoy! =)
-
-If you need help, please send a message to suppot_iot@htmicron.com.br 
 
 ---
