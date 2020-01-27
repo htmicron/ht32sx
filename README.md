@@ -7,6 +7,8 @@
 The HT32SX is a System-in-Package (SiP) device build for the Internet of Things providing a **ready-to-use** connectivity solution.
 It means that you’ll have strong reduction in your BOM cost, aiming a fast integration, simple design and the lowest **time-to-market**. It provides both uplink (transmit) and downlink (receive) network communications. As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamlessly roam across the planet taking advantage of the global SigFox™ network coverage without need of reconfiguration, this setup is done automatically.
 
+<hr>
+
 ## The SMALLEST Sigfox™ Monarch SiP in the world!
 
 In this repository you can find all the information you'll need to star to build your IoT aplication using the HT32SX and the Sigfox™ network. You can develop aplications based in our [examples](/firmware_applications) using the [Keil uVision IDE](https://www.keil.com/download/product/). 
@@ -16,7 +18,9 @@ The HT32SX SiP uses an ARM M0+ Core powered by ST Microelectronics (STM32L052x8)
 In summary you'll find here:
 *  [Technical Documentation](/docs)
 *  Examples - codes, aplication notes and design tips.
- 
+
+<hr>
+
 ## Application Examples
 
 We have some applications that you can use to start developing your own solution! Please check out our examples:
@@ -26,12 +30,18 @@ We have some applications that you can use to start developing your own solution
 | [MOVE-ME](firmware_applications/Monarch_MoveME) | Scan a SigFox™ beacon and send frame via motion detection  |
 | [Monarch Scan](firmware_applications/Monarch_Scan) | Scan a SigFox™ beacon and send frame to found region automatically |
 | [SigFox Push-Button](firmware_applications/Push_Button/) | Send a SigFox™ frame after a button is pressed |
+| [Generic_Push_Button](firmware_applications/Generic_Push_Button/) | Optimized Push_Button code example. Easily reconfigurable |
 
+<hr>
+
+## FAQ
+
+Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html) or send an email to suppot_iot@htmicron.com.br. 
+
+<hr>
 
 More code informations can be found at [HT Micron's Application Notes](https://htmicron.github.io/index.html) page.
 
 Enjoy! =)
-
-If you need help, please send a message to suppot_iot@htmicron.com.br 
 
 ---
