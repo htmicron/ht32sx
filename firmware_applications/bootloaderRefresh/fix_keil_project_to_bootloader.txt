@@ -1,0 +1,46 @@
+at file Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l052xx.h
+replace:
+
+#define FLASH_BASE             (0x08000000UL) /*!< FLASH base address in the alias region */
+
+by:
+
+#define FLASH_BASE             (0x08001000UL) /*!< FLASH base address in the alias region */
+
+------
+at file MDK-ARM/Sigfox/Sigfox.sct:
+replace:
+
+LR_IROM1 0x08000000 0x00010000  {    ; load region size_region
+  ER_IROM1 0x08000000 0x00010000  {  ; load address = execution address
+  
+by:
+
+LR_IROM1 0x08001000 0x0000F000  {    ; load region size_region
+  ER_IROM1 0x08001000 0x0000F000  {  ; load address = execution address
+
+------
+at file Src/system_stm32l0xx.c
+replace:
+
+#define VECT_TAB_OFFSET  0x00U /*!< Vector Table base offset field.
+
+by
+
+#define VECT_TAB_OFFSET  0x1000U /*0x00U /*!< Vector Table base offset field.
+
+------
+at file MDK-ARM/Sigfox.uvprojx
+
+replace:
+
+                <StartAddress>0x8000000</StartAddress>
+
+by
+
+                <StartAddress>0x8001000</StartAddress>
+                
+------        
+also, do it: http://www.keil.com/support/docs/3213.htm,
+as you need the bin file to program properly thru the bootloader.
+
