@@ -1,4 +1,4 @@
-## HT32SX - HT Micron's Sigfox™ Monarch SiP
+# HT32SX - HT Micron's Sigfox™ Monarch SiP
 
 
 
