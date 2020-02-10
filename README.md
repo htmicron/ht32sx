@@ -28,13 +28,10 @@ You'll find here:
 *  Technical Documentation
 *  Examples - codes, aplication notes and design tips.
 
-<hr>
-
-## FAQ
+# FAQ
 
 Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html) or send an email to suppot_iot@htmicron.com.br. 
 
-<hr>
 
 More code informations can be found at [HT Micron's Application Notes](https://htmicron.github.io/index.html) page.
 
