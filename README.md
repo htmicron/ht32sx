@@ -25,7 +25,7 @@ In summary you'll find here:
 
 Branches:
 
-* **INFO**: this informative branch.</ul>
+* **INFO**: this informative branch.
 * **[release_h2.1_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_1.0)**: Software 1.0 of HW 2.1 **STABLE** (it will receive only bugfixes from now, EOL 1st of July)
 * **[release_h2.1_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_2.0)**: Software 2.0 of HW 2.1 **UNSTABLE** (it is under development, EOL not defined)
 * **[master] (https://github.com/htmicron/ht32sx/tree/master)**: lastest code under development **VERY UNSTABLE**
