@@ -24,12 +24,12 @@ In summary you'll find here:
 ## About this repository
 
 Branches:
-<li>
-<ul><b>INFO</b>: this informative branch.</ul>
-<ul><b><a href="/htmicron/ht32sx/tree/release_h2.1_1.0">release_h2.1_1.0</a></b>: Software 1.0 of HW 2.1 <b>STABLE</b> (it will receive only bugfixes, EOL 1st of July)</ul>
-<ul><b><a href="/htmicron/ht32sx/tree/release_h2.1_2.0">release_h2.1_2.0</a></b>: Software 2.0 of HW 2.1 <b>UNSTABLE</b> (it is under development, EOL not defined)</ul>
-<ul><b><a href="/htmicron/ht32sx/tree/master">master</a></b>: lastest code under development <b>VERY UNSTABLE</b></ul>
-</li>
+
+* **INFO**: this informative branch.</ul>
+* **[release_h2.1_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_1.0)**: Software 1.0 of HW 2.1 **STABLE** (it will receive only bugfixes from now, EOL 1st of July)
+* **[release_h2.1_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_2.0)**: Software 2.0 of HW 2.1 **UNSTABLE** (it is under development, EOL not defined)
+* **[master] (https://github.com/htmicron/ht32sx/tree/master)**: lastest code under development **VERY UNSTABLE**
+
 
 <hr>
 
