@@ -21,16 +21,15 @@ In summary you'll find here:
 
 <hr>
 
-## Application Examples
+## About this repository
 
-We have some applications that you can use to start developing your own solution! Please check out our examples:
-
-| Application        | Brief                                                          |
-|:-------------------|:---------------------------------------------------------------|
-| [MOVE-ME](firmware_applications/Monarch_MoveME) | Scan a SigFox™ beacon and send frame via motion detection  |
-| [Monarch Scan](firmware_applications/Monarch_Scan) | Scan a SigFox™ beacon and send frame to found region automatically |
-| [SigFox Push-Button](firmware_applications/Push_Button/) | Send a SigFox™ frame after a button is pressed |
-| [Generic_Push_Button](firmware_applications/Generic_Push_Button/) | Optimized Push_Button code example. Easily reconfigurable |
+Branches:
+<li>
+<ul><b>INFO</b>: this informative branch.</ul>
+<ul><b><a href="/htmicron/ht32sx/tree/release_h2.1_1.0">release_h2.1_1.0</a></b>: Software 1.0 of HW 2.1 <b>STABLE</b> (it will receive only bugfixes, EOL 1st of July)</ul>
+<ul><b><a href="/htmicron/ht32sx/tree/release_h2.1_2.0">release_h2.1_2.0</a></b>: Software 2.0 of HW 2.1 <b>UNSTABLE</b> (it is under development, EOL not defined)</ul>
+<ul><b><a href="/htmicron/ht32sx/tree/master">master</a></b>: lastest code under development <b>VERY UNSTABLE</b></ul>
+</li>
 
 <hr>
 
