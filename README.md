@@ -19,6 +19,11 @@ In summary you'll find here:
 *  [Technical Documentation](/docs)
 *  Examples - codes, aplication notes and design tips.
 
+To clone this branch directly (hardware version 2.1, software version 2.0), use: 
+```
+git clone --single-branch --branch release_h2.1_2.0 https://github.com/htmicron/ht32sx.git
+```
+
 <hr>
 
 ## Application Examples
