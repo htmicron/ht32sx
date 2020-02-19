@@ -19,6 +19,11 @@ In summary you'll find here:
 *  [Technical Documentation](/docs)
 *  Examples - codes, aplication notes and design tips.
 
+To clone this branch directly (lastest code under development), use: 
+```
+git clone --single-branch --branch master https://github.com/htmicron/ht32sx.git
+```
+
 <hr>
 
 ## Application Examples
