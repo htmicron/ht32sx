@@ -110,7 +110,7 @@ int main(void)
 	/********** OPEN AND CONFIFIGURES SIGFOX LIBRARY IN RCZ2 *********************/
 	/********** IN ORDER TO OPEN OTHER RCZS, SEE SIGFOX_API.h **/
 	/********** BASICALLY CHANGES TO OTHER RC VALUE LIKE RCZ3 **/
-	configRegion(RCZ2);
+	configRegion(RCZ6);
 	
   /* USER CODE END 2 */
 

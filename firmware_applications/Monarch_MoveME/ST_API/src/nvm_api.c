@@ -1,3 +1,12 @@
+/*!
+* \file mcu_api_stm32.c
+* \brief Sigfox MCU functions
+* \author  R&D HT Micron
+* \version 1.0
+* \date Sept 2, 2019
+*
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -64,10 +73,10 @@ static NVM_RW_RESULTS _writeRecordInternal(uint32_t addr, uint8_t* nvmRecord, ui
 void SetNVMInitial(NVM_ConfigType *config)
 {
   _nvmType = config->nvmType;
-  _sfxDataAddress = config->sfxDataAddress;
+  _sfxDataAddress = config->sfxDataAddress ;
   _boardDataAddress = config->boardDataAddress;
   _msgSq = config->messageSequenceNumber;
-
+	
   /* Initialize FLASH user data for first boot */
   if(_nvmType == NVM_TYPE_FLASH)
   {
@@ -76,7 +85,8 @@ void SetNVMInitial(NVM_ConfigType *config)
     if (NVM_ReadRecord(cleanBuf, BLOCK_BODY_SIZE) == NVM_NO_RECORDS)
     {
 	memset(cleanBuf, FLASH_ERASE_VALUE, BLOCK_BODY_SIZE);
-	FlashErase(_sfxDataAddress, 1);
+	//FlashErase(_sfxDataAddress, 1);
+	eraseAllSector();
 	NVM_WriteRecord(&cleanBuf[0], BLOCK_BODY_SIZE);
     }
   }
@@ -177,6 +187,15 @@ NVM_RW_RESULTS NVM_ReadRecord(uint8_t* nvmRecord, uint32_t recordSize)
   return tRet;
 }
 
+void eraseAllSector(void) { 
+	uint32_t aux = _blockPointer;
+	
+	for(uint8_t i = 0; i < MAX_NO_OF_PAGES; i++) {
+		DataEepromErase(aux);
+		aux += 4;
+	}
+}
+
 NVM_RW_RESULTS NVM_WriteRecord(uint8_t* nvmRecord, uint32_t recordSize)
 {
   NVM_RW_RESULTS tRet = NVM_RW_OK;
@@ -184,42 +203,34 @@ NVM_RW_RESULTS NVM_WriteRecord(uint8_t* nvmRecord, uint32_t recordSize)
   currentBlockState = NVM_BLOCK_INVALID;
 
   _blockPointer = _sfxDataAddress;
-
+	
   if (_nvmType == NVM_TYPE_FLASH)
   {
     while(currentBlockState != NVM_BLOCK_EMPTY)
     {
-	if(_blockPointer != (uint32_t)FLASH_USER_END_ADDR)
-	{
-	  if(NVM_Read(_blockPointer, BLOCK_HEADER_SIZE, (uint8_t *)&currentBlockState) == NVM_RW_OK)
-	  {
-	    if(currentBlockState == NVM_BLOCK_EMPTY)
-	    {
-		tRet = _writeRecordInternal(_blockPointer, nvmRecord, recordSize);
-		break;
-	    }
-	    else
-		_blockPointer += (BLOCK_BODY_SIZE+BLOCK_HEADER_SIZE);
-	  }
-	  else
-	  {
-	    tRet = NVM_READ_RECORD_ERROR;
-	    break;
-	  }
-	}
-	else
-	{
-	  _blockPointer = (uint32_t)FLASH_USER_START_ADDR;
-	  FlashErase(_blockPointer, 1);
-	  tRet = _writeRecordInternal(_blockPointer, nvmRecord, recordSize);
 
-	  break;
+			if(_blockPointer != (uint32_t)FLASH_USER_END_ADDR) {
+				if(NVM_Read(_blockPointer, BLOCK_HEADER_SIZE, (uint8_t *)&currentBlockState) == NVM_RW_OK) {
+					if(currentBlockState == NVM_BLOCK_EMPTY) {
+						tRet = _writeRecordInternal(_blockPointer, nvmRecord, recordSize);
+							break;
+					} else
+					_blockPointer += (BLOCK_BODY_SIZE+BLOCK_HEADER_SIZE);
+				} else {
+					tRet = NVM_READ_RECORD_ERROR;
+					break;
+				}
+			} else {
+			_blockPointer = (uint32_t)FLASH_USER_START_ADDR;
+			eraseAllSector();	
+			tRet = _writeRecordInternal(_blockPointer, nvmRecord, recordSize);
+
+			break;
 	}
     }
   }
   else
     tRet = NVM_Write(_blockPointer, recordSize, nvmRecord, NVM_WRITE_MODE_WRITEOVER);
-
 
   return tRet;
 }
@@ -235,19 +246,20 @@ NVM_RW_RESULTS NVM_UpdateOffset(NVM_UPDATE_OFFSET updateWhat, int32_t data)
 
     if(ret == NVM_RW_OK)
     {
-	if(updateWhat == NVM_FREQ_OFFSET)
-	  originalData[48] = data;
-	else if(updateWhat == NVM_RSSI_OFFSET)
-	  originalData[52] = data;
-	else if(updateWhat == NVM_LBT_OFFSET)
-	  originalData[56] = data;
-	else
-	  ret = NVM_WRITE_ERROR;
+			if(updateWhat == NVM_FREQ_OFFSET)
+				originalData[48] = data;
+			else if(updateWhat == NVM_RSSI_OFFSET)
+				originalData[52] = data;
+			else if(updateWhat == NVM_LBT_OFFSET)
+				originalData[56] = data;
+			else
+				ret = NVM_WRITE_ERROR;
     }
 
     if(ret == NVM_RW_OK)
-	return NVM_Write(_boardDataAddress, 64, &originalData[0], NVM_WRITE_MODE_ERASE);
+			return NVM_Write(_boardDataAddress, 64, &originalData[0], NVM_WRITE_MODE_ERASE);
   }
 
   return ret;
 }
+

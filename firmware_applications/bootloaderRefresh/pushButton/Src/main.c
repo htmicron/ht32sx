@@ -126,9 +126,7 @@ int main(void)
 		if(button_pressed()) {
 			printf("Sending frame...\n");
 			sendFrameRC2();
-			HAL_Delay(10000);
-			NVIC_SystemReset();
-			while(1);
+			HAL_Delay(500);
 		}
 		
   }
