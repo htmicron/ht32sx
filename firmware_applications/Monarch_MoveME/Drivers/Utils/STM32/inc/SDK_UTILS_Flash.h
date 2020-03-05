@@ -203,6 +203,14 @@ FLS_RW_StatusTypeDef FlashErase(uint32_t nAddress, uint32_t nPages);
 */
 FLS_RW_StatusTypeDef CheckFlashAddress(uint32_t nAddress);
 
+/*
+ * @brief  Erase a page from Data Eeprom.
+ *
+ * @param nAddress flash address
+ * @return FLS_RW_OK if address is valid
+*/
+FLS_RW_StatusTypeDef DataEepromErase(uint32_t nAddress);
+
 /**
 * @}
 */
