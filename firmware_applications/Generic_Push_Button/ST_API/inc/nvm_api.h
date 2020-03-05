@@ -234,6 +234,8 @@ NVM_RW_RESULTS NVM_WriteRecord(uint8_t* nvmRecord, uint32_t recordSize);
 */
 NVM_RW_RESULTS NVM_UpdateOffset(NVM_UPDATE_OFFSET updateWhat, int32_t data);
 
+void eraseAllSector(void);
+
 #ifdef __cplusplus
 }
 #endif

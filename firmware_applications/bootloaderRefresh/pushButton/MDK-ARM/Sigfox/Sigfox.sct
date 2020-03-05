@@ -15,7 +15,7 @@ LR_IROM1 0x08001000 0x0000F000  {    ; load region size_region
   RW_IRAM1 0x20000000 0x00002000  {  ; RW data
    .ANY (+RW +ZI)
   }
-  BLOCK_SIGFOXUSER_FLASH_DATA (0x0800FF00) UNINIT FLASH_NVM_DATASIZE  {
+  BLOCK_SIGFOXUSER_FLASH_DATA (0x08080000) UNINIT FLASH_NVM_DATASIZE  {
   	*.o (.noinit.sigfox_board_data)
   	*.o (.noinit.sigfox_nvm_data)
   }   

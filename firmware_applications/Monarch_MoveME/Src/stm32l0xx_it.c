@@ -157,8 +157,6 @@ void SysTick_Handler(void)
 void RTC_IRQHandler(void)
 {
   /* USER CODE BEGIN RTC_IRQn 0 */
-
-	printf("*** RTC_IRQHandler IN\r");
 	Configure_RTC_Clock();
 	
   /* USER CODE END RTC_IRQn 0 */
