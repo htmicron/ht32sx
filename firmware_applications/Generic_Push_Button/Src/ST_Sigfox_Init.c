@@ -28,7 +28,7 @@ ST_SFX_ERR St_Sigfox_Open_RCZ(uint8_t rcz)
     case 1:
       {
         /* Turn PA off in RC1/3/5/6 */
-        ST_RF_API_set_pa(0);
+        //ST_RF_API_set_pa(0);
         /* RCZ1 - open the SigFox library */
         if(SIGFOX_API_open(&(sfx_rc_t)RC1)!=0)
         {
@@ -40,7 +40,7 @@ ST_SFX_ERR St_Sigfox_Open_RCZ(uint8_t rcz)
     case 2:
       {
         /* Turn PA off in RC2 and RC4 */
-        ST_RF_API_set_pa(1);
+        //ST_RF_API_set_pa(1);
         /* RCZ2 - open the SigFox library */
         if(SIGFOX_API_open(&(sfx_rc_t)RC2)!=0)
         {
@@ -64,7 +64,7 @@ ST_SFX_ERR St_Sigfox_Open_RCZ(uint8_t rcz)
       {
         volatile uint8_t ret;
         /* Turn PA off in RC1/3/5/6 */
-        ST_RF_API_set_pa(0);
+        //ST_RF_API_set_pa(0);
         ret=SIGFOX_API_open(&(sfx_rc_t)RC3C);
         /* RCZ4 - open the SigFox library */
         if(ret!=0)
@@ -89,7 +89,7 @@ ST_SFX_ERR St_Sigfox_Open_RCZ(uint8_t rcz)
       {
         volatile uint8_t ret;
         /* Turn PA off in RC2 and RC4 */
-        ST_RF_API_set_pa(1);
+        //ST_RF_API_set_pa(1);
 
         ret=SIGFOX_API_open(&(sfx_rc_t)RC4);
         /* RCZ4 - open the SigFox library */
@@ -115,7 +115,7 @@ ST_SFX_ERR St_Sigfox_Open_RCZ(uint8_t rcz)
       {
         volatile uint8_t ret;
         /* Turn PA off in RC1/3/5/6 */
-        ST_RF_API_set_pa(0);
+        //ST_RF_API_set_pa(0);
         ret=SIGFOX_API_open(&(sfx_rc_t)RC5);
         /* RCZ5 - open the SigFox library */
         if(ret!=0)
@@ -139,7 +139,7 @@ ST_SFX_ERR St_Sigfox_Open_RCZ(uint8_t rcz)
     case 6:
       {
         /* Turn PA off in RC1/3/5/6 */
-        ST_RF_API_set_pa(0);
+        //ST_RF_API_set_pa(0);
         /* RCZ6 - open the SigFox library */
         if(SIGFOX_API_open(&(sfx_rc_t)RC6)!=0)
         {
