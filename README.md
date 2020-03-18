@@ -4,12 +4,40 @@
 
 ## About this repository
 
+(skip to the [Sigfox SiP](#the-smallest-sigfox-monarch-sip-in-the-world))
+
 ### Branches
 
 * **INFO**: this informative branch.
 * **[release_h2.1_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_1.0)**: Software 1.0 of HW 2.1 **STABLE** (it will only receive bugfixes from now, EOL 1st July, 2020)
 * **[release_h2.1_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_2.0)**: Software 2.0 of HW 2.1 **UNSTABLE** (it is under development, EOL 20th of January, 2021)
 * **[master](https://github.com/htmicron/ht32sx/tree/master)**: lastest code under development **VERY UNSTABLE**
+
+#### Which branch to start a new project?
+Use the lastest software version for your hardware version.
+
+#### Why there are different software versions related to the same hardware version?
+To provied a stable code-base for developers, the **stable** versions are provided. In these, only bugfixes are made. So, when a new fature is add to the code-base, a new software version is created.
+
+### Tree view of the branches
+
+This map is from the master branch, yet it provides the general overview of the structure of the branches.
+
+├─ docs \[datasheets, gettin started\]
+│  ├─ DS001 Rev.0 - Datasheet HT32SX V2.1.pdf
+│  ├─ Evaluation Board User Guide v0.1.pdf
+│  └─ Getting Started With HT32SX.pdf
+├─ firmware_applications \[application notes, examples\]
+│  ├─ Evaluation_Board_Design_Reference
+│  ├─ Generic_Push_Button
+│  ├─ Monarch_Scan
+│  ├─ Monarch_MoveMe
+│  ├─ Push_Button
+│  ├─ antenna_design_reference
+│  ├─ bootloaderRefresh
+├─ LICENSE
+└─ README.md
+
 
 ### Bugtrack
 If you want to issue a bug to our development team, please follow our [bugtrack guideline](How_to_bugtracker.md)
