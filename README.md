@@ -24,18 +24,31 @@ To provied a stable code-base for developers, the **stable** versions are provid
 This map is from the master branch, yet it provides the general overview of the structure of the branches.
 
 ├─ docs \[datasheets, gettin started\]
+
 │  ├─ DS001 Rev.0 - Datasheet HT32SX V2.1.pdf
+
 │  ├─ Evaluation Board User Guide v0.1.pdf
+
 │  └─ Getting Started With HT32SX.pdf
+
 ├─ firmware_applications \[application notes, examples\]
+
 │  ├─ Evaluation_Board_Design_Reference
+
 │  ├─ Generic_Push_Button
+
 │  ├─ Monarch_Scan
+
 │  ├─ Monarch_MoveMe
+
 │  ├─ Push_Button
+
 │  ├─ antenna_design_reference
+
 │  ├─ bootloaderRefresh
+
 ├─ LICENSE
+
 └─ README.md
 
 
