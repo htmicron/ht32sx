@@ -1,7 +1,6 @@
 # HT32SX - HT Micron's Sigfox™ Monarch SiP
 
 
-
 ## About this repository
 
 (skip to the [Sigfox SiP](#the-smallest-sigfox-monarch-sip-in-the-world))
@@ -10,10 +9,22 @@
 
 * **INFO**: this informative branch.
 * **[release_h2.1_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_1.0)**: Software 1.0 of HW 2.1 **STABLE** (it will only receive bugfixes from now, EOL 1st July, 2020)
+  * Credentials stored in reserved Flash memory area
+  * Monarch Regions Enabled and Certified: RC1, RC2, RC3, RC4, RC5 and RC6.
+  * IDE/Compiler: Arm Keil
+  * Bootloader capable
 * **[release_h2.1_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_2.0)**: Software 2.0 of HW 2.1 **UNSTABLE** (it is under development, EOL 20th of January, 2021)
+  * Credentials stored in EEPROM memory
+  * Regions:
+    * Monarch (Certified): RC1, RC2, RC3, RC4, RC5 and RC6.
+    * Under development: RC7
+  * IDE/Compiler:
+    * Arm Keil
+    * Coming soon: ST CubeIDE
+  * Bootloader capable
 * **[master](https://github.com/htmicron/ht32sx/tree/master)**: lastest code under development **VERY UNSTABLE**
 
-#### Which branch to start a new project?
+#### Which branch to start a new project on?
 Use the lastest software version for your hardware version.
 
 #### Why there are different software versions related to the same hardware version?
