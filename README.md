@@ -25,6 +25,8 @@ It means that you’ll have strong reduction in your BOM cost, aiming a fast int
 
 ### Branches
 
+(Coming soon: how to identify your hardware version/revision, for now assume it is *2.1*)
+
 * **INFO**: this informative branch.
 * **[release_h2.1_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_1.0)**: Software 1.0 of HW 2.1 **STABLE** (it will only receive bugfixes from now, EOL 1st July, 2020)
   * Credentials stored in reserved Flash memory area
