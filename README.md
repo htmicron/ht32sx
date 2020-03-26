@@ -4,7 +4,7 @@
 
 * [Introduction](#the-smallest-sigfox-monarch-sip-in-the-world)
 * [About this repository](#about-this-repository)
-* [FAQ, additional information and contact.](#FAQ)
+* [FAQ, additional information and contact.](#faq)
 
 <hr>
 
