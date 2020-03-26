@@ -41,6 +41,9 @@ It means that you’ll have strong reduction in your BOM cost, aiming a fast int
   * Bootloader capable
 * **[master](https://github.com/htmicron/ht32sx/tree/master)**: lastest code under development **VERY UNSTABLE**
 
+#### USING GIT/GITHUB FOR THE FIRST TIME? Check it out:
+[GIT basic usage with HT32SX](/git_basic_usage_with_ht32sx_repo.md)
+
 #### Which branch to start a new project on?
 Use the lastest software version for your hardware version.
 
