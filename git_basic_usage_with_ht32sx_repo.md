@@ -36,7 +36,6 @@ for example, hardware version 2.1, software version 1.0, open your terminal tool
 ```
 cd ./Desktop #(puting the terminal in your Desktop folder)
 git clone --single-branch --branch release_h2.1_1.0 https://github.com/htmicron/ht32sx.git #cloning you specified version.
-
 ```
 
 These commands will create a folder named ht32sx in your Desktop with all the branch data.
