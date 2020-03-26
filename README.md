@@ -77,6 +77,7 @@ This map is from the master branch, yet it provides the general overview of the 
 ```
 
 <hr>
+
 ### FAQ
 
 Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html) or send an email to suppot_iot@htmicron.com.br. 
