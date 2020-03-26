@@ -4,7 +4,7 @@
 
 * [Introduction](#the-smallest-sigfox-monarch-sip-in-the-world)
 * [About this repository](#about-this-repository)
-  * [Using GIT for the first time?] (/git_basic_usage_with_ht32sx_repo.md)
+  * [Using GIT for the first time?](/git_basic_usage_with_ht32sx_repo.md)
 * [FAQ, additional information and contact.](#faq)
 
 <hr>
