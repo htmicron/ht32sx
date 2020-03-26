@@ -1,9 +1,26 @@
 # HT32SX - HT Micron's Sigfox™ Monarch SiP
 
+## Readme Organization
+
+* [Introduction](#the-smallest-sigfox-monarch-sip-in-the-world)
+* [About this repository](#about-this-repository)
+* [FAQ, additional information and contact.](#FAQ)
+
+<hr>
+
+## The SMALLEST Sigfox™ Monarch SiP in the world!
+
+<div align="center">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesenrhZDRBpVRdUHpQ5ouT6wUTu0t0zaYtSI5GZqXJjGc2tor4Q&s">
+</div>
+
+The HT32SX is a System-in-Package (SiP) device build for the Internet of Things providing a **ready-to-use** connectivity solution.
+It means that you’ll have strong reduction in your BOM cost, aiming a fast integration, simple design and the lowest **time-to-market**. It provides both uplink (transmit) and downlink (receive) network communications. As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamlessly roam across the planet taking advantage of the global SigFox™ network coverage without need of reconfiguration, this setup is done automatically.
+
+<hr>
 
 ## About this repository
 
-(skip to the [Sigfox SiP](#the-smallest-sigfox-monarch-sip-in-the-world))
 
 ### Branches
 
@@ -30,46 +47,36 @@ Use the lastest software version for your hardware version.
 #### Why there are different software versions related to the same hardware version?
 To provied a stable code-base for developers, the **stable** versions are provided. In these, only bugfixes are made. So, when a new fature is add to the code-base, a new software version is created.
 
-### Tree view of the branches
-
-This map is from the master branch, yet it provides the general overview of the structure of the branches.
-```
-  ├─ docs [datasheets, gettin started]
-  │  ├─ DS001 Rev.0 - Datasheet HT32SX V2.1.pdf
-  │  ├─ Evaluation Board User Guide v0.1.pdf
-  │  └─ Getting Started With HT32SX.pdf
-  ├─ firmware_applications [application notes, examples]
-  │  ├─ Evaluation_Board_Design_Reference
-  │  ├─ Generic_Push_Button
-  │  ├─ Monarch_Scan
-  │  ├─ Monarch_MoveMe
-  │  ├─ Push_Button
-  │  ├─ antenna_design_reference
-  │  ├─ bootloaderRefresh
-  ├─ LICENSE
-  └─ README.md
-```
+(More in [FAQ](https://htmicron.github.io/FAQ/html/index.html))
 
 ### Bugtrack
 If you want to issue a bug to our development team, please follow our [bugtrack guideline](How_to_bugtracker.md)
 
-<hr>
-
-## The SMALLEST Sigfox™ Monarch SiP in the world!
-
-<div align="center">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesenrhZDRBpVRdUHpQ5ouT6wUTu0t0zaYtSI5GZqXJjGc2tor4Q&s">
-</div>
-
-The HT32SX is a System-in-Package (SiP) device build for the Internet of Things providing a **ready-to-use** connectivity solution.
-It means that you’ll have strong reduction in your BOM cost, aiming a fast integration, simple design and the lowest **time-to-market**. It provides both uplink (transmit) and downlink (receive) network communications. As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamlessly roam across the planet taking advantage of the global SigFox™ network coverage without need of reconfiguration, this setup is done automatically.
-
-<hr>
+### Tree view of the branches
 
 You'll find here:
 *  Technical Documentation
 *  Examples - codes, aplication notes and design tips.
 
+This map is from the master branch, yet it provides the general overview of the branches' structure.
+```
+ ├─ docs [datasheets, gettin started]
+ │  ├─ DS001 Rev.0 - Datasheet HT32SX V2.1.pdf
+ │  ├─ Evaluation Board User Guide v0.1.pdf
+ │  └─ Getting Started With HT32SX.pdf
+ ├─ firmware_applications [application notes, examples]
+ │  ├─ Evaluation_Board_Design_Reference
+ │  ├─ Generic_Push_Button
+ │  ├─ Monarch_Scan
+ │  ├─ Monarch_MoveMe
+ │  ├─ Push_Button
+ │  ├─ antenna_design_reference
+ │  ├─ bootloaderRefresh
+ ├─ LICENSE
+ └─ README.md
+```
+
+<hr>
 ### FAQ
 
 Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html) or send an email to suppot_iot@htmicron.com.br. 
