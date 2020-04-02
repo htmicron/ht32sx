@@ -324,7 +324,7 @@ void mcuConfig(void) {
 	/*			THIS VALUE CAN BE FOUND IN CREDENTIALS 						*/
 
 	ST_RF_API_set_rssi_offset(sfxConfiguration.rssiOffset);
-	printf("RSSI %d \n", (int32_t)sfxConfiguration.rssiOffset);
+	printf("RSSI %d \n", sfxConfiguration.rssiOffset);
 }
 
 void ST_Init(void)
