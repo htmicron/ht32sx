@@ -91,6 +91,18 @@ void configRegion(void) {
 		closeSigfoxLib();
 		scan = 1;
 
+		break;
+	case RCZ7:
+		SIGFOX_MONARCH_API_stop_rc_scan();
+		open_err = St_Sigfox_Open_RCZ(RCZ7);
+		ST_RF_API_reduce_output_power(RCZ7_OUTPUT_POWER);
+
+		if(open_err != 0)
+			printf("Open rcz error: %X\n", open_err);
+
+		sendFrameRCZ(RCZ7);
+		closeSigfoxLib();
+		scan = 1;
 
 		break;
 	default:
@@ -166,6 +178,12 @@ sfx_u8 callback(sfx_u8 rc_bit_mask, sfx_s16 rssi)
 	{
 		printf("Detected RC6!!!:\r\n");
 		rc_bit = RCZ6;
+	}
+	break;
+	case 0x40:  //RC7
+	{
+		printf("Detected RC7!!!:\r\n");
+		rc_bit = RCZ7;
 	}
 	break;
 

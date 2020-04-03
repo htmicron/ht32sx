@@ -262,4 +262,3 @@ NVM_RW_RESULTS NVM_UpdateOffset(NVM_UPDATE_OFFSET updateWhat, int32_t data)
 
   return ret;
 }
-

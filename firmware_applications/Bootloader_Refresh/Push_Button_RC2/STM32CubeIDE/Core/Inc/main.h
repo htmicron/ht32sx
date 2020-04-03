@@ -52,7 +52,6 @@ extern "C" {
 #include "mcu_api.h"
 #include "st_mcu_api.h"
 #include "st_rf_api.h"
-#include "addon_sigfox_rf_protocol_api.h"
 #include "nvm_api.h"
 
 /* USER CODE END Includes */

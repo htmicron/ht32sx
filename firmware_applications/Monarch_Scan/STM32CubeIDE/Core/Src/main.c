@@ -254,9 +254,6 @@ void ST_Init(void)
 	/* FEM Initialization */
 	FEM_Init();
 
-	/* TCXO Initialization */
-	//TCXO_Init();
-
 }
 
 /* USER CODE END 4 */

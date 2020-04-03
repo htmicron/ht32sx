@@ -71,7 +71,6 @@
 //#include "S2LP_AUX_EEPROM.h"
 #include "S2LP_AUX_UTILS.h"
 #include "S2LP_AUX_FEM.h"
-#include "S2LP_AUX_TCXO.h"
 
 #ifdef __cplusplus
 extern "C" {

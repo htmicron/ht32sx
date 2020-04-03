@@ -226,6 +226,13 @@ void configRegion(rc_mask RCZ) {
 			printf("Open rcz error: %X\n", open_err);
 
 		break;
+	case RCZ7:
+			open_err = St_Sigfox_Open_RCZ(RCZ7);
+			ST_RF_API_reduce_output_power(RCZ7_OUTPUT_POWER);
+			if(open_err != 0)
+				printf("Open rcz error: %X\n", open_err);
+
+			break;
 	default:
 		break;
 	}
