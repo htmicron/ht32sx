@@ -96,7 +96,7 @@ __weak void FEM_Init()
     
     S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
     
-    ST_RF_API_set_pa(1);
+    //ST_RF_API_set_pa(1);
     ST_RF_API_gpio_tx_rx_pin(0);
     ST_RF_API_gpio_rx_pin(1);
     ST_RF_API_gpio_tx_pin(2);

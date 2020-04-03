@@ -71,7 +71,7 @@ void closeSigfoxLib(void);
  *							
  *              | Bit7 | Bit6 | Bit5 | Bit4 | Bit3 | Bit2 | Bit1 | Bit0 |
  *              |------|:----:|:----:|:----:|:----:|:----:|:----:|-----:|
- *              |   -  |   -  | RC6  | RC5  | RC4  | RC3  | RC2  |  RC1 |
+ *              |   -  | RC7  | RC6  | RC5  | RC4  | RC3  | RC2  |  RC1 |
  *              
  * \param[in]	sfx_u16 timer									 Scan duration value (with the unit parameter information).
  * \param[in] sfx_timer_unit_enum_t unit 		 Unit to be considered for the scan time computation
@@ -93,7 +93,7 @@ void monarchScan(sfx_u8 rc_capabilities_bit_mask, sfx_u16 timer, sfx_timer_unit_
  *							
  *              | Bit7 | Bit6 | Bit5 | Bit4 | Bit3 | Bit2 | Bit1 | Bit0 |
  *              |------|:----:|:----:|:----:|:----:|:----:|:----:|-----:|
- *              |   -  |   -  | RC6  | RC5  | RC4  | RC3  | RC2  |  RC1 |
+ *              |   -  |  RC7 | RC6  | RC5  | RC4  | RC3  | RC2  |  RC1 |
  *              
  * \param[in]	rssi									 Signal rssi.
  * 

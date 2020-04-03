@@ -1,5 +1,5 @@
 /**
-  * 
+  *
   * Copyright (c) 2019 HT Micron Semicondutors S.A.
 	* Licensed under the Apache License, Version 2.0 (the "License");
 	* you may not use this file except in compliance with the License.
@@ -70,15 +70,15 @@ typedef enum {
 
 /*!******************************************************************
  * \fn void configRegion(void)
- * \brief Configures the device using the RCZ value defined in 
+ * \brief Configures the device using the RCZ value defined in
  * 				RCZ_REGION found at main.h.
  *
  * \param[in]  none                        
  * \param[out] none
  *
- * \retval none	
+ * \retval none
  *******************************************************************/
- 
+
 void configRegion(void);
 
 /*!******************************************************************
@@ -91,7 +91,7 @@ void configRegion(void);
  *
  * \retval none
  *******************************************************************/
- 
+
 void closeSigfoxLib(void);
 
 /*!******************************************************************
@@ -101,46 +101,46 @@ void closeSigfoxLib(void);
  *
  * \param[in]  rc_mask RCZ											 Radio zone                        
  * \param[out] none
- * 
- * \retval none	
+ *
+ * \retval none
  *******************************************************************/
- 
+
  void sendFrameRCZ(rc_mask RCZ);
  
  /*!***********************************************************************************************************
  * \fn void MonarchScan(sfx_u8 rc_capabilities_bit_mask, sfx_u16 timer, sfx_timer_unit_enum_t unit)
- * \brief Executes a network scan to detect a Sigfox Beacon. 
- *				It returns 0 if a valid SigFox network is found and the RC enum value corresponding to 
+ * \brief Executes a network scan to detect a Sigfox Beacon.
+ *				It returns 0 if a valid SigFox network is found and the RC enum value corresponding to
  *				the beacon found and its RSSI level. The scan is executed during the 
  *				specific timer/unit time.
  *
  * \param[in]  sfx_u8 rc_capabilities_bit_mask Bit Mask of the RCx on which the scan has to be executed.    
  *
- *						--------------------------------------------------------- 
+ *						---------------------------------------------------------
  *          	| Bit7 | Bit6 | Bit5 | Bit4 | Bit3 | Bit2 | Bit1 | Bit0 |
  *          	---------------------------------------------------------
  *          	|  -   |  -   | RC6  | RC5  | RC4  | RC3  | RC2  |  RC1 |
- *          	---------------------------------------------------------  
+ *          	---------------------------------------------------------
  *						 sfx_u16 timer						 Scan duration value (with the unit parameter information).
  *						 sfx_timer_unit_enum_t unit 		 Unit to be considered for the scan time computation
  * \param[out] none
- * 
- * \retval none	
+ *
+ * \retval none
  *************************************************************************************************************/
- 
+
 void MonarchScan(sfx_u8 rc_capabilities_bit_mask, sfx_u16 timer, sfx_timer_unit_enum_t unit);
 
 /*!******************************************************************
  * \fn sfx_u8 callback(sfx_u8 rc_bit_mask, sfx_s16 rssi)
  * \brief Monarch callback called after finding Monarch Beacon.
  *
- * \param[in]  sfx_u8 rc_capabilities_bit_mask Bit Mask of the RCx on which the scan has to be executed.    
+ * \param[in]  sfx_u8 rc_capabilities_bit_mask Bit Mask of the RCx on which the scan has to be executed.
  *
- *						--------------------------------------------------------- 
+ *						---------------------------------------------------------
  *          	| Bit7 | Bit6 | Bit5 | Bit4 | Bit3 | Bit2 | Bit1 | Bit0 |
  *          	---------------------------------------------------------
  *          	|  -   |  -   | RC6  | RC5  | RC4  | RC3  | RC2  |  RC1 |
- *          	---------------------------------------------------------  
+ *          	---------------------------------------------------------
  *							
  *							sfx_s16 rssi											Signal rssi.
  *
@@ -171,7 +171,7 @@ extern scan_st_t getScanStatus(void);
  * \param[in]  none
  * \param[out] uint8_t Current Scan Status value
  *
- * \retval none								
+ * \retval none
  *******************************************************************/
 
 extern void setScanStatus(scan_st_t scanStatus);

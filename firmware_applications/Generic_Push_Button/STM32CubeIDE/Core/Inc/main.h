@@ -52,7 +52,6 @@ extern "C" {
 #include "mcu_api.h"
 #include "st_mcu_api.h"
 #include "st_rf_api.h"
-#include "addon_sigfox_rf_protocol_api.h"
 #include "nvm_api.h"
 
 /* USER CODE END Includes */
@@ -67,7 +66,8 @@ typedef enum
 	RCZ3,
 	RCZ4,
 	RCZ5,
-	RCZ6
+	RCZ6,
+	RCZ7
 } rc_mask;
 
 /* USER CODE END ET */
@@ -131,6 +131,7 @@ void configRegion(rc_mask RCZ);
 #define RCZ4_OUTPUT_POWER	-30
 #define RCZ5_OUTPUT_POWER	-5 //18
 #define RCZ6_OUTPUT_POWER	-2
+#define RCZ7_OUTPUT_POWER	-2
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

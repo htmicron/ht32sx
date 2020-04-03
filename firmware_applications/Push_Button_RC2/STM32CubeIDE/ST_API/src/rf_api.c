@@ -1,7 +1,7 @@
 /*!
 * \file mcu_api_stm32.c
 * \brief Sigfox MCU functions
-* \author  R&D HT Micron
+* \author  STMicrolectronics, R&D HT Micron
 * \version 1.0
 * \date Sept 2, 2019
 *

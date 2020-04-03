@@ -29,12 +29,12 @@
  */
 
 /********************************************************
- * External API dependencies to link with this library.
- *
- * Error codes of the MCU API functions are described below.
- * The Manufacturer can add more error code taking care of the limits defined.
- * 
- ********************************************************/
+* External API dependencies to link with this library.
+*
+* Error codes of the MCU API functions are described below.
+* The Manufacturer can add more error code taking care of the limits defined.
+*
+********************************************************/
 
 /*!
  * \defgroup MCU_ERR_API_xx codes Return Error codes definition for MCU API
@@ -47,12 +47,15 @@
  *
  *  @{
  */
-#include "sigfox_types.h" //HBG
+
+#include "sigfox_types.h"
 #include "sigfox_api.h"
 
-/* ---------------------------------------------------------------- */
-/* Bytes reserved for MCU API ERROR CODES : From 0x10 to 0x2F       */
-/* ---------------------------------------------------------------- */
+/*
+ * ----------------------------------------------------------------
+ * Bytes reserved for MCU API ERROR CODES : From 0x10 to 0x2F
+ * ----------------------------------------------------------------
+ */
 
 #define MCU_ERR_API_MALLOC                          (sfx_u8)(0x11) /*!< Error on MCU_API_malloc */
 #define MCU_ERR_API_FREE                            (sfx_u8)(0x12) /*!< Error on MCU_API_free */
@@ -72,21 +75,29 @@
 #define MCU_ERR_API_GET_ID_PAYLOAD_ENCR_FLAG        (sfx_u8)(0x1F) /*!< Error on MCU_API_get_device_id_and_payload_encryption_flag */
 #define MCU_ERR_API_GET_PAC                         (sfx_u8)(0x20) /*!< Error on MCU_API_get_initial_pac */
 
-/* ---------------------------------------------------------------- */
-/* Bytes reserved for RF API ERROR CODES : From 0x30 to 0x3F        */
-/* ---------------------------------------------------------------- */
+/*
+ * ----------------------------------------------------------------
+ * Bytes reserved for RF API ERROR CODES : From 0x30 to 0x3F
+ * ----------------------------------------------------------------
+ */
 
-/* ---------------------------------------------------------------- */
-/* Bytes reserved for SE API ERROR CODES : From 0x40 to 0x5F        */
-/* ---------------------------------------------------------------- */
+/*
+ * ----------------------------------------------------------------
+ * Bytes reserved for SE API ERROR CODES : From 0x40 to 0x5F
+ * ----------------------------------------------------------------
+ */
 
-/* ---------------------------------------------------------------- */
-/* Bytes reserved for REPEATER API ERROR CODES : From 0x60 to 0x7F  */
-/* ---------------------------------------------------------------- */
+/*
+ * ----------------------------------------------------------------
+ * Bytes reserved for REPEATER API ERROR CODES : From 0x60 to 0x7F
+ * ----------------------------------------------------------------
+ */
 
-/* ---------------------------------------------------------------- */
-/* Bytes reserved for MONARCH API ERROR CODES : From 0x80 to 0x8F   */
-/* ---------------------------------------------------------------- */
+/*
+ * ----------------------------------------------------------------
+ * Bytes reserved for MONARCH API ERROR CODES : From 0x80 to 0x8F
+ * ----------------------------------------------------------------
+ */
 
 /** @}*/
 
@@ -110,7 +121,7 @@
  * \retval SFX_ERR_NONE:              No error
  * \retval MCU_ERR_API_MALLOC         Malloc error
  *******************************************************************/
-sfx_u8 MCU_API_malloc(sfx_u16 size, sfx_u8 **returned_pointer);
+sfx_u8 MCU_API_malloc(sfx_u16 size, sfx_u8** returned_pointer);
 
 /*!******************************************************************
  * \fn sfx_u8 MCU_API_free(sfx_u8 *ptr)
@@ -122,7 +133,7 @@ sfx_u8 MCU_API_malloc(sfx_u16 size, sfx_u8 **returned_pointer);
  * \retval SFX_ERR_NONE:                         No error
  * \retval MCU_ERR_API_FREE:                     Free error
  *******************************************************************/
-sfx_u8 MCU_API_free(sfx_u8 *ptr);
+sfx_u8 MCU_API_free(sfx_u8* ptr);
 
 /*!******************************************************************
  * \fn sfx_u8 MCU_API_get_voltage_temperature(sfx_u16 *voltage_idle, sfx_u16 *voltage_tx, sfx_s16 *temperature)
@@ -137,17 +148,17 @@ sfx_u8 MCU_API_free(sfx_u8 *ptr);
  * \retval SFX_ERR_NONE:                         No error
  * \retval MCU_ERR_API_VOLT_TEMP:                Get voltage/temperature error
  *******************************************************************/
-sfx_u8 MCU_API_get_voltage_temperature(sfx_u16 *voltage_idle,
-                                       sfx_u16 *voltage_tx,
-                                       sfx_s16 *temperature);
+sfx_u8 MCU_API_get_voltage_temperature(sfx_u16* voltage_idle,
+                                       sfx_u16* voltage_tx,
+                                       sfx_s16* temperature);
 
 /*!******************************************************************
  * \fn sfx_u8 MCU_API_delay(sfx_delay_t delay_type)
  * \brief Inter stream delay, called between each RF_API_send
  * - SFX_DLY_INTER_FRAME_TX  : 0 to 2s in Uplink DC
- * - SFX_DLY_INTER_FRAME_TRX : 500 ms in Uplink/Downlink FH & Downlink DC 
+ * - SFX_DLY_INTER_FRAME_TRX : 500 ms in Uplink/Downlink FH & Downlink DC
  * - SFX_DLY_OOB_ACK :         1.4s to 4s for Downlink OOB
- * - SFX_CS_SLEEP :            delay between several trials of Carrier Sense (for the first frame only) 
+ * - SFX_CS_SLEEP :            delay between several trials of Carrier Sense (for the first frame only)
  *
  * \param[in] sfx_delay_t delay_type             Type of delay to call
  * \param[out] none
@@ -180,7 +191,7 @@ sfx_u8 MCU_API_aes_128_cbc_encrypt(sfx_u8 *encrypted_data,
                                    sfx_credentials_use_key_t use_key);
 
 /*!******************************************************************
- * \fn sfx_u8 MCU_API_get_nv_mem(sfx_u8 read_data[SFX_NVMEM_BLOCK_SIZE]) 
+ * \fn sfx_u8 MCU_API_get_nv_mem(sfx_u8 read_data[SFX_NVMEM_BLOCK_SIZE])
  * \brief This function copies the data read from non volatile memory
  * into the buffer pointed by read_data.<BR>
  * The size of the data to read is \link SFX_NVMEM_BLOCK_SIZE \endlink
@@ -197,7 +208,7 @@ sfx_u8 MCU_API_aes_128_cbc_encrypt(sfx_u8 *encrypted_data,
 sfx_u8 MCU_API_get_nv_mem(sfx_u8 read_data[SFX_NVMEM_BLOCK_SIZE]);
 
 /*!******************************************************************
- * \fn sfx_u8 MCU_API_set_nv_mem(sfx_u8 data_to_write[SFX_NVMEM_BLOCK_SIZE]) 
+ * \fn sfx_u8 MCU_API_set_nv_mem(sfx_u8 data_to_write[SFX_NVMEM_BLOCK_SIZE])
  * \brief This function writes data pointed by data_to_write to non
  * volatile memory.<BR> It is strongly recommanded to use NV memory
  * like EEPROM since this function is called at each SIGFOX_API_send_xxx.
@@ -229,7 +240,7 @@ sfx_u8 MCU_API_timer_start_carrier_sense(sfx_u16 time_duration_in_ms);
 
 /*!******************************************************************
  * \fn sfx_u8 MCU_API_timer_start(sfx_u32 time_duration_in_s)
- * \brief Start timer for in second duration 
+ * \brief Start timer for in second duration
  *
  * \param[in] sfx_u32 time_duration_in_s         Timer value in seconds
  * \param[out] none
@@ -287,7 +298,7 @@ sfx_u8 MCU_API_timer_wait_for_end(void);
  *
  * \param[in] sfx_bool status                    Is SFX_TRUE when result ok else SFX_FALSE
  *                                               See SIGFOX_API_test_mode summary
- * \param[in] rssi                               RSSI of the received frame 
+ * \param[in] rssi                               RSSI of the received frame
  *
  * \retval SFX_ERR_NONE:                         No error
  * \retval MCU_ERR_API_TEST_REPORT:              Report test result error
@@ -302,9 +313,9 @@ sfx_u8 MCU_API_report_test_result(sfx_bool status, sfx_s16 rssi);
  * \param[out] sfx_u8 *size                      Size of the byte array pointed by *version
  *
  * \retval SFX_ERR_NONE:                         No error
- * \retval MCU_ERR_API_GET_VERSION:              Get Version error 
+ * \retval MCU_ERR_API_GET_VERSION:              Get Version error
  *******************************************************************/
-sfx_u8 MCU_API_get_version(sfx_u8 **version, sfx_u8 *size);
+sfx_u8 MCU_API_get_version(sfx_u8** version, sfx_u8* size);
 
 /*!******************************************************************
  * \fn sfx_u8 MCU_API_get_device_id_and_payload_encryption_flag(sfx_u8 dev_id[ID_LENGTH], sfx_bool *payload_encryption_enabled)
@@ -312,11 +323,11 @@ sfx_u8 MCU_API_get_version(sfx_u8 **version, sfx_u8 *size);
  * the payload encryption flag in payload_encryption_enabled.
  *
  * \param[in]  none
- * \param[out] sfx_u8 dev_id[ID_LENGTH]          Pointer on the device ID
+ * \param[out] sfx_u8 dev_id[ID_LENGTH]              Pointer on the device ID
  * \param[out] sfx_bool *payload_encryption_enabled  Payload is encrypted if SFX_TRUE, not encrypted else
  *
- * \retval SFX_ERR_NONE:                         No error
- * \retval MCU_ERR_API_GET_ID_PAYLOAD_ENCR_FLAG: Error when getting device ID or payload encryption flag
+ * \retval SFX_ERR_NONE:                             No error
+ * \retval MCU_ERR_API_GET_ID_PAYLOAD_ENCR_FLAG:     Error when getting device ID or payload encryption flag
  *******************************************************************/
 sfx_u8 MCU_API_get_device_id_and_payload_encryption_flag(sfx_u8 dev_id[ID_LENGTH], sfx_bool *payload_encryption_enabled);
 
