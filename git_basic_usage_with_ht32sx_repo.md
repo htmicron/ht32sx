@@ -21,7 +21,7 @@ Lets say you have the version 2.1 of the hardware, today as ``` March, 2020 ``` 
 
 The first one (h2.1_1.0) is already stable. If you use it as base for your code, you are safe. It will only be changed if a critical bug is found.
 
-The second release (h2.1_2.0) is still unstable. New features are still being add to it. If you start your own program with this code base, and this code base gets updated, your program almost sure will broke, resulting in more work to update your code base properly.
+The second release (h2.1_2.0) is still unstable. New features are still being add to it. If you start your own program with this code base, and this code base gets updated, your program almost surely will break, resulting in more work to update your code base properly.
 
 The *master* branch is attached to the last hardware version. You should not use it, unless you want to test the latest features, but be warned: the code there may not even compile/build.
 
