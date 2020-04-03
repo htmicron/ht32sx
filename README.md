@@ -16,7 +16,9 @@
 </div>
 
 The HT32SX is a System-in-Package (SiP) device build for the Internet of Things providing a **ready-to-use** connectivity solution.
-It means that you’ll have strong reduction in your BOM cost, aiming a fast integration, simple design and the lowest **time-to-market**. It provides both uplink (transmit) and downlink (receive) network communications. As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamlessly roam across the planet taking advantage of the global SigFox™ network coverage without need of reconfiguration, this setup is done automatically.
+You’ll have strong reduction in your BOM cost aiming a fast integration, simple design and the lowest **time-to-market**.
+
+As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamlessly roam across the planet taking advantage of the global SigFox™ network coverage without need of reconfiguration since region setup is done automatically.
 
 <hr>
 
@@ -36,13 +38,14 @@ It means that you’ll have strong reduction in your BOM cost, aiming a fast int
 * **[release_h2.1_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_2.0)**: Software 2.0 of HW 2.1 **UNSTABLE** (it is under development, EOL 20th of January, 2021)
   * Credentials stored in EEPROM memory
   * Regions:
-    * Monarch (Certified): RC1, RC2, RC3, RC4, RC5 and RC6.
-    * Under development: RC7
+    * Monarch (Certified): RC1, RC2, RC3, RC4, RC5, RC6 and RC7*.
   * IDE/Compiler:
     * Arm Keil
     * Coming soon: ST CubeIDE
   * Bootloader capable
 * **[master](https://github.com/htmicron/ht32sx/tree/master)**: lastest code under development **VERY UNSTABLE**
+
+Legend: * RC7 is pending certification
 
 #### USING GIT/GITHUB FOR THE FIRST TIME?
 Check it out: [GIT basic usage with HT32SX](/git_basic_usage_with_ht32sx_repo.md)
