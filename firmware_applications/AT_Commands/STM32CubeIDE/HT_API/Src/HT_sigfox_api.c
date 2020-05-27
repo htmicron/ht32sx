@@ -94,10 +94,10 @@ sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_respo
 
 	printf("Sending frame...\n");
 
-	err = SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_response, 3, initiate_downlink_flag);
+	err = SIGFOX_API_send_frame(customer_data,strlen((char *)customer_data),customer_response, 3, initiate_downlink_flag);
 
 	if(initiate_downlink_flag) {
-		printf("Constumer resp: {");
+		printf("Customer resp: {");
 
 		for(uint16_t i = 0; i < 7; i++)
 			printf("0x%x,", customer_response[i]);
