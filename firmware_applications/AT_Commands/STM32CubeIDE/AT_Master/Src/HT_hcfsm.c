@@ -160,6 +160,9 @@ void * AT_SigFox_executeCmd(void) {
 		case AT_sendFrame:
 
 			AT_splitString(cmdStr, "=", firstParam);
+
+			integerParam1 = firstParam[0] - '0';
+
 			AT_splitString(firstParam, ":", secParam);
 
 			if(secParam[0] == '\0'){
@@ -167,7 +170,8 @@ void * AT_SigFox_executeCmd(void) {
 				return AT_errorRoutine;
 			}
 
-			integerParam1 = atoi(firstParam);
+			secParam[strlen(secParam)-1] = '\0';
+
 			HT_SigfoxApi_sendFrame((sfx_u8 *)secParam, customer_response, integerParam1);
 
 			break;
@@ -184,7 +188,7 @@ void * AT_SigFox_executeCmd(void) {
 			integerParam1 = atoi(firstParam);
 			integerParam2 = atoi(secParam);
 
-			integerParam1 = (integerParam1 == 63) ? integerParam1 : HT_MonarchApi_getRcBitMask(integerParam1);
+			integerParam1 = (integerParam1 == ALL_REGIONS) ? integerParam1 : HT_MonarchApi_getRcBitMask(integerParam1);
 
 			HT_MonarchApi_monarchScan((sfx_u8)integerParam1, (sfx_u16)integerParam2);
 
@@ -192,7 +196,7 @@ void * AT_SigFox_executeCmd(void) {
 		case AT_cfgrcz:
 
 			AT_splitString(cmdStr, "=", firstParam);
-			integerParam1 = atoi(firstParam);
+			integerParam1 = firstParam[0] - '0';
 
 			if(firstParam[0] == '\0'){
 				status.AT_err = ERR_PARAM_CMD;
@@ -245,7 +249,11 @@ void * AT_cmd_returnStatus(void) {
 }
 
 void AT_splitString(char *cmd, char *splitChar, char *ptr) {
-	char *token = strtok((char *)cmd, splitChar);
+	char aux[DMA_RX_BUFFER_SIZE];
+
+	strcpy(aux, cmd);
+
+	char *token = strtok((char *)aux, splitChar);
 
     token = strtok(NULL, splitChar);
 
