@@ -21,7 +21,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 * **Binaries**: Want to download binaries of the most used application examples? You find them [here](https://github.com/htmicron/ht32sx/tree/binaries).
 
-* **Zip Sources**: Want to download the source code of the development kit in zip compressed files? You find them [here](https://github.com/htmicron/ht32sx/tree/zip).
+* **Zip-like Sources**: Want to download the source code of the development kit in compressed files? You find them [here](https://github.com/htmicron/ht32sx/tree/zip).
 
 * **Info**: Developer familiar with GIT tools? Go [here](https://github.com/htmicron/ht32sx/tree/info).
 
