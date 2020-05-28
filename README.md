@@ -16,8 +16,8 @@ In this repository you can find all the information you'll need to star to build
 The HT32SX SiP uses an ARM M0+ Core powered by ST Microelectronics (STM32L052x8) that provides to software developers working with STM32 devices [a **free-to-use** tool suite](https://www2.keil.com/stmicroelectronics-stm32/mdk). The MDK-Essential for STM32F0, STM32G0 and STM32L0 edition includes the Arm C/C++ Compiler, the Keil RTX5 real-time operating system kernel, and the µVision IDE/Debugger. It only works with STM32 devices based on the Cortex-M0/M0+ cores and is limited to a code size of 256 KB. The STM32 peripherals can be configured using [STM32 CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html) and the resulting project exported to MDK.
 
 In summary you'll find here:
-*  [Technical Documentation](/docs)
-*  Examples - codes, aplication notes and design tips.
+*  [Technical Documentation](https://github.com/htmicron/ht32sx/tree/documents/2.1)
+*  [Examples](./applications) - codes, aplication notes and design tips.
 
 To clone this branch directly (lastest code under development), use: 
 ```
