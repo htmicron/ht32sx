@@ -43,7 +43,23 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
     * Arm Keil
     * Coming soon: ST CubeIDE
   * Bootloader capable
-* **[master](https://github.com/htmicron/ht32sx/tree/master)**: lastest code under development **VERY UNSTABLE**
+* **[release_h2.1_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.2_1.0)**: Software 1.0 of HW 2.2 **STABLE** (it will only receive bugfixes from now, EOL 20th of January, 2021)
+  * Credentials stored in EEPROM memory
+  * Regions:
+    * Monarch (Certified): RC1, RC2, RC3, RC4, RC5, RC6 and RC7*.
+  * IDE/Compiler:
+    * Arm Keil
+    * ST CubeIDE
+* **[release_h2.1_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_2.0)**: Software 2.0 of HW 2.2 **UNSTABLE** (it is under development, EOL 1st of July, 2021)
+  * Credentials stored in EEPROM memory
+  * Regions:
+    * Monarch (Certified): RC1, RC2, RC3, RC4, RC5, RC6 and RC7*.
+  * IDE/Compiler:
+    * Arm Keil
+    * ST CubeIDE
+  * Bootloader capable
+* **[master](https://github.com/htmicron/ht32sx/tree/master)**: (obsolete, pending to be remove) lastest code under development for HW version 1.0 **VERY UNSTABLE**
+* **[master_2](https://github.com/htmicron/ht32sx/tree/master_2)**: lastest code under development for HW version 2.0 **VERY UNSTABLE**
 
 Legend: * RC7 is pending certification
 
@@ -64,16 +80,11 @@ If you want to issue a bug to our development team, please follow our [bugtrack 
 ### Tree view of the branches
 
 You'll find here:
-*  Technical Documentation
 *  Examples - codes, aplication notes and design tips.
 
 This map is from the master branch, yet it provides the general overview of the branches' structure.
 ```
- ├─ docs [datasheets, gettin started]
- │  ├─ DS001 Rev.0 - Datasheet HT32SX V2.1.pdf
- │  ├─ Evaluation Board User Guide v0.1.pdf
- │  └─ Getting Started With HT32SX.pdf
- ├─ firmware_applications [application notes, examples]
+ ├─ applications [application notes, examples]
  │  ├─ Evaluation_Board_Design_Reference
  │  ├─ Generic_Push_Button
  │  ├─ Monarch_Scan
