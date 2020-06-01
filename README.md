@@ -58,7 +58,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
     * Arm Keil
     * ST CubeIDE
   * Bootloader capable
-* **[master](https://github.com/htmicron/ht32sx/tree/master)**: (obsolete, pending to be remove) lastest code under development for HW version 1.0 **VERY UNSTABLE**
+* **[master](https://github.com/htmicron/ht32sx/tree/master)**: (obsolete, pending to be removed) lastest code under development for HW version 1.0 **VERY UNSTABLE**
 * **[master_2](https://github.com/htmicron/ht32sx/tree/master_2)**: lastest code under development for HW version 2.0 **VERY UNSTABLE**
 
 Legend: * RC7 is pending certification
