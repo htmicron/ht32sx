@@ -9,9 +9,9 @@ Just upload to your device and it will work!
 
 ### HARDWARE 2.2
 
-* [Software version 1.0, stable](./h2.2_s1.0)
+* [Software version 1.0, stable](./h2.2_s1.0.zip)
 
-* [Software version 2.0, unstable](./h2.2_s2.0)
+* [Software version 2.0, unstable](./h2.2_s2.0.zip)
 
 ## TO EXTRACT
 
