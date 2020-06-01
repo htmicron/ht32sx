@@ -72,7 +72,7 @@ Use the lastest software version for your hardware version.
 #### Why there are different software versions related to the same hardware version?
 To provied a stable code-base for developers, the **stable** versions are provided. In these, only bugfixes are made. So, when a new fature is add to the code-base, a new software version is created.
 
-(More in [FAQ](https://htmicron.github.io/FAQ/html/index.html)
+(More in [FAQ](https://htmicron.github.io/FAQ/html/index.html))
 
 #### Clone this repository and all its branches?
 
