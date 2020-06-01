@@ -72,7 +72,16 @@ Use the lastest software version for your hardware version.
 #### Why there are different software versions related to the same hardware version?
 To provied a stable code-base for developers, the **stable** versions are provided. In these, only bugfixes are made. So, when a new fature is add to the code-base, a new software version is created.
 
-(More in [FAQ](https://htmicron.github.io/FAQ/html/index.html))
+(More in [FAQ](https://htmicron.github.io/FAQ/html/index.html)
+
+#### Clone this repository and all its branches?
+
+```
+git clone git@github.com:htmicron/ht32sx.git
+git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+git fetch --all
+git pull --all
+```
 
 ### Bugtrack
 If you want to issue a bug to our development team, please follow our [bugtrack guideline](How_to_bugtracker.md)
