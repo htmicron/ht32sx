@@ -1,1 +1,0 @@
-# HT32SX binaries of HARDWARE 2.2, SOFTWARE STABLE
