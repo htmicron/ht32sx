@@ -43,14 +43,14 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
     * Arm Keil
     * Coming soon: ST CubeIDE
   * Bootloader capable
-* **[release_h2.1_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.2_1.0)**: Software 1.0 of HW 2.2 **STABLE** (it will only receive bugfixes from now, EOL 20th of January, 2021)
+* **[release_h2.2_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.2_1.0)**: Software 1.0 of HW 2.2 **STABLE** (it will only receive bugfixes from now, EOL 20th of January, 2021)
   * Credentials stored in EEPROM memory
   * Regions:
     * Monarch (Certified): RC1, RC2, RC3, RC4, RC5, RC6 and RC7*.
   * IDE/Compiler:
     * Arm Keil
     * ST CubeIDE
-* **[release_h2.1_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_2.0)**: Software 2.0 of HW 2.2 **UNSTABLE** (it is under development, EOL 1st of July, 2021)
+* **[release_h2.2_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.2_2.0)**: Software 2.0 of HW 2.2 **UNSTABLE** (it is under development, EOL 1st of July, 2021)
   * Credentials stored in EEPROM memory
   * Regions:
     * Monarch (Certified): RC1, RC2, RC3, RC4, RC5, RC6 and RC7*.
