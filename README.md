@@ -8,7 +8,9 @@ Just upload to your device and it will work!
 
 ### HARDWARE 2.2
 
-[Here](./h2.2_s1.0)
+* [Software version 1.0, stable](./h2.2_s1.0)
+
+* [Software version 2.0, unstable](./h2.2_s2.0)
 
 
 ## TO EXTRACT
