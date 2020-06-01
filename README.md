@@ -19,7 +19,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 * **Datasheet**: Want to see datasheets and other documents? You find them [here](https://github.com/htmicron/ht32sx/tree/documents).
 
-* ~~**Binaries**: Want to download binaries of the most used application examples? You find them [here](https://github.com/htmicron/ht32sx/tree/binaries).~~ (coming soon)
+* **Binaries**: Want to download binaries of the most used application examples? You find them [here](https://github.com/htmicron/ht32sx/tree/binaries).
 
 * **Zip-like Sources**: Want to download the source code of the development kit in compressed files? You find them [here](https://github.com/htmicron/ht32sx/tree/zip).
 
