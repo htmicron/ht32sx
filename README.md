@@ -77,7 +77,8 @@ To provied a stable code-base for developers, the **stable** versions are provid
 #### Clone this repository and all its branches?
 
 ```
-git clone git@github.com:htmicron/ht32sx.git
+git clone https://github.com/htmicron/ht32sx.git
+cd ht32sx
 git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
 git fetch --all
 git pull --all
