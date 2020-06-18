@@ -27,6 +27,12 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 <hr>
 
+Third-party contributions:
+
+* Kicad HT32SX footprint [here](https://github.com/htmicron/htmicron-ht32sx).
+
+<hr>
+
 ### FAQ
 
 Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html) or send an email to suppot_iot@htmicron.com.br. 
