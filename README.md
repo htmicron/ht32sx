@@ -29,7 +29,9 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 Third-party contributions:
 
-* Kicad HT32SX footprint [here](https://github.com/htmicron/htmicron-ht32sx).
+([here](https://github.com/htmicron/thirdpartyHT32SX/))
+
+* Kicad HT32SX footprint [here](https://github.com/htmicron/thirdpartyHT32SX/kicad).
 
 <hr>
 
