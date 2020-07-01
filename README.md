@@ -27,7 +27,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 <hr>
 
-Third-party contributions:
+## Third-party contributions:
 
 ([here](https://github.com/htmicron/thirdpartyHT32SX/))
 
