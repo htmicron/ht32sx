@@ -31,7 +31,7 @@ Third-party contributions:
 
 ([here](https://github.com/htmicron/thirdpartyHT32SX/))
 
-* Kicad HT32SX footprint [here](https://github.com/htmicron/thirdpartyHT32SX/kicad).
+* Kicad HT32SX footprint [here](https://github.com/htmicron/thirdpartyHT32SX/tree/master/kicad).
 
 <hr>
 
