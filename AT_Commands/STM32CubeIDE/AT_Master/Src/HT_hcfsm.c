@@ -54,8 +54,11 @@ void * AT_Cmd_waitingCmd(void) {
 		HW_Config_Circular_DMA();
 	}
 
-	if(atCmdFlags.cmdReceived)
+	if(atCmdFlags.cmdReceived) {
+		CLEAR_BIT(huart1.Instance->CR1, USART_CR1_IDLEIE);
+		SET_BIT(huart1.Instance->ICR, USART_ICR_IDLECF);
 		return AT_Cmd_getCmd;
+	}
 
 	return AT_Cmd_waitingCmd;
 }
@@ -63,9 +66,6 @@ void * AT_Cmd_waitingCmd(void) {
 void * AT_Cmd_getCmd(void) {
 
 	printf("AT_Cmd_getCmd...\n");
-
-	CLEAR_BIT(huart1.Instance->CR1, USART_CR1_IDLEIE);
-	SET_BIT(huart1.Instance->ICR, USART_ICR_IDLECF);
 
 	AT_getCmdData(cmd);
 	clearUartRxBuffer();
