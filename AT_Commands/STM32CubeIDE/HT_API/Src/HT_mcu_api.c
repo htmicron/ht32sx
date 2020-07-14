@@ -115,7 +115,7 @@ void HT_McuApi_enterDeepSleepMode(void) {
 	S2LPShutdownEnter();
 
 	HAL_Delay(500);
-	EXTI->PR = 0xFFFFFFFF;
+	//EXTI->PR = 0xFFFFFFFF;
 
 	HT_McuApi_enableUsartWkp();
 

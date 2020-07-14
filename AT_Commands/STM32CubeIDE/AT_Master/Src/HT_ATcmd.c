@@ -113,7 +113,7 @@ void AT_setCmdStr(uint8_t *ptr, uint8_t Write, uint8_t tocopy) {
 
 	memcpy(&auxBuffer[i], ptr, tocopy);
 
-	if(*ptr == ';' || auxBuffer[strlen((char *)auxBuffer)-1] == ';') {
+	if(auxBuffer[strlen((char *)auxBuffer)-1] == ';') {
 		AT_prepareBuffer(auxBuffer);
 		AT_setCmdFlag(1);
 		AT_updateFsm(status, 0);
