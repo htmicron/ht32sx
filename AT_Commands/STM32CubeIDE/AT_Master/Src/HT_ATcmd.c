@@ -87,12 +87,12 @@ AT_cmdStruct AT_checkCmdString(char *cmdStr) {
 void AT_prepareBuffer(uint8_t *buffer) {
 	uint8_t aux[DMA_RX_BUFFER_SIZE];
 
-	memcpy(aux, auxBuffer, sizeof(auxBuffer));
-	memset(auxBuffer, 0, sizeof(auxBuffer));
+	memcpy(aux, buffer, DMA_RX_BUFFER_SIZE);
+	memset(buffer, 0, DMA_RX_BUFFER_SIZE);
 
 	for(uint8_t i = 0;i < sizeof(aux);i++) {
 		if(aux[i] != '\0')
-			auxBuffer[i] = aux[i];
+			buffer[i] = aux[i];
 	}
 }
 
