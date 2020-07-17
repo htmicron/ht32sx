@@ -194,7 +194,7 @@ void mcuConfig(void) {
 	ST_MCU_API_TimerCalibration(500);
 #endif
 
-	printf("Sigfox Monarch iMCP HT32SX\n");
+	printf("Sigfox Monarch iMCP HT32SX - AT Commands\n");
 	printf("ID: %.8X - PAC: ", (unsigned int)sfxConfiguration.id);
 
 	for(uint16_t i = 0; i < sizeof(sfxConfiguration.pac); i++)

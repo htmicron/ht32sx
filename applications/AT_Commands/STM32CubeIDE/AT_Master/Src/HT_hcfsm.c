@@ -1,17 +1,17 @@
 /**
-  *
-  * Copyright (c) 2020 HT Micron Semicondutors S.A.
-	* Licensed under the Apache License, Version 2.0 (the "License");
-	* you may not use this file except in compliance with the License.
-	* You may obtain a copy of the License at
-	* http://www.apache.org/licenses/LICENSE-2.0
-	* Unless required by applicable law or agreed to in writing, software
-	* distributed under the License is distributed on an "AS IS" BASIS,
-	* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	* See the License for the specific language governing permissions and
-	* limitations under the License.
-  *
-*/
+ *
+ * Copyright (c) 2020 HT Micron Semicondutors S.A.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 #include "HT_sigfox_api.h"
 #include "HT_monarch_api.h"
@@ -22,6 +22,7 @@
 
 uint8_t auxBuffer[DMA_RX_BUFFER_SIZE];
 uint8_t cmd[DMA_RX_BUFFER_SIZE];
+uint8_t pLen = 0;
 
 uint8_t dmaEnable = 1;
 
@@ -30,11 +31,17 @@ AT_cmdStrError this_errStatus;
 
 char cmdStr[UART_BUFFER_SIZE];
 char firstParam[2];
-char secParam[12];
+char secParam[24];
 
 AT_cmdStruct status;
 
 AT_Cmd_stateFlags atCmdFlags;
+
+#ifdef USE_ASC2_DATA
+uint8_t asc2_data_flag = 1;
+#else
+uint8_t asc2_data_flag = 0;
+#endif
 
 void * AT_Cmd(void) {
 	printf("AT_Cmd...\n");
@@ -54,8 +61,11 @@ void * AT_Cmd_waitingCmd(void) {
 		HW_Config_Circular_DMA();
 	}
 
-	if(atCmdFlags.cmdReceived)
+	if(atCmdFlags.cmdReceived) {
+		CLEAR_BIT(huart1.Instance->CR1, USART_CR1_IDLEIE);
+		SET_BIT(huart1.Instance->ICR, USART_ICR_IDLECF);
 		return AT_Cmd_getCmd;
+	}
 
 	return AT_Cmd_waitingCmd;
 }
@@ -64,10 +74,8 @@ void * AT_Cmd_getCmd(void) {
 
 	printf("AT_Cmd_getCmd...\n");
 
-	CLEAR_BIT(huart1.Instance->CR1, USART_CR1_IDLEIE);
-	SET_BIT(huart1.Instance->ICR, USART_ICR_IDLECF);
-
 	AT_getCmdData(cmd);
+	printf("Get cmd: %s\n", cmd);
 	clearUartRxBuffer();
 
 	status = AT_checkCmdHdr((char *)cmd);
@@ -91,22 +99,22 @@ void * AT_errorRoutine(void) {
 	clearUartRxBuffer();
 
 	switch(status.AT_err) {
-		case DUMMY:
-			break;
-		case ERR_NONE:
-			break;
-		case ERR_PARAM_CMD:
-			printf("AT_Cmd error: Parameter error!\n");
-			break;
-		case ERR_UNAVAILABLE_CMD:
-			printf("AT_Cmd error: Unavailable command!\n");
-			break;
-		case ERR_HDR:
-			printf("AT_Cmd error: Header command error!\n");
-			break;
-		case ERR_OVF:
-			printf("AT_Cmd error: Overflow send frame error! Payload must be less or equal than 12 bytes!\n");
-			break;
+	case DUMMY:
+		break;
+	case ERR_NONE:
+		break;
+	case ERR_PARAM_CMD:
+		printf("AT_Cmd error: Parameter error!\n");
+		break;
+	case ERR_UNAVAILABLE_CMD:
+		printf("AT_Cmd error: Unavailable command!\n");
+		break;
+	case ERR_HDR:
+		printf("AT_Cmd error: Header command error!\n");
+		break;
+	case ERR_OVF:
+		printf("AT_Cmd error: Overflow send frame error! Payload must be less or equal than 12 bytes!\n");
+		break;
 	}
 
 	return AT_cmd_returnStatus;
@@ -124,21 +132,21 @@ void * AT_Mcu_executeCmd(void) {
 	printf("AT_Mcu_executeCmd...\n");
 
 	switch(status.AT_mcuCmd) {
-		case AT_deepSleep:
-			status.AT_mcuCmd = -1;
-			HT_McuApi_enterDeepSleepMode();
-			break;
-		case AT_stop:
-			status.AT_mcuCmd = -1;
-			HT_McuApi_enterStopMode();
-			break;
-		case AT_reset:
-			HT_McuApi_softwareReset();
-			break;
-		case AT_wkp:
-			break;
-		default:
-			return AT_errorRoutine;
+	case AT_deepSleep:
+		status.AT_mcuCmd = -1;
+		HT_McuApi_enterDeepSleepMode();
+		break;
+	case AT_stop:
+		status.AT_mcuCmd = -1;
+		HT_McuApi_enterStopMode();
+		break;
+	case AT_reset:
+		HT_McuApi_softwareReset();
+		break;
+	case AT_wkp:
+		break;
+	default:
+		return AT_errorRoutine;
 	}
 
 	return AT_cmd_returnStatus;
@@ -153,73 +161,89 @@ void * AT_SigFox(void) {
 void * AT_SigFox_executeCmd(void) {
 	printf("AT_SigFox_executeCmd\n");
 	sfx_u8 customer_response[8];
+	sfx_u8 customer_data[12];
 	uint8_t integerParam1;
 	uint16_t integerParam2;
 
 	switch(status.AT_sigfoxCmd) {
-		case AT_sendFrame:
+	case AT_sendFrame:
 
-			AT_splitString(cmdStr, "=", firstParam);
+		AT_splitString(cmdStr, "=", firstParam);
 
-			integerParam1 = firstParam[0] - '0';
+		integerParam1 = firstParam[0] - '0';
 
-			AT_splitString(firstParam, ":", secParam);
+		AT_splitString(firstParam, ":", secParam);
 
-			if(secParam[0] == '\0'){
-				status.AT_err = ERR_PARAM_CMD;
-				return AT_errorRoutine;
-			}
-
-			secParam[strlen(secParam)-1] = '\0';
-
-			HT_SigfoxApi_sendFrame((sfx_u8 *)secParam, customer_response, integerParam1);
-
-			break;
-		case AT_monarchScan:
-
-			AT_splitString(cmdStr, "=", firstParam);
-			AT_splitString(firstParam, ":", secParam);
-
-			if(firstParam[0] == '\0' || secParam[0] == '\0'){
-				status.AT_err = ERR_PARAM_CMD;
-				return AT_errorRoutine;
-			}
-
-			integerParam1 = atoi(firstParam);
-			integerParam2 = atoi(secParam);
-
-			integerParam1 = (integerParam1 == ALL_REGIONS) ? integerParam1 : HT_MonarchApi_getRcBitMask(integerParam1);
-
-			HT_MonarchApi_monarchScan((sfx_u8)integerParam1, (sfx_u16)integerParam2);
-
-			break;
-		case AT_cfgrcz:
-
-			AT_splitString(cmdStr, "=", firstParam);
-			integerParam1 = firstParam[0] - '0';
-
-			if(firstParam[0] == '\0'){
-				status.AT_err = ERR_PARAM_CMD;
-				return AT_errorRoutine;
-			}
-
-			HT_SigfoxApi_configRegion(integerParam1);
-
-			break;
-
-		case AT_stpMonarch:
-
-			HT_MonarchApi_stopMonarchScan();
-
-			break;
-
-		case AT_close:
-
-			HT_SigfoxApi_closeSigfoxLib();
-
-			break;
-		default:
+		if(secParam[0] == '\0'){
+			status.AT_err = ERR_PARAM_CMD;
 			return AT_errorRoutine;
+		}
+
+		secParam[strlen(secParam)-1] = '\0';
+
+		if(!asc2_data_flag) {
+			if(strlen((char *)secParam) > MAX_HEX_SIZE) {
+				status.AT_err = ERR_OVF;
+				return AT_errorRoutine;
+			}
+
+			AT_getHexValue(secParam, (uint8_t *)customer_data);
+			HT_SigfoxApi_sendFrame(customer_data, customer_response, integerParam1, strlen((char *)secParam));
+		} else {
+			if(strlen((char *)secParam) > MAX_PAYLOAD_SIZE) {
+				status.AT_err = ERR_OVF;
+				return AT_errorRoutine;
+			}
+
+			HT_SigfoxApi_sendFrame((sfx_u8 *)secParam, customer_response, integerParam1, strlen((char *)secParam));
+		}
+
+		break;
+	case AT_monarchScan:
+
+		AT_splitString(cmdStr, "=", firstParam);
+		AT_splitString(firstParam, ":", secParam);
+
+		if(firstParam[0] == '\0' || secParam[0] == '\0'){
+			status.AT_err = ERR_PARAM_CMD;
+			return AT_errorRoutine;
+		}
+
+		integerParam1 = atoi(firstParam);
+		integerParam2 = atoi(secParam);
+
+		integerParam1 = (integerParam1 == ALL_REGIONS) ? integerParam1 : HT_MonarchApi_getRcBitMask(integerParam1);
+
+		HT_MonarchApi_monarchScan((sfx_u8)integerParam1, (sfx_u16)integerParam2);
+
+		break;
+	case AT_cfgrcz:
+
+		AT_splitString(cmdStr, "=", firstParam);
+		integerParam1 = firstParam[0] - '0';
+
+		if(firstParam[0] == '\0'){
+			status.AT_err = ERR_PARAM_CMD;
+			return AT_errorRoutine;
+		}
+
+		HT_SigfoxApi_configRegion(integerParam1);
+
+		break;
+
+	case AT_stpMonarch:
+
+		HT_MonarchApi_stopMonarchScan();
+
+		break;
+
+	case AT_close:
+
+		HT_SigfoxApi_closeSigfoxLib();
+
+		break;
+	default:
+		return AT_errorRoutine;
 	}
 
 	return AT_cmd_returnStatus;
@@ -248,6 +272,24 @@ void * AT_cmd_returnStatus(void) {
 	return AT_Cmd;
 }
 
+void AT_getHexValue(char *str, uint8_t *output) {
+	char tmp[2];
+	uint8_t ind = 0;
+	uint8_t i = 0;
+
+	do {
+		tmp[0] = str[ind];
+		tmp[1] = str[++ind];
+
+		ind++;
+
+		output[i] = (uint8_t)strtol(tmp, NULL, 16);
+
+		i++;
+	} while (i < 12);
+
+}
+
 void AT_splitString(char *cmd, char *splitChar, char *ptr) {
 	char aux[DMA_RX_BUFFER_SIZE];
 
@@ -255,7 +297,7 @@ void AT_splitString(char *cmd, char *splitChar, char *ptr) {
 
 	char *token = strtok((char *)aux, splitChar);
 
-    token = strtok(NULL, splitChar);
+	token = strtok(NULL, splitChar);
 
 	strcpy(ptr, token);
 
@@ -277,10 +319,10 @@ void AT_setFsmState(state_func state) {
 
 void HT_hcfsm(void) {
 	atCmdFlags.returnStatus = AT_ok;
-    atCmdFlags.cmdType = AT_cmd;
+	atCmdFlags.cmdType = AT_cmd;
 
-    while (1)
-        current_state = (state_func)(current_state)();
+	while (1)
+		current_state = (state_func)(current_state)();
 }
 
 /************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/

@@ -22,7 +22,7 @@ uint8_t UART_Buffer[UART_BUFFER_SIZE];
 
 size_t Write;
 size_t len, tocopy;
-uint8_t* ptr;
+uint8_t *ptr;
 
 uint8_t cont = 0;
 uint32_t previous_len = 0;
@@ -76,8 +76,7 @@ void DMA_IrqHandler (DMA_HandleTypeDef *hdma) {
 		/* Write received data for UART main buffer for manipulation later */
 
 		ptr = DMA_RX_Buffer;
-		if(*ptr != '\0')
-			memcpy(UART_Buffer + strlen((char *)UART_Buffer), ptr, tocopy);
+		memcpy(UART_Buffer + strlen((char *)UART_Buffer), ptr, tocopy);
 
 		/* Prepare DMA for next transfer */
 		/* Important! DMA stream won't start if all flags are not cleared first */
@@ -87,7 +86,8 @@ void DMA_IrqHandler (DMA_HandleTypeDef *hdma) {
 		hdma->Instance->CNDTR = DMA_RX_BUFFER_SIZE;    /* Set number of bytes to receive */
 		hdma->Instance->CCR |= DMA_CCR_EN;            /* Start DMA transfer */
 
-		AT_setCmdStr(ptr, Write, tocopy);
+		if(UART_Buffer[strlen((char *)UART_Buffer)-1] == ';')
+			AT_setCmdStr(UART_Buffer);
 
 	}
 }

@@ -15,8 +15,8 @@
  * \brief HT SigFox API HT32SX iMCP SiP SigFox
  * \author HT Micron Advanced R&D
  * \link support_iot@htmicron.com.br
- * \version 2.1
- * \date April 30, 2020
+ * \version 2.2
+ * \date July 17, 2020
  *
  * This file defines a SigFox API for iMCP SiP SigFox.
  */
@@ -26,6 +26,9 @@
 
 #include "main.h"
 
+#define MAX_PAYLOAD_SIZE 12
+#define MAX_HEX_SIZE 24
+
 /*!******************************************************************
  * \fn extern sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_response, sfx_bool initiate_downlink_flag)
  * \brief Send a frame to the Sigfox network.
@@ -33,12 +36,13 @@
  * \param[in]  sfx_u8 *customer_data				Buffer that is going to be sent.
  * \param[in]  sfx_u8 *customer_response			Buffer that will receive the downlink.
  * \param[in]  sfx_bool initiate_downlink_flag		Downlink flag. If it is 1, the device will wait for a downlink after send a payload.
+ * \param[in]  uint8_t len							Payload data length.
  *
  * \param[out] none
  *
  * \retval SFX_ERR_NONE:                        	none
  *******************************************************************/
-extern sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_response, sfx_bool initiate_downlink_flag);
+extern sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_response, sfx_bool initiate_downlink_flag, uint8_t len);
 
 /*!******************************************************************
  * \fn extern void HT_SigfoxApi_configRegion(rc_mask RCZ)

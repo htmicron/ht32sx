@@ -32,6 +32,8 @@ void HT_McuApi_configPeripherals(void) {
 	/* Initialize all configured peripherals */
 	MX_GPIO_Init();
 	MX_DMA_Init();
+	MX_SPI1_Init();
+	HAL_SPI_MspInit(getSpiHandle());
 	MX_USART1_UART_Init();
 	HAL_UART_MspInit(getUsartHandle());
 	__HAL_UART_DISABLE(getUsartHandle());
@@ -76,13 +78,13 @@ void HT_McuApi_enterGpioLowPower(void) {
 	GPIO_InitStructure.Pin = GPIO_PIN_All;
 	HAL_GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_15) & (~GPIO_PIN_10) & (~GPIO_PIN_9) & (~GPIO_PIN_7);
+	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_15) & (~GPIO_PIN_10) & (~GPIO_PIN_9);
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_8) & (~GPIO_PIN_3) & (~GPIO_PIN_4);
+	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_8) & (~GPIO_PIN_0) & (~GPIO_PIN_2);
 	HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
 
-	//HAL_SPI_MspDeInit(getSpiHandle());
+	HAL_SPI_MspDeInit(getSpiHandle());
 
 	/* keep the SDN driven */
 	S2LPShutdownInit();
@@ -115,7 +117,6 @@ void HT_McuApi_enterDeepSleepMode(void) {
 	S2LPShutdownEnter();
 
 	HAL_Delay(500);
-	EXTI->PR = 0xFFFFFFFF;
 
 	HT_McuApi_enableUsartWkp();
 

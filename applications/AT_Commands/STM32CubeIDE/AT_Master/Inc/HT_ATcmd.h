@@ -15,8 +15,8 @@
  * \brief AT Commands API HT32SX iMCP SiP Sigfox
  * \author HT Micron Advanced R&D
  * \link support_iot@htmicron.com.br
- * \version 2.1
- * \date May 06, 2020
+ * \version 2.2
+ * \date July 17, 2020
  *
  * This file defines the AT Commands for iMCP SiP SigFox.
  */
@@ -28,12 +28,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 #include "stm32l0xx_hal.h"
-
-/* Defines  ------------------------------------------------------------------*/
-
-#define DATA_RX_MAX_BUFF_SIZE    23       /*Max size of the received buffer*/
-
-#define DATA_TX_MAX_BUFF_SIZE    23       /*Max size of the transmit buffer*/
 
 /* Typedef -----------------------------------------------------------*/
 
@@ -98,17 +92,15 @@ typedef struct AT_cmdStruct {
 /* Functions ------------------------------------------------------------------*/
 
 /*!******************************************************************
- * \fn extern void AT_setCmdStr(uint8_t *ptr, uint8_t Write, uint8_t tocopy)
+ * \fn extern void AT_setCmdStr(uint8_t *ptr)
  * \brief Fill a buffer with all bytes received by DMA.
  *
  * \param[in]  uint8_t *ptr						Pointer received by USART DMA.
- * \param[in]  uint8_t Write					Buffer ID.
- * \param[in]  uint8_t tocopy					Ptr length that will be copy.
  * \param[out] none
  *
  * \retval none
  *******************************************************************/
-extern void AT_setCmdStr(uint8_t *ptr, uint8_t Write, uint8_t tocopy);
+extern void AT_setCmdStr(uint8_t *ptr);
 
 /*!******************************************************************
  * \fn extern void AT_getCmdData(uint8_t *cmd)
