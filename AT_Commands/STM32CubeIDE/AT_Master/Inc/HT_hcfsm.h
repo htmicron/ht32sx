@@ -15,8 +15,8 @@
  * \brief Hierarchical State Machine HT32SX iMCP SiP Sigfox
  * \author HT Micron Advanced R&D
  * \link support_iot@htmicron.com.br
- * \version 2.1
- * \date May 06, 2020
+ * \version 2.2
+ * \date July 17, 2020
  *
  * This file defines the Hierarchical State Machine made for modulate the AT Commands application.
  */
@@ -259,6 +259,17 @@ void AT_splitString(char *cmd, char *splitChar, char *ptr);
  * \retval none
  *******************************************************************/
 extern void AT_setFsmState(state_func state);
+
+/*!******************************************************************
+ * \fn void AT_getHexValue(char *str, uint8_t *output)
+ * \brief Convert ACSII data to hex.
+ *
+ * \param[in]  char *str			ASCII payload.
+ * \param[out] uint8_t *output		Output as hex data
+ *
+ * \retval none
+ *******************************************************************/
+void AT_getHexValue(char *str, uint8_t *output);
 
 #endif
 

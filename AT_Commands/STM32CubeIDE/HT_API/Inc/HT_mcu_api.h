@@ -15,8 +15,8 @@
  * \brief MCU API for HT32SX iMCP SiP Sigfox.
  * \author HT Micron Advanced R&D
  * \link support_iot@htmicron.com.br
- * \version 2.1
- * \date May 06, 2020
+ * \version 2.2
+ * \date July 17, 2020
  *
  * This file defines the MCU API made for the the AT Commands application.
  */

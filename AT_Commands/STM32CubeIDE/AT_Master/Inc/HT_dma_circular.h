@@ -15,8 +15,8 @@
  * \brief DMA Circular HT32SX iMCP SiP Sigfox
  * \author HT Micron Advanced R&D
  * \link support_iot@htmicron.com.br
- * \version 2.1
- * \date May 06, 2020
+ * \version 2.2
+ * \date July 17, 2020
  *
  * This file defines a DMA Circular for the AT Commands application.
  */
@@ -28,8 +28,8 @@
 #include "stm32l0xx_hal.h"
 
 /* Defines  ------------------------------------------------------------------*/
-#define DMA_RX_BUFFER_SIZE          23
-#define UART_BUFFER_SIZE            23
+#define DMA_RX_BUFFER_SIZE          36
+#define UART_BUFFER_SIZE            36
 
 /* Functions ------------------------------------------------------------------*/
 
