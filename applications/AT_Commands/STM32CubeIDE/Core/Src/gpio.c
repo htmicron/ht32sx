@@ -93,60 +93,60 @@ void MX_GPIO_Init(void)
 
 static void setGpioLowPower(void)
 {
-  /* For STM32, gpio power consumption is reduced when GPIOs are configured as
+	/* For STM32, gpio power consumption is reduced when GPIOs are configured as
   no pull - analog, during this configuration we have to sure thath wake-up pins
   still remain as digital inputs*/
 
-  /* Build the first part of the init structre for all GPIOs and ports*/
-  GPIO_InitTypeDef GPIO_InitStructure;
-  GPIO_InitStructure.Mode       = GPIO_MODE_ANALOG;
-  GPIO_InitStructure.Pull       = GPIO_NOPULL;
-  GPIO_InitStructure.Speed      = GPIO_SPEED_HIGH;
+	/* Build the first part of the init structre for all GPIOs and ports*/
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.Mode       = GPIO_MODE_ANALOG;
+	GPIO_InitStructure.Pull       = GPIO_NOPULL;
+	GPIO_InitStructure.Speed      = GPIO_SPEED_HIGH;
 
-  /* -------------------------------- PORT A ------------------------------------- */
-  /* SDN , CS S2-LP, CS E2PROM, UART RX/TX, BUTTON1 */
-  GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_8) & (~GPIO_PIN_15) &
-  	(~GPIO_PIN_9) & (~GPIO_PIN_2) & (~GPIO_PIN_3);
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+	/* -------------------------------- PORT A ------------------------------------- */
+	/* SDN , CS S2-LP, CS E2PROM, UART RX/TX, BUTTON1 */
+	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_8) & (~GPIO_PIN_15) &
+			(~GPIO_PIN_9) & (~GPIO_PIN_2) & (~GPIO_PIN_3);
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-  /* -------------------------------- PORT B ------------------------------------- */
-  GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_4);
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
+	/* -------------------------------- PORT B ------------------------------------- */
+	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_4);
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
 
-  /* -------------------------------- PORT C ------------------------------------- */
-  /* IRQ Pin + TCXO Enable */
-  GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_0) & (~GPIO_PIN_7) & (~GPIO_PIN_13);
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStructure);
+	/* -------------------------------- PORT C ------------------------------------- */
+	/* IRQ Pin + TCXO Enable */
+	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_0) & (~GPIO_PIN_7) & (~GPIO_PIN_13);
+	HAL_GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-  /* -------------------------------- PORT D ------------------------------------- */
-  GPIO_InitStructure.Pin= GPIO_PIN_All;
-  HAL_GPIO_Init(GPIOD, &GPIO_InitStructure);
+	/* -------------------------------- PORT D ------------------------------------- */
+	GPIO_InitStructure.Pin= GPIO_PIN_All;
+	HAL_GPIO_Init(GPIOD, &GPIO_InitStructure);
 
 }
 
 static void setGpioRestore(void)
 {
-  /* For STM32, restore every gpio, previosly set as analog as digital */
+	/* For STM32, restore every gpio, previosly set as analog as digital */
 
-  /* Restore all Gpio CLKs */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
+	/* Restore all Gpio CLKs */
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOB_CLK_ENABLE();
 
-  /* SPI_MOSI/MISO */
-  GPIO_InitTypeDef GPIO_InitStructure;
-  GPIO_InitStructure.Mode       = GPIO_MODE_AF_PP;
-  GPIO_InitStructure.Pull       = GPIO_PULLUP;
-  GPIO_InitStructure.Speed      = GPIO_SPEED_HIGH;
-  GPIO_InitStructure.Alternate  = GPIO_AF0_SPI1; //EEPROM
-  GPIO_InitStructure.Pin        = GPIO_PIN_7 | GPIO_PIN_6; //EEPROM
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+	/* SPI_MOSI/MISO */
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.Mode       = GPIO_MODE_AF_PP;
+	GPIO_InitStructure.Pull       = GPIO_PULLUP;
+	GPIO_InitStructure.Speed      = GPIO_SPEED_HIGH;
+	GPIO_InitStructure.Alternate  = GPIO_AF0_SPI1; //EEPROM
+	GPIO_InitStructure.Pin        = GPIO_PIN_7 | GPIO_PIN_6; //EEPROM
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-  /* SPI_CLK*/
-  GPIO_InitStructure.Mode       = GPIO_MODE_AF_PP;
-  GPIO_InitStructure.Pull       = GPIO_PULLUP;
-  GPIO_InitStructure.Alternate  = GPIO_AF0_SPI1; //EEPROM
-  GPIO_InitStructure.Pin        = GPIO_PIN_3;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
+	/* SPI_CLK*/
+	GPIO_InitStructure.Mode       = GPIO_MODE_AF_PP;
+	GPIO_InitStructure.Pull       = GPIO_PULLUP;
+	GPIO_InitStructure.Alternate  = GPIO_AF0_SPI1; //EEPROM
+	GPIO_InitStructure.Pin        = GPIO_PIN_3;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 }
 
@@ -154,119 +154,123 @@ static void setGpioRestore(void)
 
 void S2LPShutdownEnter(void)
 {
-  /* Puts high the GPIO connected to shutdown pin */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+	/* Puts high the GPIO connected to shutdown pin */
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
 }
 
 void S2LPShutdownInit(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 
-  //S2LP_M2S_SDN_CLOCK();
+	//S2LP_M2S_SDN_CLOCK();
 	__GPIOB_CLK_ENABLE();
-	
-  /* Configures MCU GPIO */
-  GPIO_InitStructure.Pin   = S2LP_M2S_SDN_PIN;
-  GPIO_InitStructure.Mode  = S2LP_M2S_SDN_MODE;
-  GPIO_InitStructure.Pull  = S2LP_M2S_SDN_PUPD;
-  GPIO_InitStructure.Speed = S2LP_M2S_SDN_SPEED;
 
-  HAL_GPIO_Init(S2LP_M2S_SDN_PORT, &GPIO_InitStructure);
-	
-  S2LPShutdownEnter();
+	/* Configures MCU GPIO */
+	GPIO_InitStructure.Pin   = S2LP_M2S_SDN_PIN;
+	GPIO_InitStructure.Mode  = S2LP_M2S_SDN_MODE;
+	GPIO_InitStructure.Pull  = S2LP_M2S_SDN_PUPD;
+	GPIO_InitStructure.Speed = S2LP_M2S_SDN_SPEED;
+
+	HAL_GPIO_Init(S2LP_M2S_SDN_PORT, &GPIO_InitStructure);
+
+	S2LPShutdownEnter();
 }
 
 void S2LPShutdownExit(void)
 {
-  /* Puts low the GPIO connected to shutdown pin */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
+	/* Puts low the GPIO connected to shutdown pin */
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
 
-  /* Delay to allow the circuit POR, about 700 us */
-  for(volatile uint32_t i=0;i<0x1E00;i++);
+	/* Delay to allow the circuit POR, about 700 us */
+	for(volatile uint32_t i=0;i<0x1E00;i++);
 }
 uint8_t S2LPShutdownCheck(void)
 {
-  /* Gets the GPIO level */
-  return (uint8_t)HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8);
+	/* Gets the GPIO level */
+	return (uint8_t)HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8);
 }
 
 void ST_MCU_API_Shutdown(sfx_u8 value)
 {
-  if(value)
-  {
-    S2LPShutdownEnter();
-  }
-  else
-  {
-    S2LPShutdownExit();
-  }
+	if(value)
+	{
+		S2LPShutdownEnter();
+	}
+	else
+	{
+		S2LPShutdownExit();
+	}
 }
 
 void S2LPIRQInit(void)
 {
-  GPIO_InitTypeDef GPIO_InitStructure, EXTI_InitStructure;
+	GPIO_InitTypeDef GPIO_InitStructure, EXTI_InitStructure;
 
-  __HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE();
 
-  /* Configures MCU GPIO */
-  GPIO_InitStructure.Pin   = GPIO_PIN_0;
-  GPIO_InitStructure.Mode  = GPIO_MODE_INPUT;
-  GPIO_InitStructure.Pull  = GPIO_NOPULL;
-  GPIO_InitStructure.Speed = GPIO_SPEED_HIGH;
+	/* Configures MCU GPIO */
+	GPIO_InitStructure.Pin   = GPIO_PIN_0;
+	GPIO_InitStructure.Mode  = GPIO_MODE_INPUT;
+	GPIO_InitStructure.Pull  = GPIO_NOPULL;
+	GPIO_InitStructure.Speed = GPIO_SPEED_HIGH;
 
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-  /* Configures MCU GPIO EXTI line */
-  EXTI_InitStructure.Pin   = GPIO_PIN_0;
-  EXTI_InitStructure.Mode  = GPIO_MODE_IT_FALLING;
-  EXTI_InitStructure.Pull  = GPIO_NOPULL;
-  EXTI_InitStructure.Speed = GPIO_SPEED_HIGH;
+	/* Configures MCU GPIO EXTI line */
+	EXTI_InitStructure.Pin   = GPIO_PIN_0;
+	EXTI_InitStructure.Mode  = GPIO_MODE_IT_FALLING;
+	EXTI_InitStructure.Pull  = GPIO_NOPULL;
+	EXTI_InitStructure.Speed = GPIO_SPEED_HIGH;
 
-  __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0);
-  HAL_GPIO_Init(GPIOA, &EXTI_InitStructure);
+	__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0);
+	HAL_GPIO_Init(GPIOA, &EXTI_InitStructure);
 }
 
 void S2LPIRQEnable(uint8_t state, uint8_t edge_direction)
 {
-  uint8_t xNewState = state ? ENABLE:DISABLE;
-  GPIO_InitTypeDef EXTI_InitStructure;
+	uint8_t xNewState = state ? ENABLE:DISABLE;
+	GPIO_InitTypeDef EXTI_InitStructure;
 
-  /* Configures EXTI line */
-  EXTI_InitStructure.Pin   = GPIO_PIN_0;
-  EXTI_InitStructure.Mode  = GPIO_MODE_IT_FALLING;
-  EXTI_InitStructure.Pull  = GPIO_NOPULL;
-  EXTI_InitStructure.Speed = GPIO_SPEED_HIGH;
+	/* Configures EXTI line */
+	EXTI_InitStructure.Pin   = GPIO_PIN_0;
+	EXTI_InitStructure.Mode  = GPIO_MODE_IT_FALLING;
+	EXTI_InitStructure.Pull  = GPIO_NOPULL;
+	EXTI_InitStructure.Speed = GPIO_SPEED_HIGH;
 
-  /* Clear any pending interrupt before enabling */
-  __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0);
-  HAL_GPIO_Init(GPIOA, &EXTI_InitStructure);
+	/* Clear any pending interrupt before enabling */
+	__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0);
+	HAL_GPIO_Init(GPIOA, &EXTI_InitStructure);
 
-  if(edge_direction)
-    EXTI->RTSR |= (uint16_t)GPIO_PIN_0;
-  else
-    EXTI->RTSR &= ~(uint16_t)GPIO_PIN_0;
+	if(edge_direction)
+		EXTI->RTSR |= (uint16_t)GPIO_PIN_0;
+	else
+		EXTI->RTSR &= ~(uint16_t)GPIO_PIN_0;
 
-  /* Set the GPIO interrupt priority and enable/disable it */
-  if (xNewState == ENABLE)
-  {
-    HAL_NVIC_EnableIRQ(EXTI0_1_IRQn);
-    HAL_NVIC_SetPriority(EXTI0_1_IRQn, 0x00, 0x00);
-  }
-  else
-    HAL_NVIC_DisableIRQ(EXTI0_1_IRQn);
+	/* Set the GPIO interrupt priority and enable/disable it */
+	if (xNewState == ENABLE)
+	{
+		HAL_NVIC_EnableIRQ(EXTI0_1_IRQn);
+		HAL_NVIC_SetPriority(EXTI0_1_IRQn, 0x00, 0x00);
+	}
+	else
+		HAL_NVIC_DisableIRQ(EXTI0_1_IRQn);
 }
 
 void ST_MCU_API_GpioIRQ(sfx_u8 pin, sfx_u8 new_state, sfx_u8 trigger)
 {
-  /* configure the MCU IRQ connected to the specified S2-LP GPIO */
-  /* trigger 1: rising, 0: falling (default) */
-  S2LPIRQInit();
-  S2LPIRQEnable(new_state, trigger);
+	/* configure the MCU IRQ connected to the specified S2-LP GPIO */
+	/* trigger 1: rising, 0: falling (default) */
+	S2LPIRQInit();
+	S2LPIRQEnable(new_state, trigger);
 }
 
 void ST_MCU_API_LowPower(sfx_u8 low_power_flag)
 {
-  low_power = low_power_flag;
+	low_power = low_power_flag;
+}
+
+void setLowPowerFlag(uint8_t lowPower) {
+	low_power = lowPower;
 }
 
 uint8_t getLowPowerFlag(void) {
@@ -274,18 +278,19 @@ uint8_t getLowPowerFlag(void) {
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-	
+
 	__HAL_GPIO_EXTI_CLEAR_IT(GPIO_Pin);
-  
+
 	if(GPIO_Pin == GPIO_PIN_0)
-  {
-    if (ST_RF_API_Get_Continuous_TX_or_MONARCH_Scan_Flag()==0) {
-      //s2lp_irq_raised = 1;
+	{
+		if (ST_RF_API_Get_Continuous_TX_or_MONARCH_Scan_Flag()==0) {
+			//s2lp_irq_raised = 1;
 			setS2lpIrqRaisedFlag(1);
 		} else {
-      ST_RF_API_S2LP_IRQ_CB(); //If the CBPSK is implemented trigger TX State Machine	
+			ST_RF_API_S2LP_IRQ_CB(); //If the CBPSK is implemented trigger TX State Machine
 		}
 	} 
+
 }
 
 void setS2lpIrqRaisedFlag(uint8_t s2lpIrqRaised) {

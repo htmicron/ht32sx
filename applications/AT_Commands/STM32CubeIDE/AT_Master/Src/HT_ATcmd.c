@@ -84,40 +84,12 @@ AT_cmdStruct AT_checkCmdString(char *cmdStr) {
 	return status;
 }
 
-void AT_prepareBuffer(uint8_t *buffer) {
-	uint8_t aux[DMA_RX_BUFFER_SIZE];
-
-	memcpy(aux, auxBuffer, sizeof(auxBuffer));
-	memset(auxBuffer, 0, sizeof(auxBuffer));
-
-	for(uint8_t i = 0;i < sizeof(aux);i++) {
-		if(aux[i] != '\0')
-			auxBuffer[i] = aux[i];
-	}
-}
-
-uint8_t AT_searchForNextFree(uint8_t *buffer) {
-	uint8_t i;
-
-	for(i = 0;i < DMA_RX_BUFFER_SIZE;i++) {
-		if(buffer[i] == '\0')
-			return i;
-	}
-
-	return 0;
-}
-
-void AT_setCmdStr(uint8_t *ptr, uint8_t Write, uint8_t tocopy) {
+void AT_setCmdStr(uint8_t *ptr) {
 	AT_cmdStrError status = ERR_NONE;
-	uint8_t i = AT_searchForNextFree(auxBuffer);
 
-	memcpy(&auxBuffer[i], ptr, tocopy);
-
-	if(*ptr == ';' || auxBuffer[strlen((char *)auxBuffer)-1] == ';') {
-		AT_prepareBuffer(auxBuffer);
-		AT_setCmdFlag(1);
-		AT_updateFsm(status, 0);
-	}
+	memcpy(auxBuffer, ptr, strlen((char *)ptr));
+	AT_setCmdFlag(1);
+	AT_updateFsm(status, 0);
 
 }
 
