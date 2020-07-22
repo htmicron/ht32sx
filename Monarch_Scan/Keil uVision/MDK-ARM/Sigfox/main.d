@@ -20,6 +20,8 @@ sigfox\main.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio.h
 sigfox\main.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio_ex.h
 sigfox\main.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h
 sigfox\main.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_cortex.h
+sigfox\main.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc.h
+sigfox\main.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc_ex.h
 sigfox\main.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash.h
 sigfox\main.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash_ex.h
 sigfox\main.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash_ramfunc.h
@@ -63,6 +65,7 @@ sigfox\main.o: ..\ST_API\inc\st_mcu_api.h
 sigfox\main.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\main.o: ..\ST_API\inc\st_rf_api.h
 sigfox\main.o: ..\Sigfox_libs\inc\sigfox_types.h
+sigfox\main.o: ../Inc/adc.h
 sigfox\main.o: ../Inc/dma.h
 sigfox\main.o: ../Inc/rtc.h
 sigfox\main.o: ../Inc/spi.h

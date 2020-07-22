@@ -21,6 +21,8 @@ sigfox\s2lp_aux_eeprom.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio
 sigfox\s2lp_aux_eeprom.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio_ex.h
 sigfox\s2lp_aux_eeprom.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h
 sigfox\s2lp_aux_eeprom.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_cortex.h
+sigfox\s2lp_aux_eeprom.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc.h
+sigfox\s2lp_aux_eeprom.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc_ex.h
 sigfox\s2lp_aux_eeprom.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash.h
 sigfox\s2lp_aux_eeprom.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash_ex.h
 sigfox\s2lp_aux_eeprom.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash_ramfunc.h

@@ -31,9 +31,11 @@
 
 /* Defines  ------------------------------------------------------------------*/
 
-#define DATA_RX_MAX_BUFF_SIZE    23       /*Max size of the received buffer*/
-
-#define DATA_TX_MAX_BUFF_SIZE    23       /*Max size of the transmit buffer*/
+#define AT_ERR_NONE					0x00
+#define AT_ERR_PARAM_CMD			0xA0
+#define AT_ERR_UNAVAILABLE_CMD		0xA1
+#define AT_ERR_HDR					0xA2
+#define AT_ERR_OVF					0xA3
 
 /* Typedef -----------------------------------------------------------*/
 

@@ -104,16 +104,16 @@ void * AT_errorRoutine(void) {
 	case ERR_NONE:
 		break;
 	case ERR_PARAM_CMD:
-		printf("AT_Cmd error: Parameter error!\n");
+		printf("AT_Cmd error: 0x%X\n", AT_ERR_PARAM_CMD);
 		break;
 	case ERR_UNAVAILABLE_CMD:
-		printf("AT_Cmd error: Unavailable command!\n");
+		printf("AT_Cmd error: 0x%X\n", AT_ERR_UNAVAILABLE_CMD);
 		break;
 	case ERR_HDR:
-		printf("AT_Cmd error: Header command error!\n");
+		printf("AT_Cmd error: 0x%X\n", AT_ERR_HDR);
 		break;
 	case ERR_OVF:
-		printf("AT_Cmd error: Overflow send frame error! Payload must be less or equal than 12 bytes!\n");
+		printf("AT_Cmd error: 0x%X\n", AT_ERR_OVF);
 		break;
 	}
 
