@@ -21,6 +21,8 @@ sigfox\sdk_utils_flash.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio
 sigfox\sdk_utils_flash.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio_ex.h
 sigfox\sdk_utils_flash.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h
 sigfox\sdk_utils_flash.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_cortex.h
+sigfox\sdk_utils_flash.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc.h
+sigfox\sdk_utils_flash.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc_ex.h
 sigfox\sdk_utils_flash.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash.h
 sigfox\sdk_utils_flash.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash_ex.h
 sigfox\sdk_utils_flash.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash_ramfunc.h

@@ -336,9 +336,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--diag_suppress=951 --wchar32</MiscControls>
-              <Define>USE_HAL_DRIVER,STM32L052xx,USE_HAL_DRIVER,STM32L053xx, FOR_ALL, USE_FLASH, USE_STM32L0XX_NUCLEO,  USE_SYSTICK_DELAY</Define>
+              <Define>USE_HAL_DRIVER,STM32L052xx,USE_HAL_DRIVER, FOR_ALL, USE_FLASH, USE_STM32L0XX_NUCLEO,  USE_SYSTICK_DELAY</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;                                             ../Drivers/STM32L0xx_HAL_Driver/Inc;                                             ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;                                             ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;                                             ../Drivers/CMSIS/Include;                                             ..\Sigfox_libs\inc;                                             ..\ST_libs\inc;                                             ..\Drivers\S2LP_Middleware\STM32\inc;                                             ..\ST_API\inc;                                             ..\Drivers\Utils\STM32\inc;                                             ..\Utils\CLI\inc;                                             ..\Sigfox_libs\bin;                                             ..\Utils\CLI\inc</IncludePath>
+              <IncludePath>../Inc;                                               ../Drivers/STM32L0xx_HAL_Driver/Inc;                                               ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;                                               ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;                                               ../Drivers/CMSIS/Include;                                               ..\Sigfox_libs\inc;                                               ..\ST_libs\inc;                                               ..\Drivers\S2LP_Middleware\STM32\inc;                                               ..\ST_API\inc;                                               ..\Drivers\Utils\STM32\inc;                                               ..\Utils\CLI\inc;                                               ..\Sigfox_libs\bin;                                               ..\Utils\CLI\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -406,6 +406,11 @@
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/adc.c</FilePath>
             </File>
             <File>
               <FileName>dma.c</FileName>
@@ -523,14 +528,14 @@
           <GroupName>Drivers/STM32L0xx_HAL_Driver</GroupName>
           <Files>
             <File>
-              <FileName>stm32l0xx_hal_rtc.c</FileName>
+              <FileName>stm32l0xx_hal_adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rtc.c</FilePath>
+              <FilePath>../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc.c</FilePath>
             </File>
             <File>
-              <FileName>stm32l0xx_hal_rtc_ex.c</FileName>
+              <FileName>stm32l0xx_hal_adc_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rtc_ex.c</FilePath>
+              <FilePath>../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32l0xx_hal.c</FileName>
@@ -596,6 +601,16 @@
               <FileName>stm32l0xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_rtc_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rtc_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32l0xx_hal_spi.c</FileName>

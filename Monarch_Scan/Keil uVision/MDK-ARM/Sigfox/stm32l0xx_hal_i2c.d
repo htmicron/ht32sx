@@ -19,6 +19,8 @@ sigfox\stm32l0xx_hal_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gp
 sigfox\stm32l0xx_hal_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio_ex.h
 sigfox\stm32l0xx_hal_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h
 sigfox\stm32l0xx_hal_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_cortex.h
+sigfox\stm32l0xx_hal_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc.h
+sigfox\stm32l0xx_hal_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc_ex.h
 sigfox\stm32l0xx_hal_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash.h
 sigfox\stm32l0xx_hal_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash_ex.h
 sigfox\stm32l0xx_hal_i2c.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash_ramfunc.h

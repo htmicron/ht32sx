@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "dma.h"
 #include "rtc.h"
 #include "spi.h"
@@ -102,6 +103,7 @@ int main(void)
   MX_TIM6_Init();
   MX_RTC_Init();
   MX_USART1_UART_Init();
+  MX_ADC_Init();
   /* USER CODE BEGIN 2 */
 	
 	mcuConfig();
@@ -120,13 +122,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		/*if(button_pressed()) {
+		if(button_pressed()) {
 			printf("Sending frame...\n");
 			sendFrame();
 			HAL_Delay(500);
-		}*/
-		
-		sendFrame();
+		}
 		
   }
   /* USER CODE END 3 */
@@ -255,7 +255,7 @@ sfx_error_t sendFrame(void) {
 	
   err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 3, downlink_request);
 	
-	if(downlink_request) {
+	if(downlink_request && !err) {
 		printf("Customer resp: {");
   
 		for(uint16_t i = 0; i < 7; i++) 

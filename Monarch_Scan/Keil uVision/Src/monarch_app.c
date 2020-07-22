@@ -13,6 +13,12 @@
 static uint8_t scan = 1;
 static uint8_t rc_bit = 0; 
 
+#ifdef USE_DOWNLINK_FLAG
+static uint8_t downlink_request = 1;
+#else
+static uint8_t downlink_request = 0;
+#endif
+
 void configRegion(void) {
 	ST_SFX_ERR open_err = ST_SFX_ERR_NONE;
 
@@ -126,7 +132,7 @@ void sendFrameRCZ(rc_mask RCZ) {
 	rc_bit = 0;
 	customer_data[0] = RCZ;
 
-	err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 2, 0);
+	err=SIGFOX_API_send_frame(customer_data, 1, customer_resp, 3, downlink_request);
 	printf("Send Frame error: %X\n", err);
 }
 

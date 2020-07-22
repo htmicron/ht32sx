@@ -237,8 +237,8 @@ void DMA1_Channel4_5_6_7_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Channel4_5_6_7_IRQn 0 */
 
   /* USER CODE END DMA1_Channel4_5_6_7_IRQn 0 */
-//  HAL_DMA_IRQHandler(&hdma_usart1_tx);
-//  HAL_DMA_IRQHandler(&hdma_usart1_rx);
+  HAL_DMA_IRQHandler(&hdma_usart1_tx);
+  HAL_DMA_IRQHandler(&hdma_usart1_rx);
   /* USER CODE BEGIN DMA1_Channel4_5_6_7_IRQn 1 */
 	DMA_IrqHandler(&hdma_usart1_rx);
   /* USER CODE END DMA1_Channel4_5_6_7_IRQn 1 */
@@ -266,7 +266,7 @@ void USART1_IRQHandler(void)
   /* USER CODE BEGIN USART1_IRQn 0 */
 
   /* USER CODE END USART1_IRQn 0 */
-  //HAL_UART_IRQHandler(&huart1);
+  HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
 	if(HT_McuApi_getDeepSleepModeFlag()) {
 		HT_McuApi_configPeripherals();
