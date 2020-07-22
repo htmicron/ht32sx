@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "dma.h"
 #include "rtc.h"
 #include "spi.h"
@@ -102,6 +103,7 @@ int main(void)
 	MX_SPI1_Init();
 	MX_TIM6_Init();
 	MX_USART1_UART_Init();
+	MX_ADC_Init();
 	/* USER CODE BEGIN 2 */
 
 	mcuConfig();
@@ -120,6 +122,7 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
+
 		if(button_pressed()) {
 			printf("Sending frame...\n");
 			sendFrame();
@@ -252,7 +255,7 @@ sfx_error_t sendFrame(void) {
 
 	err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 3, downlink_request);
 
-	if(downlink_request) {
+	if(downlink_request && !err) {
 		printf("Customer resp: {");
 
 		for(uint16_t i = 0; i < 7; i++) 
@@ -318,19 +321,19 @@ void mcuConfig(void) {
 	/*			THIS VALUE CAN BE FOUND IN CREDENTIALS 						*/
 
 	ST_RF_API_set_freq_offset(sfxConfiguration.freqOffset);
-	printf("Freq Offset %d \n", (int32_t)sfxConfiguration.freqOffset);
+	printf("Freq Offset %ld \n", (int32_t)sfxConfiguration.freqOffset);
 
 	/*			SET LBT OFFSET																		*/
 	/*			THIS VALUE CAN BE FOUND IN CREDENTIALS 						*/
 
 	ST_RF_API_set_lbt_thr_offset(sfxConfiguration.lbtOffset);
-	printf("LBT %d \n", (int32_t)sfxConfiguration.lbtOffset);
+	printf("LBT %ld \n", (int32_t)sfxConfiguration.lbtOffset);
 
 	/*			SET RSSI OFFSET																		*/
 	/*			THIS VALUE CAN BE FOUND IN CREDENTIALS 						*/
 
 	ST_RF_API_set_rssi_offset(sfxConfiguration.rssiOffset);
-	printf("RSSI %d \n", sfxConfiguration.rssiOffset);
+	printf("RSSI %ld \n", sfxConfiguration.rssiOffset);
 }
 
 void ST_Init(void)

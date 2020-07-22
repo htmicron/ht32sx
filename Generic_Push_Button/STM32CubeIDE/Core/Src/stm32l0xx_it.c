@@ -63,6 +63,7 @@ static volatile uint32_t n_intermediate_tim_irq = 0;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern ADC_HandleTypeDef hadc;
 extern RTC_HandleTypeDef hrtc;
 extern DMA_HandleTypeDef hdma_spi1_tx;
 extern DMA_HandleTypeDef hdma_spi1_rx;
@@ -243,6 +244,20 @@ void DMA1_Channel4_5_6_7_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Channel4_5_6_7_IRQn 1 */
 
   /* USER CODE END DMA1_Channel4_5_6_7_IRQn 1 */
+}
+
+/**
+  * @brief This function handles ADC, COMP1 and COMP2 interrupts (COMP interrupts through EXTI lines 21 and 22).
+  */
+void ADC1_COMP_IRQHandler(void)
+{
+  /* USER CODE BEGIN ADC1_COMP_IRQn 0 */
+
+  /* USER CODE END ADC1_COMP_IRQn 0 */
+  HAL_ADC_IRQHandler(&hadc);
+  /* USER CODE BEGIN ADC1_COMP_IRQn 1 */
+
+  /* USER CODE END ADC1_COMP_IRQn 1 */
 }
 
 /**
