@@ -336,7 +336,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--diag_suppress=951 --wchar32</MiscControls>
-              <Define>USE_HAL_DRIVER,STM32L052xx,USE_HAL_DRIVER,STM32L053xx, FOR_ALL, USE_FLASH, USE_STM32L0XX_NUCLEO,  USE_SYSTICK_DELAY, MONARCH_FEATURE_ENABLED, MON_REF_DES</Define>
+              <Define>USE_HAL_DRIVER,STM32L052xx,USE_HAL_DRIVER,STM32L053xx, FOR_ALL, USE_FLASH, USE_STM32L0XX_NUCLEO,  USE_SYSTICK_DELAY, MONARCH_FEATURE_ENABLED</Define>
               <Undefine></Undefine>
               <IncludePath>../Inc;                                          ../Drivers/STM32L0xx_HAL_Driver/Inc;                                          ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;                                          ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;                                          ../Drivers/CMSIS/Include;                                          ..\Sigfox_libs\inc;                                          ..\ST_libs\inc;                                          ..\Drivers\S2LP_Middleware\STM32\inc;                                          ..\ST_API\inc;                                          ..\Drivers\Utils\STM32\inc;                                          ..\Utils\CLI\inc;                                          ..\Sigfox_libs\bin;                                          ..\Utils\CLI\inc;  ../Drivers/BSP/Components/lsm6dsl/;  ../Drivers/BSP/Components/lsm303agr/;  ../Drivers/BSP/Components/hts221/;  ../Drivers/BSP/Components/lps22hb/;  ../Drivers/BSP/IKS01A2/;  ../Drivers/BSP/Components/Common/</IncludePath>
             </VariousControls>
@@ -578,11 +578,6 @@
           <GroupName>Libraries</GroupName>
           <Files>
             <File>
-              <FileName>ST_RETRIEVER_LIB_STM32L053xx.a</FileName>
-              <FileType>4</FileType>
-              <FilePath>..\ST_API\bin\ST_RETRIEVER_LIB_STM32L053xx.a</FilePath>
-            </File>
-            <File>
               <FileName>SFX_LIB_V2.8.0_FDL_MON_IAR8.11_cortexM0+.a</FileName>
               <FileType>4</FileType>
               <FilePath>..\Sigfox_libs\bin\SFX_LIB_V2.8.0_FDL_MON_IAR8.11_cortexM0+.a</FilePath>
@@ -591,6 +586,11 @@
               <FileName>ST_MONARCH_LIB_CM0.a</FileName>
               <FileType>4</FileType>
               <FilePath>..\ST_API\bin\ST_MONARCH_LIB_CM0.a</FilePath>
+            </File>
+            <File>
+              <FileName>ST_RETRIEVER_LIB_STM32L053xx.a</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\ST_API\bin\ST_RETRIEVER_LIB_STM32L053xx.a</FilePath>
             </File>
           </Files>
         </Group>

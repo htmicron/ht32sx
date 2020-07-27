@@ -2,8 +2,6 @@
 * \file mcu_api_stm32.c
 * \brief Sigfox MCU functions
 * \author  R&D HT Micron, 
-					Hêndrick Bataglin Gonçalves, 
-					Vilson Petry, 
 					STMicroelectronics
 * \version 1.0
 * \date Sept 2, 2019
@@ -148,6 +146,18 @@ ST_SFX_ERR St_Sigfox_Open_RCZ(uint8_t rcz)
         }
         break;
       }
+		case 7:
+      {
+        /* Turn PA off in RC1/3/5/6 */
+        //ST_RF_API_set_pa(0);
+        /* RCZ7 - open the SigFox library */
+        if(SIGFOX_API_open(&(sfx_rc_t)RC7)!=0)
+        {
+          /* Stuck in case of error */
+          open_err = ST_SFX_ERR_OPEN;
+        }
+        break;
+      }	
     default:
       {
         /* Stuck the application for a out of range number */

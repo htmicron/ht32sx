@@ -1,7 +1,7 @@
 /*!
 * \file mcu_api_stm32.c
 * \brief Sigfox MCU functions
-* \author  R&D HT Micron, STMicroelectronics
+* \author  R&D HT Micron
 * \version 1.0
 * \date Sept 2, 2019
 *
@@ -101,22 +101,18 @@ sfx_u8 MCU_API_free(sfx_u8 *ptr)
   return SFX_ERR_NONE;
 }
 
-sfx_u8 MCU_API_get_voltage_temperature(sfx_u16 *voltage_idle,
-				       sfx_u16 *voltage_tx,
-				       sfx_s16 *temperature)
-{
-  //printf("MCU_API_get_voltage_temperature IN\n\r");
-
-  /* get the idle voltage of the complete device
+sfx_u8 MCU_API_get_voltage_temperature(sfx_u16 *voltage_idle, sfx_u16 *voltage_tx, sfx_s16 *temperature) {
+	/* get the idle voltage of the complete device
   get the temperature of the device
   if those values are not available : set it to 0x0000
   return the voltage_idle in 1/10 volt on 16bits and 1/10 degrees for the temperature */
-  (*voltage_idle)=0;
-  (*voltage_tx)=0;
-  (*temperature)=0;
- // printf("MCU_API_get_voltage_temperature OUT\n\r");
 
-  return SFX_ERR_NONE;
+	(*voltage_idle)=0;
+	(*voltage_tx)=0;
+	(*temperature)=0;
+	// printf("MCU_API_get_voltage_temperature OUT\n\r");
+
+	return SFX_ERR_NONE;
 }
 
 static void priv_ST_MCU_API_delay(uint32_t delay_ms)

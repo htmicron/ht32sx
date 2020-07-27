@@ -177,6 +177,22 @@
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>545</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>../Src/main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
       </Breakpoint>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -695,8 +711,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\ST_API\bin\ST_RETRIEVER_LIB_STM32L053xx.a</PathWithFileName>
-      <FilenameWithoutPath>ST_RETRIEVER_LIB_STM32L053xx.a</FilenameWithoutPath>
+      <PathWithFileName>..\Sigfox_libs\bin\SFX_LIB_V2.8.0_FDL_MON_IAR8.11_cortexM0+.a</PathWithFileName>
+      <FilenameWithoutPath>SFX_LIB_V2.8.0_FDL_MON_IAR8.11_cortexM0+.a</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -707,8 +723,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Sigfox_libs\bin\SFX_LIB_V2.8.0_FDL_MON_IAR8.11_cortexM0+.a</PathWithFileName>
-      <FilenameWithoutPath>SFX_LIB_V2.8.0_FDL_MON_IAR8.11_cortexM0+.a</FilenameWithoutPath>
+      <PathWithFileName>..\ST_API\bin\ST_MONARCH_LIB_CM0.a</PathWithFileName>
+      <FilenameWithoutPath>ST_MONARCH_LIB_CM0.a</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -719,8 +735,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\ST_API\bin\ST_MONARCH_LIB_CM0.a</PathWithFileName>
-      <FilenameWithoutPath>ST_MONARCH_LIB_CM0.a</FilenameWithoutPath>
+      <PathWithFileName>..\ST_API\bin\ST_RETRIEVER_LIB_STM32L053xx.a</PathWithFileName>
+      <FilenameWithoutPath>ST_RETRIEVER_LIB_STM32L053xx.a</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

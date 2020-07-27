@@ -38,6 +38,7 @@ void configRegion(void) {
 		case RCZ1:
 			SIGFOX_MONARCH_API_stop_rc_scan();	
 			open_err = St_Sigfox_Open_RCZ(RCZ1);
+			ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
 			
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
@@ -50,6 +51,7 @@ void configRegion(void) {
 		case RCZ2:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ2);
+			ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
 			
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
@@ -62,6 +64,7 @@ void configRegion(void) {
 		case RCZ3:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ3);
+			ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
 			
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
@@ -74,6 +77,7 @@ void configRegion(void) {
 		case RCZ4:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ4);
+			ST_RF_API_reduce_output_power(RCZ4_OUTPUT_POWER);
 			
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
@@ -86,6 +90,7 @@ void configRegion(void) {
 		case RCZ5:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ5);
+			ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
 			
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
@@ -98,11 +103,11 @@ void configRegion(void) {
 		case RCZ6:
 			SIGFOX_MONARCH_API_stop_rc_scan();
 			open_err = St_Sigfox_Open_RCZ(RCZ6);
-			
+			ST_RF_API_reduce_output_power(RCZ6_OUTPUT_POWER);
+		
 			if(open_err != 0) 
 				printf("Open rcz error: %X\n", open_err);
 			
-			ST_RF_API_reduce_output_power(RCZ6_OUTPUT_POWER);
 			sendFrameRCZ(RCZ6);
 			closeSigfoxLib();
 			scan = SCAN_IDLE;
@@ -128,10 +133,9 @@ void sendFrameRCZ(rc_mask RCZ) {
 	uint8_t customer_resp[8];
 	sfx_error_t err;
 	
-	rc_bit = 0;
-	customer_data[0] = rc_found;
+	customer_data[0] = RCZ;
 	
-  err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 2, 0);
+  err=SIGFOX_API_send_frame(customer_data, 1,customer_resp, 3, 0);
 	printf("Send Frame error: %X\n", err);
 }
 

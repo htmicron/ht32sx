@@ -112,7 +112,7 @@ void handle_ACC_exti(void);
 //						USER-DEFINED REGION
 //-----------------------------------------------
 
-#define RCZ_REGION RCZ4
+#define RCZ_REGION RCZ2
 
 /* USER CODE END Private defines */
 

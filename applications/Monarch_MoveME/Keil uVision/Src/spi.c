@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * File Name          : SPI.c
-  * Description        : This file provides code for the configuration
+  * @file		           : SPI.c
+  * @brief 	  	       : This file provides code for the configuration
   *                      of the SPI instances.
   ******************************************************************************
   * @attention
@@ -9,10 +9,10 @@
   * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   */
@@ -47,11 +47,10 @@
 
 																					
 static volatile uint8_t spi_in_use = 0;
-
+static uint8_t waiting_irq = 0;
+																					
 static uint8_t tx_buff[128];
 static uint8_t rx_buff[128];
-
-static uint8_t waiting_irq = 0;
 
 /* USER CODE END 0 */
 

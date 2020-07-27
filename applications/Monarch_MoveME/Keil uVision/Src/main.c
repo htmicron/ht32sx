@@ -93,7 +93,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	uint8_t state = 1;			// Controls if device is in monarch mode or move-me mode
-	
+	uint8_t err = 0;
   /* USER CODE END 1 */
   
 
@@ -171,6 +171,11 @@ int main(void)
 	{
 		printf("\n\r");
 	}
+	
+	//configRegion();
+	//sendFrameRCZ(2);
+	
+	//printf("Err: %X\n", err);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -181,6 +186,8 @@ int main(void)
 
   MX_MEMS_Process();
     /* USER CODE BEGIN 3 */
+		
+		HAL_Delay(2000);
 		
 		
 		if(!readButton()) { // Pressing USER button changes device mode 
@@ -315,7 +322,7 @@ int main(void)
 				}
 			}
 		} else { // Monarch mode
-			
+				printf("Monarch scan...\n");
 				if(getScanStatus() == SCAN_IDLE) 
 				{
 					MonarchScan(ALL_REGIONS, 10, SFX_TIME_M);
@@ -427,8 +434,11 @@ void MCU_Config(void) {
 	printf("\n");
 	
 	ST_RF_API_set_xtal_freq(50000000); 
+	printf("Freq offset: %d\n", sfxConfiguration.freqOffset);
   ST_RF_API_set_freq_offset(sfxConfiguration.freqOffset); 
+	printf("RSSI: %d\n", sfxConfiguration.rssiOffset);
 	ST_RF_API_set_rssi_offset(sfxConfiguration.rssiOffset);
+	printf("LBT offset: %d\n", sfxConfiguration.lbtOffset);
 	ST_RF_API_set_lbt_thr_offset(sfxConfiguration.lbtOffset);
 	
 }
@@ -471,7 +481,7 @@ void ST_Init(void)
 #endif
 
   /* uC IRQ config and enable */
-  //HBG
+
 	S2LPIRQInit();
   S2LPIRQEnable(ENABLE, M2S_GPIO_EDGE_EVENT);
 

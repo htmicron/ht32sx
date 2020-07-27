@@ -96,7 +96,7 @@ __weak void FEM_Init()
     
     S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
     
-    //ST_RF_API_set_pa(1);
+    ST_RF_API_set_pa(1);
     ST_RF_API_gpio_tx_rx_pin(0);
     ST_RF_API_gpio_rx_pin(1);
     ST_RF_API_gpio_tx_pin(2);
@@ -124,8 +124,6 @@ __weak void FEM_Operation(FEM_OperationType operation)
   switch (operation)
   {
 		case FEM_SHUTDOWN: 
-				//printf("SHUTDOWN\n");
-				//HAL_UART_Transmit(&huart2, (uint8_t *)debug, strlen(debug), 10);          
 
 				tmp[0]=LOW;
 				tmp[1]=LOW;
@@ -135,11 +133,10 @@ __weak void FEM_Operation(FEM_OperationType operation)
 						 
 			break;
 		case FEM_TX_BYPASS: 
-				//printf("TX BYPASS\n");
-				//HAL_UART_Transmit(&huart2, (uint8_t *)debug, strlen(debug), 10); 
+				//printf("TX\n");
 		
 				tmp[0]=HIGH;
-				tmp[1]=LOW;
+				tmp[1]=HIGH;
 				tmp[2]=HIGH;
 				
 				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
@@ -157,9 +154,8 @@ __weak void FEM_Operation(FEM_OperationType operation)
 			break;    
 		case FEM_RX:  
 				//printf("RX\n");
-				//HAL_UART_Transmit(&huart2, (uint8_t *)debug, strlen(debug), 10); 
 				
-				tmp[0]=LOW;
+				tmp[0]=LOW; 
 				tmp[1]=LOW;
 				tmp[2]=HIGH;
 				
@@ -168,9 +164,6 @@ __weak void FEM_Operation(FEM_OperationType operation)
 			break;
 		 default: 
 			/* !!!Error */
-				
-				//sprintf(debug, "DEFAULT\n");
-				//HAL_UART_Transmit(&huart2, (uint8_t *)debug, strlen(debug), 10); 
 				
 				tmp[0]=LOW;
 				tmp[1]=LOW;

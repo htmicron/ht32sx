@@ -106,5 +106,5 @@ sigfox\rf_api.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\rf_api.o: ..\Sigfox_libs\inc\monarch_api.h
 sigfox\rf_api.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\rf_api.o: ..\ST_API\inc\st_monarch_api.h
-sigfox\rf_api.o: ..\ST_API\inc\fifo_ramps_fcc_SKY66420.h
+sigfox\rf_api.o: ..\ST_API\inc\fifo_ramps_fcc.h
 sigfox\rf_api.o: ..\ST_API\inc\fifo_ramps_etsi.h
