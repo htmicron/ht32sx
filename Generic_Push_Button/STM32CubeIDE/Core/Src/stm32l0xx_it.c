@@ -67,7 +67,7 @@ extern ADC_HandleTypeDef hadc;
 extern RTC_HandleTypeDef hrtc;
 extern DMA_HandleTypeDef hdma_spi1_tx;
 extern DMA_HandleTypeDef hdma_spi1_rx;
-extern TIM_HandleTypeDef htim6;
+extern TIM_HandleTypeDef htim21;
 extern DMA_HandleTypeDef hdma_usart1_rx;
 extern DMA_HandleTypeDef hdma_usart1_tx;
 /* USER CODE BEGIN EV */
@@ -261,17 +261,17 @@ void ADC1_COMP_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles TIM6 global interrupt and DAC1/DAC2 underrun error interrupts.
+  * @brief This function handles TIM21 global interrupt.
   */
-void TIM6_DAC_IRQHandler(void)
+void TIM21_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
+  /* USER CODE BEGIN TIM21_IRQn 0 */
 
-  /* USER CODE END TIM6_DAC_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim6);
-  /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
+  /* USER CODE END TIM21_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim21);
+  /* USER CODE BEGIN TIM21_IRQn 1 */
 
-  /* USER CODE END TIM6_DAC_IRQn 1 */
+  /* USER CODE END TIM21_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
