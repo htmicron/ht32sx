@@ -33,7 +33,8 @@
 #include "st_rf_api.h"
 /* USER CODE END Includes */
 
-extern TIM_HandleTypeDef htim6;
+extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim21;
 
 /* USER CODE BEGIN Private defines */
 
@@ -50,7 +51,8 @@ extern TIM_HandleTypeDef htim6;
 
 /* USER CODE END Private defines */
 
-void MX_TIM6_Init(void);
+void MX_TIM2_Init(void);
+void MX_TIM21_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 extern void SdkDelayMs(volatile uint32_t lTimeMs);
@@ -64,6 +66,9 @@ extern void setNIntermediateTimIrqFlag(uint8_t nIntermediateTimeIrq);
 /* Get flags */
 extern uint8_t getNotifyEndFlag(void);
 extern uint32_t getNIntermediateTimIrqFlag(void);
+
+extern uint32_t HT_getVddTx(void);
+extern void HT_setVddTx(uint32_t vdd);
 
 /* USER CODE END Prototypes */
 

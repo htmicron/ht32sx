@@ -56,7 +56,7 @@ static uint8_t downlink_request = 0;
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-TIM_HandleTypeDef  Tim6_Handler={.Instance=TIM6};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -101,9 +101,10 @@ int main(void)
 	MX_DMA_Init();
 	MX_RTC_Init();
 	MX_SPI1_Init();
-	MX_TIM6_Init();
 	MX_USART1_UART_Init();
 	MX_ADC_Init();
+	MX_TIM2_Init();
+	MX_TIM21_Init();
 	/* USER CODE BEGIN 2 */
 
 	mcuConfig();
@@ -249,6 +250,10 @@ sfx_error_t sendFrame(void) {
 	uint8_t customer_resp[8];
 	sfx_error_t err;
 
+#ifdef DOWNLINK_FLAG
+	HAL_TIM_Base_Start_IT(&htim21);
+#endif
+
 	/********** FUNCTION PARAMETERS  ****************************/
 	/********** THE LAST ONE IS TO REQUEST DOWNLINK ************/
 	/********** 1 - YES, 0 - NO	 ******************************/
@@ -344,7 +349,7 @@ void ST_Init(void)
 	S2LPShutdownExit();
 
 	/* Init TIM6 which will trigger TX */
-	SdkEvalTimersState(&Tim6_Handler, ENABLE);
+	//SdkEvalTimersState(&Tim6_Handler, ENABLE);
 
 	/* Auto detect settings, if EEPROM is available */
 #if EEPROM_PRESENT == EEPROM_YES
@@ -372,9 +377,6 @@ void ST_Init(void)
 
 	/* FEM Initialization */
 	FEM_Init();
-
-	/* TCXO Initialization */
-	//TCXO_Init();
 
 }
 
