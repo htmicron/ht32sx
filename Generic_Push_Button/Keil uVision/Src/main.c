@@ -271,6 +271,9 @@ sfx_error_t sendFrame(void) {
 
 	printf("\nError Send Frame: %X\n", err);
 
+#ifdef DOWNLINK_FLAG
+	HAL_TIM_Base_Stop_IT(&htim21);
+#endif
 
 	return err;
 }
