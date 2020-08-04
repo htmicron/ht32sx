@@ -337,7 +337,7 @@ void S2LPSpiRaw(uint8_t n_bytes, uint8_t* in_buffer, uint8_t* out_buffer, uint8_
   if(can_return_bef_tx)
   {
     waiting_irq=1;
-    HAL_NVIC_SetPriority(DMA1_Channel2_3_IRQn, 1, 1); //pode estar errado DMA1_Channel2_3_IRQn?
+    HAL_NVIC_SetPriority(DMA1_Channel2_3_IRQn, 1, 1); 
     HAL_NVIC_EnableIRQ(DMA1_Channel2_3_IRQn);
     HAL_NVIC_SetPriority(DMA1_Channel2_3_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(DMA1_Channel2_3_IRQn);
