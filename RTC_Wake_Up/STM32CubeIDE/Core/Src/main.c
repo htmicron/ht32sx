@@ -113,8 +113,6 @@ int main(void)
 	/********** BASICALLY CHANGES TO OTHER RC VALUE LIKE RCZ3 **/
 	configRegion(RCZ2);
 
-	HT_SigfoxApi_setSmpsVoltageAction(7);
-
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
