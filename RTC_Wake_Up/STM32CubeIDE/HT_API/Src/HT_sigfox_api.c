@@ -110,4 +110,9 @@ sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_respo
 	return err;
 }
 
+void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode) {
+  ST_RF_API_smps(mode);
+  printf("Set_smps_voltage %d\n", mode);
+}
+
 /************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
