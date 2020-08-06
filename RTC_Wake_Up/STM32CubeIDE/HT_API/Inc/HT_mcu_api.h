@@ -79,17 +79,6 @@ void HT_McuApi_enterDeepSleepMode(void);
  * \fn void HT_EnableRTCWkp(uint32_t seconds)
  * \brief Set the wake up time.
  *
- * 					RTC Wakeup Interrupt Generation:
- * Wakeup Time Base = (RTC_WAKEUPCLOCK_RTCCLK_DIV /(LSE or LSI))
- * Wakeup Time = Wakeup Time Base * WakeUpCounter
- * 			= (RTC_WAKEUPCLOCK_RTCCLK_DIV /(LSE or LSI)) * WakeUpCounter
- * 			 ==> WakeUpCounter = Wakeup Time / Wakeup Time Base
- * 			  To configure the wake up timer to 4s the WakeUpCounter is set to 0x1FFF:
- * 			  RTC_WAKEUPCLOCK_RTCCLK_DIV = RTCCLK_Div16 = 16
- * 			  Wakeup Time Base = 16 /(~39.000KHz) = ~0,410 ms
- * 			  Wakeup Time = ~4s = 0,410ms  * WakeUpCounter
- * 			  ==> WakeUpCounter = ~4s/0,410ms = 9750 = 0x2616
- *
  * \param[in]  uint32_t seconds			Time in seconds to wake-up from stop mode.
  * \param[out] none
  *

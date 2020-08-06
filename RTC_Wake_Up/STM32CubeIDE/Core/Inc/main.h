@@ -126,7 +126,7 @@ void configRegion(rc_mask RCZ);
 #define S2LP_SPI_MOSI_PIN_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 #define RCZ1_OUTPUT_POWER 2
-#define RCZ2_OUTPUT_POWER	-27
+#define RCZ2_OUTPUT_POWER	-30
 #define RCZ3_OUTPUT_POWER	-5
 #define RCZ4_OUTPUT_POWER	-30
 #define RCZ5_OUTPUT_POWER	-5 //18

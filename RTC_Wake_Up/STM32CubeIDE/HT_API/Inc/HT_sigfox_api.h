@@ -59,6 +59,8 @@ extern void HT_SigfoxApi_configRegion(rc_mask RCZ);
  *******************************************************************/
 void HT_SigfoxApi_closeSigfoxLib(void);
 
+void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode);
+
 #endif
 
 /************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/

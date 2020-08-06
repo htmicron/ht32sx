@@ -69,8 +69,6 @@ void HT_McuApi_enterStopMode(void) {
 
 	deepSleepModeFlag = 1;
 
-	EXTI->PR = 0xFFFFFFFF;
-
 	HAL_SuspendTick();
 	HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
 	HAL_ResumeTick();
@@ -78,16 +76,14 @@ void HT_McuApi_enterStopMode(void) {
 }
 
 void HT_McuApi_EnableRTCWkp(uint32_t seconds) {
-	uint32_t counter = 0;
-	float base = 0;
 
-	/* Disable Wakeup Counter */
+	/* Disable all Wakeup IT */
 	HAL_RTCEx_DeactivateWakeUpTimer(getRtcHandler());
 
-	base = 0.410/1000;
-	counter = seconds/base; //truncate
+	__HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
 
-	HAL_RTCEx_SetWakeUpTimer_IT(getRtcHandler(), counter, RTC_WAKEUPCLOCK_RTCCLK_DIV16);
+	/* Set wakeup IT */
+	HAL_RTCEx_SetWakeUpTimer_IT(getRtcHandler(), seconds, RTC_WAKEUPCLOCK_CK_SPRE_16BITS);
 }
 
 void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *hrtc) {
