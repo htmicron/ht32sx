@@ -1,6 +1,6 @@
 # ALL HT32SX DOCUMENTATION
 
-## Version 2.2 (draft):	## Version 2.2 (Preliminary) - IC - Mass Production
+# Version 2.2 (Preliminary) - IC - Mass Production
 ![imcp-git](https://user-images.githubusercontent.com/59176599/89645361-03de1e00-d890-11ea-95b9-b545362c462f.JPG)
 
 Go [here](https://github.com/htmicron/ht32sx/tree/documents/2.2) 
