@@ -133,6 +133,8 @@ sfx_u8 MCU_API_delay(sfx_delay_t delay_type)
   switch(delay_type)
   {
   case SFX_DLY_INTER_FRAME_TRX:
+	  priv_ST_MCU_API_delay(490-2*ST_RF_API_get_ramp_duration());
+	  break;
   case SFX_DLY_INTER_FRAME_TX:
   case SFX_DLY_CS_SLEEP:
     /* ramping should be considered in the ramp up/down:
