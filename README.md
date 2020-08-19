@@ -45,7 +45,9 @@ More code information? 	Go to [HT Micron's Application Notes](https://htmicron.g
 
 Enjoy! =)
 
-#### [NEW] Would you like to buy an awesome Evaluation Board containing the HT32SX? 
+<hr>
+
+#### [NEW] Wanna buy an awesome SNOC Evaluation Board based on HT32SX? 
 
 ![alt text](https://github.com/htmicron/ht32sx/blob/images/snoc_board.jpg?raw=true)
 
