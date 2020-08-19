@@ -45,4 +45,16 @@ More code information? 	Go to [HT Micron's Application Notes](https://htmicron.g
 
 Enjoy! =)
 
+#### [NEW] Would you like to buy an awesome Evaluation Board containing the HT32SX? 
+
+<div align="center">
+  <img src="https://yadom.eu/media/catalog/product/cache/318a9c5f293fa3a7e29b18ddfab5845a/p/r/produits-brkht32sx-005_1_.jpg">
+</div>
+
+Check on the link below:
+
+[BRKHT32SX Breakout Sigfox Monarch kit](https://yadom.eu/kit-sigfox-breakout-board-brkht32sx.html)
+
+
+
 ---
