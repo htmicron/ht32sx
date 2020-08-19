@@ -3,7 +3,7 @@
 ## The SMALLEST Sigfox™ Monarch SiP in the world!
 
 <div align="center">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesenrhZDRBpVRdUHpQ5ouT6wUTu0t0zaYtSI5GZqXJjGc2tor4Q&s">
+  <img src="https://github.com/htmicron/ht32sx/blob/images/imcp_ht32sx.png">
 </div>
 
 The HT32SX is a System-in-Package (SiP) device build for the Internet of Things providing a **ready-to-use** connectivity solution.
@@ -44,5 +44,17 @@ Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html
 More code information? 	Go to [HT Micron's Application Notes](https://htmicron.github.io/index.html) page.
 
 Enjoy! =)
+
+<hr>
+
+#### [NEW] Wanna buy an awesome SNOC Evaluation Board based on HT32SX? 
+
+![alt text](https://github.com/htmicron/ht32sx/blob/images/snoc_board.jpg?raw=true)
+
+Check on the link below:
+
+[BRKHT32SX Breakout Sigfox Monarch kit](https://yadom.eu/kit-sigfox-breakout-board-brkht32sx.html)
+
+
 
 ---
