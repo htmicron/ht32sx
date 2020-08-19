@@ -47,7 +47,7 @@ Enjoy! =)
 
 #### [NEW] Would you like to buy an awesome Evaluation Board containing the HT32SX? 
 
-![alt text](https://github.com/htmicron/images/blob/master/snoc_board.jpg?raw=true)
+![alt text](https://github.com/htmicron/ht32sx/blob/images/snoc_board.jpg?raw=true)
 
 Check on the link below:
 
