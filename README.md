@@ -47,9 +47,7 @@ Enjoy! =)
 
 #### [NEW] Would you like to buy an awesome Evaluation Board containing the HT32SX? 
 
-<div align="center">
-  <img src="https://yadom.eu/media/catalog/product/cache/318a9c5f293fa3a7e29b18ddfab5845a/p/r/produits-brkht32sx-005_1_.jpg">
-</div>
+![alt text](https://yadom.eu/media/catalog/product/cache/318a9c5f293fa3a7e29b18ddfab5845a/p/r/produits-brkht32sx-005_1_.jpg)
 
 Check on the link below:
 
