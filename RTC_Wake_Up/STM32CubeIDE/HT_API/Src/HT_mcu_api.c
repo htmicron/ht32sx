@@ -53,7 +53,7 @@ void HT_McuApi_enterGpioLowPower(void) {
 	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_15);
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_8) & (~GPIO_PIN_0) & (~GPIO_PIN_2);
+	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_8);
 	HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 	//HAL_SPI_MspDeInit(getSpiHandle());
@@ -103,9 +103,7 @@ void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *hrtc) {
 void HT_McuApi_enterDeepSleepMode(void) {
 
 	deepSleepModeFlag = 1;
-
-	FEM_Operation(FEM_TX);
-	HAL_Delay(500);
+	
 	FEM_Operation(FEM_SHUTDOWN);
 	S2LPShutdownEnter();
 
