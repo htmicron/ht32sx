@@ -75,7 +75,7 @@ void * AT_Cmd_getCmd(void) {
 	printf("AT_Cmd_getCmd...\n");
 
 	AT_getCmdData(cmd);
-	printf("Get cmd: %s\n", cmd);
+
 	clearUartRxBuffer();
 
 	status = AT_checkCmdHdr((char *)cmd);

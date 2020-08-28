@@ -128,13 +128,13 @@ void ST_Init(void);
 
 #define ALL_REGIONS 127
 
-#define RCZ1_OUTPUT_POWER 	2
+#define RCZ1_OUTPUT_POWER 	-32
 #define RCZ2_OUTPUT_POWER	-27
-#define RCZ3_OUTPUT_POWER	-5
-#define RCZ4_OUTPUT_POWER	-30
-#define RCZ5_OUTPUT_POWER	-5
-#define RCZ6_OUTPUT_POWER	-2
-#define RCZ7_OUTPUT_POWER	-2
+#define RCZ3_OUTPUT_POWER	-32
+#define RCZ4_OUTPUT_POWER	-27
+#define RCZ5_OUTPUT_POWER	-32
+#define RCZ6_OUTPUT_POWER	-32
+#define RCZ7_OUTPUT_POWER	-32
 
 /* USER CODE END Private defines */
 

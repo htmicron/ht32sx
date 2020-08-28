@@ -1,11 +1,3 @@
-/*!
-* \file mcu_api_stm32.c
-* \brief Sigfox MCU functions
-* \author  R&D HT Micron
-* \version 1.0
-* \date Sept 2, 2019
-*
-*/
 
 #include <stdint.h>
 #include <stdio.h>
@@ -152,7 +144,7 @@ typedef enum
 #define MINOR_NUM_RF_API  '3'
 #endif
 
-static const uint8_t ST_RF_API_VER[ST_RF_API_VER_SIZE] = {'v','2','.','5','.','1','.',MINOR_NUM_RF_API};
+static const uint8_t ST_RF_API_VER[ST_RF_API_VER_SIZE] = {'v','2','.','5','.','0','.',MINOR_NUM_RF_API};
 
 /* the array zeroes is used to implement waiting times in the TX FIFO */
 static BUFF_PLACING uint8_t zeroes[]={0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
@@ -229,6 +221,7 @@ typedef struct
   int16_t power_reduction;
   int8_t rssi_offset;
   int8_t lbt_thr_offset;
+
 
 #if defined(FOR_ARIB) || defined(FOR_ALL)
   /* The tx_is_ready flag is used for CS (ARIB only) and is used in the rf_init for SFX_RF_MODE_CS_RX.
@@ -307,6 +300,8 @@ static st_manuf_t st_manuf=
   .bpsk_ramps=&s_fcc_bpsk_ramps,
 #endif
 };
+
+//static st_manuf_t *st_manuf_context=&st_manuf;
 
 #define st_manuf_context        (&st_manuf)
 
@@ -416,11 +411,13 @@ static void priv_ST_MANUF_tx_rf_init(void)
   tmp=0xD7;
   priv_ST_MANUF_WriteRegisters(0x65, 1, &tmp);
 
-  /* SMPS switch to 3MHz - ref. Datasheet page 23*/  
-  tmp=0x87;
+  /* SMPS switch to 5.5MHz */
+  /* SMPS switch to 3MHz - ref. Datasheet page 23*/
+  tmp=0x9C;
+  //tmp=0x87;
   priv_ST_MANUF_WriteRegisters(0x76, 1, &tmp);
-  
-  tmp=0xFC;
+  tmp=0x28;
+  //tmp=0xFC;
   priv_ST_MANUF_WriteRegisters(0x77, 1, &tmp);
 
   tmp=0xC8;
@@ -486,24 +483,24 @@ static void priv_ST_MANUF_tx_rf_dbpsk_init(sfx_modulation_type_t type)
 
     if(privGetXtalFrequency()>DIG_DOMAIN_XTAL_THRESH)
     {
-    	fdev_e=0;
-    	/* fdev_num=((2**22)*2000) */
-    	fdev_m=(uint8_t)((uint64_t)8388608000/privGetXtalFrequency());
-    	/* understand if we are getting the nearest integer */
-    	uint64_t tgt1,tgt2;
-    	tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m);
-    	tgt2=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+1);
-    	fdev_m=((uint64_t)8388608000-tgt1>tgt2-(uint64_t)8388608000)?(fdev_m+1):(fdev_m);
+	fdev_e=0;
+	/* fdev_num=((2**22)*2000) */
+	fdev_m=(uint8_t)((uint64_t)8388608000/privGetXtalFrequency());
+	/* understand if we are getting the nearest integer */
+	uint64_t tgt1,tgt2;
+	tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m);
+	tgt2=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+1);
+	fdev_m=((uint64_t)8388608000-tgt1>tgt2-(uint64_t)8388608000)?(fdev_m+1):(fdev_m);
     }
     else
     {
-    	fdev_e=1;
-    	fdev_m=(uint8_t)((uint64_t)8388608000/privGetXtalFrequency()-256);
-    	/* understand if we are getting the nearest integer */
-    	uint64_t tgt1,tgt2;
-    	tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+256);
-    	tgt2=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+1+256);
-    	fdev_m=((uint64_t)8388608000-tgt1>tgt2-(uint64_t)8388608000)?(fdev_m+1):(fdev_m);
+	fdev_e=1;
+	fdev_m=(uint8_t)((uint64_t)8388608000/privGetXtalFrequency()-256);
+	/* understand if we are getting the nearest integer */
+	uint64_t tgt1,tgt2;
+	tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+256);
+	tgt2=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+1+256);
+	fdev_m=((uint64_t)8388608000-tgt1>tgt2-(uint64_t)8388608000)?(fdev_m+1):(fdev_m);
     }
 
 #if defined(FOR_ALL)
@@ -517,63 +514,35 @@ static void priv_ST_MANUF_tx_rf_dbpsk_init(sfx_modulation_type_t type)
 #endif  /* FOR_ALL */
     /* FCC datarate is 600bps - chip datarate 3000 (3000*8/40=600) */
 
-    if (f_dig>24500000) //To consider also a margin used to compensate static drifts
-    {
-      /* modulation is POLAR | DR EXPONENT = 3 for xtal > 24 MHz */
-      mod_e=0x60|0x03;
-      /* dr_num=(2**30)*3000 */
-      dr_m=(uint16_t)((uint64_t)0x2EE00000000/f_dig-65536);
-      /* understand if we are getting the nearest integer */
-      uint64_t tgt1,tgt2;
-      tgt1=(uint64_t)f_dig*((uint64_t)dr_m+65536);
-      tgt2=(uint64_t)f_dig*((uint64_t)dr_m+1+65536);
-      dr_m=((uint64_t)0x2EE00000000-tgt1>tgt2-(uint64_t)0x2EE00000000)?(dr_m+1):(dr_m);
-    }
-    else
-    {
-      /* modulation is POLAR | DR EXPONENT = 4 for xtal=24 MHz */
-      mod_e=0x60|0x04;
-      /* dr_num=(2**30)*3000 */
-      dr_m=(uint16_t)((uint64_t)0x17700000000/f_dig-65536);
-      /* understand if we are getting the nearest integer */
-      uint64_t tgt1,tgt2;
-      tgt1=(uint64_t)f_dig*((uint64_t)dr_m+65536);
-      tgt2=(uint64_t)f_dig*((uint64_t)dr_m+1+65536);
-      dr_m=((uint64_t)0x17700000000-tgt1>tgt2-(uint64_t)0x17700000000)?(dr_m+1):(dr_m);
-    }
+    /* modulation is POLAR | DR EXPONENT = 3 */
+    mod_e=0x60|0x03;
+    /* dr_num=(2**30)*3000 */
+    dr_m=(uint16_t)((uint64_t)0x2EE00000000/f_dig-65536);
+    /* understand if we are getting the nearest integer */
+    uint64_t tgt1,tgt2;
+    tgt1=(uint64_t)f_dig*((uint64_t)dr_m+65536);
+    tgt2=(uint64_t)f_dig*((uint64_t)dr_m+1+65536);
+    dr_m=((uint64_t)0x2EE00000000-tgt1>tgt2-(uint64_t)0x2EE00000000)?(dr_m+1):(dr_m);
 
     if(privGetXtalFrequency()>DIG_DOMAIN_XTAL_THRESH)
     {
-			fdev_e=2;
-    	fdev_m=(uint8_t)((uint64_t)25165824000/privGetXtalFrequency()-256);
-    	/* understand if we are getting the nearest integer */
-    	uint64_t tgt1,tgt2;
-    	tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+256);
-    	tgt2=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+1+256);
-    	fdev_m=((uint64_t)25165824000-tgt1>tgt2-(uint64_t)25165824000)?(fdev_m+1):(fdev_m);
+	fdev_e=2;
+	fdev_m=(uint8_t)((uint64_t)25165824000/privGetXtalFrequency()-256);
+	/* understand if we are getting the nearest integer */
+	uint64_t tgt1,tgt2;
+	tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+256);
+	tgt2=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+1+256);
+	fdev_m=((uint64_t)25165824000-tgt1>tgt2-(uint64_t)25165824000)?(fdev_m+1):(fdev_m);
     }
     else
     {
-				if (f_dig>24500000) //To consider also a margin used to compensate static drifts
-				{
-					fdev_e=3;
-					fdev_m=(uint8_t)((uint64_t)12582912000/privGetXtalFrequency()-256);
-					/* understand if we are getting the nearest integer */
-					uint64_t tgt1,tgt2;
-					tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+256);
-					tgt2=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+1+256);
-					fdev_m=((uint64_t)12582912000-tgt1>tgt2-(uint64_t)12582912000)?(fdev_m+1):(fdev_m);
-				}
-				else
-				{
-					fdev_e=4;
-					fdev_m=(uint8_t)((uint64_t)6291456000/privGetXtalFrequency()-256);
-					/* understand if we are getting the nearest integer */
-					uint64_t tgt1,tgt2;
-					tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+256);
-					tgt2=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+1+256);
-					fdev_m=((uint64_t)6291456000-tgt1>tgt2-(uint64_t)6291456000)?(fdev_m+1):(fdev_m);
-				}
+	fdev_e=3;
+	fdev_m=(uint8_t)((uint64_t)12582912000/privGetXtalFrequency()-256);
+	/* understand if we are getting the nearest integer */
+	uint64_t tgt1,tgt2;
+	tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+256);
+	tgt2=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m+1+256);
+	fdev_m=((uint64_t)12582912000-tgt1>tgt2-(uint64_t)12582912000)?(fdev_m+1):(fdev_m);
     }
 
 #if defined(FOR_ALL)
@@ -600,7 +569,7 @@ static void priv_ST_MANUF_tx_rf_dbpsk_init(sfx_modulation_type_t type)
   }
   else
   {
-    st_manuf_context->bpsk_ramps=st_manuf_context->etsi_bpsk_ramps;
+    st_manuf_context->bpsk_ramps=st_manuf_context->fcc_bpsk_ramps; //MCR
   }
 #elif defined(FOR_ETSI) || defined(FOR_ARIB)
   st_manuf_context->bpsk_ramps=st_manuf_context->etsi_bpsk_ramps;
@@ -662,7 +631,7 @@ static void priv_ST_MANUF_tx_rf_dbpsk_single_bit(uint8_t bit)
 /* Transmission state machine */
 static void priv_ST_MANUF_Transmission_Tick(void)
 {
-  switch((st_manuf_context->tx_packet_struct.tx_state))
+  switch(st_manuf_context->tx_packet_struct.tx_state)
   {
     /*
     When the state machine is here means that we have loaded the very first part of the RAMP_UP
@@ -853,7 +822,7 @@ static void priv_ST_MANUF_rx_rf_init(void)
     f_dig >>= 1;
   }
 
-  /* modulation is 2GFSK01 @600bps| DR EXPONENT = 1 */
+  /* modulation is 2GFSK01 | DR EXPONENT = 1 */
   mod_e=0x20|0x01;
   /* dr_num=(2**32)*600 */
   dr_m=(uint16_t)((uint64_t)0x25800000000/f_dig-65536);
@@ -863,7 +832,7 @@ static void priv_ST_MANUF_rx_rf_init(void)
   dr_m=((uint64_t)0x25800000000-tgt1>tgt2-(uint64_t)0x25800000000)?(dr_m+1):(dr_m);
 
   fdev_e=0;
-  /* fdev_num=((2**22)*800) - FDEV=800Hz */
+  /* fdev_num=((2**22)*800) */
   fdev_m=(uint8_t)((uint64_t)3355443200/privGetXtalFrequency());
   /* understand if we are getting the nearest integer */
   tgt1=(uint64_t)privGetXtalFrequency()*((uint64_t)fdev_m);
@@ -893,10 +862,7 @@ static void priv_ST_MANUF_rx_rf_init(void)
 #ifdef MON_REF_DES
   tmp=0x18; //3.3 KHz - Since there is LNA, we are able to receive even with a larger filter.
 #else
-  if (f_dig>24500000) /*CHFILTER must be multiplied for Fdig/26e6 to obtain the actual value*/
   tmp=0x88; //2.1 KHz
-else
-  tmp=0x68;
 #endif
 
   priv_ST_MANUF_WriteRegisters(0x13,1,&tmp);
@@ -1075,14 +1041,12 @@ __weak void ST_RF_API_custom_setting(void)
 *******************************************************************/
 sfx_u8 RF_API_init(sfx_rf_mode_t rf_mode)
 {
-  //PRINTF("RF_API_init IN (rf_mode=%d)\n\r",rf_mode);
   sfx_u8 tmp;
 
 #if defined(FOR_ARIB) || defined(FOR_ALL)
   if(rf_mode==SFX_RF_MODE_TX && st_manuf_context->tx_is_ready)
   {
     st_manuf_context->tx_packet_struct.tx_state=ST_TX_STATE_NONE;
-    //PRINTF("RF_API_init fast OUT\n\r");
     return SFX_ERR_NONE;
   }
 #endif
@@ -1092,6 +1056,7 @@ sfx_u8 RF_API_init(sfx_rf_mode_t rf_mode)
     st_manuf_context->xtal_lib=privGetXtalFrequency();
   }
   ST_MCU_API_Shutdown(1);
+  //  ST_MCU_API_Delay(2);
   ST_MCU_API_Shutdown(0);
 
   if(st_manuf_context->tcxo_flag)
@@ -1110,7 +1075,7 @@ sfx_u8 RF_API_init(sfx_rf_mode_t rf_mode)
 #endif
 #endif
 
-#if defined(FOR_ETSI) || defined(FOR_ARIB) || defined(FOR_ALL)
+#if defined(FOR_ETSI) || defined(FOR_ARIB) || defined(FOR_ALL)//MCR
 #if defined(FOR_ALL)
   else
   {
@@ -1122,12 +1087,19 @@ sfx_u8 RF_API_init(sfx_rf_mode_t rf_mode)
 #endif
 
   ST_MCU_API_GpioIRQ(st_manuf_context->gpio_function_struct.gpio_irq_pin, SFX_FALSE, SFX_FALSE);
-	
-  int32_t xtal_off=(576*st_manuf_context->rf_offset)/10000; //MS
+
+  //int32_t xtal_off=(int32_t )(0.057603686)*(st_manuf_context->rf_offset); //2^21 = 2097152 //SG
+  //int32_t xtal_off=(576*st_manuf_context->rf_offset)/10000; //MS
+  int32_t xtal_off=(576*st_manuf_context->rf_offset)/5000; //MCR
+
+  //---------------------------------------------------------------------------
+  //Old function with 1KHz granularity
+  //int32_t xtal_off=(1000*2097152/36406559)*(st_manuf_context->rf_offset/1000);
+  //---------------------------------------------------------------------------
 
   privSetXtalFrequency(st_manuf_context->xtal_lib-xtal_off);
 
-  if(privGetXtalFrequency()<30000000)
+  if(privGetXtalFrequency()<30000000 & (SFX_RF_MODE_TX))
   {
     /* digital divider - set the bit to 1 only if xtal<30MHz so that the divider is disabled + Frequency drift mitigation*/
     tmp=0x3E;
@@ -1201,7 +1173,6 @@ sfx_u8 RF_API_init(sfx_rf_mode_t rf_mode)
 
   ST_RF_API_custom_setting();
 
-  //PRINTF("RF_API_init OUT (rf_off=%d)\n\r",st_manuf_context->rf_offset);
   return SFX_ERR_NONE;
 }
 
@@ -1217,7 +1188,6 @@ sfx_u8 RF_API_init(sfx_rf_mode_t rf_mode)
 *******************************************************************/
 sfx_u8 RF_API_stop(void)
 {
-  //PRINTF("RF_API_stop IN\n\r");
 
   /* give an abort command (just for safety) */
   ST_RF_API_StopRxTx();
@@ -1235,7 +1205,6 @@ sfx_u8 RF_API_stop(void)
 #if defined(FOR_ARIB) || defined(FOR_ALL)
   st_manuf_context->tx_is_ready=0;
 #endif
-  //PRINTF("RF_API_stop OUT\n\r");
 
   return SFX_ERR_NONE;
 }
@@ -1259,14 +1228,6 @@ sfx_u8 RF_API_stop(void)
 *******************************************************************/
 sfx_u8 RF_API_send(sfx_u8 *stream, sfx_modulation_type_t type, sfx_u8 size)
 {
-	//PRINTF("RF_API_send IN\n\r");
-
-  //PRINTF("FTS: [");
-  for(uint8_t i=0;i<size;i++)
-  {
-    //PRINTF("%.2X",stream[i]);
-  }
-  //PRINTF("]\n\r");
 
   if(type==SFX_NO_MODULATION || st_manuf_context->manuf_state!=ST_MANUF_STATE_IDLE)
     return RF_ERR_API_SEND;
@@ -1276,16 +1237,6 @@ sfx_u8 RF_API_send(sfx_u8 *stream, sfx_modulation_type_t type, sfx_u8 size)
 
   /* start the modulation of the data stream */
   priv_ST_MANUF_rf_modulation_dbpsk(stream, size);
-
-#ifdef MONARCH_CLI_TESTS
-  printf("{{(SigfoxSendBPSK)} API call...{value:");
-  for(uint8_t i=0;i<size;i++)
-  {
-    printf("%.2X",stream[i]);
-  }
-  printf("}}\n\r");
-#endif
-  //PRINTF("RF_API_send OUT\n\r");
 
   return SFX_ERR_NONE;
 }
@@ -1302,7 +1253,6 @@ sfx_u8 RF_API_send(sfx_u8 *stream, sfx_modulation_type_t type, sfx_u8 size)
 *******************************************************************/
 sfx_u8 RF_API_start_continuous_transmission(sfx_modulation_type_t type)
 {
-  //PRINTF("RF_API_start_continuous_transmission IN\n\r");
 
   if(st_manuf_context->manuf_state!=ST_MANUF_STATE_IDLE)
     return RF_ERR_API_SEND;
@@ -1332,9 +1282,17 @@ sfx_u8 RF_API_start_continuous_transmission(sfx_modulation_type_t type)
   // SPI_DRV_write(CW)
   else if (type==SFX_NO_MODULATION)
   {
-    sfx_u8 tmp;
 
+   //Configure the RF IC into pure carrier CW : no modulation
+   //this mode is available on many RF ICs for type approval tests or manufacturing tests.
+   //the frequency is chosen in the RF_API_change_frequency by the sigfox lib
+   //SPI_DRV_write(CW)
+
+    sfx_u8 tmp;
+    //int8_t tmp;
     ST_MCU_API_GpioIRQ(st_manuf_context->gpio_function_struct.gpio_irq_pin, SFX_FALSE, SFX_FALSE);
+    //ST_MCU_API_GpioIRQ(st_manuf_context->gpio_function_struct.gpio_irq_pin, SFX_TRUE, SFX_TRUE); //MCR
+
 
     // MOD register to Save Datarate and pu
     priv_ST_MANUF_ReadRegisters(0x10, 1, &tmp);
@@ -1345,21 +1303,19 @@ sfx_u8 RF_API_start_continuous_transmission(sfx_modulation_type_t type)
     // Set Power PA_POWER8
 #ifdef MON_REF_DES
     if (st_manuf_context->pa_flag)
-	tmp=1+5+st_manuf_context->power_reduction;
+	tmp=34+st_manuf_context->power_reduction;
     else
-	tmp=1+st_manuf_context->power_reduction;
-#else
-    tmp=1+st_manuf_context->power_reduction;
+	tmp=34+st_manuf_context->power_reduction;
+    #else
+    tmp=34+st_manuf_context->power_reduction;
 #endif
 
     priv_ST_MANUF_WriteRegisters(0x5A, 1, &tmp);
-
     st_manuf_context->manuf_state=ST_MANUF_STATE_TX;
-
     ST_RF_API_StartTx();
-  }
+    //st_manuf_context.power_reduction = 0;
 
-  //PRINTF("RF_API_start_continuous_transmission OUT\n\r");
+  }
 
   return SFX_ERR_NONE;
 }
@@ -1373,7 +1329,6 @@ sfx_u8 RF_API_start_continuous_transmission(sfx_modulation_type_t type)
 *******************************************************************/
 sfx_u8 RF_API_stop_continuous_transmission (void)
 {
-  //PRINTF("RF_API_stop_continuous_transmission IN\n\r");
 
   ST_RF_API_StopRxTx();
 
@@ -1381,8 +1336,6 @@ sfx_u8 RF_API_stop_continuous_transmission (void)
 
   if (st_manuf_context->tx_packet_struct.continuous_tx_flag)
     ST_MCU_API_GpioIRQ(st_manuf_context->gpio_function_struct.gpio_irq_pin, SFX_FALSE, SFX_FALSE);
-
-  //PRINTF("RF_API_stop_continuous_transmission OUT\n\r");
 
   return SFX_ERR_NONE;
 }
@@ -1399,8 +1352,6 @@ sfx_u8 RF_API_stop_continuous_transmission (void)
 *******************************************************************/
 sfx_u8 RF_API_change_frequency(sfx_u32 frequency)
 {
-  //PRINTF("RF_API_change_frequency IN %d\n\r",frequency);
-
   uint8_t tmp[4];
   uint32_t synth;
 
@@ -1449,8 +1400,6 @@ sfx_u8 RF_API_change_frequency(sfx_u32 frequency)
 
   priv_ST_MANUF_WriteRegisters(0x05, 4, tmp);
 
-  //PRINTF("RF_API_change_frequency OUT (SYNT=0x%x)\n\r",synth);
-
   return SFX_ERR_NONE;
 }
 
@@ -1486,7 +1435,6 @@ sfx_u8 RF_API_wait_frame(sfx_u8 *frame, sfx_s16 *rssi, sfx_rx_state_enum_t * sta
   sfx_u8 sync_detected=0;
   sfx_u8 n_bytes, tmp[4]={0,0,0,0};
 
-  //PRINTF("RF_API_wait_frame IN\n\r");
 
   /* enable the RX DATA READY interrupt */
   tmp[3]=0x01;
@@ -1553,8 +1501,6 @@ sfx_u8 RF_API_wait_frame(sfx_u8 *frame, sfx_s16 *rssi, sfx_rx_state_enum_t * sta
 	  /* reception succesful */
 	  (*state) = DL_PASSED;
 
-	  //PRINTF("RF_API_wait_frame OUT (ok)\n\r");
-
 	  return SFX_ERR_NONE;
 	}
 
@@ -1563,8 +1509,6 @@ sfx_u8 RF_API_wait_frame(sfx_u8 *frame, sfx_s16 *rssi, sfx_rx_state_enum_t * sta
 	if(tmp[2]&0x20)
 	{
 	  sync_detected=1;
-
-	  //PRINTF("RF_API_wait_frame -> sync_detected\n\r");
 	}
     }
   }
@@ -1579,8 +1523,6 @@ sfx_u8 RF_API_wait_frame(sfx_u8 *frame, sfx_s16 *rssi, sfx_rx_state_enum_t * sta
   st_manuf_context->manuf_state=ST_MANUF_STATE_IDLE;
 
   (*state) = DL_TIMEOUT;
-
- // PRINTF("RF_API_wait_frame OUT (fail)\n\r");
 
   /* reception failed due to RX timeout */
   return SFX_ERR_NONE;
@@ -1609,7 +1551,6 @@ sfx_u8 RF_API_wait_frame(sfx_u8 *frame, sfx_s16 *rssi, sfx_rx_state_enum_t * sta
 *******************************************************************/
 sfx_u8 RF_API_wait_for_clear_channel(sfx_u8 cs_min, sfx_s8 cs_threshold, sfx_rx_state_enum_t * state)
 {
- // PRINTF("RF_API_wait_for_clear_channel IN (cs_min=%d, cs_thr=%d)\n\r", cs_min, cs_threshold);
 
 #if defined(FOR_ARIB) || defined(FOR_ALL)
   uint8_t tmp[4]={0,0,0,0};
@@ -1629,7 +1570,7 @@ sfx_u8 RF_API_wait_for_clear_channel(sfx_u8 cs_min, sfx_s8 cs_threshold, sfx_rx_
   ST_MCU_API_GpioIRQ(st_manuf_context->gpio_function_struct.gpio_irq_pin, SFX_TRUE, SFX_FALSE);
 
   /* RSSI threshold setting */
-  tmp[0]=(uint8_t)((sfx_s16)146+(sfx_s16)cs_threshold-st_manuf_context->rssi_offset-st_manuf_context->lbt_thr_offset);
+  tmp[0]=(uint8_t)((sfx_s16)146+(sfx_s16)cs_threshold+st_manuf_context->rssi_offset+st_manuf_context->lbt_thr_offset);
 
   /* RSSI thr */
   priv_ST_MANUF_WriteRegisters(0x18,1,tmp);
@@ -1651,7 +1592,6 @@ sfx_u8 RF_API_wait_for_clear_channel(sfx_u8 cs_min, sfx_s8 cs_threshold, sfx_rx_
 
   tmp[0]=(uint8_t)((((uint64_t)cs_min*f_dig/1000)/1210+1)/(tmp[1]+1));
 
-  //PRINTF("REGISTER RXTIMERCNT=%d, PRESCALER=%d \n\r",tmp[0],tmp[1]);
   priv_ST_MANUF_WriteRegisters(0x46,2,tmp);
 
 
@@ -1694,7 +1634,6 @@ sfx_u8 RF_API_wait_for_clear_channel(sfx_u8 cs_min, sfx_s8 cs_threshold, sfx_rx_
     }
     if(st_manuf_context->api_timer_channel_clear_raised)
     {
-	//PRINTF("\t\t\t\t\t\t\t TIMEOUTn\r");
 	st_manuf_context->api_timer_channel_clear_raised=0;
 	(*state) = DL_TIMEOUT;
 	break;
@@ -1717,8 +1656,6 @@ sfx_u8 RF_API_wait_for_clear_channel(sfx_u8 cs_min, sfx_s8 cs_threshold, sfx_rx_
 
   st_manuf_context->manuf_state=ST_MANUF_STATE_IDLE;
 #endif
-
-  //PRINTF("RF_API_wait_for_clear_channel OUT (passed=%d)\n\r",(*state));
 
   return SFX_ERR_NONE;
 }
@@ -1961,10 +1898,12 @@ sfx_u8 ST_RF_API_StopRxTx(void)
 
 sfx_s16 ST_RF_API_GetRSSI(void)
 {
-  sfx_u8  last_rssi;
+  sfx_u8 last_rssi;
+
   /* Read the RSSI value captured at the end of the SYNC word detection of the received packet */
   priv_ST_MANUF_ReadRegisters(0xA2, 1, &last_rssi); //RSSI_REG
-  return (sfx_s16) (last_rssi-146+st_manuf_context->rssi_offset-6);
+
+  return (sfx_s16) last_rssi-146;
 }
 
 /* Retrieve FIFO data */
@@ -2014,4 +1953,3 @@ __weak sfx_u8 MONARCH_API_configure_search_pattern ( sfx_monarch_pattern_search_
 __weak sfx_u8 MONARCH_API_stop_search_pattern(void) { return MONARCH_ERR_API_STOP_SEARCH_PATTERN; }
 
 __weak sfx_u8 MONARCH_API_get_version(sfx_u8 **version, sfx_u8 *size) { return MONARCH_ERR_API_TIMER_STOP; }
-
