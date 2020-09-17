@@ -51,7 +51,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-TIM_HandleTypeDef  Tim6_Handler={.Instance=TIM6};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -96,9 +96,9 @@ int main(void)
   MX_DMA_Init();
   MX_RTC_Init();
   MX_SPI1_Init();
-  MX_TIM6_Init();
   MX_USART1_UART_Init();
   MX_ADC_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
 	mcuConfig();
@@ -196,7 +196,7 @@ void mcuConfig(void) {
 	ST_MCU_API_TimerCalibration(500);
 #endif
 
-	printf("Sigfox Monarch iMCP HT32SX - AT Commands\n");
+	printf("Sigfox iMCP HT32SX - AT Commands\n");
 	printf("ID: %.8X - PAC: ", (unsigned int)sfxConfiguration.id);
 
 	for(uint16_t i = 0; i < sizeof(sfxConfiguration.pac); i++)
@@ -219,7 +219,7 @@ void ST_Init(void)
 	S2LPShutdownExit();
 
 	/* Init TIM6 which will trigger TX */
-	SdkEvalTimersState(&Tim6_Handler, ENABLE);
+	//SdkEvalTimersState(&Tim6_Handler, ENABLE);
 
 	/* Auto detect settings, if EEPROM is available */
 #if EEPROM_PRESENT == EEPROM_YES
@@ -247,7 +247,6 @@ void ST_Init(void)
 
 	/* FEM Initialization */
 	FEM_Init();
-
 }
 
 /* USER CODE END 4 */

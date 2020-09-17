@@ -83,6 +83,12 @@ typedef enum {
 	AT_stop = 0,					/**< MCU stop mode command */
 	AT_deepSleep,					/**< MCU deep sleep mode command */
 	AT_reset,						/**< MCU reset command */
+	AT_switch_pa,					/**< MCU switch pa command */
+	AT_switch_boost,				/**< MCU switch boost command */
+	AT_reduce_power,				/**< MCU reduce power command */
+	AT_freq_offset,					/**< MCU frequency offset command */
+	AT_rssi_offset,					/**< MCU rssi offset command */
+	AT_lbt_offset,					/**< MCU lbt thr offset command */
 	AT_wkp							/**< MCU wake up command */
 } AT_mcuCmdType;
 
@@ -154,6 +160,6 @@ extern void AT_cleanAuxBuffer(void);
  *******************************************************************/
 AT_cmdStruct AT_checkCmdHdr(char *cmd);
 
-#endif
+#endif /* __HT_ATCMD__ */
 
 /************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/

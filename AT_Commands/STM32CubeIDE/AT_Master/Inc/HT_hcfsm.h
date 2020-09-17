@@ -21,8 +21,8 @@
  * This file defines the Hierarchical State Machine made for modulate the AT Commands application.
  */
 
-#ifndef HT_HCFSM_H
-#define HT_HCFSM_H
+#ifndef _HT_HCFSM_H_
+#define _HT_HCFSM_H_
 
 #include "main.h"
 
@@ -271,6 +271,6 @@ extern void AT_setFsmState(state_func state);
  *******************************************************************/
 void AT_getHexValue(char *str, uint8_t *output);
 
-#endif
+#endif /* _HT_HCFSM_H_ */
 
 /************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/

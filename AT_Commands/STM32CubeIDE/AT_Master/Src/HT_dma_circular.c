@@ -92,11 +92,11 @@ void DMA_IrqHandler (DMA_HandleTypeDef *hdma) {
 	}
 }
 
-void clearUartRxBuffer(void) {
+void AT_DMA_clearUartRxBuffer(void) {
 	memset(UART_Buffer, 0, UART_BUFFER_SIZE);
 	memset(DMA_RX_Buffer, 0, DMA_RX_BUFFER_SIZE);
 	tocopy = 0;
 	Write = 0;
 }
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semicondutors S.A *****END OF FILE****/

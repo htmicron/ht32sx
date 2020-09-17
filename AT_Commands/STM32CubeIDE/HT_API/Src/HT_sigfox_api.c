@@ -29,6 +29,8 @@ void HT_SigfoxApi_configRegion(rc_mask RCZ) {
 		printf("RCZ %d\n", RCZ);
 		ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
 		open_err = St_Sigfox_Open_RCZ(RCZ1);
+		HT_SigfoxApi_switchPa(0);
+		HT_SigfoxApi_setSmpsVoltageAction(7);
 
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
@@ -38,16 +40,19 @@ void HT_SigfoxApi_configRegion(rc_mask RCZ) {
 		printf("RCZ %d\n", RCZ);
 		ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
 		open_err = St_Sigfox_Open_RCZ(RCZ2);
+		HT_SigfoxApi_switchPa(1);
 
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
-
 
 		break;
 	case RCZ3:
 		printf("RCZ %d\n", RCZ);
 		open_err = St_Sigfox_Open_RCZ(RCZ3);
 		ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
+		HT_SigfoxApi_switchPa(0);
+		HT_SigfoxApi_setSmpsVoltageAction(7);
+
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
 
@@ -56,6 +61,8 @@ void HT_SigfoxApi_configRegion(rc_mask RCZ) {
 		printf("RCZ %d\n", RCZ);
 		open_err = St_Sigfox_Open_RCZ(RCZ4);
 		ST_RF_API_reduce_output_power(RCZ4_OUTPUT_POWER);
+		HT_SigfoxApi_switchPa(1);
+
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
 
@@ -63,6 +70,9 @@ void HT_SigfoxApi_configRegion(rc_mask RCZ) {
 	case RCZ5:
 		open_err = St_Sigfox_Open_RCZ(RCZ5);
 		ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
+		HT_SigfoxApi_switchPa(0);
+		HT_SigfoxApi_setSmpsVoltageAction(7);
+
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
 
@@ -71,6 +81,9 @@ void HT_SigfoxApi_configRegion(rc_mask RCZ) {
 		printf("RCZ %d\n", RCZ);
 		open_err = St_Sigfox_Open_RCZ(RCZ6);
 		ST_RF_API_reduce_output_power(RCZ6_OUTPUT_POWER);
+		HT_SigfoxApi_switchPa(0);
+		HT_SigfoxApi_setSmpsVoltageAction(7);
+
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
 
@@ -79,6 +92,8 @@ void HT_SigfoxApi_configRegion(rc_mask RCZ) {
 		printf("RCZ %d\n", RCZ);
 		open_err = St_Sigfox_Open_RCZ(RCZ7);
 		ST_RF_API_reduce_output_power(RCZ7_OUTPUT_POWER);
+		HT_SigfoxApi_switchPa(1);
+
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
 
@@ -87,6 +102,16 @@ void HT_SigfoxApi_configRegion(rc_mask RCZ) {
 		break;
 	}
 
+}
+
+void HT_SigfoxApi_switchPa(uint8_t state) {
+	ST_RF_API_set_pa(state);
+	printf("Switch PA: %d\n", state);
+}
+
+void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode) {
+	ST_RF_API_smps(mode);
+	printf("Set_smps_voltage %d\n", mode);
 }
 
 void HT_SigfoxApi_closeSigfoxLib(void) {
@@ -124,4 +149,4 @@ sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_respo
 	return err;
 }
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semicondutors S.A *****END OF FILE****/

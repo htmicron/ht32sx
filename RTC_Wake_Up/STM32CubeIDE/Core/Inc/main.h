@@ -113,6 +113,16 @@ sfx_error_t sendFrame(void);
  * \param[out] none
  *******************************************************************/
 void configRegion(rc_mask RCZ);
+
+/*!******************************************************************
+ * \fn void HT_API_setSmpsVoltageAction(sfx_u8 mode)
+ * \brief Enable S2LP boost mode.
+ *
+ * \param[in]  sfx_u8 mode                  Desired output voltage. Check UM2169 for more details.
+ * \param[out] none
+ *******************************************************************/
+void HT_API_setSmpsVoltageAction(sfx_u8 mode);
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -125,13 +135,13 @@ void configRegion(rc_mask RCZ);
 #define S2LP_SPI_MOSI_PIN_Pin GPIO_PIN_7
 #define S2LP_SPI_MOSI_PIN_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
-#define RCZ1_OUTPUT_POWER 2
-#define RCZ2_OUTPUT_POWER	-30
-#define RCZ3_OUTPUT_POWER	-5
-#define RCZ4_OUTPUT_POWER	-30
-#define RCZ5_OUTPUT_POWER	-5 //18
-#define RCZ6_OUTPUT_POWER	-2
-#define RCZ7_OUTPUT_POWER	-2
+#define RCZ1_OUTPUT_POWER 	-32
+#define RCZ2_OUTPUT_POWER	-27
+#define RCZ3_OUTPUT_POWER	-32
+#define RCZ4_OUTPUT_POWER	-27
+#define RCZ5_OUTPUT_POWER	-32
+#define RCZ6_OUTPUT_POWER	-32
+#define RCZ7_OUTPUT_POWER	-32
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

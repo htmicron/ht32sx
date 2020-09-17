@@ -75,8 +75,8 @@ void * AT_Cmd_getCmd(void) {
 	printf("AT_Cmd_getCmd...\n");
 
 	AT_getCmdData(cmd);
-	printf("Get cmd: %s\n", cmd);
-	clearUartRxBuffer();
+
+	AT_DMA_clearUartRxBuffer();
 
 	status = AT_checkCmdHdr((char *)cmd);
 
@@ -96,7 +96,7 @@ void * AT_Cmd_getCmd(void) {
 }
 
 void * AT_errorRoutine(void) {
-	clearUartRxBuffer();
+	AT_DMA_clearUartRxBuffer();
 
 	switch(status.AT_err) {
 	case DUMMY:
@@ -128,6 +128,10 @@ void * AT_Mcu(void) {
 }
 
 void * AT_Mcu_executeCmd(void) {
+	uint8_t integerParam1;
+	int16_t tmp;
+	int32_t argp;
+	char str_tmp[10];
 
 	printf("AT_Mcu_executeCmd...\n");
 
@@ -142,6 +146,59 @@ void * AT_Mcu_executeCmd(void) {
 		break;
 	case AT_reset:
 		HT_McuApi_softwareReset();
+		break;
+	case AT_switch_pa:
+		status.AT_mcuCmd = -1;
+		AT_splitString(cmdStr, "=", firstParam);
+		integerParam1 = firstParam[0] - '0';
+
+		HT_McuApi_switchPa(integerParam1);
+
+		break;
+	case AT_switch_boost:
+		status.AT_mcuCmd = -1;
+		AT_splitString(cmdStr, "=", firstParam);
+		integerParam1 = firstParam[0] - '0';
+
+		HT_McuApi_switchBoost(integerParam1);
+
+		break;
+	case AT_reduce_power:
+
+		status.AT_mcuCmd = -1;
+		AT_splitString(cmdStr, "=", str_tmp);
+		tmp = atoi(str_tmp);
+
+		HT_McuApi_reduceOutputPower(tmp);
+
+		break;
+	case AT_freq_offset:
+
+		status.AT_mcuCmd = -1;
+		AT_splitString(cmdStr, "=", str_tmp);
+
+		argp = atoi(str_tmp);
+
+		HT_McuApi_setFreqOffset(argp);
+
+		break;
+	case AT_rssi_offset:
+		status.AT_mcuCmd = -1;
+		AT_splitString(cmdStr, "=", str_tmp);
+
+		argp = atoi(str_tmp);
+
+		HT_McuApi_setRssiOffset(argp);
+
+		break;
+	case AT_lbt_offset:
+
+		status.AT_mcuCmd = -1;
+		AT_splitString(cmdStr, "=", str_tmp);
+
+		argp = atoi(str_tmp);
+
+		HT_McuApi_setLbtOffset(argp);
 		break;
 	case AT_wkp:
 		break;
@@ -325,4 +382,4 @@ void HT_hcfsm(void) {
 		current_state = (state_func)(current_state)();
 }
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semicondutors S.A *****END OF FILE****/

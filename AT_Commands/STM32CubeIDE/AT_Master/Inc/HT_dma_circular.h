@@ -57,7 +57,7 @@ extern void USART_IrqHandler (UART_HandleTypeDef *huart, DMA_HandleTypeDef *hdma
 extern void DMA_IrqHandler (DMA_HandleTypeDef *hdma);
 
 /*!******************************************************************
- * \fn extern void clearUartRxBuffer(void)
+ * \fn extern void AT_DMA_clearUartRxBuffer(void)
  * \brief Reset the USART RX buffer.
  *
  * \param[in]  none
@@ -65,7 +65,7 @@ extern void DMA_IrqHandler (DMA_HandleTypeDef *hdma);
  *
  * \retval none
  *******************************************************************/
-extern void clearUartRxBuffer(void);
+extern void AT_DMA_clearUartRxBuffer(void);
 
 #endif
 

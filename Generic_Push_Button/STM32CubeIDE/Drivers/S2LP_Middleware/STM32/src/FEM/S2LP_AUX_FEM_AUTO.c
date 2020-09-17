@@ -32,9 +32,6 @@
 
 #include "usart.h"
 
-//JRF
-void set_pa(void);
-
 /** @addtogroup S2LP_EVAL_FEM_AUTO
  * @{
  */
@@ -59,11 +56,7 @@ __weak void S2LPRadioSetPALevelMaxIndex(uint8_t cIndex){};
 #define HIGH                                    0x9A
 #define LOW                                     0xA2
 
-
 uint8_t tmp[3] = {0x00,0x00,0x00};
-
-//JRF
-extern void InitCopy_S2LP_Signals (void);
 
 /**
  * @brief  Front End Module initialization function.
@@ -72,37 +65,17 @@ extern void InitCopy_S2LP_Signals (void);
  * @param  None
  * @retval None
  */
-__weak void FEM_Init()
+void FEM_Init()
 {
-  if(!S2LPManagementGetRangeExtender())
-  {
-    /* If we haven't an external PA, use the library function */
-    S2LPRadioSetPALeveldBm(7, POWER_DBM);
-  }
-  else
-  { 
-    /* In case we are using the PA board, the S2LPRadioSetPALeveldBm will be not functioning because
-       the output power is affected by the amplification of this external component.
-       Set the raw register. */
-    uint8_t paLevelValue=0x25; /* for example, this value will give 23dBm about */
-    S2LPSpiWriteRegisters(0x5B, 1, &paLevelValue);
 
-    /* Configuration of S2LP GPIO to control external PA signal CSD, CPS, CTX */
-    uint8_t tmp[]={
-                    (uint8_t)S2LP_GPIO_DIG_OUT_TX_RX_MODE | (uint8_t)S2LP_GPIO_MODE_DIGITAL_OUTPUT_LP,
-                    (uint8_t)S2LP_GPIO_DIG_OUT_RX_STATE   | (uint8_t)S2LP_GPIO_MODE_DIGITAL_OUTPUT_LP,
-                    (uint8_t)S2LP_GPIO_DIG_OUT_TX_STATE   | (uint8_t)S2LP_GPIO_MODE_DIGITAL_OUTPUT_LP
-    };
-    
-    S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
-    
-    ST_RF_API_set_pa(1);
-    ST_RF_API_gpio_tx_rx_pin(0);
-    ST_RF_API_gpio_rx_pin(1);
-    ST_RF_API_gpio_tx_pin(2);
-  }
-  
-  S2LPRadioSetPALevelMaxIndex(7);
+	/* Configuration of S2LP GPIO to control external PA signal CSD, CPS, CTX */
+	uint8_t tmp[]={
+			(uint8_t)S2LP_GPIO_DIG_OUT_TX_RX_MODE | (uint8_t)S2LP_GPIO_MODE_DIGITAL_OUTPUT_LP,
+			(uint8_t)S2LP_GPIO_DIG_OUT_RX_STATE   | (uint8_t)S2LP_GPIO_MODE_DIGITAL_OUTPUT_LP,
+			(uint8_t)S2LP_GPIO_DIG_OUT_TX_STATE   | (uint8_t)S2LP_GPIO_MODE_DIGITAL_OUTPUT_LP
+	};
+
+	S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
 }
 
 /**
@@ -117,75 +90,69 @@ __weak void FEM_Init()
  *         @arg FEM_RX: RX mode
  * @retval None
  */
-__weak void FEM_Operation(FEM_OperationType operation)
+void FEM_Operation(FEM_OperationType operation)
 {
-  FEM_Init();
- 
-  switch (operation)
-  {
-		case FEM_SHUTDOWN: 
+	FEM_Init();
 
-				tmp[0]=LOW;
-				tmp[1]=LOW;
-				tmp[2]=LOW;
-				
-				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
-						 
-			break;
-		case FEM_TX_BYPASS: 
-				printf("TX\n");
-		
-				tmp[0]=HIGH;
-				tmp[1]=HIGH;
-				tmp[2]=HIGH;
-				
+	switch (operation)
+	{
+	case FEM_SHUTDOWN:
+		tmp[0]=LOW;
+		tmp[1]=LOW;
+		tmp[2]=LOW;
 
-//				S2LPSpiWriteRegisters(0x05, 1, 0x02);
-//				S2LPSpiWriteRegisters(0x65, 1, 0x00);
-				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
+		S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
 
+		break;
+	case FEM_TX_BYPASS:
+		printf("TX\n");
 
-		
-			break;
-		case FEM_TX: 
-				printf("TX\n");
-				
-				tmp[0]=HIGH;
-				tmp[1]=HIGH;
-				tmp[2]=HIGH;
-				
-				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
-			
-			break;    
-		case FEM_RX:  
-				printf("RX\n");
-				
-				tmp[0]=LOW; 
-				tmp[1]=LOW;
-				tmp[2]=HIGH;
-				
-				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
-				
-			break;
-		 default: 
-			/* !!!Error */
-				
-				tmp[0]=LOW;
-				tmp[1]=LOW;
-				tmp[2]=LOW;
-				
-				S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp); 
-			break;
-  }
+		tmp[0]=HIGH;
+		tmp[1]=LOW;
+		tmp[2]=HIGH;
+
+		S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
+
+		break;
+	case FEM_TX:
+		printf("TX\n");
+
+		tmp[0]=HIGH;
+		tmp[1]=HIGH;
+		tmp[2]=HIGH;
+
+		S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
+
+		break;
+	case FEM_RX:
+		//printf("RX\n");
+
+		tmp[0]=LOW;
+		tmp[1]=LOW;
+		tmp[2]=HIGH;
+
+		S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
+
+		break;
+	default:
+		/* !!!Error */
+
+		tmp[0]=LOW;
+		tmp[1]=LOW;
+		tmp[2]=LOW;
+
+		S2LPSpiWriteRegisters(0x00, sizeof(tmp), tmp);
+		break;
+	}
 }
 
 /**
-* @}
-*/
+ * @}
+ */
 
 /**
-* @}
-*/
+ * @}
+ */
 
 
 /******************* (C) COPYRIGHT 2018 STMicroelectronics *****END OF FILE****/
