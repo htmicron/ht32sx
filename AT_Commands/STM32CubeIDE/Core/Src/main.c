@@ -196,7 +196,7 @@ void mcuConfig(void) {
 	ST_MCU_API_TimerCalibration(500);
 #endif
 
-	printf("Sigfox Monarch iMCP HT32SX - AT Commands\n");
+	printf("Sigfox iMCP HT32SX - AT Commands\n");
 	printf("ID: %.8X - PAC: ", (unsigned int)sfxConfiguration.id);
 
 	for(uint16_t i = 0; i < sizeof(sfxConfiguration.pac); i++)
@@ -247,7 +247,6 @@ void ST_Init(void)
 
 	/* FEM Initialization */
 	FEM_Init();
-
 }
 
 /* USER CODE END 4 */

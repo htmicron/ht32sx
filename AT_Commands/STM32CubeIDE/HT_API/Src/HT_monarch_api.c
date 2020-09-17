@@ -77,4 +77,4 @@ sfx_u8 HT_MonarchApi_callback(sfx_u8 rc_bit_mask, sfx_s16 rssi)
 	return 1;
 }
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semicondutors S.A *****END OF FILE****/

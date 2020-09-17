@@ -90,8 +90,7 @@ void FEM_Init()
  *         @arg FEM_RX: RX mode
  * @retval None
  */
-void FEM_Operation(FEM_OperationType operation)
-{
+void FEM_Operation(FEM_OperationType operation) {
 	FEM_Init();
 
 	switch (operation)
@@ -125,7 +124,6 @@ void FEM_Operation(FEM_OperationType operation)
 
 		break;
 	case FEM_RX:
-		//printf("RX\n");
 
 		tmp[0]=LOW;
 		tmp[1]=LOW;

@@ -16,13 +16,13 @@
  * \author HT Micron Advanced R&D
  * \link support_iot@htmicron.com.br
  * \version 2.2
- * \date July 17, 2020
+ * \date September 17, 2020
  *
  * This file defines the MCU API made for the the AT Commands application.
  */
 
-#ifndef HT_MCU_API_H
-#define HT_MCU_API_H
+#ifndef _HT_MCU_API_H_
+#define _HT_MCU_API_H_
 
 /* Functions ------------------------------------------------------------------*/
 
@@ -122,6 +122,78 @@ void HT_McuApi_softwareReset(void);
  *************************************************************************************************************/
 void HT_McuApi_enterDeepSleepMode(void);
 
-#endif
+/*!***********************************************************************************************************
+ * \fn void HT_McuApi_switchPa(void)
+ * \brief Enable or disable PA (1 enable, 0 disable).
+ *
+ * \param[in]  uint8_t state				PA state (on/off).
+ * \param[out] none
+ *
+ * \retval	none
+ *
+ *************************************************************************************************************/
+void HT_McuApi_switchPa(uint8_t state);
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/*!***********************************************************************************************************
+ * \fn void HT_McuApi_switchBoost(void)
+ * \brief Enable or disable S2LP boost mode (1 enable, 0 disable).
+ *
+ * \param[in]  uint8_t state				S2LP boost mode state (on/off).
+ * \param[out] none
+ *
+ * \retval	none
+ *
+ *************************************************************************************************************/
+void HT_McuApi_switchBoost(uint8_t state);
+
+/*!***********************************************************************************************************
+ * \fn void HT_McuApi_reduceOutputPower(int16_t reduce_value)
+ * \brief Set a new output power value and save it to flash memory.
+ *
+ * \param[in]  uint8_t reduce_value				S2LP boost mode state (on/off).
+ * \param[out] none
+ *
+ * \retval	none
+ *
+ *************************************************************************************************************/
+void HT_McuApi_reduceOutputPower(int16_t reduce_value);
+
+/*!***********************************************************************************************************
+ * \fn void HT_McuApi_setFreqOffset(int32_t offset)
+ * \brief Calibration routine to set a new frequency offset value.
+ *
+ * \param[in]  uint8_t offset				Frequency offset value.
+ * \param[out] none
+ *
+ * \retval	none
+ *
+ *************************************************************************************************************/
+void HT_McuApi_setFreqOffset(int32_t offset);
+
+/*!***********************************************************************************************************
+ * \fn void HT_McuApi_setRssiOffset(int32_t offset)
+ * \brief Calibration routine to set a new RSSI offset value.
+ *
+ * \param[in]  uint8_t offset				RSSI offset value.
+ * \param[out] none
+ *
+ * \retval	none
+ *
+ *************************************************************************************************************/
+void HT_McuApi_setRssiOffset(int32_t offset);
+
+/*!***********************************************************************************************************
+ * \fn void HT_McuApi_setLbtOffset(int32_t offset)
+ * \brief Calibration routine to set a new LBT offset value.
+ *
+ * \param[in]  uint8_t offset				LBT offset value.
+ * \param[out] none
+ *
+ * \retval	none
+ *
+ *************************************************************************************************************/
+void HT_McuApi_setLbtOffset(int32_t offset);
+
+#endif /* _HT_MCU_API_H_ */
+
+/************************ HT Micron Semicondutors S.A *****END OF FILE****/
