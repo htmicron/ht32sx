@@ -76,9 +76,9 @@ git clone --single-branch --branch master_2 https://github.com/htmicron/ht32sx.g
 ## Changing Destination/Source Address - Broadcast/Multicast Messages
 
 * Changing destination or source address: <br/>
-    + 1. Open HT_P2P_app.h file and change MY_ADDRESS or DESTINATION_ADDRESS constants to the new value wanted (value must be less or equal than 1 byte).
+    1. Open HT_P2P_app.h file and change MY_ADDRESS or DESTINATION_ADDRESS constants to the new value wanted (value must be less or equal than 1 byte).
 * Sending broadcast and multicast messages: <br/>
-    + 1. Open HT_P2P_app.c file and change S2LP_SetDestinationAddress (located in AppliSendBuff function) argument to BROADCAST_ADDRESS or MULTICAST_ADDRESS defines. Example:
+    1. Open HT_P2P_app.c file and change S2LP_SetDestinationAddress (located in AppliSendBuff function) argument to BROADCAST_ADDRESS or MULTICAST_ADDRESS defines. Example:
 
 <div align="center">
   <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/example.jpg">
