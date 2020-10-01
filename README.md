@@ -1,120 +1,106 @@
-# HT32SX - HT Micron's Sigfox™ Monarch SiP
+# HT32SX-P2P-Demo
 
-## Readme Organization
+## P2P Demo Application
 
-* [Introduction](#the-smallest-sigfox-monarch-sip-in-the-world)
-* [About this repository](#about-this-repository)
-  * [Using GIT for the first time?](/git_basic_usage_with_ht32sx_repo.md)
-* [FAQ, additional information and contact.](#faq)
+P2P Demo Application is a new HT32SX functionality which provides a simple way to exchange message Peer-to-Peer between two or more different iMCPs, using S2LP Basic Protocol.
+Through this application, users will be able to create their own protocol and Wireless network.
 
-<hr>
+## Application Description
 
-## The SMALLEST Sigfox™ Monarch SiP in the world!
+P2P Demo Application starts configuring some necessary peripherals, like USART1 (log purposes), GPIOs (button, led, radio interruption, etc.) and SPI (interface to send commands to S2LP). Then, a Finite State Machine, responsible to menage the whole application, starts running. All states are triggered by two external interruptions:
+
+* User Button – PB0: Trigger FSM to Send Data state.
+* Radio IT - PB2: Trigger FSM to Data Received state or finishes to transmit a data when FSM is waiting for a TX be done.
+
+<br/>
+
+ 
+ <div align="center"> Finite State Machine Diagram. </div>
 
 <div align="center">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesenrhZDRBpVRdUHpQ5ouT6wUTu0t0zaYtSI5GZqXJjGc2tor4Q&s">
+  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/p2p_fsm.PNG">
 </div>
 
-The HT32SX is a System-in-Package (SiP) device build for the Internet of Things providing a **ready-to-use** connectivity solution.
-You’ll have strong reduction in your BOM cost aiming a fast integration, simple design and the lowest **time-to-market**.
+<br/>
 
-As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamlessly roam across the planet taking advantage of the global SigFox™ network coverage without need of reconfiguration since region setup is done automatically.
+More code details can be found reading the comments written in all header files available in this application.
 
-<hr>
+## Test Setup
 
-## About this repository
+This section describes the basic test setup to running this application.
 
+* [Git](https://git-scm.com/downloads).
+* [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html).
+* RS232 terminal ([Termite](https://www.compuphase.com/software_termite.htm) is recommended).
+* [ST-Link Debugger](https://www.st.com/en/development-tools/st-link-v2.html) to flash a firmware.
+* Button (must be in PB0 pin).
+* Led (PA5 pin).
+* 2 or more HT32SX devices.
+* 2 or more atennas (one for each device).
+* 2 or more FTDI (usb-serial converter – one for each device).
 
-### Branches
+# Executing
 
-(Coming soon: how to identify your hardware version/revision, for now assume it is *2.1*)
-
-* **INFO**: this informative branch.
-* **[release_h2.1_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_1.0)**: Software 1.0 of HW 2.1 **STABLE** (it will only receive bugfixes from now, EOL 1st July, 2020)
-  * Credentials stored in reserved Flash memory area
-  * Monarch Regions Enabled and Certified: RC1, RC2, RC3, RC4, RC5 and RC6.
-  * IDE/Compiler: Arm Keil
-  * Bootloader capable
-* **[release_h2.1_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.1_2.0)**: Software 2.0 of HW 2.1 **UNSTABLE** (it is under development, EOL 20th of January, 2021)
-  * Credentials stored in EEPROM memory
-  * Regions:
-    * Monarch (Certified): RC1, RC2, RC3, RC4, RC5, RC6 and RC7*.
-  * IDE/Compiler:
-    * Arm Keil
-    * Coming soon: ST CubeIDE
-  * Bootloader capable
-* **[release_h2.2_1.0](https://github.com/htmicron/ht32sx/tree/release_h2.2_1.0)**: Software 1.0 of HW 2.2 **STABLE** (it will only receive bugfixes from now, EOL 20th of January, 2021)
-  * Credentials stored in EEPROM memory
-  * Regions:
-    * Monarch (Certified): RC1, RC2, RC3, RC4, RC5, RC6 and RC7*.
-  * IDE/Compiler:
-    * Arm Keil
-    * ST CubeIDE
-* **[release_h2.2_2.0](https://github.com/htmicron/ht32sx/tree/release_h2.2_2.0)**: Software 2.0 of HW 2.2 **UNSTABLE** (it is under development, EOL 1st of July, 2021)
-  * Credentials stored in EEPROM memory
-  * Regions:
-    * Monarch (Certified): RC1, RC2, RC3, RC4, RC5, RC6 and RC7*.
-  * IDE/Compiler:
-    * Arm Keil
-    * ST CubeIDE
-  * Bootloader capable
-* **[master](https://github.com/htmicron/ht32sx/tree/master)**: (obsolete, pending to be removed) lastest code under development for HW version 1.0 **VERY UNSTABLE**
-* **[master_2](https://github.com/htmicron/ht32sx/tree/master_2)**: lastest code under development for HW version 2.0 **VERY UNSTABLE**
-
-Legend: * RC7 is pending certification
-
-#### USING GIT/GITHUB FOR THE FIRST TIME?
-Check it out: [GIT basic usage with HT32SX](/git_basic_usage_with_ht32sx_repo.md)
-
-#### Which branch to start a new project on?
-Use the lastest software version for your hardware version.
-
-#### Why there are different software versions related to the same hardware version?
-To provied a stable code-base for developers, the **stable** versions are provided. In these, only bugfixes are made. So, when a new fature is add to the code-base, a new software version is created.
-
-(More in [FAQ](https://htmicron.github.io/FAQ/html/index.html))
-
-#### Clone this repository and all its branches?
+1. Clone the master branch related to the hardware version 2.2: <br/>
 
 ```
-git clone https://github.com/htmicron/ht32sx.git
-cd ht32sx
-git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
-git fetch --all
-git pull --all
+git clone --single-branch --branch master_2 https://github.com/htmicron/ht32sx.git 
 ```
 
-### Bugtrack
-If you want to issue a bug to our development team, please follow our [bugtrack guideline](How_to_bugtracker.md)
+2. Open HT32SX_P2P_Demo directory and then, double click .cproject file to open STM32CubeIDE. 
+3. Click *Run* to compile and flash the new firmware into your device: <br/>
 
-### Tree view of the branches
+<div align="center">
+  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/run.jpg">
+</div>
 
-You'll find here:
-*  Examples - codes, aplication notes and design tips.
+<br/>
 
-This map is from the master branch, yet it provides the general overview of the branches' structure.
-```
- ├─ applications [application notes, examples]
- │  ├─ Evaluation_Board_Design_Reference
- │  ├─ Generic_Push_Button
- │  ├─ Monarch_Scan
- │  ├─ Monarch_MoveMe
- │  ├─ Push_Button
- │  ├─ antenna_design_reference
- │  ├─ bootloaderRefresh
- ├─ LICENSE
- └─ README.md
-```
+4. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
 
-<hr>
+<div align="center">
+  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/termite1.PNG">
+</div>
 
-### FAQ
+5. Do the same (steps 3 and 4) with other devices that is going to be part of this test.
+6. Press the button of one of tested devices and check if the message “Hello, World!” will be shown in the other terminal:
 
-Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html) or send an email to suppot_iot@htmicron.com.br. 
+<div align="center">
+  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/termite2.PNG">
+</div>
+
+<br/>
+
+7. Check if the user led is blinking after receiving any message. <br/>
+
+## Changing Destination/Source Address - Broadcast/Multicast Messages
+
+* Changing destination or source address: <br/>
+    + 1. Open HT_P2P_app.h file and change MY_ADDRESS or DESTINATION_ADDRESS constants to the new value wanted (value must be less or equal than 1 byte).
+* Sending broadcast and multicast messages: <br/>
+    + 1. Open HT_P2P_app.c file and change S2LP_SetDestinationAddress (located in AppliSendBuff function) argument to BROADCAST_ADDRESS or MULTICAST_ADDRESS defines. Example:
+
+<div align="center">
+  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/example.jpg">
+</div>
+
+## Extra Documentation
+
+Datasheets and application notes can be found at the [HT32SX Repository](https://github.com/htmicron/ht32sx).
+
+## References
+
+For additional information about S2LP or even more applications developed with this transceiver, check [S2LP Datasheet](https://www.st.com/resource/en/datasheet/s2-lp.pdf) and the UM1904 user manual written by STMicroelectronics.
 
 
-More code informations can be found at [HT Micron's Application Notes](https://htmicron.github.io/index.html) page.
+## Contact Information
 
-Enjoy! =)
-
----
+Head Office – São Leopoldo, RS <br/>
+HT Micron Semiconductors <br/>
+Unisinos Avenue, 1550 <br/>
+São Leopoldo - RS <br/>
+ZIP 93022-750 <br/>
+Brazil <br/>
+Tel: +55 51 3081-8650 <br/>
+E-mail (Support): support_iot@htmicron.com.br <br/>
+E-mail (General Enquiries): htmicron@htmicron.com.b <br/>
