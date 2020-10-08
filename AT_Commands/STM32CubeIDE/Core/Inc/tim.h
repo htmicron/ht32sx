@@ -34,6 +34,7 @@
 /* USER CODE END Includes */
 
 extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim21;
 
 /* USER CODE BEGIN Private defines */
 
@@ -50,6 +51,7 @@ extern TIM_HandleTypeDef htim2;
 /* USER CODE END Private defines */
 
 void MX_TIM2_Init(void);
+void MX_TIM21_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 
@@ -117,6 +119,9 @@ extern uint8_t getNotifyEndFlag(void);
  * \retval n_intermediate_tim_irq														 1 or 0
  *******************************************************************/ 
 extern uint32_t getNIntermediateTimIrqFlag(void);
+
+uint32_t HT_getVddTx(void);
+void HT_setVddTx(uint32_t vdd);
 
 /* USER CODE END Prototypes */
 

@@ -31,19 +31,21 @@ uint8_t bufferAux[DMA_RX_BUFFER_SIZE];
 
 void USART_IrqHandler (UART_HandleTypeDef *huart, DMA_HandleTypeDef *hdma) {
 
-	if ((huart->Instance->ISR & UART_FLAG_IDLE) && !(huart->Instance->ISR & UART_FLAG_RXNE) && (huart->Instance->RDR != 0x0))           /* if Idle flag is set */
+	volatile uint32_t tmp;                  /* Must be volatile to prevent optimizations */
+
+	if ((huart->Instance->ISR & UART_FLAG_IDLE) && !(huart->Instance->ISR & UART_FLAG_RXNE) && (huart->Instance->RDR != 0x0)) /* if Idle flag is set */
 	{
-		volatile uint32_t tmp;                  /* Must be volatile to prevent optimizations */
+		//volatile uint32_t tmp;                  /* Must be volatile to prevent optimizations */
 		hdma->Instance->CCR &= ~DMA_CCR_EN;       /* Disabling DMA will force transfer complete interrupt if enabled */
 		DMA_IrqHandler(hdma);
 		tmp = huart->Instance->ISR;                       /* Read status register */
 		tmp = huart->Instance->RDR;                       /* Read data register */
 		huart->Instance->RQR = 1 << 3;
 	} else {
-		volatile uint32_t tmp;                  /* Must be volatile to prevent optimizations */
 		tmp = huart->Instance->ISR;                       /* Read status register */
 		tmp = huart->Instance->RDR;
 	}
+	tmp = tmp; /* to avoid warning */
 }
 
 void DMA_IrqHandler (DMA_HandleTypeDef *hdma) {

@@ -26,6 +26,8 @@ uint8_t deepSleepModeFlag = 0;
 
 void HT_McuApi_configPeripherals(void) {
 
+	HAL_Init();
+
 	/* Configure the system clock */
 	SystemClock_Config();
 

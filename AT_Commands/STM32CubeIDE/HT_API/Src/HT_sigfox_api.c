@@ -14,6 +14,7 @@
  */
 
 #include "main.h"
+#include "tim.h"
 #include "HT_sigfox_api.h"
 #include "HT_hcfsm.h"
 
@@ -132,6 +133,8 @@ sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_respo
 	else
 		buffSize = !(len % 2) ? len/2 : (len/2)+1;
 
+	if(initiate_downlink_flag)
+		HAL_TIM_Base_Start_IT(&htim21);
 
 	err = SIGFOX_API_send_frame(customer_data, buffSize,customer_response, 3, initiate_downlink_flag);
 
@@ -145,6 +148,9 @@ sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_respo
 	}
 
 	printf("\nError Send Frame: %X\n", err);
+
+	if(initiate_downlink_flag)
+		HAL_TIM_Base_Stop_IT(&htim21);
 
 	return err;
 }
