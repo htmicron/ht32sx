@@ -8,7 +8,7 @@
 
 1. [**How do I register a new user on the SigFox Backed?**](#regbackend) <br/>
 2. [**How do I register a new device on the SigFox Backed?**](#regdevice) <br/>
-3. [**How or where can I check if my device is sending the massages correctly?**](#msgcorrec) <br/>
+3. [**How or where can I check if my device is sending the messages correctly?**](#msgcorrec) <br/>
 4. [**How should I set up my new device to operate in my current region?**](#configrc) <br/>
 5. [**How many messagens can I send daily?**](#dailymsg) <br/>
 6. [**What is the Keil uVision setup to use debugger tools?**](#debugpurpose) <br/>
@@ -97,7 +97,7 @@
 <br/>
 
 <a name="msgcorrec"></a>
-### 3. How or where can I check if my device is sending the massages correctly?
+### 3. How or where can I check if my device is sending the messages correctly?
 <hr>
 
 > If you do not have an account on [**SigFox Backend**](https://backend.sigfox.com/) or haven't registered your device yet, check the [**Account Registration**](#regbackend) or [**Device Registration**](#regdevice) topics. 
