@@ -114,6 +114,7 @@ int main(void)
 	/********** BASICALLY CHANGES TO OTHER RC VALUE LIKE RCZ3 **/
 	configRegion(RCZ2);
 
+	sendFrame();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -124,11 +125,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-		if(button_pressed()) {
-			printf("Sending frame...\n");
-			sendFrame();
-			HAL_Delay(500);
-		}
+//		if(button_pressed()) {
+//			printf("SesendFrame();nding frame...\n");
+//			sendFrame();
+//			HAL_Delay(500);
+//		}
 	}
   /* USER CODE END 3 */
 }
@@ -200,7 +201,7 @@ void configRegion(rc_mask RCZ) {
 	case RCZ1:
 		ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
 		open_err = St_Sigfox_Open_RCZ(RCZ1);
-		HT_API_switchPa(0);
+		HT_API_switchPa(1);
 		HT_API_setSmpsVoltageAction(7);
 
 		if(open_err != 0)
@@ -211,6 +212,7 @@ void configRegion(rc_mask RCZ) {
 		ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
 		open_err = St_Sigfox_Open_RCZ(RCZ2);
 		HT_API_switchPa(1);
+		HT_API_setSmpsVoltageAction(7);
 
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
