@@ -6,21 +6,23 @@
 
 ## Questions list:
 
-1. [**How do I register a new user on the SigFox Backed?**](#regbackend) <br/>
-2. [**How do I register a new device on the SigFox Backed?**](#regdevice) <br/>
-3. [**How or where can I check if my device is sending the messages correctly?**](#msgcorrec) <br/>
-4. [**How should I set up my new device to operate in my current region?**](#configrc) <br/>
-5. [**How many messagens can I send daily?**](#dailymsg) <br/>
-6. [**What is the Keil uVision setup to use debugger tools?**](#debugpurpose) <br/>
-7. [**How to open the examples using STM32CubeIDE?**](#cudeide1) <br/>
-8. [**Error: Invalid message sequence from Device #XXXXX: expected X, actual X**](#eventmsg) <br/>
-9. [**What softwares do I need to install to run the GitHub Examples?**](#setup) <br/>
-10. [**I'm sending messages using one of GitHub examples but I can't see it at backend. What can I do?**](#senderror) <br/>
-11. [**Is there any PCB design example?**](#pcbexamples) <br/>
-12. [**Why my device is stuck in TX?**](#stucktx) <br/>
-13. [**How can I flash a new firmware to my HT32SX?**](#flashcode) <br/>
-14. [**I need to use EEPROM in my application. From which address may I start writing?**](#eepromwrite) <br/>
-15. [**How can I increase HT32SX output power?**](#outputpower) <br/>
+1. [**How do I register a new user at SigFox Backed?**](#regbackend) <br/>
+2. [**How do I create a new group at Sigfox Backed?**](#newgroup) <br/>
+3. [**How do I create a new Device Type at Sigfox Backend?**](#newdevicetype) <br/>
+4. [**How do I register a new device at SigFox Backed?**](#regdevice) <br/>
+5. [**How or where can I check if my device is sending the messages correctly?**](#msgcorrec) <br/>
+6. [**How should I set up my new device to operate in my current region?**](#configrc) <br/>
+7. [**How many messagens can I send daily?**](#dailymsg) <br/>
+8. [**What is the Keil uVision setup to use debugger tools?**](#debugpurpose) <br/>
+9. [**How to open the examples using STM32CubeIDE?**](#cudeide1) <br/>
+10. [**Error: Invalid message sequence from Device #XXXXX: expected X, actual X**](#eventmsg) <br/>
+11. [**What softwares do I need to install to run the GitHub Examples?**](#setup) <br/>
+12. [**I'm sending messages using one of GitHub examples but I can't see it at backend. What can I do?**](#senderror) <br/>
+13. [**Is there any PCB design example?**](#pcbexamples) <br/>
+14. [**Why my device is stuck in TX?**](#stucktx) <br/>
+15. [**How can I flash a new firmware to my HT32SX?**](#flashcode) <br/>
+16. [**I need to use EEPROM in my application. From which address may I start writing?**](#eepromwrite) <br/>
+17. [**How can I increase HT32SX output power?**](#outputpower) <br/>
 
 ## Answered Questions:
 
@@ -60,11 +62,55 @@
 
 <br/>
 
+<a name="newgroup"></a>
+### 2. How do I create a new group at Sigfox Backed?
+
+<hr>
+
+> 1. Go to [**SigFox Backend**](https://backend.sigfox.com/), access your account and click on _**Group**_:
+
+<div align="center">
+  <img src="https://github.com/htmicron/ht32sx/blob/Faq_Update/.github/images/group.png">
+</div>
+
+> 2. Click on _**New**_ and select a parent group. Example:
+
+<div align="center">
+  <img src="https://github.com/htmicron/ht32sx/blob/Faq_Update/.github/images/parentgroup.png">
+</div>
+
+> 3. Fill all spaces, select your timezone and a new group shall be created.
+
+<hr>
+
+<br/>
+
+<a name="newdevicetype"></a>
+### 3. How do I create a new Device Type at Sigfox Backend?
+
+<hr>
+
+> 1. Open [**SigFox Backend**](https://backend.sigfox.com/) and access your account.
+> 2. Go to _**Device Type**_ -> _**New**_ and select the group which this new type will be associated.
+> 3. Fill _**Name**_ and _**Description**_ fields. 
+> 4. Then click on the white space of _**Contracts**_ field and select one of your Sigfox Contracts. Example:
+
+<div align="center">
+  <img src="https://github.com/htmicron/ht32sx/blob/Faq_Update/.github/images/contract.png">
+</div>
+
+> 4. If you do not see any contract after clicking on the white field, check if the associated group still has available tokens or contact your Sigfox provider to ask for a new contract.
+
+<hr>
+
+<br/>
+
 <a name="regdevice"></a>
-### 2. How do I register a new device on the SigFox Backed?
+### 4. How do I register a new device at SigFox Backed?
 <hr>
 
 > If you already have an account, check the following steps below, otherwise have a look at [**Account Registration**](#regbackend) topic.<br/> 
+> Every device must be associeted with a group and a device type. So before you start, check if your environment is ready, or go to [**Question 2**](#newgroup) and [**Question 3**](#newdevicetype). You may have as many registered devices in your group or device type as your contract allow.
 
 > 1. Open the [**SigFox Backend**](https://backend.sigfox.com/) website. <br/>
 > 2. Click _**Device**_:
@@ -97,7 +143,7 @@
 <br/>
 
 <a name="msgcorrec"></a>
-### 3. How or where can I check if my device is sending the messages correctly?
+### 5. How or where can I check if my device is sending the messages correctly?
 <hr>
 
 > If you do not have an account on [**SigFox Backend**](https://backend.sigfox.com/) or haven't registered your device yet, check the [**Account Registration**](#regbackend) or [**Device Registration**](#regdevice) topics. 
@@ -116,7 +162,7 @@
   <img src="https://www.googleapis.com/drive/v3/files/15KFeZQS8hMDV8PTi6fLRsBA-udrvvj5a?alt=media&key=AIzaSyBazifvhYWroBBnEocbFpLG0mOjfUfelE4">
 </div>
 
-> 4. Then click _**Messages**_ and all messages received from the respective device shall be shown:
+> 6. Then click _**Messages**_ and all messages received from the respective device shall be shown:
 
 <div align="center">
   <img src="https://www.googleapis.com/drive/v3/files/1KWfBygD_fq58IR_YOKTo_jCsC3yM6T65?alt=media&key=AIzaSyBazifvhYWroBBnEocbFpLG0mOjfUfelE4">
@@ -126,7 +172,7 @@
 <br/>
 
 <a name="configrc"></a>
-### 4. How should I set up my new device to operate in my current region?
+### 7. How should I set up my new device to operate in my current region?
 <hr>
 
 > 1. Open the [**Generic_Push_Button V2.2**](https://github.com/htmicron/ht32sx/tree/master_2/Generic_Push_Button) example, if your are using the V2.2 hardware, or [**Generic_Push_Button V2.1**](https://github.com/htmicron/ht32sx/tree/master/applications/Generic_Push_Button), if you are using an [**Evaluation Board**](https://github.com/htmicron/ht32sx/blob/documents/2.1/Evaluation%20Board%20User%20Guide%20v0.1.pdf). <br/>
@@ -141,7 +187,7 @@
 <br/>
 
 <a name="dailymsg"></a>
-### 5. How many messagens can I send daily?
+### 8. How many messagens can I send daily?
 <hr>
 
 > Therefore, a device can send a maximum of 6 messages per hour (36/6), which means a total of 144 messages per day (24 * 6). Sigfox keeps 4 messages for protocol use, which therefore allows for 140 messages per day for your device.
@@ -154,7 +200,7 @@
 <br/>
 
 <a name="debugpurpose"></a>
-### 6. What is the Keil uVision setup to use debugger tools?
+### 9. What is the Keil uVision setup to use debugger tools?
 
 > 1. Open Keil uVision and go to _**Project -> Options for target -> Device**_ and select _**STM32LO52T8Yx**_:
 
@@ -190,7 +236,7 @@
 <br/>
 
 <a name="cudeide1"></a>
-### 7. How to open the examples using STM32CubeIDE?
+### 10. How to open the examples using STM32CubeIDE?
 <hr>
 
 > 1. Install [**STM32CubeIDE**](https://www.st.com/en/development-tools/stm32cubeide.html). <br/>
@@ -212,7 +258,7 @@
 <br/>
 
 <a name="eventmsg"></a>
-### 8. Error: Invalid message sequence from Device #XXXXX: expected X, actual X
+### 11. Error: Invalid message sequence from Device #XXXXX: expected X, actual X
 <hr>
 
 > This is a message counter error. Both sides must to have the same sequence number, otherwise all message will be rejected by the Backend side. <br/>
@@ -241,7 +287,7 @@
 <br/>
 
 <a name="setup"></a>
-### 9. What softwares do I need to install to run the GitHub Examples?
+### 12. What softwares do I need to install to run the GitHub Examples?
 <hr>
 
 > 1. [**STM32CubeIDE**](https://www.st.com/en/development-tools/stm32cubeide.html) or [**Keil uVision**](https://www.keil.com/download/) (needs cortex M0 [**license**](https://www2.keil.com/stmicroelectronics-stm32/mdk)).
@@ -253,7 +299,7 @@
 <br/>
 
 <a name="senderror"></a>
-### 10. I'm sending messages using one of GitHub examples but I can't see it at backend. What can I do?
+### 13. I'm sending messages using one of GitHub examples but I can't see it at backend. What can I do?
 <hr>
 
 > 1. Check if you are using an antenna.
@@ -267,7 +313,7 @@
 <br/>
 
 <a name="pcbexamples"></a>
-### 11. Is there any PCB design example?
+### 14. Is there any PCB design example?
 <hr>
 
 > 1. [**Disk91**](https://github.com/disk91/HTMICRON-iMCP-devkit).
@@ -277,7 +323,7 @@
 <br/>
 
 <a name="stucktx"></a>
-### 12. Why my device is stuck in TX?
+### 15. Why my device is stuck in TX?
 <hr>
 
 > * If your device is stuck in TX, you probably cloned a wrong firmware version from our GitHub page. <br/>
@@ -288,7 +334,7 @@
 <br/>
 
 <a name="flashcode"></a>
-### 13. How can I flash a new firmware to my HT32SX?
+### 16. How can I flash a new firmware to my HT32SX?
 <hr>
 
 > There are two options for this:
@@ -305,7 +351,7 @@
 <br/>
 
 <a name="eepromwrite"></a>
-### 14. I need to use EEPROM in my application. From which address may I start writing?
+### 17. I need to use EEPROM in my application. From which address may I start writing?
 <hr>
 
 > Sigfox credentials are stored from address 0x08080000 to 0x080800F0, so you can start writing from 0x08080100.
