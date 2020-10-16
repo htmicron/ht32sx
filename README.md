@@ -73,7 +73,7 @@
   <img src="https://github.com/htmicron/ht32sx/blob/Faq_Update/.github/images/group.png">
 </div>
 
-> 2. Then click on _**New**_ and select one parent group. Example:
+> 2. Click on _**New**_ and select one parent group. Example:
 
 <div align="center">
   <img src="https://github.com/htmicron/ht32sx/blob/Faq_Update/.github/images/parentgroup.png">
@@ -91,7 +91,7 @@
 <hr>
 
 > 1. Open [**SigFox Backend**](https://backend.sigfox.com/) and access your account.
-> 2. Then go to _**Device Type**_ -> _**New**_ and select a group which this new type will be associated.
+> 2. Go to _**Device Type**_ -> _**New**_ and select a group which this new type will be associated.
 > 3. Fill _**Name**_ and _**Description**_ fields. Then click on _**Contracts**_ white space and select one of your Sigfox Contracts. Example:
 
 <div align="center">
