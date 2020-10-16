@@ -6,10 +6,10 @@
 
 ## Questions list:
 
-1. [**How do I register a new user at SigFox Backed?**](#regbackend) <br/>
-2. [**How do I create a new group at Sigfox Backed?**](#newgroup) <br/>
+1. [**How do I register a new user at SigFox Backend?**](#regbackend) <br/>
+2. [**How do I create a new group at Sigfox Backend?**](#newgroup) <br/>
 3. [**How do I create a new Device Type at Sigfox Backend?**](#newdevicetype) <br/>
-4. [**How do I register a new device at SigFox Backed?**](#regdevice) <br/>
+4. [**How do I register a new device at SigFox Backend?**](#regdevice) <br/>
 5. [**How or where can I check if my device is sending the messages correctly?**](#msgcorrec) <br/>
 6. [**How should I set up my new device to operate in my current region?**](#configrc) <br/>
 7. [**How many messagens can I send daily?**](#dailymsg) <br/>
@@ -27,7 +27,7 @@
 ## Answered Questions:
 
 <a name="regbackend"></a>
-### 1. How do I register a new user on the SigFox Backed?
+### 1. How do I register a new user on the SigFox Backend?
 
 <hr>
 
@@ -63,7 +63,7 @@
 <br/>
 
 <a name="newgroup"></a>
-### 2. How do I create a new group at Sigfox Backed?
+### 2. How do I create a new group at Sigfox Backend?
 
 <hr>
 
@@ -106,7 +106,7 @@
 <br/>
 
 <a name="regdevice"></a>
-### 4. How do I register a new device at SigFox Backed?
+### 4. How do I register a new device at SigFox Backend?
 <hr>
 
 > If you already have an account, check the following steps below, otherwise have a look at [**Account Registration**](#regbackend) topic.<br/> 
