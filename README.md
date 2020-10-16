@@ -70,13 +70,13 @@
 > 1. Go to [**SigFox Backend**](https://backend.sigfox.com/), access your account and click on _**Group**_:
 
 <div align="center">
-  <img src="https://github.com/htmicron/ht32sx/blob/Faq_Update/.github/images/group.png">
+  <img src="https://github.com/htmicron/ht32sx/blob/faq/.github/images/group.png">
 </div>
 
 > 2. Click on _**New**_ and select a parent group. Example:
 
 <div align="center">
-  <img src="https://github.com/htmicron/ht32sx/blob/Faq_Update/.github/images/parentgroup.png">
+  <img src="https://github.com/htmicron/ht32sx/blob/faq/.github/images/parentgroup.png">
 </div>
 
 > 3. Fill all spaces, select your timezone and a new group shall be created.
@@ -96,7 +96,7 @@
 > 4. Then click on the white space of _**Contracts**_ field and select one of your Sigfox Contracts. Example:
 
 <div align="center">
-  <img src="https://github.com/htmicron/ht32sx/blob/Faq_Update/.github/images/contract.png">
+  <img src="https://github.com/htmicron/ht32sx/blob/faq/.github/images/contract.png">
 </div>
 
 > 4. If you do not see any contract after clicking on the white field, check if the associated group still has available tokens or contact your Sigfox provider to ask for a new contract.
