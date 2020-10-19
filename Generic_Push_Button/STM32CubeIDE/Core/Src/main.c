@@ -114,7 +114,6 @@ int main(void)
 	/********** BASICALLY CHANGES TO OTHER RC VALUE LIKE RCZ3 **/
 	configRegion(RCZ2);
 
-	sendFrame();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -125,11 +124,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-//		if(button_pressed()) {
-//			printf("SesendFrame();nding frame...\n");
-//			sendFrame();
-//			HAL_Delay(500);
-//		}
+		if(button_pressed()) {
+			printf("SesendFrame();nding frame...\n");
+			sendFrame();
+			HAL_Delay(500);
+		}
 	}
   /* USER CODE END 3 */
 }
