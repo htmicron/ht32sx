@@ -125,7 +125,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 		if(button_pressed()) {
-			printf("SesendFrame();nding frame...\n");
+			printf("Sending frame...\n");
 			sendFrame();
 			HAL_Delay(500);
 		}
