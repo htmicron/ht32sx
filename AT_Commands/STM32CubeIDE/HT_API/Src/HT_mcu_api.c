@@ -20,13 +20,12 @@
 #include "dma.h"
 #include "tim.h"
 #include "rtc.h"
+#include "adc.h"
 #include "HT_mcu_api.h"
 
 uint8_t deepSleepModeFlag = 0;
 
 void HT_McuApi_configPeripherals(void) {
-
-	HAL_Init();
 
 	/* Configure the system clock */
 	SystemClock_Config();
@@ -35,6 +34,10 @@ void HT_McuApi_configPeripherals(void) {
 	MX_GPIO_Init();
 	MX_DMA_Init();
 	MX_SPI1_Init();
+
+	MX_ADC_Init();
+	HAL_ADC_MspInit(&hadc);
+
 	HAL_SPI_MspInit(getSpiHandle());
 	MX_USART1_UART_Init();
 	HAL_UART_MspInit(getUsartHandle());
@@ -87,6 +90,7 @@ void HT_McuApi_enterGpioLowPower(void) {
 	HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 	HAL_SPI_MspDeInit(getSpiHandle());
+	HAL_ADC_MspDeInit(&hadc);
 
 	/* keep the SDN driven */
 	S2LPShutdownInit();
@@ -116,7 +120,7 @@ void HT_McuApi_enterDeepSleepMode(void) {
 	FEM_Operation(FEM_SHUTDOWN);
 	S2LPShutdownEnter();
 
-	HAL_Delay(500);
+	HAL_Delay(100);
 
 	HT_McuApi_enableUsartWkp();
 
