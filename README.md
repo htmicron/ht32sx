@@ -23,7 +23,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 * **Zip-like Sources**: Want to download the source code of the development kit in compressed files? You find them [here](https://github.com/htmicron/ht32sx/tree/zip).
 
-* **Info**: Developer familiar with GIT tools? Go [here](https://github.com/htmicron/ht32sx/tree/info).
+* **General Info, Examples and Applications**? Go [here](https://github.com/htmicron/ht32sx/tree/info)!
 
 <hr>
 
@@ -39,9 +39,6 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 ### FAQ
 
 Do you need help? Check our [FAQ](https://github.com/htmicron/ht32sx/tree/faq) or send an email to suppot_iot@htmicron.com.br. 
-
-
-More code information? 	Go to [HT Micron's Application Notes](https://htmicron.github.io/index.html) page.
 
 Enjoy! =)
 
