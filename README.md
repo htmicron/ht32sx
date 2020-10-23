@@ -38,10 +38,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 ### FAQ
 
-Do you need help? Check our [FAQ](https://htmicron.github.io/FAQ/html/index.html) or send an email to suppot_iot@htmicron.com.br. 
-
-
-More code information? 	Go to [HT Micron's Application Notes](https://htmicron.github.io/index.html) page.
+Do you need help? Check our [FAQ](https://github.com/htmicron/ht32sx/tree/faq) or send an email to support_iot@htmicron.com.br. 
 
 Enjoy! =)
 
