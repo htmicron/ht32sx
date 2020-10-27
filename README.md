@@ -23,6 +23,7 @@
 15. [**How can I flash a new firmware to my HT32SX?**](#flashcode) <br/>
 16. [**I need to use EEPROM in my application. From which address may I start writing?**](#eepromwrite) <br/>
 17. [**How can I increase HT32SX output power?**](#outputpower) <br/>
+18. [**I received new Sigfox credentials. How should I flash it to my device?**](#credbin) <br/>
 
 ## Answered Questions:
 
@@ -172,7 +173,7 @@
 <br/>
 
 <a name="configrc"></a>
-### 7. How should I set up my new device to operate in my current region?
+### 6. How should I set up my new device to operate in my current region?
 <hr>
 
 > 1. Open the [**Generic_Push_Button V2.2**](https://github.com/htmicron/ht32sx/tree/master_2/Generic_Push_Button) example, if your are using the V2.2 hardware, or [**Generic_Push_Button V2.1**](https://github.com/htmicron/ht32sx/tree/master/applications/Generic_Push_Button), if you are using an [**Evaluation Board**](https://github.com/htmicron/ht32sx/blob/documents/2.1/Evaluation%20Board%20User%20Guide%20v0.1.pdf). <br/>
@@ -187,7 +188,7 @@
 <br/>
 
 <a name="dailymsg"></a>
-### 8. How many messagens can I send daily?
+### 7. How many messagens can I send daily?
 <hr>
 
 > Therefore, a device can send a maximum of 6 messages per hour (36/6), which means a total of 144 messages per day (24 * 6). Sigfox keeps 4 messages for protocol use, which therefore allows for 140 messages per day for your device.
@@ -200,7 +201,7 @@
 <br/>
 
 <a name="debugpurpose"></a>
-### 9. What is the Keil uVision setup to use debugger tools?
+### 8. What is the Keil uVision setup to use debugger tools?
 
 > 1. Open Keil uVision and go to _**Project -> Options for target -> Device**_ and select _**STM32LO52T8Yx**_:
 
@@ -236,7 +237,7 @@
 <br/>
 
 <a name="cudeide1"></a>
-### 10. How to open the examples using STM32CubeIDE?
+### 9. How to open the examples using STM32CubeIDE?
 <hr>
 
 > 1. Install [**STM32CubeIDE**](https://www.st.com/en/development-tools/stm32cubeide.html). <br/>
@@ -258,7 +259,7 @@
 <br/>
 
 <a name="eventmsg"></a>
-### 11. Error: Invalid message sequence from Device #XXXXX: expected X, actual X
+### 10. Error: Invalid message sequence from Device #XXXXX: expected X, actual X
 <hr>
 
 > This is a message counter error. Both sides must to have the same sequence number, otherwise all message will be rejected by the Backend side. <br/>
@@ -287,7 +288,7 @@
 <br/>
 
 <a name="setup"></a>
-### 12. What softwares do I need to install to run the GitHub Examples?
+### 11. What softwares do I need to install to run the GitHub Examples?
 <hr>
 
 > 1. [**STM32CubeIDE**](https://www.st.com/en/development-tools/stm32cubeide.html) or [**Keil uVision**](https://www.keil.com/download/) (needs cortex M0 [**license**](https://www2.keil.com/stmicroelectronics-stm32/mdk)).
@@ -299,7 +300,7 @@
 <br/>
 
 <a name="senderror"></a>
-### 13. I'm sending messages using one of GitHub examples but I can't see it at backend. What can I do?
+### 12. I'm sending messages using one of GitHub examples but I can't see it at backend. What can I do?
 <hr>
 
 > 1. Check if you are using an antenna.
@@ -313,7 +314,7 @@
 <br/>
 
 <a name="pcbexamples"></a>
-### 14. Is there any PCB design example?
+### 13. Is there any PCB design example?
 <hr>
 
 > 1. [**Disk91**](https://github.com/disk91/HTMICRON-iMCP-devkit).
@@ -323,7 +324,7 @@
 <br/>
 
 <a name="stucktx"></a>
-### 15. Why my device is stuck in TX?
+### 14. Why my device is stuck in TX?
 <hr>
 
 > * If your device is stuck in TX, you probably cloned a wrong firmware version from our GitHub page. <br/>
@@ -334,7 +335,7 @@
 <br/>
 
 <a name="flashcode"></a>
-### 16. How can I flash a new firmware to my HT32SX?
+### 15. How can I flash a new firmware to my HT32SX?
 <hr>
 
 > There are two options for this:
@@ -351,7 +352,7 @@
 <br/>
 
 <a name="eepromwrite"></a>
-### 17. I need to use EEPROM in my application. From which address may I start writing?
+### 16. I need to use EEPROM in my application. From which address may I start writing?
 <hr>
 
 > Sigfox credentials are stored from address 0x08080000 to 0x080800F0, so you can start writing from 0x08080100.
@@ -360,7 +361,7 @@
 <br/>
 
 <a name="outputpower"></a>
-### 15. How can I increase HT32SX output power?
+### 17. How can I increase HT32SX output power?
 <hr>
 
 > * In this question we will use the [**Generic Push Button**](https://github.com/htmicron/ht32sx/tree/master_2/Generic_Push_Button) firmware as an example. <br/>
@@ -385,7 +386,7 @@
 >> 2. Go to RC1 case and change _**HT_API_switchPa(0)**_ line to _**HT_API_switchPa(1)**_:
 
 <div align="center">
-  <img src="https://github.com/hendrick-htmicron/readme_test/blob/main/.github/images/pa_on.PNG">
+  <img src="https://github.com/htmicron/ht32sx/blob/faq/.github/images/pa_on.PNG">
 </div>
 
 > * Making boost mode enable:
@@ -394,8 +395,32 @@
 >> 2. Go to RC2 case and add _**HT_API_setSmpsVoltageAction(7)**_ function just after _**HT_API_switchPa**_ line:
 
 <div align="center">
-  <img src="https://github.com/hendrick-htmicron/readme_test/blob/main/.github/images/boost_enable.PNG">
+  <img src="https://github.com/htmicron/ht32sx/blob/faq/.github/images/boost_enable.PNG">
 </div>
+
+<hr>
+<br/>
+
+<a name="credbin"></a>
+### 18. I received new Sigfox credentials. How should I flash it to my device?
+<hr>
+
+> 1. Download and install [**STM32CubeProgrammer**](https://www.st.com/en/development-tools/stm32cubeprog.html).
+> 2. Connect a STLINK into one of your USB connectors. 
+> 3. Click on _**Connect**_ to access your device memory.
+
+<div align="center">
+  <img src="https://github.com/htmicron/ht32sx/blob/faq/.github/images/connect.png">
+</div>
+
+> 4. Click on _**Open File**_ and select the right binary file.
+> 5. Click on _**Download**_ and change the _**Address**_ field to **0x08080000**:
+
+<div align="center">
+  <img src="https://github.com/htmicron/ht32sx/blob/faq/.github/images/address.png">
+</div>
+
+> 6. Press _**Enter**_ and your new Sigfox credentials shall be flashed.
 
 <hr>
 <br/>
