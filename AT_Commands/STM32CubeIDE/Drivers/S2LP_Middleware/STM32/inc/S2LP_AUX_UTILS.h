@@ -49,21 +49,10 @@
 * @{
 */
 
-
-
-uint8_t S2LPManagementGetBand(void);
-void S2LPManagementSetBand(uint8_t band);
-uint8_t S2LPManagementGetRangeExtender(void);
-void S2LPManagementSetRangeExtender(uint8_t value);
-//void S2LPManagementSetOffset(int32_t value);
-//int32_t S2LPManagementGetOffset(void);
 uint32_t S2LPManagementComputeXtalFrequency(void);
-void S2LPManagementIdentificationRFBoard(void);
-uint8_t S2LPManagementGetTcxo(void);
+
 uint32_t S2LPManagementGetXtalFrequency(void);
 uint32_t S2LPGetFrequencyBand(void);
-void S2LPRadioSetXtalFrequency(uint32_t xtal);
-uint8_t EepromIdentification(void);
 
 /**
 * @}

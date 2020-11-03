@@ -38,7 +38,7 @@
 
 /* Defines  ------------------------------------------------------------------*/
 
-#define BASE_FREQUENCY              902200000 		/**< P2P basic frequency. Change this define to work in another frequency. */
+#define BASE_FREQUENCY              433.0e6//902200000 		/**< P2P basic frequency. Change this define to work in another frequency. */
 
 #define CHANNEL_SPACE               100e3
 #define CHANNEL_NUMBER              0

@@ -159,8 +159,6 @@ void HW_UART_IDLE_IT_Config(void) {
 	__HAL_DMA_ENABLE_IT (&hdma_usart1_rx, DMA_IT_TC);  // enable DMA Tx cplt interrupt
 
 	hdma_usart1_rx.Instance->CCR &= 0xFFFFFFFB;
-
-	HAL_UART_Receive_DMA(&huart1, DMA_RX_Buffer, 10);
 }
 
 void HW_Config_Circular_DMA(void) {

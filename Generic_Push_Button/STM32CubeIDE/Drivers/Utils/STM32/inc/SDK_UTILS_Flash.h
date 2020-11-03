@@ -53,30 +53,6 @@
   */
 #define NO_INIT_SECTION(var, sect)                  SECTION(sect) __no_init var
 
-#else
-//
-//#ifdef __GNUC__
-///**
-//  * @brief  NO_INIT
-//  *         Use the NO_INIT macro to declare a not initialized variable placed in RAM
-//  *         Linker script has to make sure that section ".noinit" is not initialized
-//  *         Usage:  NO_INIT(int my_no_init_var)
-//  *         Usage:  NO_INIT(uint16_t my_no_init_array[10])
-//  */
-//#define NO_INIT(var)                    var  __attribute__((section(".noinit")))
-//
-///**
-//  * @brief  NO_INIT_SECTION
-//  *         Use the NO_INIT_SECTION macro to declare a not initialized variable.
-//  *         In order to work properly this macro should be aligned with the linker file.
-//  *         Usage:  NO_INIT_SECTION(int my_no_init_var, "MySection")
-//  *         Usage:  NO_INIT_SECTION(uint16_t my_no_init_array[10], "MySection")
-//  */
-//#define NO_INIT_SECTION(var, sect)                   var __attribute__((section( sect ), zero_init))
-//#else
-//
-//#error Neither ICCARM nor CC ARM detected. Define your macros.
-//#endif
 #endif
 
 #ifdef __cplusplus

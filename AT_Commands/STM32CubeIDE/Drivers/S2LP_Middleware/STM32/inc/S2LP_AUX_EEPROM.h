@@ -34,56 +34,6 @@
   "C" {
 #endif
 
-/**
- * @addtogroup SDK_EVAL_NUCLEO
- * @{
- */
-
-/**
- * @defgroup SDK_EEPROM
- * @brief Management of Software Development Kit eval board EEPROM.
- * @details See the file <i>@ref SDK_EVAL_EEPROM.h</i> for more details.
- * @{
- */
-
-/* EEPROM SPI commands */
-#define EEPROM_CMD_WREN    0x06    // Write Enable
-#define EEPROM_CMD_WRDI    0x04    // Write Disable
-#define EEPROM_CMD_RDSR    0x05    // Read Status Register
-#define EEPROM_CMD_WRSR    0x01    // Write Status Register
-#define EEPROM_CMD_READ    0x03    // Read from Memory Array
-#define EEPROM_CMD_WRITE   0x02    // Write to Memory Array
-
-/* EEPROM SPI status */
-#define EEPROM_STATUS_SRWD    0x80       // Status Register Write Disable
-#define EEPROM_STATUS_BP      0x0C       // Block Protect
-#define EEPROM_STATUS_WEL     0x02       // Write Enable
-#define EEPROM_STATUS_WIP     0x01       // Write in Progress
-
-/**
-* @brief  Initializes the SPI for the EEPROM.
-*         This function can be replaced by EepromCsPinInitialization if
-*         S2LPSpiInit is called.
-* @param  None
-* @retval None
-*/
-void EepromSpiInitialization(uint32_t baudrate);
-
-/**
-* @brief  Initialization of the CSn pin of the EEPROM.
-*         This function is called internally by EepromCsPinInitialization.
-* @param  None
-* @retval None
-*/
-void EepromCsPinInitialization(void);
-
-/**
-* @brief  Initialization of the CSn pin of the EEPROM for XNUCLEO boards.
-*
-* @param  None
-* @retval None
-*/
-void EepromCsXnucleoPinInitialization(void);
 
 /**
 * @brief  Read a page of the EEPROM.
@@ -97,65 +47,6 @@ void EepromCsXnucleoPinInitialization(void);
 * @retval None
 */
 uint8_t EepromRead(uint16_t nAddress, uint8_t cNbBytes, uint8_t* pcBuffer);
-
-/**
-* @brief  Write a page of the EEPROM.
-*         A page size is 32 bytes.
-*         The pages are 256.
-*         Page 0 address: 0x0000
-*         Page 1 address: 0x0020
-*         ...
-*         Page 255 address: 0x1FE0
-*         It is allowed to write only a page for each operation. If the bytes
-*         exceed the single page location, the other bytes are written at the
-*         beginning.
-* @param  None
-* @retval None
-*/
-uint8_t EepromWrite(uint16_t nAddress, uint8_t cNbBytes, uint8_t* pcBuffer);
-
-/**
-* @brief  Wait polling the SPI until the internal WIP flag is RESET.
-*         The flag is SET when a write operation is running.
-* @param  None
-* @retval None
-*/
-void EepromWaitEndWriteOperation(void);
-
-/**
-* @brief EepromWriteEnable
-* @param  None
-* @retval None
-*/
-void EepromWriteEnable(void);
-
-/**
-* @brief  Read the status register.
-* @param  None
-* @retval Status
-*/
-uint8_t EepromStatus(void);
-
-/**
-* @brief  Set the ERSR status bit.
-* @param  None
-* @retval Status
-*/
-uint8_t EepromSetSrwd(void);
-
-/**
-* @brief  This function is to query if EEPROM is present or not.
-* @param  None
-* @retval 1 (yes) or 0 (no).
-*/
-uint8_t S2LPEvalGetHasEeprom(void);
-
-/**
-* @brief  This function is to set if EEPROM is present or not.
-* @param  1 (yes) or 0 (no).
-* @retval None
-*/
-void S2LPEvalSetHasEeprom(uint8_t eeprom);
 
 /**
 * @}
