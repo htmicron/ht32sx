@@ -121,13 +121,9 @@ void HT_P2P_softReset(void) {
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if(GPIO_Pin == GPIO_PIN_2) {
 		P2PInterruptHandler();
-	}
-
-	if(GPIO_Pin == GPIO_PIN_0) {
+	} else if(GPIO_Pin == GPIO_PIN_0) {
 		Set_KeyStatus(SET);
-	}
-
-	if(GPIO_Pin == SOFT_RESET_Pin) {
+	} else if(GPIO_Pin == SOFT_RESET_Pin) {
 		HT_P2P_softReset();
 	}
 }
