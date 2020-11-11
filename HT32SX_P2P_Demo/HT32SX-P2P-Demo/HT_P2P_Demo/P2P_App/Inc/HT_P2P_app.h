@@ -121,6 +121,7 @@ typedef enum {
 	SM_STATE_ACK_RECEIVED,						/**< Ack received state */
 	SM_STATE_SEND_ACK,							/**< Send ack state */
 	SM_STATE_TOGGLE_LED,						/**< Toggle led state */
+	SM_STATE_TEST_MODE,
 	SM_STATE_IDLE=0xFF							/**< IDLE state */
 } SM_State_t;
 

@@ -29,6 +29,8 @@ uint8_t TxFrameBuff[MAX_BUFFER_LEN] = {0x00};
 
 S2LPIrqs xIrqStatus;
 
+uint8_t test_mode = 0;
+
 PktBasicInit xBasicInit={
 		PREAMBLE_LENGTH,
 		SYNC_LENGTH,
@@ -187,10 +189,12 @@ void P2P_WaitForTxDone(void) {
 		xTxDoneFlag = RESET;
 
 		if(xTxFrame.Cmd == LED_TOGGLE)
-			SM_State = SM_STATE_START_RX;
+			SM_State = !test_mode ? SM_STATE_START_RX : SM_STATE_TEST_MODE;
 		else if(xTxFrame.Cmd == ACK_OK)
 			SM_State = SM_STATE_IDLE;
 	}
+
+	//HAL_Delay(50); /* tx test mode period */
 
 }
 
@@ -215,6 +219,22 @@ void P2P_ToggleLed(void) {
 	} else {
 		SM_State = SM_STATE_SEND_ACK;
 	}
+}
+
+void P2P_TestMode(uint8_t *pTxBuff, uint8_t cTxlen) {
+	printf("Sending data...\n");
+
+	test_mode = 1;
+
+	xTxFrame.Cmd = LED_TOGGLE;
+	xTxFrame.CmdLen = 0x01;
+	xTxFrame.Cmdtag = txCounter++;
+	xTxFrame.CmdType = APPLI_CMD;
+	xTxFrame.DataBuff = pTxBuff;
+	xTxFrame.DataLen = cTxlen;
+
+	AppliSendBuff(&xTxFrame, xTxFrame.DataLen);
+	SM_State = SM_STATE_WAIT_FOR_TX_DONE;
 }
 
 void P2P_Idle(void) {
@@ -249,6 +269,9 @@ void P2P_Process(uint8_t *pTxBuff, uint8_t cTxlen, uint8_t *pRxBuff, uint8_t cRx
 		break;
 	case SM_STATE_TOGGLE_LED:
 		P2P_ToggleLed();
+		break;
+	case SM_STATE_TEST_MODE:
+		P2P_TestMode(pTxBuff, cTxlen);
 		break;
 	case SM_STATE_IDLE:
 		P2P_Idle();
