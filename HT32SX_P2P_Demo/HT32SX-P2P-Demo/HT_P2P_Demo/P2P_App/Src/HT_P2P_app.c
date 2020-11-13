@@ -1,17 +1,17 @@
 /**
-  *
-  * Copyright (c) 2020 HT Micron Semicondutors S.A.
-	* Licensed under the Apache License, Version 2.0 (the "License");
-	* you may not use this file except in compliance with the License.
-	* You may obtain a copy of the License at
-	* http://www.apache.org/licenses/LICENSE-2.0
-	* Unless required by applicable law or agreed to in writing, software
-	* distributed under the License is distributed on an "AS IS" BASIS,
-	* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	* See the License for the specific language governing permissions and
-	* limitations under the License.
-  *
-*/
+ *
+ * Copyright (c) 2020 HT Micron Semicondutors S.A.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 #include "HT_P2P_app.h"
 
@@ -76,6 +76,9 @@ void HT_P2P_Init(void) {
 	S2LPRadioSetMaxPALevel(S_DISABLE);
 
 	FEM_Init();
+#ifdef BASE_FREQ_433
+	Config_RangeExt(PA_SHUTDOWN);
+#endif
 
 	S2LP_PacketConfig();
 
@@ -94,6 +97,9 @@ void BasicProtocolInit(void) {
 void Set_KeyStatus(FlagStatus val) {
 
 	HAL_Delay(500);
+
+	HAL_NVIC_DisableIRQ(EXTI4_15_IRQn);
+	__HAL_GPIO_EXTI_CLEAR_IT(SOFT_RESET_Pin);
 
 	if(val==SET)
 		SM_State = SM_STATE_SEND_DATA;
@@ -286,7 +292,9 @@ void AppliSendBuff(AppliFrame_t *xTxFrame, uint8_t cTxlen) {
 	/* Destination address. It could be also changed to BROADCAST_ADDRESS or MULTICAST_ADDRESS. */
 	S2LP_SetDestinationAddress(DESTINATION_ADDRESS);
 
+#ifndef BASE_FREQ_433
 	Config_RangeExt(PA_TX);
+#endif
 
 	/* S2LP Boost mode*/
 	S2LPSpiWriteRegisters(0x79, sizeof(tmp), &tmp);
@@ -320,7 +328,9 @@ void AppliReceiveBuff(void) {
 	/* IRQ registers blanking */
 	S2LPGpioIrqClearStatus();
 
+#ifndef BASE_FREQ_433
 	Config_RangeExt(PA_RX);
+#endif
 
 	/* RX command */
 	S2LP_StartRx();

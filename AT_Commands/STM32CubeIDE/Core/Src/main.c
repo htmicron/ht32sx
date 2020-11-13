@@ -174,28 +174,17 @@ void mcuConfig(void) {
 	NVM_BoardDataType sfxConfiguration;
 	stSfxRetErr = ST_Sigfox_Init(&sfxConfiguration, 0);
 
-	if(stSfxRetErr != ST_SFX_ERR_NONE)
-	{
-		/* If an error occured reading Sigfox credentials (for example the board has never been registered)
-		 * automatically set the test mode credentials. */
-		if(stSfxRetErr == ST_SFX_ERR_CREDENTIALS)
-		{
+	if(stSfxRetErr != ST_SFX_ERR_NONE) {
+		if(stSfxRetErr == ST_SFX_ERR_CREDENTIALS) {
 			sfxConfiguration.id = 0;
 			memset(sfxConfiguration.pac, 0x00, 8);
 			sfxConfiguration.rcz = 0;
 
-		} else 
-			printf("Error!\n");
-
+		}
 	}
 
 	/* Calibrate RTC in case of STM32*/
-#if  !(defined(BLUENRG2_DEVICE) || defined(BLUENRG1_DEVICE))
-	/* The low level driver uses the internal RTC as a timer while the STM32 is in low power.
-  This function calibrates the RTC using an auxiliary general purpose timer in order to
-  increase its precision. */
 	ST_MCU_API_TimerCalibration(500);
-#endif
 
 	printf("Sigfox iMCP HT32SX - AT Commands\n");
 	printf("ID: %.8X - PAC: ", (unsigned int)sfxConfiguration.id);
@@ -212,39 +201,11 @@ void mcuConfig(void) {
 
 }
 
-void ST_Init(void)
-{
+void ST_Init(void) {
 	/* Put the radio off */
 	S2LPShutdownInit();
 	HAL_Delay(10);
 	S2LPShutdownExit();
-
-	/* Init TIM6 which will trigger TX */
-	//SdkEvalTimersState(&Tim6_Handler, ENABLE);
-
-	/* Auto detect settings, if EEPROM is available */
-#if EEPROM_PRESENT == EEPROM_YES
-	/* Identify the S2-LP RF board reading some production data */
-	S2LPManagementIdentificationRFBoard();
-#elif EEPROM_PRESENT==EEPROM_NO
-	/* Set XTAL frequency with offset */
-	S2LPRadioSetXtalFrequency(XTAL_FREQUENCY+XTAL_FREQUENCY_OFFSET);
-
-	/* Set the frequency base */
-	S2LPManagementSetBand(BOARD_FREQUENCY_BAND);
-
-	/* Configure PA availability */
-#if S2LP_FEM_PRESENT == S2LP_FEM_NO
-	S2LPManagementSetRangeExtender(0);
-#else
-	S2LPManagementSetRangeExtender(1);
-#endif
-#endif
-
-	/* uC IRQ config and enable */
-
-	S2LPIRQInit();
-	S2LPIRQEnable(ENABLE, M2S_GPIO_EDGE_EVENT);
 
 	/* FEM Initialization */
 	FEM_Init();

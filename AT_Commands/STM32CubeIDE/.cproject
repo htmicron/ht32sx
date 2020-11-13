@@ -42,7 +42,6 @@
 									<listOptionValue builtIn="false" value="FOR_ALL"/>
 									<listOptionValue builtIn="false" value="STM32L052xx"/>
 									<listOptionValue builtIn="false" value="USE_FLASH"/>
-									<listOptionValue builtIn="false" value="DEBUG"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths.1793383463" name="Include paths (-I)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../ST_API/inc"/>

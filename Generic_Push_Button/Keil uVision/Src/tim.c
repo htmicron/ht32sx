@@ -470,6 +470,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		aux = HT_getVrefData();
 		vref = aux < vref || !vref ? aux : vref;
 		ad = HT_getTemperatureAD();
+		ad = ad; /* to avoid warning */
 	}
 }
 

@@ -53,11 +53,18 @@
  * @retval None.
  * @note: this macro sets the SMPS switching frequency to 5.46MHz about for ETSI regulation compliancy.
  */
+
+#ifndef BASE_FREQ_433
 #define S2LPCmdStrobeTx()         {uint8_t tmp=0x9C;\
                                     Config_RangeExt(PA_TX);\
                                      S2LPSpiWriteRegisters(0x76,1,&tmp);\
                                      S2LPCmdStrobeCommand(CMD_TX);}
-
+#else
+#define S2LPCmdStrobeTx()         {uint8_t tmp=0x9C;\
+                                    Config_RangeExt(PA_TX_BYPASS);\
+                                     S2LPSpiWriteRegisters(0x76,1,&tmp);\
+                                     S2LPCmdStrobeCommand(CMD_TX);}
+#endif
 
 /**
  * @brief  Sends the RX command to S2-LP. Start to receive.

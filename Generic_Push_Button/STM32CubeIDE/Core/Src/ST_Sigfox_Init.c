@@ -172,69 +172,20 @@ ST_SFX_ERR ST_Sigfox_Init(NVM_BoardDataType *sfxConfig, uint8_t openAfterInit)
 {
 	ST_SFX_ERR ret_err = ST_SFX_ERR_NONE;
 
-	/* Configure XTAL frequency and offset for the RF Library */
-	ST_RF_API_set_xtal_freq(S2LPManagementGetXtalFrequency());
-
 	/* Macro that defines and initializes the nvmconfig structure */
 	INIT_NVM_CONFIG(nvmConfig);
 
 	/* Sigfox Credentials Management */
-#ifdef USE_FLASH
 	nvmConfig.nvmType = NVM_TYPE_FLASH;
 	nvmConfig.sfxDataAddress = (uint32_t)FLASH_USER_START_ADDR; /* Set here the address for 'NVM sigfox data' management */
 	nvmConfig.boardDataAddress = (uint32_t)FLASH_BOARD_START_ADDR; /* Set here the address for 'NVM board data' management */
-#endif
 
 	/* Configure the NVM_API */
 	SetNVMInitial(&nvmConfig);
 
-#ifdef USE_FLASH
 	/* Retrieve Sigfox info from FLASH */
 	if(enc_utils_retrieve_data_from_flash(sfxConfig) != 0)
 		ret_err = ST_SFX_ERR_CREDENTIALS;
-
-	if(!ret_err)
-	{
-		ret_err = (ST_SFX_ERR)ST_RF_API_set_xtal_freq(S2LPManagementGetXtalFrequency()+sfxConfig->freqOffset);  /* Override RF_API Xtal value */
-
-		if(!ret_err)
-			ret_err = (ST_SFX_ERR)ST_RF_API_set_rssi_offset(sfxConfig->rssiOffset); /* Override RSSI offset */
-
-		if(!ret_err)
-			ret_err = (ST_SFX_ERR)ST_RF_API_set_lbt_thr_offset(sfxConfig->lbtOffset); /* Override LBT threshold offset */
-
-		if(ret_err) /* An error occured reading freq, RSSI or LBT offsets */
-			ret_err = ST_SFX_ERR_OFFSET;
-	}
-#else
-	ST_MCU_API_Shutdown(1);
-	SdkDelayMs(1);
-
-#if !( defined(BLUENRG2_DEVICE) || defined(BLUENRG1_DEVICE) )
-	/* Set EEPROM CS */
-	if(SdkEvalGetDaughterBoardType() == FKI_SERIES)
-		EepromCsPinInitialization();
-	else
-		EepromCsXnucleoPinInitialization();
-#else
-	/* On BlueNRG-1/2 platforms only the STEVAL-FKI001V1 supports kit EEPROM */
-#ifdef FKI001V1
-	EepromCsPinInitialization();
-#endif
-#endif
-
-	/* Retrieve Sigfox info from EEPROM */
-	if(enc_utils_retrieve_data(&sfxConfig->id, sfxConfig->pac, &sfxConfig->rcz) != 0)
-		ret_err = ST_SFX_ERR_CREDENTIALS;
-	else
-		sfxConfig->freqOffset = S2LPManagementGetXtalFrequency();
-#endif
-
-	/* If the retriever returns an error (code different from ST_SFX_ERR_NONE) the application will halt */
-	/* Otherwise, open the Sigfox Library according to the zone stored in the device */
-	if(openAfterInit && ret_err == ST_SFX_ERR_NONE)
-		ret_err = St_Sigfox_Open_RCZ(sfxConfig->rcz);
-
 	return ret_err;
 }
 

@@ -40,7 +40,7 @@ NO_INIT_SECTION( uint8_t nvm_data[FLASH_PAGE_SIZE], ".noinit.sigfox_nvm_data");
 * @{
 */
 
-static FLASH_EraseInitTypeDef EraseInitStruct; /* Variable used for Erase procedure */
+FLASH_EraseInitTypeDef EraseInitStruct; /* Variable used for Erase procedure */
 uint32_t  PAGEError = 0;
 
 /**
