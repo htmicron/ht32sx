@@ -27,7 +27,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "HT_P2P_app.h"
-#include "spi.h"
 #include "string.h"
 /* USER CODE END Includes */
 
@@ -63,22 +62,6 @@ void SystemClock_Config(void);
 uint8_t RxLength = 0;
 uint8_t aTransmitBuffer[TX_BUFFER_SIZE] = {"Hello, World!"};
 uint8_t aReceiveBuffer[RX_BUFFER_SIZE] = {0x00};
-
-void startContinuousTX(void) {
-	uint8_t tmp;
-
-	S2LPGpioIrqConfig(TX_DATA_SENT, S_DISABLE);
-
-	S2LPSpiReadRegisters(0x10, sizeof(tmp), &tmp);
-
-	tmp &= (~0xF0);
-	tmp |= 0x70;
-
-	S2LPSpiWriteRegisters(0x10, sizeof(tmp), &tmp);
-
-	S2LPCmdStrobeTx();
-	HAL_Delay(100);
-}
 
 /* USER CODE END 0 */
 
@@ -120,7 +103,6 @@ int main(void)
 
 	HT_P2P_Init();
 
-	//startContinuousTX();
   /* USER CODE END 2 */
 
   /* Infinite loop */
