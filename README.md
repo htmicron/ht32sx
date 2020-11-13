@@ -25,6 +25,7 @@
 17. [**How can I increase HT32SX output power?**](#outputpower) <br/>
 18. [**I received new Sigfox credentials. How should I flash it to my device?**](#credbin) <br/>
 
+
 ## Answered Questions:
 
 <a name="regbackend"></a>
@@ -262,7 +263,7 @@
 ### 10. Error: Invalid message sequence from Device #XXXXX: expected X, actual X
 <hr>
 
-> This is a message counter error. Both sides must to have the same sequence number, otherwise all message will be rejected by the Backend side. <br/>
+> This is a message counter error. Both sides must have the same sequence number, otherwise all message will be rejected by the Backend side. <br/>
 > A simple way to fix it, is disengaging the sequence number. <br/> 
 
 > 1. Open [**SigFox Backend**](https://backend.sigfox.com/) website. <br/>
@@ -339,14 +340,33 @@
 <hr>
 
 > There are two options for this:
+
 > 1. Flash a new code through SWD interface.
->>   * To use SWD protocol, you must to search for a STLINK Debugger:
->>       * [**STLINK/V2**](https://www.st.com/en/development-tools/st-link-v2.html). 
->>       * STLINK on a STM32 Nucleo. An example can be found [**here**](https://www.st.com/en/evaluation-tools/nucleo-f030r8.html). Check [**this**](https://www.st.com/content/ccc/resource/technical/document/user_manual/98/2e/fa/4b/e0/82/43/b7/DM00105823.pdf/files/DM00105823.pdf/jcr:content/translations/en.DM00105823.pdf) document (topic 6.2.4) to learn how to use this option.
->>   * Once you already have a STLINK Debugger, you must to connect SWIO, SWCLK, NRST, GND and VDD from STLINK to your HT32SX.
->>   * Then, open a firmware example on our [**GitHub**](https://github.com/htmicron/ht32sx) page (using STM32CubeIDE or Keil uVision) and flash click _**run**_ or _**download**_ to flash your code. 
+
+> * To use SWD protocol, user must have a ST-LINK Debugger. ST-LINK examples:
+>> 1. [**STLINK/V2**](https://www.st.com/en/development-tools/st-link-v2.html). 
+>> 2. ST-LINK ona STM32 Dev Kit. [**Example**](https://www.st.com/en/evaluation-tools/nucleo-f030r8.html). Check [**this**](https://www.st.com/content/ccc/resource/technical/document/user_manual/98/2e/fa/4b/e0/82/43/b7/DM00105823.pdf/files/DM00105823.pdf/jcr:content/translations/en.DM00105823.pdf) document (topic 6.2.4) to learn how to use this option.
+
+> * Once there is a ST-LINK Debugger available:
+
+>> 1. Connect the SWDIO, SWDCLK, RST and GND of the ST-LINK pins to the corresponding HT32SX pins. 
+>> 2. Then, open one of the firmware examples available on our [**GitHub**](https://github.com/htmicron/ht32sx) page (using STM32CubeIDE or Keil uVision IDE) and flash it clicking on _**run**_ or _**download**_.
+
 > 2. Flash a new code using UART.
->>   * This would be an available option only if you are using our [**Bootloader Example**](https://github.com/htmicron/ht32sx/tree/master_2/Bootloader_Refresh) (application note and other documents can be found in the same repository).
+
+> * A bootloader must be used in this case. 
+
+>> * To use the MCU bootloader: 
+>> 1. Put Boot0 pin to VDD.
+>> 2. Connect RX - TX USART pins (USART1 or USART2) to a FTDI.
+>> 3. Open [**STM32CubeProgrammer**](https://www.st.com/en/development-tools/stm32cubeprog.html).
+>> 4. Change the option _**ST-LINK**_ to _**UART**_ and click on _**connect**_.
+>> 5. Click on _**Open File**_ and select the right binary file. 
+>> 6. Click on _**Download**_ and the new firmware shall be flashed. 
+
+> * To use a to use a proprietary bootloader:
+
+>> 1. Click [**here**](https://github.com/htmicron/ht32sx/tree/master_2/Bootloader_Refresh) to see an example showing how a proprietary bootloader could worked in the HT32SX context. More info could be found at the same repository.
 
 <hr>
 <br/>
