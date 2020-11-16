@@ -205,5 +205,3 @@ sfx_u8 MCU_API_report_test_result(sfx_bool status, sfx_s16 rssi)
 	// you could also use the RF part in specific modulation (ook ask or gfsk or else to return status and rssi
 	return SFX_ERR_NONE;
 }
-
-

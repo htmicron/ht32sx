@@ -127,5 +127,23 @@ extern uint8_t getScanStatus(void);
  *******************************************************************/
 extern void setScanStatus(uint8_t scanStatus);
 
+/*!******************************************************************
+ * \fn void HT_switchPa(uint8_t state)
+ * \brief Set PA flag.
+ *
+ * \param[in]  sfx_u8 state                 PA state.
+ * \param[out] none
+ *******************************************************************/
+void HT_switchPa(uint8_t state);
+
+/*!******************************************************************
+ * \fn void HT_setSmpsVoltageAction(sfx_u8 mode)
+ * \brief Enable S2LP boost mode.
+ *
+ * \param[in]  sfx_u8 mode                  Desired output voltage. Check UM2169 for more details.
+ * \param[out] none
+ *******************************************************************/
+void HT_setSmpsVoltageAction(sfx_u8 mode);
+
 #endif
 
