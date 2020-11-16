@@ -138,7 +138,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -338,7 +338,7 @@
               <MiscControls>--diag_suppress=951 --wchar32</MiscControls>
               <Define>USE_HAL_DRIVER,STM32L052xx,USE_HAL_DRIVER, FOR_ALL, USE_FLASH, USE_STM32L0XX_NUCLEO,  USE_SYSTICK_DELAY,MONARCH_FEATURE_ENABLED, USE_OOB_MSG</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;                                      ../Drivers/STM32L0xx_HAL_Driver/Inc;                                      ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;                                      ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;                                      ../Drivers/CMSIS/Include;                                      ..\Sigfox_libs\inc;                                      ..\ST_libs\inc;                                      ..\Drivers\S2LP_Middleware\STM32\inc;                                      ..\ST_API\inc;                                      ..\Drivers\Utils\STM32\inc;                                      ..\Utils\CLI\inc;                                      ..\Sigfox_libs\bin;                                      ..\Utils\CLI\inc</IncludePath>
+              <IncludePath>../Inc;                                       ../Drivers/STM32L0xx_HAL_Driver/Inc;                                       ../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy;                                       ../Drivers/CMSIS/Device/ST/STM32L0xx/Include;                                       ../Drivers/CMSIS/Include;                                       ..\Sigfox_libs\inc;                                       ..\ST_libs\inc;                                       ..\Drivers\S2LP_Middleware\STM32\inc;                                       ..\ST_API\inc;                                       ..\Drivers\Utils\STM32\inc;                                       ..\Utils\CLI\inc;                                       ..\Sigfox_libs\bin;                                       ..\Utils\CLI\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -468,14 +468,14 @@
           <GroupName>Libraries</GroupName>
           <Files>
             <File>
+              <FileName>SFX_LIB_MON_CortexM0+.a</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\Sigfox_libs\bin\SFX_LIB_MON_CortexM0+.a</FilePath>
+            </File>
+            <File>
               <FileName>ST_RETRIEVER_LIB_STM32L053xx.a</FileName>
               <FileType>4</FileType>
               <FilePath>..\ST_API\bin\ST_RETRIEVER_LIB_STM32L053xx.a</FilePath>
-            </File>
-            <File>
-              <FileName>SFX_LIB_V2.8.0_FDL_MON_IAR8.11_cortexM0+.a</FileName>
-              <FileType>4</FileType>
-              <FilePath>..\Sigfox_libs\bin\SFX_LIB_V2.8.0_FDL_MON_IAR8.11_cortexM0+.a</FilePath>
             </File>
             <File>
               <FileName>ST_MONARCH_LIB_CM0.a</FileName>

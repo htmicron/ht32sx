@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=C:/Users/hendrick.goncalves/Documents/July_Repository/ht32sx/Monarch_Scan/Keil uVision/Inc
+HeaderPath=C:/Users/hendrick.goncalves/Documents/REP_DEC/ht32sx/Monarch_Scan/Keil uVision/Inc
 HeaderFiles=stm32l0xx_it.h;stm32l0xx_hal_conf.h;main.h;gpio.h;dma.h;iwdg.h;spi.h;tim.h;usart.h;rtc.h;adc.h;
-SourcePath=C:/Users/hendrick.goncalves/Documents/July_Repository/ht32sx/Monarch_Scan/Keil uVision/Src
+SourcePath=C:/Users/hendrick.goncalves/Documents/REP_DEC/ht32sx/Monarch_Scan/Keil uVision/Src
 SourceFiles=stm32l0xx_it.c;stm32l0xx_hal_msp.c;main.c;gpio.c;dma.c;iwdg.c;spi.c;tim.c;usart.c;rtc.c;adc.c;
 
 [PreviousLibFiles]

@@ -41,7 +41,6 @@ sigfox\s2lp_aux_fem_auto.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_UTILS.
 sigfox\s2lp_aux_fem_auto.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_FEM.h
 sigfox\s2lp_aux_fem_auto.o: ../Inc/cube_hal.h
 sigfox\s2lp_aux_fem_auto.o: ../Inc/stm32l0xx_it.h
-sigfox\s2lp_aux_fem_auto.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_TCXO.h
 sigfox\s2lp_aux_fem_auto.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\s2lp_aux_fem_auto.o: ../Inc/spi.h
 sigfox\s2lp_aux_fem_auto.o: ../Inc/main.h

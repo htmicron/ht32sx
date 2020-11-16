@@ -49,7 +49,6 @@ sigfox\mcu_api_stm32.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_Nucleo64_STM32
 sigfox\mcu_api_stm32.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_FEM.h
 sigfox\mcu_api_stm32.o: ../Inc/cube_hal.h
 sigfox\mcu_api_stm32.o: ../Inc/stm32l0xx_it.h
-sigfox\mcu_api_stm32.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_TCXO.h
 sigfox\mcu_api_stm32.o: ..\ST_API\inc\nvm_api.h
 sigfox\mcu_api_stm32.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\mcu_api_stm32.o: ..\Sigfox_libs\inc\sigfox_api.h

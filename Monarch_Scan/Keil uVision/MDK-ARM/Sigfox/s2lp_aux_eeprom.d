@@ -41,5 +41,4 @@ sigfox\s2lp_aux_eeprom.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_UTILS.h
 sigfox\s2lp_aux_eeprom.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_FEM.h
 sigfox\s2lp_aux_eeprom.o: ../Inc/cube_hal.h
 sigfox\s2lp_aux_eeprom.o: ../Inc/stm32l0xx_it.h
-sigfox\s2lp_aux_eeprom.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_TCXO.h
 sigfox\s2lp_aux_eeprom.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_EEPROM.h

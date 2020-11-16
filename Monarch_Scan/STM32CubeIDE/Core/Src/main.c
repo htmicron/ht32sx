@@ -99,6 +99,7 @@ int main(void)
   MX_TIM6_Init();
   MX_USART1_UART_Init();
   MX_ADC_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
 	mcuConfig();
