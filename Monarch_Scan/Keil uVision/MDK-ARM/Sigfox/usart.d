@@ -50,7 +50,6 @@ sigfox\usart.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_Nucleo64_STM32_L0xx_AU
 sigfox\usart.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_FEM.h
 sigfox\usart.o: ../Inc/cube_hal.h
 sigfox\usart.o: ../Inc/stm32l0xx_it.h
-sigfox\usart.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_TCXO.h
 sigfox\usart.o: ..\ST_API\inc\nvm_api.h
 sigfox\usart.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\usart.o: ..\Sigfox_libs\inc\sigfox_api.h

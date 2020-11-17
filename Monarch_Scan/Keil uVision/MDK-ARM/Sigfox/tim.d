@@ -50,7 +50,6 @@ sigfox\tim.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_Nucleo64_STM32_L0xx_AUTO
 sigfox\tim.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_FEM.h
 sigfox\tim.o: ../Inc/cube_hal.h
 sigfox\tim.o: ../Inc/stm32l0xx_it.h
-sigfox\tim.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_TCXO.h
 sigfox\tim.o: ..\ST_API\inc\nvm_api.h
 sigfox\tim.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\tim.o: ..\Sigfox_libs\inc\sigfox_api.h

@@ -71,7 +71,6 @@
 //#include "S2LP_AUX_EEPROM.h"
 #include "S2LP_AUX_UTILS.h"
 #include "S2LP_AUX_FEM.h"
-#include "S2LP_AUX_TCXO.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -116,33 +115,6 @@ typedef enum {
   FKI_SERIES = 0,
   X_NUCLEO_SERIES = 1
 }S2LPDaughterBoard;
-
-/**
- * @}
- */
-
-/** @defgroup SDK_EVAL_Config_Exported_Functions        SDK EVAL Config Exported Functions
- * @{
- */
-
-/**
-* @brief Set the type of the daughter RF board between FKI series or X-NUCLEOS2 series
-*
-* @param boardType the type of the RF daughter board of the type of #S2LPDaughterBoard
-* @retval None.
-*/
-void SdkEvalSetDaughterBoardType(S2LPDaughterBoard boardType);
-
-/**
-* @brief Returns the type of the daughter RF board installed
-*
-* @param  None.
-* @return The type of the board.
-*/
-S2LPDaughterBoard SdkEvalGetDaughterBoardType(void);
-
-void SdkEvalIdentification(void);
-uint8_t SdkEvalGetVersion(void);
 
 /**
  * @}

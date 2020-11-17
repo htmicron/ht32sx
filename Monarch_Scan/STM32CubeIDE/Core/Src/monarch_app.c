@@ -25,8 +25,11 @@ void configRegion(void) {
 	switch(rc_bit){
 	case RCZ1:
 		SIGFOX_MONARCH_API_stop_rc_scan();
+
 		ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
 		open_err = St_Sigfox_Open_RCZ(RCZ1);
+		HT_switchPa(0);
+		HT_setSmpsVoltageAction(7);
 
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
@@ -38,8 +41,10 @@ void configRegion(void) {
 		break;
 	case RCZ2:
 		SIGFOX_MONARCH_API_stop_rc_scan();
+
 		ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
 		open_err = St_Sigfox_Open_RCZ(RCZ2);
+		HT_switchPa(1);
 
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
@@ -51,8 +56,13 @@ void configRegion(void) {
 		break;
 	case RCZ3:
 		SIGFOX_MONARCH_API_stop_rc_scan();
+
 		open_err = St_Sigfox_Open_RCZ(RCZ3);
 		ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
+		HT_switchPa(0);
+		HT_setSmpsVoltageAction(7);
+
+
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
 
@@ -63,8 +73,11 @@ void configRegion(void) {
 		break;
 	case RCZ4:
 		SIGFOX_MONARCH_API_stop_rc_scan();
+
 		open_err = St_Sigfox_Open_RCZ(RCZ4);
 		ST_RF_API_reduce_output_power(RCZ4_OUTPUT_POWER);
+		HT_switchPa(1);
+
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
 
@@ -75,8 +88,12 @@ void configRegion(void) {
 		break;
 	case RCZ5:
 		SIGFOX_MONARCH_API_stop_rc_scan();
+
 		open_err = St_Sigfox_Open_RCZ(RCZ5);
 		ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
+		HT_switchPa(0);
+		HT_setSmpsVoltageAction(7);
+
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
 
@@ -87,8 +104,11 @@ void configRegion(void) {
 		break;
 	case RCZ6:
 		SIGFOX_MONARCH_API_stop_rc_scan();
+
 		open_err = St_Sigfox_Open_RCZ(RCZ6);
 		ST_RF_API_reduce_output_power(RCZ6_OUTPUT_POWER);
+		HT_switchPa(0);
+		HT_setSmpsVoltageAction(7);
 
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
@@ -100,8 +120,10 @@ void configRegion(void) {
 		break;
 	case RCZ7:
 		SIGFOX_MONARCH_API_stop_rc_scan();
+
 		open_err = St_Sigfox_Open_RCZ(RCZ7);
 		ST_RF_API_reduce_output_power(RCZ7_OUTPUT_POWER);
+		HT_switchPa(1);
 
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
@@ -117,6 +139,16 @@ void configRegion(void) {
 
 }
 
+void HT_switchPa(uint8_t state) {
+	ST_RF_API_set_pa(state);
+	printf("Switch PA: %d\n", state);
+}
+
+void HT_setSmpsVoltageAction(sfx_u8 mode) {
+	ST_RF_API_smps(mode);
+	printf("Set_smps_voltage %d\n", mode);
+}
+
 void closeSigfoxLib(void) {
 	sfx_error_t err;
 
@@ -125,14 +157,14 @@ void closeSigfoxLib(void) {
 }
 
 void sendFrameRCZ(rc_mask RCZ) {
-	uint8_t customer_data[12];
+	uint8_t customer_data;
 	uint8_t customer_resp[8];
 	sfx_error_t err;
 
 	rc_bit = 0;
-	customer_data[0] = RCZ;
+	customer_data = RCZ;
 
-	err=SIGFOX_API_send_frame(customer_data,1,customer_resp, 3, downlink_request);
+	err=SIGFOX_API_send_frame(&customer_data, sizeof(customer_data), customer_resp, 2, downlink_request);
 	printf("Send Frame error: %X\n", err);
 }
 
@@ -143,55 +175,52 @@ void monarchScan(sfx_u8 rc_capabilities_bit_mask, sfx_u16 timer, sfx_timer_unit_
 	printf("\nScan Monarch error: %X \n", err);
 }
 
-sfx_u8 callback(sfx_u8 rc_bit_mask, sfx_s16 rssi)
-{
+sfx_u8 callback(sfx_u8 rc_bit_mask, sfx_s16 rssi) {
 	printf("Return rssi %d\r\n", rssi);
 
-	switch (rc_bit_mask)
-	{
+	switch (rc_bit_mask) {
 	case 0x01:  //RC1
-	{
-		printf("Detected RC1!!!:\r\n");
 
+		printf("Detected RC1!!!:\r\n");
 		rc_bit = RCZ1;
-	}
-	break;
+
+		break;
 	case 0x02: //RC2
 
 		printf("Detected RC2!!!:\r\n");
 		rc_bit = RCZ2;
-		break;
 
+		break;
 	case 0x04:  //RC3a
-	{
+
 		printf("Detected RC3!!!:\r\n");
 		rc_bit = RCZ3;
-	}
-	break;
+
+		break;
 	case 0x08:  //RC4
-	{
+
 		printf("Detected RC4!!!:\r\n");
 		rc_bit = RCZ4;
-	}
-	break;
+
+		break;
 	case 0x10: //RC5
-	{
+
 		printf("Detected RC5!!!:\r\n");
 		rc_bit = RCZ5;
-	}
-	break;
+
+		break;
 	case 0x20:  //RC6
-	{
+
 		printf("Detected RC6!!!:\r\n");
 		rc_bit = RCZ6;
-	}
-	break;
+
+		break;
 	case 0x40:  //RC7
-	{
+
 		printf("Detected RC7!!!:\r\n");
 		rc_bit = RCZ7;
-	}
-	break;
+
+		break;
 
 	default:
 		scan = 1;

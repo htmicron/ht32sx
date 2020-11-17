@@ -42,7 +42,6 @@ sigfox\st_sigfox_init.o: ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart_
 sigfox\st_sigfox_init.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_FEM.h
 sigfox\st_sigfox_init.o: ../Inc/cube_hal.h
 sigfox\st_sigfox_init.o: ../Inc/stm32l0xx_it.h
-sigfox\st_sigfox_init.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_TCXO.h
 sigfox\st_sigfox_init.o: ..\ST_API\inc\nvm_api.h
 sigfox\st_sigfox_init.o: ..\Drivers\Utils\STM32\inc\SDK_UTILS_Flash.h
 sigfox\st_sigfox_init.o: ../Inc/tim.h

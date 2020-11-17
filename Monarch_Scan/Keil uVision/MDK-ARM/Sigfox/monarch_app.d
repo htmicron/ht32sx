@@ -50,7 +50,6 @@ sigfox\monarch_app.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_Nucleo64_STM32_L
 sigfox\monarch_app.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_FEM.h
 sigfox\monarch_app.o: ../Inc/cube_hal.h
 sigfox\monarch_app.o: ../Inc/stm32l0xx_it.h
-sigfox\monarch_app.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_TCXO.h
 sigfox\monarch_app.o: ..\ST_API\inc\nvm_api.h
 sigfox\monarch_app.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\monarch_app.o: ..\Sigfox_libs\inc\sigfox_api.h

@@ -51,7 +51,6 @@ sigfox\sdk_utils_flash.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_UTILS.h
 sigfox\sdk_utils_flash.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_Middleware_Config.h
 sigfox\sdk_utils_flash.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_Nucleo64_STM32_L0xx_AUTO.h
 sigfox\sdk_utils_flash.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_FEM.h
-sigfox\sdk_utils_flash.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_TCXO.h
 sigfox\sdk_utils_flash.o: ..\ST_API\inc\nvm_api.h
 sigfox\sdk_utils_flash.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\sdk_utils_flash.o: ..\Sigfox_libs\inc\sigfox_api.h

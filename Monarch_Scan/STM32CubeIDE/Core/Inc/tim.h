@@ -33,6 +33,7 @@
 #include "st_rf_api.h"
 /* USER CODE END Includes */
 
+extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim6;
 
 /* USER CODE BEGIN Private defines */
@@ -49,6 +50,7 @@ extern TIM_HandleTypeDef htim6;
 
 /* USER CODE END Private defines */
 
+void MX_TIM2_Init(void);
 void MX_TIM6_Init(void);
 
 /* USER CODE BEGIN Prototypes */

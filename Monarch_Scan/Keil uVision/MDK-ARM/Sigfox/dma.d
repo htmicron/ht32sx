@@ -50,7 +50,6 @@ sigfox\dma.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_Nucleo64_STM32_L0xx_AUTO
 sigfox\dma.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_FEM.h
 sigfox\dma.o: ../Inc/cube_hal.h
 sigfox\dma.o: ../Inc/stm32l0xx_it.h
-sigfox\dma.o: ..\Drivers\S2LP_Middleware\STM32\inc\S2LP_AUX_TCXO.h
 sigfox\dma.o: ..\ST_API\inc\nvm_api.h
 sigfox\dma.o: ..\Sigfox_libs\inc\sigfox_types.h
 sigfox\dma.o: ..\Sigfox_libs\inc\sigfox_api.h
