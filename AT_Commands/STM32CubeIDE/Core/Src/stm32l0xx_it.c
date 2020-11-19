@@ -66,6 +66,7 @@ static volatile uint32_t n_intermediate_tim_irq = 0;
 extern RTC_HandleTypeDef hrtc;
 extern DMA_HandleTypeDef hdma_spi1_tx;
 extern DMA_HandleTypeDef hdma_spi1_rx;
+extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim21;
 extern DMA_HandleTypeDef hdma_usart1_rx;
 extern DMA_HandleTypeDef hdma_usart1_tx;
@@ -236,12 +237,29 @@ void DMA1_Channel4_5_6_7_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Channel4_5_6_7_IRQn 0 */
 
+#ifndef USE_DMA_CIRCULAR
   /* USER CODE END DMA1_Channel4_5_6_7_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_usart1_tx);
   HAL_DMA_IRQHandler(&hdma_usart1_rx);
   /* USER CODE BEGIN DMA1_Channel4_5_6_7_IRQn 1 */
+#else
 	DMA_IrqHandler(&hdma_usart1_rx);
+#endif
   /* USER CODE END DMA1_Channel4_5_6_7_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM6 global interrupt and DAC1/DAC2 underrun error interrupts.
+  */
+void TIM6_DAC_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
+
+  /* USER CODE END TIM6_DAC_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim6);
+  /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
+
+  /* USER CODE END TIM6_DAC_IRQn 1 */
 }
 
 /**
@@ -264,17 +282,18 @@ void TIM21_IRQHandler(void)
 void USART1_IRQHandler(void)
 {
   /* USER CODE BEGIN USART1_IRQn 0 */
-
+#ifndef USE_DMA_CIRCULAR
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
+#else
 	if(HT_McuApi_getDeepSleepModeFlag()) {
 		HT_McuApi_configPeripherals();
 		AT_updateFsm(0, 0);
 		HT_McuApi_setDeepSleepModeFlag(0);
 	}
 	USART_IrqHandler(&huart1, &hdma_usart1_rx);
-
+#endif
 
   /* USER CODE END USART1_IRQn 1 */
 }
