@@ -19,11 +19,13 @@
 11. [**What softwares do I need to install to run the GitHub Examples?**](#setup) <br/>
 12. [**I'm sending messages using one of GitHub examples but I can't see it at backend. What can I do?**](#senderror) <br/>
 13. [**Is there any PCB design example?**](#pcbexamples) <br/>
-14. [**Why my device is stuck in TX?**](#stucktx) <br/>
-15. [**How can I flash a new firmware to my HT32SX?**](#flashcode) <br/>
-16. [**I need to use EEPROM in my application. From which address may I start writing?**](#eepromwrite) <br/>
-17. [**How can I increase HT32SX output power?**](#outputpower) <br/>
-18. [**I received new Sigfox credentials. How should I flash it to my device?**](#credbin) <br/>
+14. [**Is there any footprint example?**](#fpexample) <br/>
+15. [**Is there a recommended external impedance matching network?**](#extimpedance) <br/>
+16. [**Why my device is stuck in TX?**](#stucktx) <br/>
+17. [**How can I flash a new firmware to my HT32SX?**](#flashcode) <br/>
+18. [**I need to use EEPROM in my application. From which address may I start writing?**](#eepromwrite) <br/>
+19. [**How can I increase HT32SX output power?**](#outputpower) <br/>
+20. [**I received new Sigfox credentials. How should I flash it to my device?**](#credbin) <br/>
 
 
 ## Answered Questions:
@@ -324,8 +326,25 @@
 <hr>
 <br/>
 
+<a name="fpexample"></a>
+### 14. Is there any footprint example?
+
+> 1. [**KiCad**](https://github.com/htmicron/thirdpartyHT32SX/tree/master/kicad)
+> 2. [**Altium**](https://www.snapeda.com/parts/HT32SXM032L/HT%20micron/view-part/?ref=search&t=ht32)
+> 3. [**Datasheet Page 12**](https://github.com/htmicron/ht32sx/blob/documents/2.2/DS001%20Rev.01%20-%20Datasheet%20HT32SX%20V2.2_31082020.pdf)
+
+<hr>
+
+<a name="extimpedance"></a>
+### 15. Is there a recommended external impedance matching network?
+
+> Please have a look at HT32SX [**Datasheet**](https://github.com/htmicron/ht32sx/blob/documents/2.2/DS001%20Rev.01%20-%20Datasheet%20HT32SX%20V2.2_31082020.pdf) page 10, to see a recommended external impedance matching network to use in your PCB.
+
+<hr>
+<br/>
+
 <a name="stucktx"></a>
-### 14. Why my device is stuck in TX?
+### 16. Why my device is stuck in TX?
 <hr>
 
 > * If your device is stuck in TX, you probably cloned a wrong firmware version from our GitHub page. <br/>
@@ -336,7 +355,7 @@
 <br/>
 
 <a name="flashcode"></a>
-### 15. How can I flash a new firmware to my HT32SX?
+### 17. How can I flash a new firmware to my HT32SX?
 <hr>
 
 > There are two options for this:
@@ -372,7 +391,7 @@
 <br/>
 
 <a name="eepromwrite"></a>
-### 16. I need to use EEPROM in my application. From which address may I start writing?
+### 18. I need to use EEPROM in my application. From which address may I start writing?
 <hr>
 
 > Sigfox credentials are stored from address 0x08080000 to 0x080800F0, so you can start writing from 0x08080100.
@@ -381,7 +400,7 @@
 <br/>
 
 <a name="outputpower"></a>
-### 17. How can I increase HT32SX output power?
+### 19. How can I increase HT32SX output power?
 <hr>
 
 > * In this question we will use the [**Generic Push Button**](https://github.com/htmicron/ht32sx/tree/master_2/Generic_Push_Button) firmware as an example. <br/>
@@ -422,7 +441,7 @@
 <br/>
 
 <a name="credbin"></a>
-### 18. I received new Sigfox credentials. How should I flash it to my device?
+### 20. I received new Sigfox credentials. How should I flash it to my device?
 <hr>
 
 > 1. Download and install [**STM32CubeProgrammer**](https://www.st.com/en/development-tools/stm32cubeprog.html).
