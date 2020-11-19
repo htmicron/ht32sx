@@ -331,7 +331,7 @@
 
 > 1. [**KiCad**](https://github.com/htmicron/thirdpartyHT32SX/tree/master/kicad)
 > 2. [**Altium**](https://www.snapeda.com/parts/HT32SXM032L/HT%20micron/view-part/?ref=search&t=ht32)
-> 3. [**Datasheet Page 12**](https://github.com/htmicron/ht32sx/blob/documents/2.2/DS001%20Rev.01%20-%20Datasheet%20HT32SX%20V2.2_31082020.pdf)
+> 3. [**Datasheet (Page 12)**](https://github.com/htmicron/ht32sx/blob/documents/2.2/DS001%20Rev.01%20-%20Datasheet%20HT32SX%20V2.2_31082020.pdf)
 
 <hr>
 
