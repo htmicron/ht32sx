@@ -88,7 +88,12 @@ void Error_Handler(void);
 #define S2LP_SPI_MOSI_PIN_Pin GPIO_PIN_7
 #define S2LP_SPI_MOSI_PIN_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
-
+void ST_Init(void);
+void MCU_Config(void);
+sfx_error_t sendFrameRC2(void);
+void openSigfoxLibRC2(void);
+void configWordRC2(void);
+void closeSigfoxLib(void);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
