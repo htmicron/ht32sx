@@ -60,12 +60,7 @@ TIM_HandleTypeDef  Tim6_Handler={.Instance=TIM6};
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void ST_Init(void);
-void MCU_Config(void);
-sfx_error_t sendFrameRC2(void);
-void openSigfoxLibRC2(void);
-void configWordRC2(void);
-void closeSigfoxLib(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -122,15 +117,11 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-//		if(button_pressed()) {
-//			printf("Sending frame...\n");
-//			sendFrameRC2();
-//			HAL_Delay(500);
-//		}
-//
-		sendFrameRC2();
-		HAL_Delay(1000);
-
+		if(button_pressed()) {
+			printf("Sending frame...\n");
+			sendFrameRC2();
+			HAL_Delay(500);
+		}
 	}
 	/* USER CODE END 3 */
 }
