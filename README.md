@@ -15,7 +15,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 ## What are you looking for?
 
-* **Datasheet**? Find it [here](https://github.com/htmicron/ht32sx/tree/documents).
+* **Datasheet**? Find it [here](https://github.com/htmicron/ht32sx/blob/documents/HTSXMO32L%20Datasheet/DS001%20Rev.03%20-%20Datasheet%20HT32SX%20V2.2_25012021.pdf).
 
 * **Firmware Examples for iMCP HT32SX V2.2**? Find it [here](https://github.com/htmicron/ht32sx/tree/master_2).
 
