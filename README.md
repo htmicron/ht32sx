@@ -21,7 +21,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 * **Frequently Asked Questions**? Go [here](https://github.com/htmicron/ht32sx/tree/faq).
 
-* **HT32SX Evaluation Board Documentation**? Find it [here]().
+* **HT32SX Evaluation Board Documentation**? Find it [here](https://github.com/htmicron/ht32sx/tree/documents/Evaluation%20Board%20Documentation).
 
 * **HT32SX PCB Examples and Libraries**? Find it [here](https://github.com/htmicron/ht32sx/tree/pcb_examples).
 
