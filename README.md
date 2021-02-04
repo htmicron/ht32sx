@@ -29,7 +29,7 @@ If you want to issue a bug to our development team, please follow our [bugtrack 
 
 ## FAQ
 
-Do you need help? Check our [FAQ](https://github.com/htmicron/ht32sx/tree/faq) or send an email to suppot_iot@htmicron.com.br. 
+Do you need help? Check our [FAQ](https://github.com/htmicron/ht32sx/tree/faq) or send an email to support_iot@htmicron.com.br. 
 
 Enjoy! =)
 
