@@ -1,16 +1,20 @@
-# ALL HT32SX DOCUMENTATION
+# HT32SX Documentation
 
-## Version 2.2 (Preliminary) - IC - Mass Production
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/59176599/91726479-ada28900-eb76-11ea-881b-882a07a4c130.JPG">
+</div>
 
-![Capture_github](https://user-images.githubusercontent.com/59176599/91726479-ada28900-eb76-11ea-881b-882a07a4c130.JPG)
+<hr>
 
-Go [here](https://github.com/htmicron/ht32sx/tree/documents/2.2) 
+## How to Clone this Branch.
 
-## Version 2.1 - Evaluation board - Discontinued
-New Evaluation board will be available in October 2020. Register your interest – mail to imcp@htmicron.com.br
+```
+git clone --single-branch --branch documents https://github.com/htmicron/ht32sx.git 
+```
 
-![evb-imcp](https://user-images.githubusercontent.com/59176599/89645432-2839fa80-d890-11ea-8b9e-d264a143384b.JPG)
+<hr>
 
-Go [here](https://github.com/htmicron/ht32sx/tree/documents/2.1)	
+## Extra Documentation.
 
-#### Please make sure to refer to right documentation above, because the pinout for v2.1 and v2.2 is different.
+Please access our [**FAQ**](https://github.com/htmicron/ht32sx/tree/faq) to learn extra information about the Sigfox Network, such as registration of a new device or a new user on Sigfox Backend.
+
