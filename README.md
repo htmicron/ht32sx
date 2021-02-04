@@ -29,19 +29,31 @@ If you want to issue a bug to our development team, please follow our [bugtrack 
 
 ## Tree view of the branches
 
-You'll find here:
-*  Examples - codes, aplication notes and design tips.
-
-This map is from the master branch, yet it provides the general overview of the branches' structure.
 ```
- ├─ applications [application notes, examples]
- │  ├─ Evaluation_Board_Design_Reference
- │  ├─ Generic_Push_Button
- │  ├─ Monarch_Scan
- │  ├─ Monarch_MoveMe
- │  ├─ Push_Button
- │  ├─ antenna_design_reference
- │  ├─ bootloaderRefresh
+ ├─ startPage
+ │  ├─ documents
+ |  |   ├─ Application Notes
+ |  |   ├─ Evaluation Board Documentation
+ |  |   ├─ Datasheet
+ │  ├─ faq
+ │  ├─ info
+ |  |   ├─ How_to_bugtracker.md
+ |  |   ├─ LICENSE
+ |  |   ├─ README.md
+ |  |   ├─ git_basic_usage_with_ht32sx_repo.md
+ │  ├─ pcb_examples
+ |  |   ├─ Test Board
+ |  |   ├─ README.md
+ │  ├─ master_2
+ |  |   ├─ AT_Commands
+ |  |   ├─ Bootloader_Refresh
+ |  |   ├─ Generic_Push_Button
+ |  |   ├─ HT32SX_P2P_Demo
+ |  |   ├─ Monarch_MoveME
+ |  |   ├─ Push_Button_RC2
+ |  |   ├─ RTC_Wake_Up
+ |  |   ├─ README.md
+ │  ├─ binaries
  ├─ LICENSE
  └─ README.md
 ```
