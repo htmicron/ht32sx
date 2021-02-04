@@ -1,4 +1,4 @@
-# HT32SX - HT Micron's Sigfox™ Monarch SiP
+# HT32SX - GitHub Tips, Bugtrack and How to Use this Repository
 
 ## Readme Organization
 
