@@ -15,32 +15,68 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 ## What are you looking for?
 
-* **Start Page**: this informative page.
+* **Datasheet**? Find it [here](https://github.com/htmicron/ht32sx/tree/documents).
 
-* **Datasheet**: Want to see datasheets and other documents? You find them [here](https://github.com/htmicron/ht32sx/tree/documents).
+* **Firmware Examples for iMCP HT32SX V2.2**? Find it [here](https://github.com/htmicron/ht32sx/tree/master_2).
 
-* **Binaries**: Want to download binaries of the most used application examples? You find them [here](https://github.com/htmicron/ht32sx/tree/binaries).
+* **Frequently Asked Questions**? Go [here](https://github.com/htmicron/ht32sx/tree/faq).
 
-* **Zip-like Sources**: Want to download the source code of the development kit in compressed files? You find them [here](https://github.com/htmicron/ht32sx/tree/zip).
+* **HT32SX Evaluation Board Documentation**? Find it [here]().
 
-* **General Info, Examples and Applications**? Go [here](https://github.com/htmicron/ht32sx/tree/info)!
+* **HT32SX PCB Examples and Libraries**? Find it [here](https://github.com/htmicron/ht32sx/tree/pcb_examples).
+
+* **HT32SX Kicad Footprint**? Find it [here](https://github.com/htmicron/thirdpartyHT32SX/tree/master/kicad).
+
+* **HT32SX Altium Library**? Find it [here](https://www.snapeda.com/parts/HT32SXM032L/HT%20micron/view-part/?ref=search&t=ht32)
+
+* **GitHub Tips, Bugtrack and How to Use this Repository**? Go [here](https://github.com/htmicron/ht32sx/tree/info).
+
+<hr>
+
+## Tree view of the branches
+
+```
+ ├─ startPage
+ │  ├─ documents
+ |  |   ├─ Application Notes
+ |  |   ├─ Evaluation Board Documentation
+ |  |   ├─ Datasheet
+ │  ├─ faq
+ │  ├─ info
+ |  |   ├─ How_to_bugtracker.md
+ |  |   ├─ LICENSE
+ |  |   ├─ README.md
+ |  |   ├─ git_basic_usage_with_ht32sx_repo.md
+ │  ├─ pcb_examples
+ |  |   ├─ Test Board
+ |  |   ├─ README.md
+ │  ├─ master_2
+ |  |   ├─ AT_Commands
+ |  |   ├─ Bootloader_Refresh
+ |  |   ├─ Generic_Push_Button
+ |  |   ├─ HT32SX_P2P_Demo
+ |  |   ├─ Monarch_MoveME
+ |  |   ├─ Push_Button_RC2
+ |  |   ├─ RTC_Wake_Up
+ |  |   ├─ README.md
+ │  ├─ binaries
+ ├─ LICENSE
+ └─ README.md
+```
 
 <hr>
 
 ## Third-party contributions:
-(not verified, revised by the community) <br/>
-([here](https://github.com/htmicron/thirdpartyHT32SX/))
 
-* Kicad HT32SX footprint [here](https://github.com/htmicron/thirdpartyHT32SX/tree/master/kicad).
-* Devkit for HT32SX [here](https://github.com/htmicron/thirdpartyHT32SX/tree/master/devkit).
+**Not verified, revised by the community:** ([here](https://github.com/htmicron/thirdpartyHT32SX/)) <br/>
+
+* Kicad HT32SX footprint: [here](https://github.com/htmicron/thirdpartyHT32SX/tree/master/kicad).
 
 <hr>
 
-### FAQ
+## Interested in our device? 
 
-Do you need help? Check our [FAQ](https://github.com/htmicron/ht32sx/tree/faq) or send an email to support_iot@htmicron.com.br. 
-
-Enjoy! =)
+Please contact our commercial department: imcp@htmicron.com.br
 
 <hr>
 
@@ -52,6 +88,6 @@ Check on the link below:
 
 [BRKHT32SX Breakout Sigfox Monarch kit](https://yadom.eu/kit-sigfox-breakout-board-brkht32sx.html)
 
-
+<hr>
 
 ---
