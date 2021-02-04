@@ -1,0 +1,1 @@
+Place here drill files and documents which explain it (e.g. for HDI PCB you can put here pdf showing drills for each layer pair)
