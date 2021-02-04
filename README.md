@@ -1,4 +1,4 @@
-# HT3SX PCB Examples
+# HT32SX PCB Examples
 
 PCB examples for HT32SX.
 
