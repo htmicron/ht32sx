@@ -1,19 +1,12 @@
 # GitHub Tips, Bugtrack and How to Use this Repository.
 
-## Readme Organization
-
-* [Using GIT for the first time?](/git_basic_usage_with_ht32sx_repo.md)
-* [FAQ, additional information and contact.](#faq)
-
-<hr>
-
 ## Using Git/GitHub for The First Time?
 Check it out: [GIT basic usage with HT32SX](/git_basic_usage_with_ht32sx_repo.md)
 
 <hr>
 
 ## Which branch to start a new project on?
-All firmware examples can be found [**here**](https://github.com/htmicron/ht32sx/tree/master_2)
+All firmware examples can be found [**HERE**](https://github.com/htmicron/ht32sx/tree/master_2).
 
 <hr>
 
