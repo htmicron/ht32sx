@@ -1,4 +1,4 @@
-# HT32SX - GitHub Tips, Bugtrack and How to Use this Repository
+# GitHub Tips, Bugtrack and How to Use this Repository.
 
 ## Readme Organization
 
