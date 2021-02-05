@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -31,6 +31,9 @@ static volatile uint8_t low_power = 1;
 static volatile uint8_t s2lp_irq_raised = 0;
 
 GPIO_PinState csd_pin_inst, cps_pin_inst,ctx_pin_inst;
+
+uint8_t user_button = 0;
+
 /* USER CODE END 1 */
 
 /** Configure pins as 
@@ -55,6 +58,9 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(USER_LED_GPIO_Port, USER_LED_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pin : PtPin */
   GPIO_InitStruct.Pin = S2LP_SPI_CS_PIN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -69,11 +75,11 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PB0 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  /*Configure GPIO pin : PtPin */
+  GPIO_InitStruct.Pin = USER_BUTTON_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  HAL_GPIO_Init(USER_BUTTON_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PB2 */
   GPIO_InitStruct.Pin = GPIO_PIN_2;
@@ -81,9 +87,19 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : PtPin */
+  GPIO_InitStruct.Pin = USER_LED_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(USER_LED_GPIO_Port, &GPIO_InitStruct);
+
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI2_3_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI2_3_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI4_15_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
 
 }
 
@@ -277,44 +293,37 @@ uint8_t getLowPowerFlag(void) {
 	return low_power;
 }
 
+void HT_GPIO_UserButtonHandler(void) {
+
+	GPIOA->BSRR = 1 << 5; /* </ LED ON (PA5) */
+
+	printf("Sending frame...\n");
+	HT_API_SendFrame();
+
+	__HAL_GPIO_EXTI_CLEAR_IT(USER_BUTTON_Pin);
+
+	HAL_NVIC_SetPriority(EXTI4_15_IRQn, 2, 0);
+	HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
+
+	GPIOA->BSRR = 1 << 21; /* </ LED OFF (PA5) */
+}
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	__HAL_GPIO_EXTI_CLEAR_IT(GPIO_Pin);
 
-	if(GPIO_Pin == GPIO_PIN_2)
-	{
+	if(GPIO_Pin == GPIO_PIN_2) {
 		if (ST_RF_API_Get_Continuous_TX_or_MONARCH_Scan_Flag()==0) {
 			//s2lp_irq_raised = 1;
 			setS2lpIrqRaisedFlag(1);
 		} else {
 			ST_RF_API_S2LP_IRQ_CB(); //If the CBPSK is implemented trigger TX State Machine
 		}
-	} 
-
-}
-
-uint8_t readButton(void) {
-	uint8_t state = 1;
-
-	if(!(GPIOB->IDR & 1<<0))
-		state = 0;
-
-	return state;
-}
-
-void onButtonRelease(void) {
-	while(readButton())
-		HAL_Delay(1);
-}
-
-uint8_t button_pressed(void) {
-	uint8_t state = 1;
-
-	while(state) {
-		state = readButton();
-		onButtonRelease();
+	} else if(GPIO_Pin == USER_BUTTON_Pin) {
+		HAL_NVIC_DisableIRQ(EXTI4_15_IRQn);
+		HT_GPIO_UserButtonHandler();
 	}
-	return 1;
+
 }
 
 void setS2lpIrqRaisedFlag(uint8_t s2lpIrqRaised) {

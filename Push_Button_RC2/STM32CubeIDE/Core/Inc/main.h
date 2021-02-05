@@ -85,15 +85,23 @@ void Error_Handler(void);
 #define S2LP_SPI_MISO_PIN_GPIO_Port GPIOB
 #define S2LP_SPI_SCLK_PIN_Pin GPIO_PIN_3
 #define S2LP_SPI_SCLK_PIN_GPIO_Port GPIOB
+#define USER_BUTTON_Pin GPIO_PIN_6
+#define USER_BUTTON_GPIO_Port GPIOA
+#define USER_BUTTON_EXTI_IRQn EXTI4_15_IRQn
 #define S2LP_SPI_MOSI_PIN_Pin GPIO_PIN_7
 #define S2LP_SPI_MOSI_PIN_GPIO_Port GPIOA
+#define USER_LED_Pin GPIO_PIN_5
+#define USER_LED_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
+
 void ST_Init(void);
 void MCU_Config(void);
-sfx_error_t sendFrameRC2(void);
-void openSigfoxLibRC2(void);
-void configWordRC2(void);
-void closeSigfoxLib(void);
+
+sfx_error_t HT_API_SendFrameRC2(void);
+void HT_API_OpenSigfoxLibRC2(void);
+void HT_API_ConfigWordRC2(void);
+void HT_API_CloseSigfoxLib(void);
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

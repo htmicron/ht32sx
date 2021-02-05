@@ -105,8 +105,8 @@ int main(void)
 
 	MCU_Config();
 
-	openSigfoxLibRC2();
-	configWordRC2();
+	HT_API_OpenSigfoxLibRC2();
+	HT_API_ConfigWordRC2();
 
 	/* USER CODE END 2 */
 
@@ -117,11 +117,13 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		if(button_pressed()) {
-			printf("Sending frame...\n");
-			sendFrameRC2();
-			HAL_Delay(500);
-		}
+
+		/*
+		 *
+		 * Wait for an external interrupt on the user button PA6.
+		 * More information about the algorithm can be found in the function HT_GPIO_UserButtonHandler located in Code/Src/gpio.c.
+		 *
+		 * */
 	}
 	/* USER CODE END 3 */
 }
@@ -174,7 +176,7 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void openSigfoxLibRC2(void) {
+void HT_API_OpenSigfoxLibRC2(void) {
 	sfx_error_t err;
 
 	/********** OPEN SIGFOX LIBRARY IN RCZ2 *********************/
@@ -185,7 +187,7 @@ void openSigfoxLibRC2(void) {
 	printf("Error Open: %X", err);
 }
 
-void configWordRC2(void) {
+void HT_API_ConfigWordRC2(void) {
 	sfx_error_t err;
 
 	sfx_u32 config_words[3]={1,0,0};
@@ -197,7 +199,7 @@ void configWordRC2(void) {
 	printf("\nConfig word err: %X\n", err);
 }
 
-sfx_error_t sendFrameRC2(void) {
+sfx_error_t HT_API_SendFrameRC2(void) {
 
 	/********** SEND MESSAGE TO RCZ2 ****************************/
 

@@ -60,12 +60,7 @@ TIM_HandleTypeDef  Tim6_Handler={.Instance=TIM6};
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void ST_Init(void);
-void MCU_Config(void);
-sfx_error_t sendFrameRC2(void);
-void openSigfoxLibRC2(void);
-void configWordRC2(void);
-void closeSigfoxLib(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -110,8 +105,8 @@ int main(void)
 	
 	MCU_Config();
 	
-	openSigfoxLibRC2();
-	configWordRC2();
+	HT_API_OpenSigfoxLibRC2();
+	HT_API_ConfigWordRC2();
 	
   /* USER CODE END 2 */
 
@@ -122,12 +117,13 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		if(button_pressed()) {
-			printf("Sending frame...\n");
-			sendFrameRC2();
-			HAL_Delay(500);
-		}
 		
+		/*
+		 *
+		 * Wait for an external interrupt on the user button PA6.
+		 * More information about the algorithm can be found in the function HT_GPIO_UserButtonHandler located in Code/Src/gpio.c.
+		 *
+		 * */
   }
   /* USER CODE END 3 */
 }
@@ -142,10 +138,10 @@ void SystemClock_Config(void)
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
-  /** Configure the main internal regulator output voltage 
+  /** Configure the main internal regulator output voltage
   */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
@@ -156,7 +152,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -180,9 +176,9 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void openSigfoxLibRC2(void) {
+void HT_API_OpenSigfoxLibRC2(void) {
 	sfx_error_t err;
-	
+
 	/********** OPEN SIGFOX LIBRARY IN RCZ2 *********************/
 	/********** IN ORDER TO OPEN OTHER RCZS, SEE SIGFOX_API.h **/
 	/********** BASICALLY CHANGES TO OTHER RC VALUE LIKE RC3 **/
@@ -191,43 +187,43 @@ void openSigfoxLibRC2(void) {
 	printf("Error Open: %X", err);
 }
 
-void configWordRC2(void) {
+void HT_API_ConfigWordRC2(void) {
 	sfx_error_t err;
-	
+
 	sfx_u32 config_words[3]={1,0,0};
-	
+
 	/********** CONFIG WORDS FOR RCZ2 ***************************/
 	/********** SEE THE DOC GETTING STARTED ********************/
-  
-  err = SIGFOX_API_set_std_config(config_words,0);
+
+	err = SIGFOX_API_set_std_config(config_words,0);
 	printf("\nConfig word err: %X\n", err);
 }
 
-sfx_error_t sendFrameRC2(void) {
-	
+sfx_error_t HT_API_SendFrameRC2(void) {
+
 	/********** SEND MESSAGE TO RCZ2 ****************************/
-	
+
 	uint8_t customer_data[12]={0xAA, 0xAA, 0xAA, 0xAA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA};
 	uint8_t customer_resp[8];
 	sfx_error_t err;
-	
+
 	/********** FUNCTION PARAMETERS  ****************************/
 	/********** THE LAST ONE IS TO REQUEST DOWNLINK ************/
 	/********** 1 - YES, 0 - NO	 ******************************/
-	
-  err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 3, downlink_request);
-	
+
+	err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 3, downlink_request);
+
 	if(downlink_request) {
 		printf("Customer resp: {");
-  
+
 		for(uint16_t i = 0; i < 7; i++) 
 			printf("0x%x,", customer_resp[i]);
-			
+
 		printf("0x%x}\n\r", customer_resp[7]);
 	}
-	
+
 	printf("\nError Send Frame: %X\n", err);
-	
+
 	return err;
 }
 
@@ -390,7 +386,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

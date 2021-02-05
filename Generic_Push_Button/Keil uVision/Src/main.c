@@ -112,7 +112,7 @@ int main(void)
 	/********** OPEN AND CONFIFIGURES SIGFOX LIBRARY IN RCZ2 *********************/
 	/********** IN ORDER TO OPEN OTHER RCZS, SEE SIGFOX_API.h **/
 	/********** BASICALLY CHANGES TO OTHER RC VALUE LIKE RCZ3 **/
-	configRegion(RCZ2);
+	HT_API_ConfigRegion(RCZ2);
 
   /* USER CODE END 2 */
 
@@ -124,11 +124,12 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-		if(button_pressed()) {
-			printf("Sending frame...\n");
-			sendFrame();
-			HAL_Delay(500);
-		}
+		/*
+		 *
+		 * Wait for an external interrupt on the user button PA6.
+		 * More information about the algorithm can be found in the function HT_GPIO_UserButtonHandler located in Code/Src/gpio.c.
+		 *
+		 * */
 	}
   /* USER CODE END 3 */
 }
@@ -143,10 +144,10 @@ void SystemClock_Config(void)
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
-  /** Configure the main internal regulator output voltage 
+  /** Configure the main internal regulator output voltage
   */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
@@ -157,7 +158,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -193,7 +194,7 @@ void HT_API_switchPa(uint8_t state) {
 	printf("Switch PA: %d\n", state);
 }
 
-void configRegion(rc_mask RCZ) {
+void HT_API_ConfigRegion(rc_mask RCZ) {
 	ST_SFX_ERR open_err = ST_SFX_ERR_NONE;
 
 	switch(RCZ){
@@ -271,7 +272,7 @@ void configRegion(rc_mask RCZ) {
 
 }
 
-sfx_error_t sendFrame(void) {
+sfx_error_t HT_API_SendFrame(void) {
 
 	/********** SEND MESSAGE TO RCZ2 ****************************/
 
@@ -394,7 +395,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
 	/* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

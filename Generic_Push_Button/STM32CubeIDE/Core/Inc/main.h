@@ -97,22 +97,22 @@ void Error_Handler(void);
 void mcuConfig(void);
 
 /*!******************************************************************
- * \fn void sendFrame(void)
+ * \fn sfx_error_t HT_API_SendFrame(void)
  * \brief Send a frame to the Sigfox network..
  *
  * \param[in]  none
  * \param[out] none
  *******************************************************************/
-sfx_error_t sendFrame(void);
+sfx_error_t HT_API_SendFrame(void);
 
 /*!******************************************************************
- * \fn void configRegion(void)
+ * \fn void HT_API_ConfigRegion(void)
  * \brief Configures the device with the region specified by the user. 
  *
  * \param[in]  rc_mask 	RCZ                  RC of the desired region       
  * \param[out] none
  *******************************************************************/
-void configRegion(rc_mask RCZ);
+void HT_API_ConfigRegion(rc_mask RCZ);
 
 /*!******************************************************************
  * \fn void HT_API_setSmpsVoltageAction(sfx_u8 mode)
@@ -131,8 +131,13 @@ void HT_API_setSmpsVoltageAction(sfx_u8 mode);
 #define S2LP_SPI_MISO_PIN_GPIO_Port GPIOB
 #define S2LP_SPI_SCLK_PIN_Pin GPIO_PIN_3
 #define S2LP_SPI_SCLK_PIN_GPIO_Port GPIOB
+#define USER_BUTTON_Pin GPIO_PIN_6
+#define USER_BUTTON_GPIO_Port GPIOA
+#define USER_BUTTON_EXTI_IRQn EXTI4_15_IRQn
 #define S2LP_SPI_MOSI_PIN_Pin GPIO_PIN_7
 #define S2LP_SPI_MOSI_PIN_GPIO_Port GPIOA
+#define USER_LED_Pin GPIO_PIN_5
+#define USER_LED_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 #define RCZ1_OUTPUT_POWER 	-32
 #define RCZ2_OUTPUT_POWER	-27

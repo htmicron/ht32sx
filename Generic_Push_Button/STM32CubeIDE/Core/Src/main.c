@@ -67,7 +67,7 @@ void ST_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+extern uint8_t user_button;
 /* USER CODE END 0 */
 
 /**
@@ -112,7 +112,7 @@ int main(void)
 	/********** OPEN AND CONFIFIGURES SIGFOX LIBRARY IN RCZ2 *********************/
 	/********** IN ORDER TO OPEN OTHER RCZS, SEE SIGFOX_API.h **/
 	/********** BASICALLY CHANGES TO OTHER RC VALUE LIKE RCZ3 **/
-	configRegion(RCZ2);
+	HT_API_ConfigRegion(RCZ2);
 
   /* USER CODE END 2 */
 
@@ -124,11 +124,13 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-		if(button_pressed()) {
-			printf("Sending frame...\n");
-			sendFrame();
-			HAL_Delay(500);
-		}
+		/*
+		 *
+		 * Wait for an external interrupt on the user button PA6.
+		 * More information about the algorithm can be found in the function HT_GPIO_UserButtonHandler located in Code/Src/gpio.c.
+		 *
+		 * */
+
 	}
   /* USER CODE END 3 */
 }
@@ -193,7 +195,7 @@ void HT_API_switchPa(uint8_t state) {
 	printf("Switch PA: %d\n", state);
 }
 
-void configRegion(rc_mask RCZ) {
+void HT_API_ConfigRegion(rc_mask RCZ) {
 	ST_SFX_ERR open_err = ST_SFX_ERR_NONE;
 
 	switch(RCZ){
@@ -273,7 +275,7 @@ void configRegion(rc_mask RCZ) {
 
 }
 
-sfx_error_t sendFrame(void) {
+sfx_error_t HT_API_SendFrame(void) {
 
 	/********** SEND MESSAGE TO RCZ2 ****************************/
 

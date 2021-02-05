@@ -1,12 +1,12 @@
 /**
   ******************************************************************************
   * File Name          : gpio.h
-  * Description        : This file contains all the functions prototypes for 
-  *                      the gpio  
+  * Description        : This file contains all the functions prototypes for
+  *                      the gpio
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -52,7 +52,14 @@ extern uint8_t getLowPowerFlag(void);
 extern void setS2lpIrqRaisedFlag(uint8_t s2lpIrqRaised);
 extern uint8_t getS2lpIrqRaisedFlag(void);
 
-extern uint8_t button_pressed(void);
+/*!******************************************************************
+ * \fn void HT_GPIO_UserButtonHandler(void)
+ * \brief Button handler (PA6). Send a frame to the Sigfox Network.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *******************************************************************/
+void HT_GPIO_UserButtonHandler(void);
 
 /* USER CODE END Prototypes */
 
