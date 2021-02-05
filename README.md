@@ -23,7 +23,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
 
 * **Firmware Examples for iMCP HT32SX V2.2**? 
   - **Code Examples:** [here](https://github.com/htmicron/ht32sx/tree/master_2).
-  - **Binaries:** [here](https://github.com/htmicron/ht32sx/tree/binaries).
+  - **Binary Files:** [here](https://github.com/htmicron/ht32sx/tree/binaries).
 
 * **HT32SX Evaluation Board Documentation**? Find it [here](https://github.com/htmicron/ht32sx/tree/documents/Evaluation%20Board%20Documentation).
 
