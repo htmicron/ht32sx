@@ -1,18 +1,13 @@
-# HT32SX MOST USED EXEMPLES IN BINARY FORM
+# HT32SX Basic Exemples in Binary Form
 
 Just upload to your device and it will work!
+
 (The SigFox Credentials on the device must be valid).
 
-### HARDWARE 2.1
+* This file contains:
+    - HT32SX-AT-Commands.bin
+    - HT32SX-Generic-Push-Button.bin
+    - HT32SX-Push-Button-RC2.bin
 
-##### coming soon
+* [Download](./HT32SX-Basic-Firmware-Examples.zip).
 
-### HARDWARE 2.2
-
-* [Software version 1.0, stable](./h2.2_s1.0.zip)
-
-* [Software version 2.0, unstable](./h2.2_s2.0.zip)
-
-## TO EXTRACT
-
-Get [7-zip](https://www.7-zip.org/).
