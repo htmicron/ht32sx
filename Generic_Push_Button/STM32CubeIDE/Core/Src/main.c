@@ -202,7 +202,7 @@ void HT_API_ConfigRegion(rc_mask RCZ) {
 	case RCZ1:
 		ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
 		open_err = St_Sigfox_Open_RCZ(RCZ1);
-		HT_API_switchPa(1);
+		HT_API_switchPa(0);
 		HT_API_setSmpsVoltageAction(7);
 
 		if(open_err != 0)

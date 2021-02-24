@@ -212,6 +212,7 @@ void HT_API_ConfigRegion(rc_mask RCZ) {
 		ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
 		open_err = St_Sigfox_Open_RCZ(RCZ2);
 		HT_API_switchPa(1);
+		HT_API_setSmpsVoltageAction(2);
 
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
@@ -231,6 +232,7 @@ void HT_API_ConfigRegion(rc_mask RCZ) {
 		open_err = St_Sigfox_Open_RCZ(RCZ4);
 		ST_RF_API_reduce_output_power(RCZ4_OUTPUT_POWER);
 		HT_API_switchPa(1);
+		HT_API_setSmpsVoltageAction(2);
 
 		if(open_err != 0)
 			printf("Open rcz error: %X\n", open_err);
