@@ -1,7 +1,7 @@
 # HT32SX PCB Antenna Example
 
 <div align="center">
-  <img src="PPCB_Antenna_3D_View.png">
+  <img src="PCB_Antenna_3D_View.png">
 </div>
 
 <hr>
