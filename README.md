@@ -23,6 +23,7 @@ We have some applications that you can use to start developing your own solution
 | [Push-Button RC2](Push_Button_RC2) | Send a SigFox™ frame after a button is pressed. |
 | [Generic Push-Button](Generic_Push_Button) | Optimized Push-Button code example. Easily reconfigurable |
 | [RTC Wake Up](RTC_Wake_Up) | Wake up from deep sleep mode using only the RTC. |
+| [HT32SX P2P-Sigfox](HT32SX_P2P_Sigfox) | P2P network with a Sigfox gateway. |
 
 <hr>
 
