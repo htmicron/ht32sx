@@ -52,6 +52,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
  |  |   ├─ README.md
  |  |   ├─ git_basic_usage_with_ht32sx_repo.md
  │  ├─ pcb_examples
+ │  |   ├─ PCB_Antenna  
  |  |   ├─ Test Board
  |  |   ├─ README.md
  │  ├─ master_2
@@ -59,6 +60,7 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
  |  |   ├─ Bootloader_Refresh
  |  |   ├─ Generic_Push_Button
  |  |   ├─ HT32SX_P2P_Demo
+ |  |   ├─ HT32SX_P2P_Sigfox
  |  |   ├─ Monarch_MoveME
  |  |   ├─ Push_Button_RC2
  |  |   ├─ RTC_Wake_Up
