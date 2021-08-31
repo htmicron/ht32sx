@@ -96,13 +96,13 @@ void BasicProtocolInit(void) {
 
 void Set_KeyStatus(FlagStatus val) {
 
-	HAL_Delay(500);
-
 	HAL_NVIC_DisableIRQ(EXTI4_15_IRQn);
-	__HAL_GPIO_EXTI_CLEAR_IT(SOFT_RESET_Pin);
 
 	if(val==SET)
 		SM_State = SM_STATE_SEND_DATA;
+
+	HAL_Delay(100);
+	HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
 }
 
 void P2P_StartRx(void) {
