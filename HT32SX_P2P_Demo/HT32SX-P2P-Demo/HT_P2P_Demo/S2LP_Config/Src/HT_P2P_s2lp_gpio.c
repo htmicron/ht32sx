@@ -66,14 +66,11 @@ void S2LPGpioIrqConfig(IrqList xIrq, SFunctionalState xNewState) {
 
 }
 
-void S2LPGpioIrqDeInit(S2LPIrqs* pxIrqInit) {
+void S2LPGpioIrqDeInit(S2LPIrqs *pxIrqInit) {
 	uint8_t tmp[4] = {0x00,0x00,0x00,0x00};
 
-	if(pxIrqInit!=NULL) {
-		uint32_t tempValue = 0x00000000;
-
-		*pxIrqInit = (*(S2LPIrqs*)&tempValue);
-	}
+	if(pxIrqInit != NULL)
+		memset(pxIrqInit, 0, sizeof(S2LPIrqs));
 
 	g_xStatus = S2LPSpiWriteRegisters(IRQ_MASK3_ADDR, 4, tmp);
 }
@@ -119,9 +116,12 @@ void HT_P2P_softReset(void) {
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+
+	__HAL_GPIO_EXTI_CLEAR_IT(GPIO_Pin);
+
 	if(GPIO_Pin == GPIO_PIN_2) {
 		P2PInterruptHandler();
-	} else if(GPIO_Pin == GPIO_PIN_0) {
+	} else if(GPIO_Pin == USER_BUTTON_PIN_Pin) {
 		Set_KeyStatus(SET);
 	} else if(GPIO_Pin == SOFT_RESET_Pin) {
 		HT_P2P_softReset();
