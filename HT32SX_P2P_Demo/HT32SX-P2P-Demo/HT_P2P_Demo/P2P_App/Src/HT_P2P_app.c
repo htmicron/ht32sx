@@ -320,7 +320,6 @@ void AppliReceiveBuff(void) {
 	S2LP_SetPayloadlength(PAYLOAD_LEN);
 
 	S2LPTimerSetRxTimerMs(700.0);
-	SET_INFINITE_RX_TIMEOUT();
 
 	/* destination address */
 	S2LP_SetDestinationAddress(DESTINATION_ADDRESS);
