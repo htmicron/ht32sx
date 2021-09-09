@@ -82,8 +82,8 @@
 #define SOURCE_ADDR_REF             0x37
 #define MULTICAST_ADDRESS           0xEE
 #define BROADCAST_ADDRESS           0xFF
-#define MY_ADDRESS                  0x54 /* < This device address */
-#define DESTINATION_ADDRESS         0x44 /* < Change this to send messages to another device */
+#define MY_ADDRESS                  0x44 /* < This device address */
+#define DESTINATION_ADDRESS         0x54 /* < Change this to send messages to another device */
 
 #define EN_AUTOACK                      S_DISABLE
 #define EN_PIGGYBACKING             	S_DISABLE
