@@ -103,8 +103,7 @@ typedef enum {
 	AT_reduce_power,				/**< MCU reduce power command */
 	AT_freq_offset,					/**< MCU frequency offset command */
 	AT_rssi_offset,					/**< MCU rssi offset command */
-	AT_lbt_offset,					/**< MCU lbt thr offset command */
-	AT_wkp							/**< MCU wake up command */
+	AT_lbt_offset					/**< MCU lbt thr offset command */
 } AT_mcuCmdType;
 
 /**

@@ -198,23 +198,25 @@ void * AT_Mcu_executeCmd(void) {
 
 	switch(status.AT_mcuCmd) {
 	case AT_deepSleep:
+	{
 		status.AT_mcuCmd = -1;
-
-#if STANDBY_MODE == 1
 
 		uint8_t ret[MAX_RESPONSE_SIZE+1];
 
 		error_code.at_error = AT_ERR_NONE;
 		sprintf((char *)ret, "0x%02X%02X\n", error_code.sfx_error, error_code.at_error);
 		HAL_UART_Transmit(&huart1, (uint8_t *)ret, MAX_RESPONSE_SIZE, 0xFFFF);
-#endif
 
 		HT_McuApi_enterDeepSleepMode();
 		break;
+	}
 	case AT_reset:
+	{
 		HT_McuApi_softwareReset();
 		break;
+	}
 	case AT_switch_pa:
+	{
 		status.AT_mcuCmd = -1;
 		AT_splitString(cmdStr, "=", firstParam, AT_False);
 		integerParam1 = firstParam[0] - '0';
@@ -222,7 +224,9 @@ void * AT_Mcu_executeCmd(void) {
 		status.AT_err = HT_McuApi_switchPa(integerParam1);
 
 		break;
+	}
 	case AT_switch_boost:
+	{
 		status.AT_mcuCmd = -1;
 		AT_splitString(cmdStr, "=", firstParam, AT_False);
 		integerParam1 = firstParam[0] - '0';
@@ -230,8 +234,9 @@ void * AT_Mcu_executeCmd(void) {
 		status.AT_err = HT_McuApi_switchBoost(integerParam1);
 
 		break;
+	}
 	case AT_reduce_power:
-
+	{
 		status.AT_mcuCmd = -1;
 		AT_splitString(cmdStr, "=", str_tmp, AT_False);
 		tmp = atoi(str_tmp);
@@ -239,8 +244,9 @@ void * AT_Mcu_executeCmd(void) {
 		status.AT_err = HT_McuApi_reduceOutputPower(tmp);
 
 		break;
+	}
 	case AT_freq_offset:
-
+	{
 		status.AT_mcuCmd = -1;
 		AT_splitString(cmdStr, "=", str_tmp, AT_False);
 
@@ -249,7 +255,9 @@ void * AT_Mcu_executeCmd(void) {
 		status.AT_err = HT_McuApi_setFreqOffset(argp);
 
 		break;
+	}
 	case AT_rssi_offset:
+	{
 		status.AT_mcuCmd = -1;
 		AT_splitString(cmdStr, "=", str_tmp, AT_False);
 
@@ -258,8 +266,9 @@ void * AT_Mcu_executeCmd(void) {
 		status.AT_err = HT_McuApi_setRssiOffset(argp);
 
 		break;
+	}
 	case AT_lbt_offset:
-
+	{
 		status.AT_mcuCmd = -1;
 		AT_splitString(cmdStr, "=", str_tmp, AT_False);
 
@@ -267,8 +276,7 @@ void * AT_Mcu_executeCmd(void) {
 
 		status.AT_err = HT_McuApi_setLbtOffset(argp);
 		break;
-	case AT_wkp:
-		break;
+	}
 	default:
 		return AT_errorRoutine;
 	}
