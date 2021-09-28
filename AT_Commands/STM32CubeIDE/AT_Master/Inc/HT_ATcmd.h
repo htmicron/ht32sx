@@ -31,11 +31,17 @@
 
 /* Defines  ------------------------------------------------------------------*/
 
-#define AT_ERR_NONE					0x00
-#define AT_ERR_PARAM_CMD			0xA0
-#define AT_ERR_UNAVAILABLE_CMD		0xA1
-#define AT_ERR_HDR					0xA2
-#define AT_ERR_OVF					0xA3
+#define AT_ERR_NONE					(uint8_t)0x00
+#define AT_ERR_PARAM_CMD			(uint8_t)0xA0
+#define AT_ERR_UNAVAILABLE_CMD		(uint8_t)0xA1
+#define AT_ERR_HDR					(uint8_t)0xA2
+#define AT_ERR_OVF					(uint8_t)0xA3
+
+#define MAX_RESPONSE_SIZE			7
+
+#define END_LINE_CH_1				';'
+#define END_LINE_CH_2				'\n'
+#define END_LINE_CH_3				'\r'
 
 /* Typedef -----------------------------------------------------------*/
 
@@ -45,13 +51,19 @@
  */
 
 typedef enum{
-	DUMMY = 0,						/**< Function not finished. */
-	ERR_NONE,						/**< No erros found */
-	ERR_PARAM_CMD,					/**< Parameter error */
-	ERR_UNAVAILABLE_CMD,			/**< Unavailable command error */
-	ERR_HDR,						/**< Header command error */
-	ERR_OVF,						/**< Overflow command error */
+	ERR_NONE = 				0x00,						/**< No erros found */
+	ERR_PARAM_CMD =			0xA0,						/**< Parameter error */
+	ERR_UNAVAILABLE_CMD = 	0xA1,						/**< Unavailable command error */
+	ERR_HDR = 				0xA2,						/**< Header command error */
+	ERR_OVF = 				0xA3,						/**< Overflow command error */
+	DUMMY =					0xA4,						/**< Function not finished. */
+	ERR_INVALID_HEX_VALUE =	0xA5
 } AT_cmdStrError;
+
+typedef enum {
+	AT_False = 0,
+	AT_True
+} AT_TxFlag;
 
 /**
  * \enum AT_cmdType
@@ -72,7 +84,10 @@ typedef enum {
 	AT_monarchScan,					/**< SigFox monarch scan command */
 	AT_stpMonarch,					/**< SigFox stop monarch command */
 	AT_close,						/**< SigFox close SigFox lib command */
-	AT_cfgrcz						/**< SigFox configure region command */
+	AT_cfgrcz,						/**< SigFox configure region command */
+	AT_id_pac,
+	AT_cw,
+	AT_stop_cw
 } AT_sigfoxCmdType;
 
 /**
@@ -102,6 +117,11 @@ typedef struct AT_cmdStruct {
 	AT_mcuCmdType AT_mcuCmd;			/**< MCU command */
 	AT_cmdStrError AT_err;				/**< Error status */
 } AT_cmdStruct;
+
+typedef struct {
+	uint8_t sfx_error;
+	uint8_t at_error;
+} __attribute__((packed)) AT_ErrorCode;
 
 /* Functions ------------------------------------------------------------------*/
 
@@ -162,4 +182,4 @@ AT_cmdStruct AT_checkCmdHdr(char *cmd);
 
 #endif /* __HT_ATCMD__ */
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semiconductors S.A *****END OF FILE****/

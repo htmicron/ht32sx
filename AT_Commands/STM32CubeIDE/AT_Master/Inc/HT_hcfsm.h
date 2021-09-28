@@ -247,7 +247,7 @@ extern void AT_updateFsm(AT_cmdStrError errStatus, AT_cmdType cmdType);
  *
  * \retval none
  *******************************************************************/
-void AT_splitString(char *cmd, char *splitChar, char *ptr);
+AT_cmdStrError AT_splitString(char *cmd, char *splitChar, char *ptr, AT_TxFlag tx_flag);
 
 /*!******************************************************************
  * \fn extern void AT_setFsmState(state_func state)
@@ -273,4 +273,4 @@ void AT_getHexValue(char *str, uint8_t *output);
 
 #endif /* _HT_HCFSM_H_ */
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semiconductors S.A *****END OF FILE****/

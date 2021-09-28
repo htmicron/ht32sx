@@ -24,6 +24,8 @@
 #ifndef _HT_MCU_API_H_
 #define _HT_MCU_API_H_
 
+#define STANDBY_MODE 0
+
 /* Functions ------------------------------------------------------------------*/
 
 /*!***********************************************************************************************************
@@ -132,7 +134,7 @@ void HT_McuApi_enterDeepSleepMode(void);
  * \retval	none
  *
  *************************************************************************************************************/
-void HT_McuApi_switchPa(uint8_t state);
+uint8_t HT_McuApi_switchPa(uint8_t state);
 
 /*!***********************************************************************************************************
  * \fn void HT_McuApi_switchBoost(void)
@@ -144,7 +146,7 @@ void HT_McuApi_switchPa(uint8_t state);
  * \retval	none
  *
  *************************************************************************************************************/
-void HT_McuApi_switchBoost(uint8_t state);
+uint8_t HT_McuApi_switchBoost(uint8_t state);
 
 /*!***********************************************************************************************************
  * \fn void HT_McuApi_reduceOutputPower(int16_t reduce_value)
@@ -156,7 +158,7 @@ void HT_McuApi_switchBoost(uint8_t state);
  * \retval	none
  *
  *************************************************************************************************************/
-void HT_McuApi_reduceOutputPower(int16_t reduce_value);
+uint8_t HT_McuApi_reduceOutputPower(int16_t reduce_value);
 
 /*!***********************************************************************************************************
  * \fn void HT_McuApi_setFreqOffset(int32_t offset)
@@ -168,7 +170,7 @@ void HT_McuApi_reduceOutputPower(int16_t reduce_value);
  * \retval	none
  *
  *************************************************************************************************************/
-void HT_McuApi_setFreqOffset(int32_t offset);
+uint8_t HT_McuApi_setFreqOffset(int32_t offset);
 
 /*!***********************************************************************************************************
  * \fn void HT_McuApi_setRssiOffset(int32_t offset)
@@ -180,7 +182,7 @@ void HT_McuApi_setFreqOffset(int32_t offset);
  * \retval	none
  *
  *************************************************************************************************************/
-void HT_McuApi_setRssiOffset(int32_t offset);
+uint8_t HT_McuApi_setRssiOffset(int32_t offset);
 
 /*!***********************************************************************************************************
  * \fn void HT_McuApi_setLbtOffset(int32_t offset)
@@ -192,8 +194,8 @@ void HT_McuApi_setRssiOffset(int32_t offset);
  * \retval	none
  *
  *************************************************************************************************************/
-void HT_McuApi_setLbtOffset(int32_t offset);
+uint8_t HT_McuApi_setLbtOffset(int32_t offset);
 
 #endif /* _HT_MCU_API_H_ */
 
-/************************ HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semiconductors S.A *****END OF FILE****/

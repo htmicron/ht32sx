@@ -45,7 +45,7 @@
  *
  *
  *************************************************************************************************************/
-void HT_MonarchApi_monarchScan(sfx_u8 rc_capabilities_bit_mask, sfx_u16 timer);
+uint8_t HT_MonarchApi_monarchScan(sfx_u8 rc_capabilities_bit_mask, sfx_u16 timer);
 
 /*!***********************************************************************************************************
  * \fn sfx_u8 HT_MonarchApi_callback(sfx_u8 rc_bit_mask, sfx_s16 rssi)
@@ -81,7 +81,7 @@ sfx_u8 HT_MonarchApi_callback(sfx_u8 rc_bit_mask, sfx_s16 rssi);
  * \retval SFX_ERR_NONE:                         none
  *
  *************************************************************************************************************/
-void HT_MonarchApi_stopMonarchScan(void);
+uint8_t HT_MonarchApi_stopMonarchScan(void);
 
 /*!***********************************************************************************************************
 * \fn uint8_t HT_MonarchApi_getRcBitMask(uint8_t rcz);
@@ -107,4 +107,4 @@ uint8_t HT_MonarchApi_getRcBitMask(uint8_t rcz);
 
 #endif
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semiconductors S.A *****END OF FILE****/

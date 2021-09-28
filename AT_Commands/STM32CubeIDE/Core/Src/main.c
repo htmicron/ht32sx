@@ -17,7 +17,6 @@
  ******************************************************************************
  */
 /* USER CODE END Header */
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
@@ -30,7 +29,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "SDK_UTILS_Flash.h"
+#include "HT_mcu_api.h"
+#include "stdlib.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,7 +52,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+extern NVM_BoardDataType sfx_credentials;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -129,10 +130,11 @@ void SystemClock_Config(void)
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
-  /** Configure the main internal regulator output voltage 
+  /** Configure the main internal regulator output voltage
   */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
@@ -143,7 +145,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -168,12 +170,15 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 void mcuConfig(void) {
+
 	ST_SFX_ERR stSfxRetErr;
+	char init_str[] = {"HT32SX\n"};
 
 	ST_Init();
 
 	NVM_BoardDataType sfxConfiguration;
 	stSfxRetErr = ST_Sigfox_Init(&sfxConfiguration, 0);
+	memcpy((uint8_t *)&sfx_credentials, (uint8_t *)&sfxConfiguration, sizeof(NVM_BoardDataType));
 
 	if(stSfxRetErr != ST_SFX_ERR_NONE) {
 		if(stSfxRetErr == ST_SFX_ERR_CREDENTIALS) {
@@ -187,19 +192,12 @@ void mcuConfig(void) {
 	/* Calibrate RTC in case of STM32*/
 	ST_MCU_API_TimerCalibration(500);
 
-	printf("Sigfox iMCP HT32SX - AT Commands\n");
-	printf("ID: %.8X - PAC: ", (unsigned int)sfxConfiguration.id);
-
-	for(uint16_t i = 0; i < sizeof(sfxConfiguration.pac); i++)
-		printf("%.2X", sfxConfiguration.pac[i]);
-
-	printf("\n");
-
 	ST_RF_API_set_xtal_freq(50000000); 
 	ST_RF_API_set_freq_offset(sfxConfiguration.freqOffset);
 	ST_RF_API_set_rssi_offset(sfxConfiguration.rssiOffset);
 	ST_RF_API_set_lbt_thr_offset(sfxConfiguration.lbtOffset);
 
+	HAL_UART_Transmit(&huart1, (uint8_t *)init_str, strlen(init_str), 100);
 }
 
 void ST_Init(void) {
@@ -235,7 +233,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
 	/* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
