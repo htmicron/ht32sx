@@ -42,7 +42,7 @@
  *
  * \retval SFX_ERR_NONE:                        	none
  *******************************************************************/
-extern sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_response, sfx_bool initiate_downlink_flag, uint8_t len);
+uint8_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_response, sfx_bool initiate_downlink_flag, uint8_t len);
 
 /*!******************************************************************
  * \fn extern void HT_SigfoxApi_configRegion(rc_mask RCZ)
@@ -51,7 +51,7 @@ extern sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *custome
  * \param[in]  rc_mask 	RCZ                  RC of the desired region
  * \param[out] none
  *******************************************************************/
-extern void HT_SigfoxApi_configRegion(rc_mask RCZ);
+uint8_t HT_SigfoxApi_configRegion(rc_mask RCZ);
 
 /*!******************************************************************
  * \fn void HT_MonarchApi_closeSigfoxLib(void)
@@ -61,7 +61,7 @@ extern void HT_SigfoxApi_configRegion(rc_mask RCZ);
  * \param[in]  none
  * \param[out] none
  *******************************************************************/
-void HT_SigfoxApi_closeSigfoxLib(void);
+uint8_t HT_SigfoxApi_closeSigfoxLib(void);
 
 /*!******************************************************************
  * \fn void HT_SigfoxApi_switchPa(uint8_t state)
@@ -81,6 +81,10 @@ void HT_SigfoxApi_switchPa(uint8_t state);
  *******************************************************************/
 void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode);
 
+uint8_t HT_SigfoxApi_GetCredentials(void);
+uint8_t HT_SigfoxApi_ContinuousWave(uint32_t frequency);
+uint8_t HT_SigfoxApi_StopCW(void);
+
 #endif
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semiconductors S.A *****END OF FILE****/

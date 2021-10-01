@@ -69,5 +69,5 @@ extern void AT_DMA_clearUartRxBuffer(void);
 
 #endif
 
-/************************ (C) COPYRIGHT HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semiconductors S.A *****END OF FILE****/
 

@@ -104,7 +104,6 @@ void FEM_Operation(FEM_OperationType operation) {
 
 		break;
 	case FEM_TX_BYPASS:
-		printf("TX\n");
 
 		tmp[0]=HIGH;
 		tmp[1]=LOW;
@@ -114,7 +113,6 @@ void FEM_Operation(FEM_OperationType operation) {
 
 		break;
 	case FEM_TX:
-		printf("TX\n");
 
 		tmp[0]=HIGH;
 		tmp[1]=HIGH;

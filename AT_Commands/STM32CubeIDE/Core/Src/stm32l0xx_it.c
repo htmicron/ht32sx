@@ -76,7 +76,7 @@ extern UART_HandleTypeDef huart1;
 /* USER CODE END EV */
 
 /******************************************************************************/
-/*           Cortex-M0+ Processor Interruption and Exception Handlers          */ 
+/*           Cortex-M0+ Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
   * @brief This function handles Non maskable interrupt.
@@ -97,6 +97,7 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
+	NVIC_SystemReset();
 
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
@@ -216,6 +217,20 @@ void EXTI2_3_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles EXTI line 4 to 15 interrupts.
+  */
+void EXTI4_15_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI4_15_IRQn 0 */
+
+  /* USER CODE END EXTI4_15_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
+  /* USER CODE BEGIN EXTI4_15_IRQn 1 */
+
+  /* USER CODE END EXTI4_15_IRQn 1 */
+}
+
+/**
   * @brief This function handles DMA1 channel 2 and channel 3 interrupts.
   */
 void DMA1_Channel2_3_IRQHandler(void)
@@ -287,11 +302,6 @@ void USART1_IRQHandler(void)
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
 #else
-	if(HT_McuApi_getDeepSleepModeFlag()) {
-		HT_McuApi_configPeripherals();
-		AT_updateFsm(0, 0);
-		HT_McuApi_setDeepSleepModeFlag(0);
-	}
 	USART_IrqHandler(&huart1, &hdma_usart1_rx);
 #endif
 

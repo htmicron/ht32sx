@@ -39,6 +39,9 @@ static char AT_reduce_power_str[] = {"REDUCEPOWER"};
 static char AT_freq_offset_str[] = {"FREQOFFSET"};
 static char AT_rssi_offset_str[] = {"RSSIOFFSET"};
 static char AT_lbt_offset_str[] = {"LBTOFFSET"};
+static char AT_id_pac_str[] = {"IDPAC"};
+static char AT_cw_str[] = {"CW"};
+static char AT_stop_cw_str[] = {"STPCW"};
 
 void AT_cleanAuxBuffer(void) {
 	memset(auxBuffer, 0, sizeof(auxBuffer));
@@ -49,11 +52,11 @@ void AT_getCmdData(uint8_t *cmd) {
 }
 
 AT_cmdStruct AT_checkCmdHdr(char *cmd) {
-	AT_cmdStruct status;
+	AT_cmdStruct status = {0};
 
 	if(!strncmp(cmd, AT_hdr, strlen(AT_hdr)))
 		status.AT_err = ERR_NONE;
-	else if(cmd[0] == ';')
+	else if((cmd[0] == END_LINE_CH_1) || (cmd[0] == END_LINE_CH_2) || (cmd[0] == END_LINE_CH_3))
 		status.AT_err = ERR_OVF;
 	else
 		status.AT_err = ERR_HDR;
@@ -120,6 +123,18 @@ AT_cmdStruct AT_checkCmdString(char *cmdStr) {
 		status.AT_type = AT_mcu;
 		status.AT_mcuCmd = AT_lbt_offset;
 		status.AT_err = ERR_NONE;
+	} else if(!strncmp(cmdStr, AT_id_pac_str, strlen(AT_id_pac_str))) {
+		status.AT_type = AT_sigfox;
+		status.AT_sigfoxCmd = AT_id_pac;
+		status.AT_err = ERR_NONE;
+	} else if(!strncmp(cmdStr, AT_cw_str, strlen(AT_cw_str))) {
+		status.AT_type = AT_sigfox;
+		status.AT_sigfoxCmd = AT_cw;
+		status.AT_err = ERR_NONE;
+	} else if(!strncmp(cmdStr, AT_stop_cw_str, strlen(AT_stop_cw_str))) {
+		status.AT_type = AT_sigfox;
+		status.AT_sigfoxCmd = AT_stop_cw;
+		status.AT_err = ERR_NONE;
 	} else {
 		status.AT_err = ERR_UNAVAILABLE_CMD;
 	}
@@ -136,4 +151,4 @@ void AT_setCmdStr(uint8_t *ptr) {
 
 }
 
-/************************ HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semiconductors S.A *****END OF FILE****/

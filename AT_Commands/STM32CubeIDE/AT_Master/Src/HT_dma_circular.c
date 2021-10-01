@@ -88,7 +88,7 @@ void DMA_IrqHandler (DMA_HandleTypeDef *hdma) {
 		hdma->Instance->CNDTR = DMA_RX_BUFFER_SIZE;    /* Set number of bytes to receive */
 		hdma->Instance->CCR |= DMA_CCR_EN;            /* Start DMA transfer */
 
-		if(UART_Buffer[strlen((char *)UART_Buffer)-1] == ';')
+		if((UART_Buffer[strlen((char *)UART_Buffer)-1] == END_LINE_CH_1) || (UART_Buffer[strlen((char *)UART_Buffer)-1] == END_LINE_CH_2) || (UART_Buffer[strlen((char *)UART_Buffer)-1] == END_LINE_CH_3))
 			AT_setCmdStr(UART_Buffer);
 
 	}
@@ -101,4 +101,4 @@ void AT_DMA_clearUartRxBuffer(void) {
 	Write = 0;
 }
 
-/************************ HT Micron Semicondutors S.A *****END OF FILE****/
+/************************ HT Micron Semiconductors S.A *****END OF FILE****/
