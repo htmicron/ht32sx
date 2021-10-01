@@ -25,7 +25,9 @@ As a SigFox™ Monarch enabled device, it allows globetrotter devices to seamles
   - **Code Examples:** [here](https://github.com/htmicron/ht32sx/tree/master_2).
   - **Binary Files:** [here](https://github.com/htmicron/ht32sx/tree/binaries).
 
-* **HT32SX Evaluation Board Documentation**? Find it [here](https://github.com/htmicron/ht32sx/tree/documents/Evaluation%20Board%20Documentation).
+* **HT32SX Evaluation Board V2.0 Documentation**? Find it [here](https://github.com/htmicron/ht32sx/tree/documents/Evaluation%20Board%20V2.0).
+
+* **HT32SX Evaluation Board V3.0 Documentation**? Find it [here](https://github.com/htmicron/ht32sx/tree/documents/Evaluation%20Board%20V3.0).
 
 * **HT32SX PCB Examples and Libraries**? Find it [here](https://github.com/htmicron/ht32sx/tree/pcb_examples).
 
