@@ -1,5 +1,6 @@
 # AT Commands for iMCP HT32SX
 
+<a name="terminal_setup"></a>
 ## 1 - Serial Terminal Setup:
 
 * Baud rate: 115200
@@ -7,7 +8,7 @@
 * Stop bits: 1
 * Parity: none
 * Flow Control: none
-* <span style="color:red">**Transmitted text: Append Nothing** </span> 
+* **Transmitted text: Append Nothing**
 
 <hr>
 
@@ -40,13 +41,13 @@
 | [AT+SEND](#send) | **DOWNLINK_FLAG:** Set this flag to 1 in order to ask for a downlink.<br/><br/>**PAYLOAD:** Payload that will be sent to the SigFox Network. It must be less or equal than 12 bytes. | Send a payload to the SigFox Network. **_Before calling this function, it is necessary to call the AT+CFGRCZ first._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+SEND=1:AAAAAAAA; (Wait for a downlink).<br/>**Example 2:** AT+SEND=0:AAAAAAAA; (Do not wait for a downlink). |
 | [AT+MONARCH](#monarch) | **RCZ:** RC beacon expected (in order to scan every region available, the RCZ value should be 127).<br/>**TIMEOUT:** Timeout in minutes. It is recommended to use at least 5 minutes of timeout. | Scan a Monarch Beacon and returns the region found. **_The library must be closed before use this command (command AT+CLOSE)._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+MONARCH=2:5; (scan only RC2 beacons). <br/>**Example 2:** AT+MONARCH=127:5; |
 | AT+STPMONARCH | **None** | Stop an already running Monarch Scan. Returns 0x0000 if ok.<br/>**Example:** AT+STPMONARCH; |
-| AT+CLOSE | **None** | This command closes the SigFox library (Free the allocated memory of SIGFOX_API_open and close RF).<br/>**Example:** AT+CLOSE; |
+| AT+CLOSE | **None** | This command closes the SigFox library (Free the allocated memory of SIGFOX_API_open and close RF).<br/><br/>**Example:** AT+CLOSE; |
 | AT+RESET | **None** | Soft reset. | **Example:** AT+RESET; |
 | [AT+DEEPSLEEP](#deepsleep) | **None** | HT32SX low power state.<br/><br/>**Example:** AT+DEEPSLEEP; |
 | AT+SWITCHPA | **PA_EN:** 1 to enable and 0 to disable. | Turns the power amplifier on/off. More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1** (PA ON): AT+SWITCHPA=1;<br/>**Example 2** (PA OFF): AT+SWITCHPA=0; |
 | AT+SWITCHBOOST |  **BOOST_EN:** Enable/disable boost mode. | Enable/disable S2LP boost mode.<br/><br/>**Example 1** (Boost Enable): AT+SWITCHBOOST=1;<br/>**Example 2** (Boost Disable): AT+SWITCHBOOST=0; |
 | AT+REDUCEPOWER | **REDUCE_VALUE:** Reduce factor. | Reduces the output power of the transmitted signal (Reduction*0.5dB against the actual value. A negative value increase the output power).<br/><br/>**Example:** AT+REDUCEPOWER=-27; |
-| AT+FREQOFFSET | **OFFSET_VALUE:** Frequency offset in Hz as an integer. | Sets the RF frequency offset in Hz. <br/>**Example:** AT+FREQOFFSET=1200; |
+| AT+FREQOFFSET | **OFFSET_VALUE:** Frequency offset in Hz as an integer. | Sets the RF frequency offset in Hz. <br/><br/>**Example:** AT+FREQOFFSET=1200; |
 | AT+RSSIOFFSET | **OFFSET_VALUE:** RSSI offset as an integer in dB. | Sets a RSSI offset.<br/><br/>**Example:** AT+RSSIOFFSET=-17; |
 | AT+LBTOFFSET | **OFFSET_VALUE:** Integer representing LBT offset in dB. | Sets an offset for turning the LBT mechanism. <br/><br/>**Example:** AT+LBTOFFSET=0; |
 | AT+CW | **FREQUENCY:**  Frequency at which the signal has to be generated. | Executes a continuous wave transmission. <br/><br/>**Example:** AT+CW=902200000; |
@@ -181,7 +182,7 @@ Before returning this value, the application will convert it to ASCII characters
 | AT_ERR_NONE					| 0x00 | No errors |
 | AT_ERR_PARAM_CMD			| 0xA0 | Parameter error. An invalid parameter was used. Please check [Table 1.2](#tab_1) to see how the command should be. |
 | AT_ERR_UNAVAILABLE_CMD		| 0xA1 | Unavailable command. Please have a look at [Table 1.2](#tab_1) to see all available commands. |
-| AT_ERR_HDR					| 0xA2 | Command header error. The command string must start with "AT+". |
+| AT_ERR_HDR					| 0xA2 | Command header error. The command string must start with "AT+". Please check if you selected "Append Nothing". See [Section 1](#terminal_setup) for more details. |
 | AT_ERR_OVF					| 0xA3 | Command or parameter overflow. Your command string is too large or your payload is exceeding 12 bytes. |
 
 <hr>
