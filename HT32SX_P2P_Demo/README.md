@@ -18,7 +18,7 @@ P2P Demo Application starts configuring some necessary peripherals, like USART1 
  <div align="center"> Finite State Machine Diagram. </div>
 
 <div align="center">
-  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/p2p_fsm.PNG">
+  <img src="Screenshots/p2p_fsm.PNG">
 </div>
 
 <br/>
@@ -51,7 +51,7 @@ git clone --single-branch --branch master_2 https://github.com/htmicron/ht32sx.g
 3. Click *Run* to compile and flash the new firmware into your device: <br/>
 
 <div align="center">
-  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/run.jpg">
+  <img src="Screenshots/run.jpg">
 </div>
 
 <br/>
@@ -59,14 +59,14 @@ git clone --single-branch --branch master_2 https://github.com/htmicron/ht32sx.g
 4. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
 
 <div align="center">
-  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/termite1.PNG">
+  <img src="Screenshots/termite1.PNG">
 </div>
 
 5. Do the same (steps 3 and 4) with other devices that is going to be part of this test.
 6. Press the button of one of tested devices and check if the message “Hello, World!” will be shown in the other terminal:
 
 <div align="center">
-  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/termite2.PNG">
+  <img src="Screenshots/termite2.PNG">
 </div>
 
 <br/>
@@ -81,7 +81,7 @@ git clone --single-branch --branch master_2 https://github.com/htmicron/ht32sx.g
     - Open *HT_P2P_app.c* file and change *S2LP_SetDestinationAddress* (located in *AppliSendBuff* function) argument to *BROADCAST_ADDRESS* or *MULTICAST_ADDRESS* defines. Example:
 
 <div align="center">
-  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/example.jpg">
+  <img src="Screenshots/example.jpg">
 </div>
 
 ## Extra Documentation
