@@ -18,7 +18,7 @@ P2P Demo Application starts configuring some necessary peripherals, like USART1 
  <div align="center"> Finite State Machine Diagram. </div>
 
 <div align="center">
-  <img src="https://github.com/htmicron/work_hendrick/blob/master/HT32SX_P2P_Demo/Screenshots/p2p_fsm.PNG">
+  <img src="Screenshots/p2p_fsm.PNG">
 </div>
 
 <br/>
