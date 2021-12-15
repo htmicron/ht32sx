@@ -331,14 +331,14 @@
 
 > 1. [**KiCad**](https://github.com/htmicron/thirdpartyHT32SX/tree/master/kicad)
 > 2. [**Altium**](https://www.snapeda.com/parts/HT32SXM032L/HT%20micron/view-part/?ref=search&t=ht32)
-> 3. [**Datasheet (Page 12)**](https://github.com/htmicron/ht32sx/blob/documents/2.2/DS001%20Rev.01%20-%20Datasheet%20HT32SX%20V2.2_31082020.pdf)
+> 3. [**Datasheet (Page 12)**](https://github.com/htmicron/ht32sx/blob/documents/HTSXMO32L%20Datasheet/DS001-HT32SX.pdf)
 
 <hr>
 
 <a name="extimpedance"></a>
 ### 15. Is there a recommended external impedance matching network?
 
-> Please have a look at HT32SX [**Datasheet**](https://github.com/htmicron/ht32sx/blob/documents/2.2/DS001%20Rev.01%20-%20Datasheet%20HT32SX%20V2.2_31082020.pdf) page 10, to see a recommended external impedance matching network to use in your PCB.
+> Please have a look at HT32SX [**Datasheet**](https://github.com/htmicron/ht32sx/blob/documents/HTSXMO32L%20Datasheet/DS001-HT32SX.pdf) page 10, to see a recommended external impedance matching network to use in your PCB.
 
 <hr>
 <br/>
