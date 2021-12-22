@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * @file    usart.h
+  * @file    crc.h
   * @brief   This file contains all the function prototypes for
-  *          the usart.c file
+  *          the crc.c file
   ******************************************************************************
   * @attention
   *
@@ -17,8 +17,8 @@
   ******************************************************************************
   */
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __USART_H__
-#define __USART_H__
+#ifndef __CRC_H__
+#define __CRC_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,23 +31,34 @@ extern "C" {
 
 /* USER CODE END Includes */
 
-extern UART_HandleTypeDef huart1;
+extern CRC_HandleTypeDef hcrc;
 
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
 
-void MX_USART1_UART_Init(void);
+void MX_CRC_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-void HT_UART_DisableParalellIrqn(void);
-void HT_UART_EnableParalellIrqn(void);
+
+/*!******************************************************************
+ * \fn uint32_t HT_CRC_CalculateCRC(uint8_t *input, uint32_t len)
+ * \brief Calculates CRC32 of an array.
+ *
+ * \param[in]  uint8_t *input				Input array.
+ * \param[in]  uint32_t len					Array length.
+ * \param[out] none.
+ *
+ * \retval CRC calculated.
+ *******************************************************************/
+uint32_t HT_CRC_CalculateCRC(uint8_t *input, uint32_t len);
+
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __USART_H__ */
+#endif /* __CRC_H__ */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

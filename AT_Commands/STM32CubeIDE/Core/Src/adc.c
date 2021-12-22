@@ -43,7 +43,7 @@ void MX_ADC_Init(void)
   */
   hadc.Instance = ADC1;
   hadc.Init.OversamplingMode = DISABLE;
-  hadc.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;
+  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
   hadc.Init.Resolution = ADC_RESOLUTION_12B;
   hadc.Init.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
   hadc.Init.ScanConvMode = ADC_SCAN_DIRECTION_FORWARD;
@@ -163,7 +163,7 @@ uint32_t HT_getTemperatureAD(void) {
 	ADC->CCR |= ADC_CCR_TSEN;
 
 	HAL_ADC_Start(&hadc);
-	while(HAL_ADC_PollForConversion(&hadc,ADC_CHANNEL_TEMPSENSOR)!=0);
+	while(HAL_ADC_PollForConversion(&hadc,0xFFFF)!=0);
 	temp = HAL_ADC_GetValue(&hadc);
 	HAL_ADC_Stop(&hadc);
 

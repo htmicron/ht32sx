@@ -39,6 +39,8 @@
 | [AT+IDPAC](#id_pac) | **None** | Get device ID and PAC. More details can be found at [Section 4](#cmd_details).<br/><br/>**Example:** AT+IDPAC;|
 | [AT+CFGRCZ](#cfgrcz) | **RCZ:** Sigfox Network RC Zone. | Open SigFox library according to the region. More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+CFGRCZ=2; |
 | [AT+SEND](#send) | **DOWNLINK_FLAG:** Set this flag to 1 in order to ask for a downlink.<br/><br/>**PAYLOAD:** Payload that will be sent to the SigFox Network. It must be less or equal than 12 bytes. | Send a payload to the SigFox Network. **_Before calling this function, it is necessary to call the AT+CFGRCZ first._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+SEND=1:AAAAAAAA; (Wait for a downlink).<br/>**Example 2:** AT+SEND=0:AAAAAAAA; (Do not wait for a downlink). |
+| [AT+SENDCRC](#sendcrc) | **DOWNLINK_FLAG:** Set this flag to 1 in order to ask for a downlink.<br/><br/>**PAYLOAD:** Payload that will be sent to the SigFox Network. It must be less or equal than 12 bytes.<br/><br/>**CRC32:** 32 bits CRC of the respective payload in **ASCII**. | Send a payload to the SigFox Network and check the CRC of the payload. **_Before calling this function, it is necessary to call the AT+CFGRCZ first._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+SENDCRC=1:00112233445566778899AABB:3138A376;<br/>**Example 2:** AT+SENDCRC=0:00112233445566778899AABB:3138A376; |
+| AT+SENDBIT | **DOWNLINK_FLAG:** Set this flag to 1 in order to ask for a downlink.<br/><br/>**BIT:** Bit value that is going to be sent to the Sigfox Network **(must be 0 or 1)**. | Send a single bit to the SigFox Network. **_Before calling this function, it is necessary to call the AT+CFGRCZ first._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+SENDBIT=0:0;<br/>**Example 2:** AT+SENDBIT=0:1; |
 | [AT+MONARCH](#monarch) | **RCZ:** RC beacon expected (in order to scan every region available, the RCZ value should be 127).<br/>**TIMEOUT:** Timeout in minutes. It is recommended to use at least 5 minutes of timeout. | Scan a Monarch Beacon and returns the region found. **_The library must be closed before use this command (command AT+CLOSE)._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+MONARCH=2:5; (scan only RC2 beacons). <br/>**Example 2:** AT+MONARCH=127:5; |
 | AT+STPMONARCH | **None** | Stop an already running Monarch Scan. Returns 0x0000 if ok.<br/>**Example:** AT+STPMONARCH; |
 | AT+CLOSE | **None** | This command closes the SigFox library (Free the allocated memory of SIGFOX_API_open and close RF).<br/><br/>**Example:** AT+CLOSE; |
@@ -179,11 +181,14 @@ Before returning this value, the application will convert it to ASCII characters
 
 | Error Name | Value | Details |
 |:-----------------:|:----:|:-----------------------------------------------------------------------------------:|
-| AT_ERR_NONE					| 0x00 | No errors |
-| AT_ERR_PARAM_CMD			| 0xA0 | Parameter error. An invalid parameter was used. Please check [Table 1.2](#tab_1) to see how the command should be. |
-| AT_ERR_UNAVAILABLE_CMD		| 0xA1 | Unavailable command. Please have a look at [Table 1.2](#tab_1) to see all available commands. |
-| AT_ERR_HDR					| 0xA2 | Command header error. The command string must start with "AT+". Please check if you selected "Append Nothing". See [Section 1](#terminal_setup) for more details. |
-| AT_ERR_OVF					| 0xA3 | Command or parameter overflow. Your command string is too large or your payload is exceeding 12 bytes. |
+| AT_ERROR_NONE					| 0x00 | No errors |
+| AT_ERROR_PARAM_CMD			| 0xA0 | Parameter error. An invalid parameter was used. Please check [Table 1.2](#tab_1) to see how the command should be. |
+| AT_ERROR_UNAVAILABLE_CMD		| 0xA1 | Unavailable command. Please have a look at [Table 1.2](#tab_1) to see all available commands. |
+| AT_ERROR_HDR					| 0xA2 | Command header error. The command string must start with "AT+". Please check if you selected "Append Nothing". See [Section 1](#terminal_setup) for more details. |
+| AT_ERROR_OVF					| 0xA3 | Command or parameter overflow. Your command string is too large or your payload is exceeding 12 bytes. |
+| AT_ERROR_INVALID_HEX_VALUE | 0xA4 | Invalid hexadecimal value. The payload must be made up only of hexadecimal numbers. |
+| AT_ERROR_INVALID_CRC | 0xA5 | Invalid CRC value. The payload sent is wrong or the CRC was wrongly calculated. |
+| AT_ERROR_TIMEOUT | 0xA6 | Command timeout. This error usually is generated when a command is sent during the Monarch Scan execution. Resending the previous command should solve the problem. |
 
 <hr>
 
@@ -206,7 +211,7 @@ Get device ID and PAC.
 #### > Command Return:
 This command will always returns 34 bytes: ID and PAC values converted to ASCII + '{', '}' and ':' characters + 7 bytes of error code + '\n'.
 
-An usage example is shown below:
+#### > Example: 
 
 <div align="center">
     <img src="Screenshots/id_pac.PNG">
@@ -243,7 +248,7 @@ Open SigFox library and configure the device output power according to the regio
 
 </div>
 
-An usage example is shown below:
+#### > Examples: 
 
 * Setting up device to work in RC2: 
 
@@ -257,7 +262,6 @@ AT+CFGRCZ=2;
 <div align="center"> Figure 3.4 - AT+CFGRCZ configuring device to RC2. </div>
 
 <hr>
-<br/>
 
 <a name="send"></a>
 
@@ -272,7 +276,7 @@ Send a message to the Sigfox Network. This command **MUST BE** used **ONLY** aft
 #### > Parameters: 
 
 > 1. DOWNLINK_FLAG: 1 or 0. If 1, ask a Sigfox base station to send a downlink data. If 0, send a frame to the Sigfox network without asking for a downlink.
-> 2. PAYLOAD_DATA: Payload that will be sent to the Sigfox network. **THESE VALUES MUST BE SENT IN HEXADECIMAL!** 
+> 2. PAYLOAD_DATA: Payload that will be sent to the Sigfox network.**THESE VALUES MUST BE ONLY HEXADECIMAL NUMBERS!** 
 
 #### > Command Return: 
 
@@ -280,7 +284,7 @@ If the device did not ask for a downlink, this command will return only 7 bytes 
 
 <br/>
 
-Usage examples are shown below: 
+#### > Examples: 
 
 * Sending a frame without asking for a downlink:
 
@@ -316,6 +320,57 @@ AT+SEND=1:00112233445566778899AABB;
 <br/>
 
 **Note:** Sigfox base stations can take up to 30s to send a downlink.
+
+<br/>
+<hr>
+
+<a name="sendcrc"></a>
+
+### AT+SENDCRC
+
+```
+AT+SENDCRC=<DOWNLINK_FLAG>:<PAYLOAD_DATA>:<CRC32>;
+```
+
+Check the CRC of the received payload before transmitting the Sigfox message. This command **MUST BE** used **ONLY** after **AT+CFGRCZ**! 
+
+#### > CRC specifications: 
+
+* Polynomial: 0x04C11DB7. <br/>
+* Length: 32 bit. <br/>
+* Init Value: 0xFFFFFFFF. <br/>
+
+#### > Parameters: 
+
+> 1. DOWNLINK_FLAG: 1 or 0. If 1, ask a Sigfox base station to send a downlink data. If 0, send a frame to the Sigfox network without asking for a downlink.
+> 2. PAYLOAD_DATA: Payload that will be sent to the Sigfox network. **THESE VALUES MUST BE ONLY HEXADECIMAL NUMBERS!** 
+> 3. CRC32: 32 bit CRC of the respective payload.
+
+#### > Examples: 
+
+* Sending a frame without asking for a downlink and adding a CRC of 32 bit at the end of the string:
+
+```
+AT+SENDCRC=0:00112233445566778899AABB:3138A376;
+```
+
+<br/>
+
+<div align="center">
+    <img src="Screenshots/sendcrc_no_downlink.png">
+</div>
+<div align="center"> Figure 7.4 - Sending a payload checked with a CRC32 without asking for a downlink. </div>
+
+<br/>
+
+* **WARNING:** The CRC value must be calculated with the payload converted to ASCII. The example below shows how to calculate CRC using an online calculator:
+
+Online calculator: https://crccalc.com
+
+<div align="center">
+    <img src="Screenshots/crc_calculator.png">
+</div>
+<div align="center"> Figure 8.4 - Calculating the CRC32 of a payload with an online calculator. </div>
 
 <br/>
 <hr>
@@ -362,7 +417,7 @@ This command will return 15 bytes: 7 bytes of error code + 7 bytes of monarch da
 </div>
 
 
-Usage examples of this command are shown below:
+#### > Examples: 
 
 * Scanning all Sigfox regions:
 
@@ -373,7 +428,7 @@ AT+MONARCH=127:6;
 <div align="center">
   <img src="Screenshots/monarch.PNG">
 </div>
-<div align="center"> Figure 7.4 - Scanning any monarch beacon. </div>
+<div align="center"> Figure 9.4 - Scanning any monarch beacon. </div>
 
 * Scanning a single region (RC2):
 
@@ -384,7 +439,7 @@ AT+MONARCH=2:6;
 <div align="center">
   <img src="Screenshots/monarch_single.PNG">
 </div>
-<div align="center"> Figure 7.4 - Scanning a single monarch region. </div>
+<div align="center"> Figure 10.4 - Scanning a single monarch region. </div>
 
 <br/>
 <hr>

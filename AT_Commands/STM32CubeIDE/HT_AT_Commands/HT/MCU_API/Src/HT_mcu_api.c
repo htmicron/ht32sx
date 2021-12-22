@@ -24,7 +24,7 @@
 #include "HT_mcu_api.h"
 #include "SDK_UTILS_Flash.h"
 
-uint8_t deepSleepModeFlag = 0;
+volatile uint8_t deepSleepModeFlag = 0;
 
 void HT_McuApi_configPeripherals(void) {
 
@@ -38,8 +38,11 @@ void HT_McuApi_configPeripherals(void) {
 	HAL_SPI_MspInit(&hspi1);
 
 	MX_USART1_UART_Init();
+	HAL_UART_MspInit(&huart1);
 	__HAL_UART_DISABLE(&huart1);
 	__HAL_UART_ENABLE(&huart1);
+
+	MX_ADC_Init();
 }
 
 void HT_McuApi_enterGpioLowPower(void) {
@@ -54,7 +57,7 @@ void HT_McuApi_enterGpioLowPower(void) {
 #if STANDBY_MODE == 1
 	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_15);
 #else
-	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_15) & (~GPIO_PIN_6) & (~GPIO_PIN_9) & (~GPIO_PIN_10);
+	GPIO_InitStructure.Pin = GPIO_PIN_All & (~GPIO_PIN_15) & (~GPIO_PIN_6);
 #endif
 
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
