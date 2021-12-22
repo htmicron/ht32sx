@@ -32,6 +32,8 @@ static volatile uint8_t low_power = 1;
 static volatile uint8_t s2lp_irq_raised = 0;
 
 GPIO_PinState csd_pin_inst, cps_pin_inst,ctx_pin_inst;
+
+extern volatile uint8_t deepSleepModeFlag;
 /* USER CODE END 1 */
 
 /** Configure pins as
@@ -93,10 +95,10 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(USER_LED_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI2_3_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(EXTI2_3_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(EXTI2_3_IRQn);
 
-  HAL_NVIC_SetPriority(EXTI4_15_IRQn, 1, 0);
+  HAL_NVIC_SetPriority(EXTI4_15_IRQn, 2, 0);
   HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
 
 }
@@ -264,7 +266,7 @@ void S2LPIRQEnable(uint8_t state, uint8_t edge_direction)
 	if (xNewState == ENABLE)
 	{
 		HAL_NVIC_EnableIRQ(EXTI2_3_IRQn);
-		HAL_NVIC_SetPriority(EXTI2_3_IRQn, 0x00, 0x00);
+		HAL_NVIC_SetPriority(EXTI2_3_IRQn, 0x01, 0x00);
 	}
 	else
 		HAL_NVIC_DisableIRQ(EXTI2_3_IRQn);
@@ -294,7 +296,11 @@ uint8_t getLowPowerFlag(void) {
 void HT_GPIO_UserButtonHandler(void) {
 
 	__HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
-	HT_McuApi_configPeripherals();
+
+	if(deepSleepModeFlag) {
+		deepSleepModeFlag = 0;
+		HT_McuApi_configPeripherals();
+	}
 
 	GPIOA->BSRR = 1 << 5; /* </ LED ON (PA5) */
 

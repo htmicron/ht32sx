@@ -53,12 +53,6 @@ extern "C" {
 #include "st_rf_api.h"
 #include "nvm_api.h"
 
-//#include "HT_sigfox_api.h"
-//#include "HT_monarch_api.h"
-#include "HT_dma_circular.h"
-#include "HT_ATcmd.h"
-#include "HT_hcfsm.h"
-
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

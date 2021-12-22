@@ -16,7 +16,6 @@
 #include "main.h"
 #include "tim.h"
 #include "HT_sigfox_api.h"
-#include "HT_hcfsm.h"
 
 extern uint8_t asc2_data_flag;
 NVM_BoardDataType sfx_credentials;
@@ -96,14 +95,42 @@ uint8_t HT_SigfoxApi_closeSigfoxLib(void) {
 	return err;
 }
 
-uint8_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_response, sfx_bool initiate_downlink_flag, uint8_t len) {
+uint8_t HT_SigfoxApi_sendBit(sfx_bool bit_value, sfx_bool initiate_downlink_flag) {
 	uint8_t err = 0;
+	uint8_t customer_response[8];
 	uint8_t tmp[19];
 
 	if(initiate_downlink_flag)
 		HAL_TIM_Base_Start_IT(&htim21);
 
-	err = SIGFOX_API_send_frame(customer_data, len,customer_response, 3, initiate_downlink_flag);
+	err = SIGFOX_API_send_bit(bit_value, customer_response, 2, initiate_downlink_flag);
+
+	if(initiate_downlink_flag && !err) {
+		memset(tmp, 0, sizeof(tmp));
+
+		tmp[0] = '{';
+		sprintf((char *)&tmp[1], "%02X%02X%02X%02X%02X%02X%02X%02X\n", customer_response[0], customer_response[1], customer_response[2], customer_response[3],
+				customer_response[4], customer_response[5], customer_response[6], customer_response[7]);
+		tmp[17] = '}';
+
+		HAL_UART_Transmit(&huart1, tmp, strlen((char *)tmp), 0xFFFF);
+	}
+
+	if(initiate_downlink_flag)
+		HAL_TIM_Base_Stop_IT(&htim21);
+
+	return err;
+}
+
+uint8_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_bool initiate_downlink_flag, uint8_t len) {
+	uint8_t err = 0;
+	uint8_t tmp[19];
+	uint8_t customer_response[8];
+
+	if(initiate_downlink_flag)
+		HAL_TIM_Base_Start_IT(&htim21);
+
+	err = SIGFOX_API_send_frame(customer_data, len,customer_response, 2, initiate_downlink_flag);
 
 	if(initiate_downlink_flag && !err) {
 		memset(tmp, 0, sizeof(tmp));

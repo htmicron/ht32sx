@@ -30,11 +30,10 @@
 #define MAX_HEX_SIZE 24
 
 /*!******************************************************************
- * \fn extern sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_response, sfx_bool initiate_downlink_flag)
+ * \fn uint8_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_bool initiate_downlink_flag, uint8_t len)
  * \brief Send a frame to the Sigfox network.
  *
  * \param[in]  sfx_u8 *customer_data				Buffer that is going to be sent.
- * \param[in]  sfx_u8 *customer_response			Buffer that will receive the downlink.
  * \param[in]  sfx_bool initiate_downlink_flag		Downlink flag. If it is 1, the device will wait for a downlink after send a payload.
  * \param[in]  uint8_t len							Payload data length.
  *
@@ -42,7 +41,19 @@
  *
  * \retval SFX_ERR_NONE:                        	none
  *******************************************************************/
-uint8_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_response, sfx_bool initiate_downlink_flag, uint8_t len);
+uint8_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_bool initiate_downlink_flag, uint8_t len);
+
+/*!******************************************************************
+ * \fn uint8_t HT_SigfoxApi_sendFrame(sfx_bool bit_value, sfx_bool initiate_downlink_flag)
+ * \brief Send a single bit to the Sigfox network.
+ *
+ * \param[in]  sfx_bool bit_value					Bit vallue (0/1).
+ * \param[in]  sfx_bool initiate_downlink_flag		Downlink flag. If it is 1, the device will wait for a downlink after send a payload.
+ * \param[out] none
+ *
+ * \retval SFX_ERR_NONE:                        	none
+ *******************************************************************/
+uint8_t HT_SigfoxApi_sendBit(sfx_bool bit_value, sfx_bool initiate_downlink_flag);
 
 /*!******************************************************************
  * \fn extern void HT_SigfoxApi_configRegion(rc_mask RCZ)
