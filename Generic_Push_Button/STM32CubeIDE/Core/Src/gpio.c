@@ -32,8 +32,6 @@ static volatile uint8_t s2lp_irq_raised = 0;
 
 GPIO_PinState csd_pin_inst, cps_pin_inst,ctx_pin_inst;
 
-uint8_t user_button = 0;
-
 /* USER CODE END 1 */
 
 /** Configure pins as 

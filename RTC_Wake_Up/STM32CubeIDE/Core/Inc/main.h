@@ -96,33 +96,6 @@ void Error_Handler(void);
  *******************************************************************/
 void mcuConfig(void);
 
-/*!******************************************************************
- * \fn void sendFrame(void)
- * \brief Send a frame to the Sigfox network..
- *
- * \param[in]  none
- * \param[out] none
- *******************************************************************/
-sfx_error_t sendFrame(void);
-
-/*!******************************************************************
- * \fn void configRegion(void)
- * \brief Configures the device with the region specified by the user. 
- *
- * \param[in]  rc_mask 	RCZ                  RC of the desired region       
- * \param[out] none
- *******************************************************************/
-void configRegion(rc_mask RCZ);
-
-/*!******************************************************************
- * \fn void HT_API_setSmpsVoltageAction(sfx_u8 mode)
- * \brief Enable S2LP boost mode.
- *
- * \param[in]  sfx_u8 mode                  Desired output voltage. Check UM2169 for more details.
- * \param[out] none
- *******************************************************************/
-void HT_API_setSmpsVoltageAction(sfx_u8 mode);
-
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

@@ -465,7 +465,7 @@ void HT_setVddTx(uint32_t vdd) {
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	uint32_t aux;
-	uint32_t ad;
+	uint32_t ad __attribute__((unused));
 
 	if(htim->Instance == TIM21) {
 		aux = HT_getVrefData();
