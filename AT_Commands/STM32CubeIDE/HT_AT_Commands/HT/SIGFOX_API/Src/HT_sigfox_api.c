@@ -21,62 +21,123 @@ extern uint8_t asc2_data_flag;
 NVM_BoardDataType sfx_credentials;
 
 uint8_t HT_SigfoxApi_configRegion(rc_mask RCZ) {
-	uint8_t open_err = 0;
+	uint8_t error = 0;
 
 	switch(RCZ){
 	case RCZ1:
+	{
+		error = SIGFOX_API_open(&(sfx_rc_t)RC1);
+		if(error)
+			break;
+
 		ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
-		open_err = St_Sigfox_Open_RCZ(RCZ1);
 		HT_SigfoxApi_switchPa(0);
 		HT_SigfoxApi_setSmpsVoltageAction(7);
 
 		break;
+	}
 	case RCZ2:
+	{
+		sfx_u32 config_words[3]={1,0,0};
+
+		error = SIGFOX_API_open(&(sfx_rc_t)RC2);
+		if(error)
+			break;
+
+		error = SIGFOX_API_set_std_config(config_words,0);
+		if(error)
+			break;
+
 		ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
-		open_err = St_Sigfox_Open_RCZ(RCZ2);
 		HT_SigfoxApi_switchPa(1);
 		HT_SigfoxApi_setSmpsVoltageAction(2);
 
+
 		break;
+	}
 	case RCZ3:
-		open_err = St_Sigfox_Open_RCZ(RCZ3);
+	{
+		sfx_u32 config_words[3] = RC3C_CONFIG;
+
+		error = SIGFOX_API_open(&(sfx_rc_t)RC3C);
+		if(error)
+			break;
+
+		error = SIGFOX_API_set_std_config(config_words,0);
+		if(error)
+			break;
+
 		ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
 		HT_SigfoxApi_switchPa(0);
 		HT_SigfoxApi_setSmpsVoltageAction(7);
 
 		break;
+	}
 	case RCZ4:
-		open_err = St_Sigfox_Open_RCZ(RCZ4);
+	{
+		sfx_u32 config_words[3]={0,0x40000000,0};
+
+		error = SIGFOX_API_open(&(sfx_rc_t)RC4);
+		if(error)
+			break;
+
+		error = SIGFOX_API_set_std_config(config_words,0);
+		if(error)
+			break;
+
 		ST_RF_API_reduce_output_power(RCZ4_OUTPUT_POWER);
 		HT_SigfoxApi_switchPa(1);
 		HT_SigfoxApi_setSmpsVoltageAction(2);
 
 		break;
+	}
 	case RCZ5:
-		open_err= St_Sigfox_Open_RCZ(RCZ5);
+	{
+		sfx_u32 config_words[3]=RC5_CONFIG;
+
+		error = SIGFOX_API_open(&(sfx_rc_t)RC5);
+		if(error)
+			break;
+
+		error = SIGFOX_API_set_std_config(config_words,0);
+		if(error)
+			break;
+
 		ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
 		HT_SigfoxApi_switchPa(0);
 		HT_SigfoxApi_setSmpsVoltageAction(7);
 
 		break;
+	}
 	case RCZ6:
-		open_err = St_Sigfox_Open_RCZ(RCZ6);
+	{
+		error = SIGFOX_API_open(&(sfx_rc_t)RC6);
+		if(error)
+			break;
+
 		ST_RF_API_reduce_output_power(RCZ6_OUTPUT_POWER);
 		HT_SigfoxApi_switchPa(0);
 		HT_SigfoxApi_setSmpsVoltageAction(7);
 
 		break;
+	}
 	case RCZ7:
-		open_err = St_Sigfox_Open_RCZ(RCZ7);
+	{
+		error = SIGFOX_API_open(&(sfx_rc_t)RC7);
+		if(error)
+			break;
+
 		ST_RF_API_reduce_output_power(RCZ7_OUTPUT_POWER);
-		HT_SigfoxApi_switchPa(1);
+		HT_SigfoxApi_switchPa(0);
+		HT_SigfoxApi_setSmpsVoltageAction(7);
 
 		break;
+	}
 	default:
 		break;
 	}
 
-	return open_err;
+	return error;
 }
 
 void HT_SigfoxApi_switchPa(uint8_t state) {

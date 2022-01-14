@@ -59,7 +59,23 @@ extern void HT_SigfoxApi_configRegion(rc_mask RCZ);
  *******************************************************************/
 void HT_SigfoxApi_closeSigfoxLib(void);
 
+/*!******************************************************************
+ * \fn void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode)
+ * \brief Enable S2LP boost mode.
+ *
+ * \param[in]  sfx_u8 mode                  Desired output voltage. Check UM2169 for more details.
+ * \param[out] none
+ *******************************************************************/
 void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode);
+
+/*!******************************************************************
+ * \fn void HT_SigfoxApi_switchPa(uint8_t state)
+ * \brief Set PA flag.
+ *
+ * \param[in]  sfx_u8 state                 PA state.
+ * \param[out] none
+ *******************************************************************/
+void HT_SigfoxApi_switchPa(uint8_t state);
 
 #endif
 

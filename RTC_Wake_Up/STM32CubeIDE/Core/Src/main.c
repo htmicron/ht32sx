@@ -111,7 +111,7 @@ int main(void)
 	/********** OPEN AND CONFIFIGURES SIGFOX LIBRARY IN RCZ2 *********************/
 	/********** IN ORDER TO OPEN OTHER RCZS, SEE SIGFOX_API.h **/
 	/********** BASICALLY CHANGES TO OTHER RC VALUE LIKE RCZ3 **/
-	configRegion(RCZ2);
+	HT_SigfoxApi_configRegion(RCZ2);
 
 	/* USER CODE END 2 */
 
@@ -124,7 +124,7 @@ int main(void)
 		/* USER CODE BEGIN 3 */
 
 		/* Set the wake up time to 5 seconds */
-		HT_McuApi_EnableRTCWkp(5);
+		HT_McuApi_EnableRTCWkp(10);
 		HAL_Delay(50);
 
 		printf("Sleeping...\n");
@@ -184,125 +184,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-void HT_API_setSmpsVoltageAction(sfx_u8 mode) {
-	ST_RF_API_smps(mode);
-	printf("Set_smps_voltage %d\n", mode);
-}
-
-void HT_API_switchPa(uint8_t state) {
-
-	ST_RF_API_set_pa(state);
-
-	printf("Switch PA: %d\n", state);
-}
-
-void configRegion(rc_mask RCZ) {
-	ST_SFX_ERR open_err = ST_SFX_ERR_NONE;
-
-	switch(RCZ){
-	case RCZ1:
-		ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
-		open_err = St_Sigfox_Open_RCZ(RCZ1);
-		HT_API_switchPa(0);
-		HT_API_setSmpsVoltageAction(7);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		break;
-	case RCZ2:
-		ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
-		open_err = St_Sigfox_Open_RCZ(RCZ2);
-		HT_API_switchPa(1);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		break;
-	case RCZ3:
-		open_err = St_Sigfox_Open_RCZ(RCZ3);
-		ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
-		HT_API_switchPa(0);
-		HT_API_setSmpsVoltageAction(7);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		break;
-	case RCZ4:
-		open_err = St_Sigfox_Open_RCZ(RCZ4);
-		ST_RF_API_reduce_output_power(RCZ4_OUTPUT_POWER);
-		HT_API_switchPa(1);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		break;
-	case RCZ5:
-		open_err = St_Sigfox_Open_RCZ(RCZ5);
-		ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
-		HT_API_switchPa(0);
-		HT_API_setSmpsVoltageAction(7);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		break;
-	case RCZ6:
-		open_err = St_Sigfox_Open_RCZ(RCZ6);
-		ST_RF_API_reduce_output_power(RCZ6_OUTPUT_POWER);
-		HT_API_switchPa(0);
-		HT_API_setSmpsVoltageAction(7);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		break;
-	case RCZ7:
-		open_err = St_Sigfox_Open_RCZ(RCZ7);
-		ST_RF_API_reduce_output_power(RCZ7_OUTPUT_POWER);
-		HT_API_switchPa(0);
-		HT_API_setSmpsVoltageAction(7);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		break;
-	default:
-		break;
-	}
-
-}
-
-sfx_error_t sendFrame(void) {
-
-	/********** SEND MESSAGE TO RCZ2 ****************************/
-
-	uint8_t customer_data[12]={0xAA, 0xAA, 0xAA, 0xAA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA};
-	uint8_t customer_resp[8];
-	sfx_error_t err;
-
-	/********** FUNCTION PARAMETERS  ****************************/
-	/********** THE LAST ONE IS TO REQUEST DOWNLINK ************/
-	/********** 1 - YES, 0 - NO	 ******************************/
-
-	err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 3, downlink_request);
-
-	if(downlink_request) {
-		printf("Customer resp: {");
-
-		for(uint16_t i = 0; i < 7; i++) 
-			printf("0x%x,", customer_resp[i]);
-
-		printf("0x%x}\n\r", customer_resp[7]);
-	}
-
-	printf("\nError Send Frame: %X\n", err);
-
-
-	return err;
-}
 
 void mcuConfig(void) {
 	ST_SFX_ERR stSfxRetErr;

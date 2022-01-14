@@ -24,14 +24,6 @@ typedef enum {
 
 
 /**
- * @brief  Opens Sigfox Library according to the zone.
- * @param rcz The Radio Zone
- * @retval Returns 0 if ok.
- */
-extern ST_SFX_ERR St_Sigfox_Open_RCZ(uint8_t rcz);
-
-
-/**
  * @brief  Sigfox subsystem main initialization.
  * @param  openAfterInit if 1 opens the library after the initialization process
  * @retval error code
