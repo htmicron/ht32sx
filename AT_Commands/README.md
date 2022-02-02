@@ -43,6 +43,10 @@
 | AT+SENDBIT | **DOWNLINK_FLAG:** Set this flag to 1 in order to ask for a downlink.<br/><br/>**BIT:** Bit value that is going to be sent to the Sigfox Network **(must be 0 or 1)**. | Send a single bit to the SigFox Network. **_Before calling this function, it is necessary to call the AT+CFGRCZ first._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+SENDBIT=0:0;<br/>**Example 2:** AT+SENDBIT=0:1; |
 | [AT+MONARCH](#monarch) | **RCZ:** RC beacon expected (in order to scan every region available, the RCZ value should be 127).<br/>**TIMEOUT:** Timeout in minutes. It is recommended to use at least 5 minutes of timeout. | Scan a Monarch Beacon and returns the region found. **_The library must be closed before use this command (command AT+CLOSE)._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+MONARCH=2:5; (scan only RC2 beacons). <br/>**Example 2:** AT+MONARCH=127:5; |
 | AT+STPMONARCH | **None** | Stop an already running Monarch Scan. Returns 0x0000 if ok.<br/>**Example:** AT+STPMONARCH; |
+| AT+CTMICRO | **MICROCHANNEL:** Microchannel number from 1 to 54. | Starts a continuous transmission in a microchannel. Returns 0x0000 if ok. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details)<br/><br/>**Example:** AT+CTMICRO=1;<br/>**Example:** AT+CTMICRO=54; |
+| AT+CTMACRO | **MACROCHANNEL:** Macrochannel number from 1 to 9. | Starts a continuous transmission in a macrochannel. Returns 0x0000 if ok. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details)<br/><br/>**Example:** AT+CTMACRO=1;<br/>**Example:** AT+CTMACRO=9; |
+| AT+FRQPHOPP | **None** | Starts a frequency hopping test. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details)<br/><br/>**Example:** AT+FREQPHOPP; |
+| AT+TESTCRED | **FLAG:** 1 enable, 0 disable the test mode. | Configures device to operate in test mode, using its test Sigfox Credentials. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details)<br/><br/>**Example 1:** AT+TESTCRED=1;<br/>**Example 2:** AT+TESTCRED=0; |
 | AT+CLOSE | **None** | This command closes the SigFox library (Free the allocated memory of SIGFOX_API_open and close RF).<br/><br/>**Example:** AT+CLOSE; |
 | AT+RESET | **None** | Soft reset. | **Example:** AT+RESET; |
 | [AT+DEEPSLEEP](#deepsleep) | **None** | HT32SX low power state.<br/><br/>**Example:** AT+DEEPSLEEP; |
@@ -466,6 +470,55 @@ Set up device to deep sleep mode.
 
 <br/>
 <hr>
+
+<a name="anatel_details"></a>
+
+## 5 - Anatel Test Details
+
+This section describes the commands implemented for the Anatel certification process. It is applied only for RC2. 
+
+<br/>
+
+<div align="center">
+
+| :warning: **WARNING:** Information herein contained are for informational purposes only and HT Micron assumes no responsibility for errors in Anatel Tests or any other specific country regulatory tests. HT Micron assumes no liability for customer product applications, design or damage to any equipment resulting from the use of HT Micron products outside of specifications and parameters. |
+| --- |
+
+</div>
+
+<br/>
+
+Here are a possible sequence of testing that can be done using the available commands. All of these commands can be stopped by pressing the user button connected in PA6 (HT32SX Development Kit):
+
+1. Reset the DUT pressing the reset button.
+2. Send "AT+TESTCRED=1;" to start the test mode.
+3. Send "AT+CFGRCZ=2;" to configure the radio to the respective region.
+4. Send "AT+REDUCEPOWER=-30;" to increase the output power.
+5. Send "AT+CTMICRO=2;" to start the continuous transmission in a microchannel. The parameter can vary from 1 to 54 (please check Table 1.5).
+6. Press the user button to stop the test.
+7. Send "AT+CTMACRO=1;" to start a continuous transmission in a macrochannel. The parameter can vary from 1 to 9 (please check Table 1.5).
+8. Press the user button to stop the test.
+9. Send "AT+FREQPHOPP;" to start the frequency hopping test.
+10. Press the user button to stop the test.
+
+<br/>
+
+<div align="center"> Table 1.5 - Micro and macro channels table. </div>
+<div align="center">
+
+|Micro Channel 1 (MHz) |Micro Channel 2 (MHz) |Micro Channel 3 (MHz) |Micro Channel 4 (MHz) |Micro Channel 5 (MHz) | Micro Channel 6 (MHz) |
+|:-----:|:----:|:----:|:----:|:----:|:----:|
+| 902.1375 | 902.1625 | 902.1875 | 902.2125 | 902.2375 | 902.2625 |
+| 902.4375 | 902.4625 | 902.4875 | 902.5125 | 902.5375 | 902.5625 |
+| 902.7375 | 902.7625 | 902.7875 | 902.8125 | 902.8375 | 902.8625 |
+| 903.0375 | 903.0625 | 903.0875 | 903.1125 | 903.1375 | 903.1625 |
+| 903.3375 | 903.3625 | 903.3875 | 903.4125 | 903.4375 | 903.4625 |
+| 903.6375 | 903.6625 | 903.6875 | 903.7125 | 903.7375 | 903.7625 |
+| 903.9375 | 903.9625 | 903.9875 | 904.0125 | 904.0375 | 904.0625 |
+| 904.2375 | 904.2625 | 904.2875 | 904.3125 | 904.3375 | 904.3625 |
+| 904.5375 | 904.5625 | 904.5875 | 904.6125 | 904.6375 | 904.6625 |
+
+</div>
 
 ## Extra Documentation
 

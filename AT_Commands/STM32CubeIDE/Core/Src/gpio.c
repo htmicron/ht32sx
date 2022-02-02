@@ -34,6 +34,9 @@ static volatile uint8_t s2lp_irq_raised = 0;
 GPIO_PinState csd_pin_inst, cps_pin_inst,ctx_pin_inst;
 
 extern volatile uint8_t deepSleepModeFlag;
+
+extern volatile uint8_t test_stop;
+
 /* USER CODE END 1 */
 
 /** Configure pins as
@@ -303,6 +306,8 @@ void HT_GPIO_UserButtonHandler(void) {
 	}
 
 	GPIOA->BSRR = 1 << 5; /* </ LED ON (PA5) */
+
+	test_stop = 1;
 
 	HAL_Delay(100);
 

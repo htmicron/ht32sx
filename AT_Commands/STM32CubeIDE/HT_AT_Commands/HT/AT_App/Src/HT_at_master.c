@@ -37,6 +37,10 @@ static const AT_Command *AT_command_tab[] = {
 		"CLOSE",
 		"CW",
 		"STPCW",
+		"CTMICRO",
+		"CTMACRO",
+		"FREQPHOPP",
+		"TESTCRED",
 		"RESET",
 		"DEEPSLEEP",
 		"SWITCHPA",
@@ -295,6 +299,36 @@ static HT_AT_ErrorCode HT_AT_ResetCmd(uint8_t *ptr);
  * \retval Error code of the command process.
  *******************************************************************/
 static HT_AT_ErrorCode HT_AT_StpCwCmd(uint8_t *ptr);
+
+/*!******************************************************************
+ * \fn static HT_AT_ErrorCode HT_AT_FrequencyHoppingCmd(uint8_t *ptr)
+ * \brief Start frequency hopping command.
+ *
+ * \param[in] uint8_t *ptr						Parameter pointer.
+ *
+ * \retval Error code of the command process.
+ *******************************************************************/
+static HT_AT_ErrorCode HT_AT_FrequencyHoppingCmd(uint8_t *ptr);
+
+/*!******************************************************************
+ * \fn static HT_AT_ErrorCode HT_AT_CtMicroCmd(uint8_t *ptr)
+ * \brief Continuous transmission micro-channel command.
+ *
+ * \param[in] uint8_t *ptr						Parameter pointer.
+ *
+ * \retval Error code of the command process.
+ *******************************************************************/
+static HT_AT_ErrorCode HT_AT_CtMicroCmd(uint8_t *ptr);
+
+/*!******************************************************************
+ * \fn static HT_AT_ErrorCode HT_AT_CtMacroCmd(uint8_t *ptr)
+ * \brief Continuous transmission macro-channel command.
+ *
+ * \param[in] uint8_t *ptr						Parameter pointer.
+ *
+ * \retval Error code of the command process.
+ *******************************************************************/
+static HT_AT_ErrorCode HT_AT_CtMacroCmd(uint8_t *ptr);
 
 /*!******************************************************************
  * \fn static HT_AT_ErrorCode HT_AT_CwCmd(uint8_t *ptr)
@@ -664,6 +698,75 @@ static HT_AT_ErrorCode HT_AT_StpCwCmd(uint8_t *ptr) {
 	return error;
 }
 
+static HT_AT_ErrorCode HT_AT_CtMicroCmd(uint8_t *ptr) {
+	HT_AT_ErrorCode error = {0};
+	HT_AT_Parameter argp;
+	int8_t channel_value;
+	char channel_str[6];
+
+	if(HT_AT_NullParameter(ptr) || !HT_AT_CheckNumberOfParameter(ptr, 1)) {
+		error.at_cmd_error = AT_ERROR_PARAM_CMD;
+		return error;
+	}
+
+	memset(channel_str, 0, sizeof(channel_str));
+	argp.param = channel_str;
+
+	HT_AT_SplitCommandData(ptr, (char *)PARAMETER_DELIMITER, &argp);
+
+	channel_value = atoi(argp.param);
+
+	if(channel_value > 54 || channel_value < 1) {
+		error.at_cmd_error = AT_ERROR_PARAM_CMD;
+		return error;
+	}
+
+	error.at_cmd_error = HT_SigfoxApi_CtMicroChannel(channel_value);
+
+	return error;
+}
+
+static HT_AT_ErrorCode HT_AT_FrequencyHoppingCmd(uint8_t *ptr) {
+	HT_AT_ErrorCode error = {0};
+
+	if(!HT_AT_NullParameter(ptr)) {
+		error.at_cmd_error = AT_ERROR_PARAM_CMD;
+		return error;
+	}
+
+	error.at_cmd_error = HT_SigfoxApi_StartFreqHopping();
+
+	return error;
+}
+
+static HT_AT_ErrorCode HT_AT_CtMacroCmd(uint8_t *ptr) {
+	HT_AT_ErrorCode error = {0};
+	HT_AT_Parameter argp;
+	int8_t channel_value;
+	char channel_str[6];
+
+	if(HT_AT_NullParameter(ptr) || !HT_AT_CheckNumberOfParameter(ptr, 1)) {
+		error.at_cmd_error = AT_ERROR_PARAM_CMD;
+		return error;
+	}
+
+	memset(channel_str, 0, sizeof(channel_str));
+	argp.param = channel_str;
+
+	HT_AT_SplitCommandData(ptr, (char *)PARAMETER_DELIMITER, &argp);
+
+	channel_value = atoi(argp.param);
+
+	if(channel_value > 9 || channel_value < 1) {
+		error.at_cmd_error = AT_ERROR_PARAM_CMD;
+		return error;
+	}
+
+	error.at_cmd_error = HT_SigfoxApi_CtMacroChannel(channel_value);
+
+	return error;
+}
+
 static HT_AT_ErrorCode HT_AT_CwCmd(uint8_t *ptr) {
 	HT_AT_ErrorCode error = {0};
 	HT_AT_Parameter argp;
@@ -683,6 +786,29 @@ static HT_AT_ErrorCode HT_AT_CwCmd(uint8_t *ptr) {
 
 	frequency = atoi(argp.param);
 	error.sigfox_error = HT_SigfoxApi_ContinuousWave(frequency);
+
+	return error;
+}
+
+static HT_AT_ErrorCode HT_AT_TestCredentialsCmd(uint8_t *ptr) {
+	HT_AT_ErrorCode error = {0};
+	uint8_t param;
+	uint8_t len;
+
+	if(HT_AT_NullParameter(ptr) || !HT_AT_CheckNumberOfParameter(ptr, 1)) {
+		error.at_cmd_error = AT_ERROR_PARAM_CMD;
+		return error;
+	}
+
+	len = strlen((char *)ptr);
+	HT_AT_ParseCommandData((char *)ptr, len, &param);
+
+	if(!HT_AT_ValidParameterFlag(param)) {
+		error.at_cmd_error = AT_ERROR_PARAM_CMD;
+		return error;
+	}
+
+	error.at_cmd_error = HT_SigfoxApi_SetTestCredentials(param);
 
 	return error;
 }
@@ -990,6 +1116,22 @@ HT_AT_ErrorCode HT_AT_ExecuteCommand(uint8_t *ptr, HT_AT_Commands cmd) {
 	case AT_SIGFOX_STPCW_CMD:
 
 		error = HT_AT_StpCwCmd(ptr);
+		break;
+	case AT_SIGFOX_CTMICRO:
+
+		error = HT_AT_CtMicroCmd(ptr);
+		break;
+	case AT_SIGFOX_CTMACRO:
+
+		error = HT_AT_CtMacroCmd(ptr);
+		break;
+	case AT_SIGFOX_FREQPHOPP:
+
+		error = HT_AT_FrequencyHoppingCmd(ptr);
+		break;
+	case AT_SIGFOX_TESTCRED:
+
+		error = HT_AT_TestCredentialsCmd(ptr);
 		break;
 	case AT_MCU_RESET_CMD:
 
