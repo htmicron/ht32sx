@@ -20,6 +20,29 @@
 extern uint8_t asc2_data_flag;
 NVM_BoardDataType sfx_credentials;
 
+static const uint32_t freq_lookup[54] = {
+		137500, 162500, 187500, 212500, 237500, 262500, 437500, 462500, 487500,
+		512500, 537500, 562500, 737500, 762500, 787500, 812500, 837500, 862500,
+		1037500, 1062500, 1087500, 1112500, 1137500, 1162500, 1337500, 1362500, 1387500,
+		1412500, 1437500, 1462500, 1637500, 1662500, 1687500, 1712500, 1737500, 1762500,
+		1937500, 1962500, 1987500, 2012500, 2037500, 2062500, 2237500, 2262500, 2287500,
+		2312500, 2337500, 2362500, 2537500, 2562500, 2587500, 2612500, 2637500, 2662500
+};
+
+static const uint32_t freqMatrix[9][6] = {
+		{137500, 162500, 187500, 212500, 237500, 262500},
+		{437500, 462500, 487500, 512500, 537500, 562500},
+		{737500, 762500, 787500, 812500, 837500, 862500},
+		{1037500, 1062500, 1087500, 1112500, 1137500, 1162500},
+		{1337500, 1362500, 1387500, 1412500, 1437500, 1462500},
+		{1637500, 1662500, 1687500, 1712500, 1737500, 1762500},
+		{1937500, 1962500, 1987500, 2012500, 2037500, 2062500},
+		{2237500, 2262500, 2287500, 2312500, 2337500, 2362500},
+		{2537500, 2562500, 2587500, 2612500, 2637500, 2662500}
+};
+
+volatile uint8_t test_stop = 0;
+
 uint8_t HT_SigfoxApi_configRegion(rc_mask RCZ) {
 	uint8_t error = 0;
 
@@ -224,6 +247,91 @@ uint8_t HT_SigfoxApi_GetCredentials(void) {
 
 	return err;
 
+}
+
+uint8_t HT_SigfoxApi_SetTestCredentials(uint8_t en) {
+	enc_utils_set_public_key(en);
+	enc_utils_set_test_key(en);
+	enc_utils_set_test_id(en);
+
+	return 0;
+}
+
+uint8_t HT_SigfoxApi_CtMacroChannel(int8_t i) {
+	sfx_error_t err = 0;
+	uint8_t startSeed = 1;
+	uint8_t a = 1;
+	uint8_t customer_data[3] = {0xAA,0xAA,0xAA};
+	int32_t newbit = 0;
+
+	test_stop = 0;
+
+	/* PRBS-7 with repetition 127 */
+	while(!test_stop && !err) {
+		while(!test_stop && !err) {
+			newbit = (((a >> 6) ^ (a >> 5)) & 1);
+			a = ((a << 1) | newbit) & 0x7f;
+			if(a < 7){
+				err = SIGFOX_API_send_test_frame(((freqMatrix[i-1][a-1]) + 902000000), customer_data, sizeof(customer_data), 0);
+			}
+			if (a == startSeed) {
+				break;
+			}
+		}
+	}
+
+	return err;
+
+}
+
+uint8_t HT_SigfoxApi_CtMicroChannel(int8_t i) {
+	sfx_error_t err = 0;
+	uint8_t customer_data[3] = {0xAA,0xAA,0xAA};
+
+	test_stop = 0;
+
+	while(!err && !test_stop){
+		err = SIGFOX_API_send_test_frame((freq_lookup[i-1] + 902000000), customer_data, sizeof(customer_data), 0);
+	}
+
+	return err;
+}
+
+uint8_t HT_SigfoxApi_StartFreqHopping(void) {
+	sfx_error_t err = 0;
+	uint8_t customer_data[3] = {0xAA,0xAA,0xAA};
+	uint8_t a;
+	static uint8_t seed [52] = {35, 44, 25, 38, 41, 31, 40, 8, 51, 4, 48, 18, 43, 27, 11, 37, 22, 49, 7, 42,
+			39, 14, 12, 5, 15, 32, 16, 1, 13, 6, 17, 19, 23, 54, 53, 29, 30, 46, 49, 34,
+			3, 34, 26, 50, 21, 45, 14, 10, 28, 9, 33, 36};
+	static uint8_t j = 0;
+	int32_t newbit = 0;
+
+	test_stop = 0;
+
+	/* PRBS-7 with repetition 127 */
+	a = seed[j];
+
+	while(!err && !test_stop){
+		while(!err && !test_stop) {
+			newbit = (((a >> 6) ^ (a >> 5)) & 1);
+			a = ((a << 1) | newbit) & 0x7f;
+
+			if(a < 55){
+				err = SIGFOX_API_send_test_frame((freq_lookup[a-1] + 902000000), customer_data, sizeof(customer_data), 0);
+			}
+
+			if (a == seed[j]) {
+				j++;
+				if (j == 52)
+					j = 0;
+
+				break;
+			}
+		}
+	}
+
+	return err;
 }
 
 uint8_t HT_SigfoxApi_ContinuousWave(uint32_t frequency) {

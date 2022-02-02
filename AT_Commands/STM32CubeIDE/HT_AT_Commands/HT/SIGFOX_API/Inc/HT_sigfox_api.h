@@ -92,9 +92,61 @@ void HT_SigfoxApi_switchPa(uint8_t state);
  *******************************************************************/
 void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode);
 
+/*!******************************************************************
+ * \fn uint8_t HT_SigfoxApi_GetCredentials(void)
+ * \brief Read the Sigfox credentials from NVM and send it by UART.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *******************************************************************/
 uint8_t HT_SigfoxApi_GetCredentials(void);
+
+/*!******************************************************************
+ * \fn uint8_t HT_SigfoxApi_ContinuousWave(uint32_t frequency)
+ * \brief Starts continuous wave transmission.
+ *
+ * \param[in]  uint32_t frequency			CW frequency.
+ * \param[out] none
+ *******************************************************************/
 uint8_t HT_SigfoxApi_ContinuousWave(uint32_t frequency);
+
+/*!******************************************************************
+ * \fn uint8_t HT_SigfoxApi_StopCW(void)
+ * \brief Stops continuous wave transmission.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *******************************************************************/
 uint8_t HT_SigfoxApi_StopCW(void);
+
+/*!******************************************************************
+ * \fn uint8_t HT_SigfoxApi_CtMicroChannel(int8_t i)
+ * \brief Starts continuous micro-channel transmission.
+ *
+ * \param[in]  int8_t i						Micro-channel index.
+ * \param[out] none
+ *******************************************************************/
+uint8_t HT_SigfoxApi_CtMicroChannel(int8_t i);
+
+/*!******************************************************************
+ * \fn uint8_t HT_SigfoxApi_CtMacroChannel(int8_t i)
+ * \brief Starts continuous macro-channel transmission.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *******************************************************************/
+uint8_t HT_SigfoxApi_CtMacroChannel(int8_t i);
+
+/*!******************************************************************
+ * \fn uint8_t HT_SigfoxApi_StartFreqHopping(void)
+ * \brief Starts frequency hopping test.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *******************************************************************/
+uint8_t HT_SigfoxApi_StartFreqHopping(void);
+
+uint8_t HT_SigfoxApi_SetTestCredentials(uint8_t en);
 
 #endif
 

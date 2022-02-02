@@ -55,8 +55,8 @@ typedef char AT_Command;
  * \brief AT Commands error codes.
  */
 typedef enum {
-    AT_ERROR_NONE             				= 0x00,			/**< No erros found */	
-    AT_ERROR_PARAM_CMD            			= 0xA0,			/**< Parameter error */
+	AT_ERROR_NONE             				= 0x00,			/**< No erros found */
+	AT_ERROR_PARAM_CMD            			= 0xA0,			/**< Parameter error */
 	AT_ERROR_UNAVAILABLE_CMD				= 0xA1,			/**< Unavailable command error */
 	AT_ERROR_HDR 							= 0xA2,			/**< Header command error */
 	AT_ERROR_OVF 							= 0xA3,			/**< Overflow command error */
@@ -70,7 +70,7 @@ typedef enum {
  * \brief AT Commands list.
  */
 typedef enum {
-    AT_SIGFOX_IDPAC_CMD = 0,								/**< SigFox configure region command */
+	AT_SIGFOX_IDPAC_CMD = 0,								/**< SigFox configure region command */
 	AT_SIGFOX_CFGRCZ_CMD,									/**< SigFox configure region command */
 	AT_SIGFOX_SEND_CMD,										/**< SigFox send frame command */
 	AT_SIGFOX_SENDCRC_CMD,									/**< SigFox send frame with the CRC of the payload command */
@@ -80,6 +80,10 @@ typedef enum {
 	AT_SIGFOX_CLOSE_CMD,									/**< SigFox close SigFox lib command */
 	AT_SIGFOX_CW,											/**< SigFox start continuous transmission command. */
 	AT_SIGFOX_STPCW_CMD,									/**< SigFox stop continuous transmission command. */
+	AT_SIGFOX_CTMICRO,										/**< SigFox continuous micro-channel transmission command. */
+	AT_SIGFOX_CTMACRO,										/**< SigFox continuous macro-channel transmission command. */
+	AT_SIGFOX_FREQPHOPP,									/**< SigFox frequency hopping test command. */
+	AT_SIGFOX_TESTCRED,										/**< SigFox set test credentials command. */
 	AT_MCU_RESET_CMD,										/**< MCU software reset command. */
 	AT_MCU_DEEPSLEEP_CMD,									/**< MCU start deep sleep state command. */
 	AT_MCU_SWITCHPA_CMD,									/**< MCU switch PA (0/1) command. */
@@ -95,9 +99,9 @@ typedef enum {
  * \brief AT Commands return buffer.
  */
 typedef struct {
-    uint8_t at_cmd_error;									/**< AT commands error byte. */
-    uint8_t sigfox_error;									/**< Sigfox error byte. */
-    uint8_t uart_error;										/**< UART error byte. */
+	uint8_t at_cmd_error;									/**< AT commands error byte. */
+	uint8_t sigfox_error;									/**< Sigfox error byte. */
+	uint8_t uart_error;										/**< UART error byte. */
 } __attribute__((packed)) HT_AT_ErrorCode;
 
 /**
@@ -105,7 +109,7 @@ typedef struct {
  * \brief AT Commands parameter table.
  */
 typedef struct {
-    char *param;											/**< Command parameter pointer. */
+	char *param;											/**< Command parameter pointer. */
 } HT_AT_Parameter;
 
 /* ------------------------- Functions --------------------------- */
