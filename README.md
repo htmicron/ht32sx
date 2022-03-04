@@ -15,10 +15,11 @@ We have some applications that you can use to start developing your own solution
 
 | Application        | Brief                                                          |
 |:-------------------|:---------------------------------------------------------------|
-| [AT Commands](AT_Commands) | AT Commands example for HT32SX. 
-| [Bootloader Refresh](Bootloader_Refresh) | Bootloader firmware and script for HT32SX. 
+| [AT Commands](AT_Commands) | AT Commands example for HT32SX. |
+| [Bootloader Refresh](Bootloader_Refresh) | Bootloader firmware and script for HT32SX. |
+| [FCC-CE-ISED Test Mode](FCC-CE-ISED_TestModes) | HT32SX Test Modes for FCC-CE-ISED certifications. |
 | [HT32SX P2P Demo](HT32SX_P2P_Demo) | P2P basic protocol communication for HT32SX. |
-| [MOVE-ME](Monarch_MoveME) | Scan a SigFox™ beacon and send frame via motion detection  |
+| [Move-Me](Monarch_MoveME) | Scan a SigFox™ beacon and send frame via motion detection  |
 | [Monarch Scan](Monarch_Scan) | Scan a SigFox™ beacon and send frame to found region automatically |
 | [Push-Button RC2](Push_Button_RC2) | Send a SigFox™ frame after a button is pressed. |
 | [Generic Push-Button](Generic_Push_Button) | Optimized Push-Button code example. Easily reconfigurable |
