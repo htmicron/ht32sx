@@ -2,7 +2,7 @@
 
 ## How to Clone this Branch
 
-To clone this branch directly (lastest code under development), use: 
+To clone this branch directly (latest code under development), use: 
 ```
 git clone --single-branch --branch master_2 https://github.com/htmicron/ht32sx.git
 ```
