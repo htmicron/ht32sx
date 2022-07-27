@@ -3,9 +3,8 @@
 ## The SMALLEST Sigfox™ Monarch SiP in the world!
 
 <div align="center">
-  <img src='.gitkeep/imcp_ht32sx.png' id="ht32sx_img" height="60%" width="60%"/>
+  <img src='.gitkeep/imcp_ht32sx.png' id="ht32sx_img" height="45%" width="45%"/>
 </div>
- <div align="center"> Figure 1 - P2P + Generic Sigfox Gateway topology. </div>
 
 The HT32SX is a System-in-Package (SiP) device build for the Internet of Things providing a **ready-to-use** connectivity solution.
 You’ll have strong reduction in your BOM cost aiming a fast integration, simple design and the lowest **time-to-market**.
