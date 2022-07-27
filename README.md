@@ -3,7 +3,7 @@
 ## The SMALLEST Sigfox™ Monarch SiP in the world!
 
 <div align="center">
-  <img src="https://github.com/htmicron/ht32sx/blob/images/iMCP_reto.jpg">
+  <img src=".gitkeep/imcp_ht32sx.png">
 </div>
 
 The HT32SX is a System-in-Package (SiP) device build for the Internet of Things providing a **ready-to-use** connectivity solution.
