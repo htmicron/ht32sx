@@ -125,42 +125,6 @@ void HT_McuApi_softwareReset(void);
 void HT_McuApi_enterDeepSleepMode(void);
 
 /*!***********************************************************************************************************
- * \fn void HT_McuApi_switchPa(void)
- * \brief Enable or disable PA (1 enable, 0 disable).
- *
- * \param[in]  uint8_t state				PA state (on/off).
- * \param[out] none
- *
- * \retval	none
- *
- *************************************************************************************************************/
-uint8_t HT_McuApi_switchPa(uint8_t state);
-
-/*!***********************************************************************************************************
- * \fn void HT_McuApi_switchBoost(void)
- * \brief Enable or disable S2LP boost mode (1 enable, 0 disable).
- *
- * \param[in]  uint8_t state				S2LP boost mode state (on/off).
- * \param[out] none
- *
- * \retval	none
- *
- *************************************************************************************************************/
-uint8_t HT_McuApi_switchBoost(uint8_t state);
-
-/*!***********************************************************************************************************
- * \fn void HT_McuApi_reduceOutputPower(int16_t reduce_value)
- * \brief Set a new output power value and save it to flash memory.
- *
- * \param[in]  uint8_t reduce_value				S2LP boost mode state (on/off).
- * \param[out] none
- *
- * \retval	none
- *
- *************************************************************************************************************/
-uint8_t HT_McuApi_reduceOutputPower(int16_t reduce_value);
-
-/*!***********************************************************************************************************
  * \fn void HT_McuApi_setFreqOffset(int32_t offset)
  * \brief Calibration routine to set a new frequency offset value.
  *

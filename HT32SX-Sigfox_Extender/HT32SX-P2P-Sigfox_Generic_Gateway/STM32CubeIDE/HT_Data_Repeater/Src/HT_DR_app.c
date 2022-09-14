@@ -18,6 +18,7 @@
 #include "HT_mcu_api.h"
 #include "S2LP_AUX_FEM.h"
 #include "HT_sigfox_api.h"
+#include "HT_RF_API.h"
 
 HT_DR_States state;
 

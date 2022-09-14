@@ -51,24 +51,14 @@ extern "C" {
 #include "retriever_api.h"
 #include "mcu_api.h"
 #include "st_mcu_api.h"
-#include "st_rf_api.h"
 #include "nvm_api.h"
+#include "HT_RF_API.h"
 
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 
-typedef enum
-{
-  RCZ1 = 1,
-	RCZ2,
-	RCZ3,
-	RCZ4,
-	RCZ5,
-	RCZ6,
-	RCZ7
-} rc_mask;
 
 /* USER CODE END ET */
 
@@ -105,23 +95,6 @@ void mcuConfig(void);
  *******************************************************************/
 sfx_error_t HT_API_SendFrame(void);
 
-/*!******************************************************************
- * \fn void HT_API_ConfigRegion(void)
- * \brief Configures the device with the region specified by the user. 
- *
- * \param[in]  rc_mask 	RCZ                  RC of the desired region       
- * \param[out] none
- *******************************************************************/
-void HT_API_ConfigRegion(rc_mask RCZ);
-
-/*!******************************************************************
- * \fn void HT_API_setSmpsVoltageAction(sfx_u8 mode)
- * \brief Enable S2LP boost mode.
- *
- * \param[in]  sfx_u8 mode                  Desired output voltage. Check UM2169 for more details.
- * \param[out] none
- *******************************************************************/
-void HT_API_setSmpsVoltageAction(sfx_u8 mode);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -139,13 +112,7 @@ void HT_API_setSmpsVoltageAction(sfx_u8 mode);
 #define USER_LED_Pin GPIO_PIN_5
 #define USER_LED_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
-#define RCZ1_OUTPUT_POWER 	-32
-#define RCZ2_OUTPUT_POWER	-27
-#define RCZ3_OUTPUT_POWER	-32
-#define RCZ4_OUTPUT_POWER	-27
-#define RCZ5_OUTPUT_POWER	-32
-#define RCZ6_OUTPUT_POWER	-32
-#define RCZ7_OUTPUT_POWER	-32
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

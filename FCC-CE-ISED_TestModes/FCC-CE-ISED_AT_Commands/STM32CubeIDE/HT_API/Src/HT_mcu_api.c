@@ -161,27 +161,6 @@ void HT_McuApi_setFreqOffset(int32_t offset) {
 	}
 }
 
-void HT_McuApi_reduceOutputPower(int16_t reduce_value) {
-	ST_RF_API_reduce_output_power(reduce_value);
-
-	printf("Reduce output power: %d\n", reduce_value);
-}
-
-void HT_McuApi_switchBoost(uint8_t state) {
-	if(state)
-		ST_RF_API_smps(7);
-	else
-		ST_RF_API_smps(1);
-
-	printf("Switch boost mode: %d\n", state);
-}
-
-void HT_McuApi_switchPa(uint8_t state) {
-	ST_RF_API_set_pa(state);
-
-	printf("Switch PA: %d\n", state);
-}
-
 void HT_McuApi_softwareReset(void) {
 	NVIC_SystemReset();
 }

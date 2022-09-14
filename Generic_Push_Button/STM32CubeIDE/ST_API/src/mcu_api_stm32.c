@@ -13,8 +13,9 @@
 #include "tim.h"
 #include "usart.h"
 #include "adc.h"
-#include "tim.h"
 #include "retriever_api.h"
+#include "stm32l0xx_hal.h"
+#include "st_rf_api.h"
 
 #if defined CREDENTIALS_SECURE_ELEMENT || defined CREDENTIALS_UNCRYPTED
 #define MCU_ERR_API_GET_ID                  (sfx_u8)(0x1F) /*!< Error on MCU_API_get_device_id */
@@ -105,11 +106,13 @@ sfx_u8 MCU_API_free(sfx_u8 *ptr)
 
 sfx_u8 MCU_API_get_voltage_temperature(sfx_u16 *voltage_idle, sfx_u16 *voltage_tx, sfx_s16 *temperature) {
 
-	/* get the idle voltage of the complete device
-  get the temperature of the device
-  if those values are not available : set it to 0x0000
-  return the voltage_idle in 1/10 volt on 16bits and 1/10 degrees for the temperature */
 #ifdef DOWNLINK_FLAG
+
+	/* get the idle voltage of the complete device
+	  get the temperature of the device
+	  if those values are not available : set it to 0x0000
+	  return the voltage_idle in 1/10 volt on 16bits and 1/10 degrees for the temperature */
+
 	uint32_t ad;
 	uint32_t vref;
 	uint32_t temp;
@@ -124,6 +127,8 @@ sfx_u8 MCU_API_get_voltage_temperature(sfx_u16 *voltage_idle, sfx_u16 *voltage_t
 	(*temperature)=(sfx_s16)temp*10;
 
 	HT_setVddTx(0);
+	// printf("MCU_API_get_voltage_temperature OUT\n\r");
+
 #else
 
 	(*voltage_idle)=0;

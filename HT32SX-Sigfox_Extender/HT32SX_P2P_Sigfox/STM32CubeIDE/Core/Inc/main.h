@@ -42,6 +42,7 @@ extern "C" {
 #include <stdlib.h>
 #include <math.h>
 
+#include "HT_RF_API.h"
 #include "ST_Sigfox_Init.h"
 
 #include "sigfox_types.h"
@@ -58,17 +59,6 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
-typedef enum
-{
-  RCZ1 = 1,
-	RCZ2,
-	RCZ3,
-	RCZ4,
-	RCZ5,
-	RCZ6,
-	RCZ7
-} rc_mask;
 
 /* USER CODE END ET */
 
@@ -125,13 +115,6 @@ void mcuConfig(void);
 #define RADIO_SPI_MOSI_PIN_Pin 						S2LP_SPI_MOSI_PIN_Pin
 #define RADIO_SPI_MOSI_PIN_GPIO_Port 				S2LP_SPI_MOSI_PIN_GPIO_Port
 
-#define RCZ1_OUTPUT_POWER 	-32
-#define RCZ2_OUTPUT_POWER	-27
-#define RCZ3_OUTPUT_POWER	-32
-#define RCZ4_OUTPUT_POWER	-27
-#define RCZ5_OUTPUT_POWER	-32
-#define RCZ6_OUTPUT_POWER	-32
-#define RCZ7_OUTPUT_POWER	-32
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

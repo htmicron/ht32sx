@@ -28,16 +28,6 @@
 
 #include "main.h"
 
-/*!******************************************************************
- * \fn void configRegion(void)
- * \brief Configures the device using the RCZ found after Monarch Scan. 
- *				Call the functions St_Sigfox_Open_RCZ, to execute these
- *				configurations and sendFrameRCZ.
- *
- * \param[in]  none                        
- * \param[out] none
- *******************************************************************/
-void configRegion(void);
 
 /*!******************************************************************
  * \fn void closeSigfoxLib(void)
@@ -127,23 +117,8 @@ extern uint8_t getScanStatus(void);
  *******************************************************************/
 extern void setScanStatus(uint8_t scanStatus);
 
-/*!******************************************************************
- * \fn void HT_switchPa(uint8_t state)
- * \brief Set PA flag.
- *
- * \param[in]  sfx_u8 state                 PA state.
- * \param[out] none
- *******************************************************************/
-void HT_switchPa(uint8_t state);
 
-/*!******************************************************************
- * \fn void HT_setSmpsVoltageAction(sfx_u8 mode)
- * \brief Enable S2LP boost mode.
- *
- * \param[in]  sfx_u8 mode                  Desired output voltage. Check UM2169 for more details.
- * \param[out] none
- *******************************************************************/
-void HT_setSmpsVoltageAction(sfx_u8 mode);
+uint8_t HT_RF_API_GETrcbit(void);
 
 #endif
 

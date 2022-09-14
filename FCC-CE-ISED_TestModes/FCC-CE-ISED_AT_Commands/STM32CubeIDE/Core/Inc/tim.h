@@ -29,8 +29,7 @@
 /* USER CODE BEGIN Includes */
 #include "gpio.h"
 #include "rtc.h"
-#include "usart.h" 
-#include "st_rf_api.h"
+#include "usart.h"
 /* USER CODE END Includes */
 
 extern TIM_HandleTypeDef htim2;

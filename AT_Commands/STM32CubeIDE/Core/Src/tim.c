@@ -561,7 +561,7 @@ uint32_t getNIntermediateTimIrqFlag(void) {
 	return n_intermediate_tim_irq;
 }
 
-#ifdef USE_OOB_MSG
+#ifdef DOWNLINK_FLAG
 
 uint32_t HT_getVddTx(void) {
 	return vref;

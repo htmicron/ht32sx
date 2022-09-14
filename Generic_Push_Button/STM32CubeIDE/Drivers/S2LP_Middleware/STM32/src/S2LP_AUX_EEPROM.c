@@ -29,8 +29,7 @@
  * @{
  */
 
-uint8_t EepromRead(uint16_t nAddress, uint8_t cNbBytes, uint8_t* pcBuffer)
-{
+uint8_t EepromRead(uint16_t nAddress, uint8_t cNbBytes, uint8_t* pcBuffer) {
 
 #if EEPROM_YES
 	uint8_t cmd[3];

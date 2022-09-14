@@ -17,6 +17,7 @@
 #include "tim.h"
 #include "HT_sigfox_api.h"
 #include "HT_hcfsm.h"
+#include "HT_RF_API.h"
 
 extern uint8_t asc2_data_flag;
 
@@ -39,6 +40,10 @@ static const uint32_t freq_lookup[54] = {
 };
 
 static sfx_u8 rx_gfsk_pattern[15] = {0x1F, 0x20, 0x41, 0x84, 0x32, 0x68, 0xC5, 0xBA, 0x53, 0xAE, 0x79, 0xE7, 0xF6, 0xDD, 0x9B};
+
+void HT_RF_API_SetUplinkCenter(sfx_u32 uplinkCenter){
+	uplink_center = uplinkCenter;
+}
 
 void HT_SigfoxApi_SetTestMode(AT_test_state test_type) {
 	test_mode = test_type;
@@ -98,42 +103,6 @@ void HT_SigfoxApi_StartFrequencyHopping(void) {
 	test_mode = tmp;
 
 	printf("Frequency hopping error: %X\n", err);
-}
-
-void HT_SigfoxApi_SetTest(AT_Certification_Type certification) {
-	switch(certification) {
-	case AT_FCC: //RC2
-
-		ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER); /*</ It is the same valuEs as RC4 */
-		HT_SigfoxApi_switchPa(1);
-		uplink_center = 902200000;
-
-		printf("FCC selected. Frequency range: 902104000 - 902296000\n");
-		break;
-
-	case AT_CE: //RC1
-
-		ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
-		HT_SigfoxApi_switchPa(0);
-		HT_SigfoxApi_setSmpsVoltageAction(7);
-		uplink_center = 868130000;
-
-		printf("CE selected. Frequency range: 868034000 - 868226000\n");
-
-		break;
-
-	case AT_ISED:
-		ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER); /*</ It is the same valuEs as RC2 */
-		HT_SigfoxApi_switchPa(1);
-		uplink_center = 902200000;
-
-		printf("ISED selected. Frequency range: 902104000 - 902296000\n");
-		break;
-	default:
-		printf("Error! Invalid certification ID.\n");
-		break;
-	}
-
 }
 
 void HT_Sigfox_RxPER(sfx_u32 frequency) {
@@ -280,115 +249,6 @@ void HT_SigfoxApi_SendTestFrame(AT_TX_State state, AT_interface interface) {
 	}
 
 	printf("Send test frame error code: %X\n", err);
-}
-
-void HT_SigfoxApi_configRegion(rc_mask RCZ, uint32_t frequency) {
-	ST_SFX_ERR open_err = ST_SFX_ERR_NONE;
-
-	printf("Config region...\n");
-
-	switch(RCZ){
-	case RCZ1:
-		printf("RCZ %d\n", RCZ);
-		ST_RF_API_reduce_output_power(RCZ1_OUTPUT_POWER);
-		open_err = St_Sigfox_Open_RCZ(RCZ1);
-		HT_SigfoxApi_switchPa(0);
-		HT_SigfoxApi_setSmpsVoltageAction(7);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		test_frequency = (test_mode == AT_TX) ? frequency : 869525000;
-
-		break;
-	case RCZ2:
-		printf("RCZ %d\n", RCZ);
-		//ST_RF_API_reduce_output_power(RCZ2_OUTPUT_POWER);
-		open_err = St_Sigfox_Open_RCZ(RCZ2);
-		//HT_SigfoxApi_switchPa(1);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		test_frequency = (test_mode == AT_TX) ? frequency : 905200000;
-
-		break;
-	case RCZ3:
-		printf("RCZ %d\n", RCZ);
-		open_err = St_Sigfox_Open_RCZ(RCZ3);
-		ST_RF_API_reduce_output_power(RCZ3_OUTPUT_POWER);
-		HT_SigfoxApi_switchPa(0);
-		HT_SigfoxApi_setSmpsVoltageAction(7);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		test_frequency = (test_mode == AT_TX) ? frequency : 922200000;
-
-		break;
-	case RCZ4:
-		printf("RCZ %d\n", RCZ);
-		open_err = St_Sigfox_Open_RCZ(RCZ4);
-		//ST_RF_API_reduce_output_power(RCZ4_OUTPUT_POWER);
-		//HT_SigfoxApi_switchPa(1);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		test_frequency = (test_mode == AT_TX) ? frequency : 922300000;
-
-		break;
-	case RCZ5:
-		open_err = St_Sigfox_Open_RCZ(RCZ5);
-		ST_RF_API_reduce_output_power(RCZ5_OUTPUT_POWER);
-		HT_SigfoxApi_switchPa(0);
-		HT_SigfoxApi_setSmpsVoltageAction(7);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		test_frequency = (test_mode == AT_TX) ? frequency : 922300000;
-
-		break;
-	case RCZ6:
-		printf("RCZ %d\n", RCZ);
-		open_err = St_Sigfox_Open_RCZ(RCZ6);
-		ST_RF_API_reduce_output_power(RCZ6_OUTPUT_POWER);
-		HT_SigfoxApi_switchPa(0);
-		HT_SigfoxApi_setSmpsVoltageAction(7);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		test_frequency = (test_mode == AT_TX) ? frequency : 866300000;
-
-		break;
-	case RCZ7:
-		printf("RCZ %d\n", RCZ);
-		open_err = St_Sigfox_Open_RCZ(RCZ7);
-		ST_RF_API_reduce_output_power(RCZ7_OUTPUT_POWER);
-		HT_SigfoxApi_switchPa(1);
-
-		if(open_err != 0)
-			printf("Open rcz error: %X\n", open_err);
-
-		test_frequency = (test_mode == AT_TX) ? frequency : 869100000;
-
-		break;
-	default:
-		break;
-	}
-
-}
-
-void HT_SigfoxApi_switchPa(uint8_t state) {
-	ST_RF_API_set_pa(state);
-	printf("Switch PA: %d\n", state);
-}
-
-void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode) {
-	ST_RF_API_smps(mode);
-	printf("Set_smps_voltage %d\n", mode);
 }
 
 void HT_SigfoxApi_closeSigfoxLib(void) {

@@ -33,9 +33,6 @@ static char AT_deep_sleep_str[] = {"DEEPSLEEP"};
 static char AT_reset_str[] = {"RESET"};
 static char AT_stp_monarch_str[] = {"STPMONARCH"};
 static char AT_close_str[] = {"CLOSE"};
-static char AT_switch_pa_str[] = {"SWITCHPA"};
-static char AT_switch_boost_str[] = {"SWITCHBOOST"};
-static char AT_reduce_power_str[] = {"REDUCEPOWER"};
 static char AT_freq_offset_str[] = {"FREQOFFSET"};
 static char AT_rssi_offset_str[] = {"RSSIOFFSET"};
 static char AT_lbt_offset_str[] = {"LBTOFFSET"};
@@ -105,18 +102,6 @@ AT_cmdStruct AT_checkCmdString(char *cmdStr) {
 	} else if(!strncmp(cmdStr, AT_close_str, strlen(AT_close_str))) {
 		status.AT_type = AT_sigfox;
 		status.AT_sigfoxCmd = AT_close;
-		status.AT_err = ERR_NONE;
-	}  else if(!strncmp(cmdStr, AT_switch_pa_str, strlen(AT_switch_pa_str))) {
-		status.AT_type = AT_mcu;
-		status.AT_mcuCmd = AT_switch_pa;
-		status.AT_err = ERR_NONE;
-	} else if(!strncmp(cmdStr, AT_switch_boost_str, strlen(AT_switch_boost_str))) {
-		status.AT_type = AT_mcu;
-		status.AT_mcuCmd = AT_switch_boost;
-		status.AT_err = ERR_NONE;
-	} else if(!strncmp(cmdStr, AT_reduce_power_str, strlen(AT_reduce_power_str))) {
-		status.AT_type = AT_mcu;
-		status.AT_mcuCmd = AT_reduce_power;
 		status.AT_err = ERR_NONE;
 	} else if(!strncmp(cmdStr, AT_freq_offset_str, strlen(AT_freq_offset_str))) {
 		status.AT_type = AT_mcu;

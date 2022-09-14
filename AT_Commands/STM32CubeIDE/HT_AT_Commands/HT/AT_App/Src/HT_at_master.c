@@ -16,13 +16,14 @@
 /* Includes------------------------------------------------------------------------- */
 
 #include "HT_at_master.h"
+#include "HT_mcu_api.h"
 #include "HT_sigfox_api.h"
 #include "HT_monarch_api.h"
-#include "HT_mcu_api.h"
 #include "HT_uart_api.h"
 #include "usart.h"
 #include "crc.h"
 #include "string.h"
+#include "HT_RF_API.h"
 
 /* Global variables and constants --------------------------------------------------- */
 
@@ -43,9 +44,6 @@ static const AT_Command *AT_command_tab[] = {
 		"TESTCRED",
 		"RESET",
 		"DEEPSLEEP",
-		"SWITCHPA",
-		"SWITCHBOOST",
-		"REDUCEPOWER",
 		"FREQOFFSET",
 		"RSSIOFFSET",
 		"LBTOFFSET"
@@ -229,46 +227,6 @@ static HT_AT_ErrorCode HT_AT_FreqOffsetCmd(uint8_t *ptr);
  * \retval Error code of the command process.
  *******************************************************************/
 static HT_AT_ErrorCode HT_AT_FreqOffsetCmd(uint8_t *ptr);
-
-/*!******************************************************************
- * \fn static HT_AT_ErrorCode HT_AT_ReducePowerCmd(uint8_t *ptr)
- * \brief Reduce output power command implementation.
- *
- * \param[in] uint8_t *ptr						Parameter pointer.
- *
- * \retval Error code of the command process.
- *******************************************************************/
-static HT_AT_ErrorCode HT_AT_ReducePowerCmd(uint8_t *ptr);
-
-/*!******************************************************************
- * \fn static HT_AT_ErrorCode HT_AT_SwitchBoostCmd(uint8_t *ptr)
- * \brief Switch boost mode command implementation.
- *
- * \param[in] uint8_t *ptr						Parameter pointer.
- *
- * \retval Error code of the command process.
- *******************************************************************/
-static HT_AT_ErrorCode HT_AT_SwitchBoostCmd(uint8_t *ptr);
-
-/*!******************************************************************
- * \fn static HT_AT_ErrorCode HT_AT_SwitchBoostCmd(uint8_t *ptr)
- * \brief Switch boost mode command implementation.
- *
- * \param[in] uint8_t *ptr						Parameter pointer.
- *
- * \retval Error code of the command process.
- *******************************************************************/
-static HT_AT_ErrorCode HT_AT_SwitchBoostCmd(uint8_t *ptr);
-
-/*!******************************************************************
- * \fn static HT_AT_ErrorCode HT_AT_SwitchPACmd(uint8_t *ptr)
- * \brief Switch PA mode command implementation.
- *
- * \param[in] uint8_t *ptr						Parameter pointer.
- *
- * \retval Error code of the command process.
- *******************************************************************/
-static HT_AT_ErrorCode HT_AT_SwitchPACmd(uint8_t *ptr);
 
 /*!******************************************************************
  * \fn static HT_AT_ErrorCode HT_AT_DeepSleepCmd(uint8_t *ptr)
@@ -586,74 +544,6 @@ static HT_AT_ErrorCode HT_AT_FreqOffsetCmd(uint8_t *ptr) {
 
 	offset = atoi(argp.param);
 	error.at_cmd_error = HT_McuApi_setFreqOffset(offset);
-
-	return error;
-}
-
-static HT_AT_ErrorCode HT_AT_ReducePowerCmd(uint8_t *ptr) {
-	HT_AT_ErrorCode error = {0};
-	HT_AT_Parameter argp;
-	int16_t reduce_value;
-	char reduce_str[6];
-
-	if(HT_AT_NullParameter(ptr) || !HT_AT_CheckNumberOfParameter(ptr, 1)) {
-		error.at_cmd_error = AT_ERROR_PARAM_CMD;
-		return error;
-	}
-
-	memset(reduce_str, 0, sizeof(reduce_str));
-	argp.param = reduce_str;
-
-	HT_AT_SplitCommandData(ptr, (char *)PARAMETER_DELIMITER, &argp);
-
-	reduce_value = atoi(argp.param);
-	error.at_cmd_error = HT_McuApi_reduceOutputPower(reduce_value);
-
-	return error;
-}
-
-static HT_AT_ErrorCode HT_AT_SwitchBoostCmd(uint8_t *ptr) {
-	HT_AT_ErrorCode error = {0};
-	uint8_t param;
-	uint8_t len;
-
-	if(HT_AT_NullParameter(ptr) || !HT_AT_CheckNumberOfParameter(ptr, 1)) {
-		error.at_cmd_error = AT_ERROR_PARAM_CMD;
-		return error;
-	}
-
-	len = strlen((char *)ptr);
-	HT_AT_ParseCommandData((char *)ptr, len, &param);
-
-	if(!HT_AT_ValidParameterFlag(param)) {
-		error.at_cmd_error = AT_ERROR_PARAM_CMD;
-		return error;
-	}
-
-	error.at_cmd_error = HT_McuApi_switchBoost(param);
-
-	return error;
-}
-
-static HT_AT_ErrorCode HT_AT_SwitchPACmd(uint8_t *ptr) {
-	HT_AT_ErrorCode error = {0};
-	uint8_t param;
-	uint8_t len;
-
-	if(HT_AT_NullParameter(ptr) || !HT_AT_CheckNumberOfParameter(ptr, 1)) {
-		error.at_cmd_error = AT_ERROR_PARAM_CMD;
-		return error;
-	}
-
-	len = strlen((char *)ptr);
-	HT_AT_ParseCommandData((char *)ptr, len, &param);
-
-	if(!HT_AT_ValidParameterFlag(param)) {
-		error.at_cmd_error = AT_ERROR_PARAM_CMD;
-		return error;
-	}
-
-	error.at_cmd_error = HT_McuApi_switchPa(param);
 
 	return error;
 }
@@ -1140,18 +1030,6 @@ HT_AT_ErrorCode HT_AT_ExecuteCommand(uint8_t *ptr, HT_AT_Commands cmd) {
 	case AT_MCU_DEEPSLEEP_CMD:
 
 		error = HT_AT_DeepSleepCmd(ptr);
-		break;
-	case AT_MCU_SWITCHPA_CMD:
-
-		error = HT_AT_SwitchPACmd(ptr);
-		break;
-	case AT_MCU_SWITCHBOOST_CMD:
-
-		error = HT_AT_SwitchBoostCmd(ptr);
-		break;
-	case AT_MCU_REDUCEPOWER_CMD:
-
-		error = HT_AT_ReducePowerCmd(ptr);
 		break;
 	case AT_MCU_FREQOFFSET_CMD:
 

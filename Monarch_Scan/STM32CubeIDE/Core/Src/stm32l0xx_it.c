@@ -37,7 +37,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
- 
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -74,7 +74,7 @@ extern DMA_HandleTypeDef hdma_usart1_tx;
 /* USER CODE END EV */
 
 /******************************************************************************/
-/*           Cortex-M0+ Processor Interruption and Exception Handlers          */ 
+/*           Cortex-M0+ Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
   * @brief This function handles Non maskable interrupt.
@@ -160,7 +160,7 @@ void RTC_IRQHandler(void)
 
 	//printf("*** RTC_IRQHandler IN\r");
 	Configure_RTC_Clock();
-	
+
   /* USER CODE END RTC_IRQn 0 */
   HAL_RTCEx_WakeUpTimerIRQHandler(&hrtc);
   /* USER CODE BEGIN RTC_IRQn 1 */
@@ -170,9 +170,9 @@ void RTC_IRQHandler(void)
   if(!getNextRtcWakeUpFlag())
   {
     setRtcIrqFlag(1);
-		
+
 		setRtcInUseFlag(0);
-		
+
     if(getNotifyEndFlag())
     {
       if(getRtcInUseForCsFlag())
@@ -195,7 +195,7 @@ void RTC_IRQHandler(void)
 		setNIntermediateTimIrqFlag(n_intermediate_tim_irq);
 		//n_intermediate_tim_irq++;
   }
-	
+
   /* USER CODE END RTC_IRQn 1 */
 }
 

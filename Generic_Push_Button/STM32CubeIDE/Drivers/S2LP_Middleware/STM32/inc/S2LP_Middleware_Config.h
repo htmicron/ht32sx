@@ -68,7 +68,7 @@
 //#include "S2LP_CORE_GPIO.h"
 
 /*Includes for Aux Module*/
-//#include "S2LP_AUX_EEPROM.h"
+#include "S2LP_AUX_EEPROM.h"
 #include "S2LP_AUX_UTILS.h"
 #include "S2LP_AUX_FEM.h"
 
@@ -115,6 +115,10 @@ typedef enum {
   FKI_SERIES = 0,
   X_NUCLEO_SERIES = 1
 }S2LPDaughterBoard;
+
+/**
+ * @}
+ */
 
 /**
  * @}

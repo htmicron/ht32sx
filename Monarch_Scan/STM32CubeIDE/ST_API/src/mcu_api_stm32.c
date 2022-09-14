@@ -104,7 +104,7 @@ sfx_u8 MCU_API_free(sfx_u8 *ptr)
 
 sfx_u8 MCU_API_get_voltage_temperature(sfx_u16 *voltage_idle, sfx_u16 *voltage_tx, sfx_s16 *temperature) {
 
-#ifdef USE_OOB_MSG
+#ifdef DOWNLINK_FLAG
 
 	uint32_t ad;
 	uint32_t vref;
