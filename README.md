@@ -24,8 +24,7 @@
 16. [**Why my device is stuck in TX?**](#stucktx) <br/>
 17. [**How can I flash a new firmware to my HT32SX?**](#flashcode) <br/>
 18. [**I need to use EEPROM in my application. From which address may I start writing?**](#eepromwrite) <br/>
-19. [**How can I increase HT32SX output power?**](#outputpower) <br/>
-20. [**I received new Sigfox credentials. How should I flash it to my device?**](#credbin) <br/>
+19. [**I received new Sigfox credentials. How should I flash it to my device?**](#credbin) <br/>
 
 
 ## Answered Questions:
@@ -399,49 +398,8 @@
 <hr>
 <br/>
 
-<a name="outputpower"></a>
-### 19. How can I increase HT32SX output power?
-<hr>
-
-> * In this question we will use the [**Generic Push Button**](https://github.com/htmicron/ht32sx/tree/master_2/Generic_Push_Button) firmware as an example. <br/>
-
-> * First of all, you need to be aware that our firmware examples have the same output power setup which was certificated by Sigfox.  Before increase your device output power, please have a look at [**this**](https://build.sigfox.com/sigfox-radio-configurations-rc) document to check the Sigfox recommended EIRP (dBm), related to your current RC zone. <br/>
-> **We only recommend this solution, in case of your device be used in a remote place too far away from a base station.** <br/>
-
-> * There are three ways to increase this value: turning on PA, making boost mode enable or increasing the respective output level constant.
-
->> 1. Turning on PA:
->>> * Use _**HT_API_switchPa(1)**_ to enable PA and _**HT_API_switchPa(0)**_ to disable.
->> 2. Making boost mode enable:
->>> * _**HT_API_setSmpsVoltageAction(7)**_ to enable and _**HT_API_setSmpsVoltageAction(1)**_ to disable.
->> 3. Increasing output level constant:
->>> * In _**main.h**_ file, you will see a couple of defines (RCZ1_OUTPUT_POWER, RCZ2_OUTPUT_POWER ... RCZ7_OUTPUT_POWER) which are responsible to increase or decrease output power. **The maximum accepted value is -32**.
-
-> **Examples:**
-
-> * Turning on PA:
-
->> 1. Open _**main.c**_ file and to _**configRegion**_ function. There you will see a switch/case routine with all RC zones available.
->> 2. Go to RC1 case and change _**HT_API_switchPa(0)**_ line to _**HT_API_switchPa(1)**_:
-
-<div align="center">
-  <img src="https://github.com/htmicron/ht32sx/blob/faq/.github/images/pa_on.PNG">
-</div>
-
-> * Making boost mode enable:
-
->> 1. Open _**main.c**_ file and to _**configRegion**_ function. There you will see a switch/case routine with all RC zones available.
->> 2. Go to RC2 case and add _**HT_API_setSmpsVoltageAction(7)**_ function just after _**HT_API_switchPa**_ line:
-
-<div align="center">
-  <img src="https://github.com/htmicron/ht32sx/blob/faq/.github/images/boost_enable.PNG">
-</div>
-
-<hr>
-<br/>
-
 <a name="credbin"></a>
-### 20. I received new Sigfox credentials. How should I flash it to my device?
+### 19. I received new Sigfox credentials. How should I flash it to my device?
 <hr>
 
 > 1. Download and install [**STM32CubeProgrammer**](https://www.st.com/en/development-tools/stm32cubeprog.html).
@@ -474,4 +432,4 @@ ZIP 93022-750 <br/>
 Brazil <br/>
 Tel: +55 51 3081-8650 <br/>
 E-mail (Support): support_iot@htmicron.com.br <br/>
-E-mail (General Enquiries): htmicron@htmicron.com.b <br/>
+E-mail (General Enquiries): htmicron@htmicron.com.br <br/>
