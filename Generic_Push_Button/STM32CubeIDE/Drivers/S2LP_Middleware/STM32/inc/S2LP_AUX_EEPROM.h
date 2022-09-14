@@ -29,6 +29,7 @@
 #define SPIRIT_SDK_EEPROM_H_
 
 #include "cube_hal.h"
+#include "S2LP_AUX_UTILS.h"
 
 #ifdef __cplusplus
   "C" {

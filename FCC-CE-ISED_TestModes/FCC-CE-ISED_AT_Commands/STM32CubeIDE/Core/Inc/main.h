@@ -51,7 +51,6 @@ extern "C" {
 #include "retriever_api.h"
 #include "mcu_api.h"
 #include "st_mcu_api.h"
-#include "st_rf_api.h"
 #include "nvm_api.h"
 
 //#include "HT_sigfox_api.h"
@@ -59,22 +58,12 @@ extern "C" {
 #include "HT_dma_circular.h"
 #include "HT_ATcmd.h"
 #include "HT_hcfsm.h"
+#include "HT_RF_API.h"
 
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
-typedef enum
-{
-	RCZ1 = 1,
-	RCZ2,
-	RCZ3,
-	RCZ4,
-	RCZ5,
-	RCZ6,
-	RCZ7
-} rc_mask;
 
 /* USER CODE END ET */
 
@@ -133,13 +122,6 @@ void ST_Init(void);
 
 #define ALL_REGIONS 127
 
-#define RCZ1_OUTPUT_POWER 	-32
-#define RCZ2_OUTPUT_POWER	-27
-#define RCZ3_OUTPUT_POWER	-32
-#define RCZ4_OUTPUT_POWER	-27
-#define RCZ5_OUTPUT_POWER	-32
-#define RCZ6_OUTPUT_POWER	-32
-#define RCZ7_OUTPUT_POWER	-32
 
 /* USER CODE END Private defines */
 

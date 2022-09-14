@@ -148,22 +148,6 @@ uint8_t HT_McuApi_setFreqOffset(int32_t offset) {
 	return err;
 }
 
-uint8_t HT_McuApi_reduceOutputPower(int16_t reduce_value) {
-	return ST_RF_API_reduce_output_power(reduce_value);
-}
-
-uint8_t HT_McuApi_switchBoost(uint8_t state) {
-	if(state)
-		ST_RF_API_smps(7);
-	else
-		ST_RF_API_smps(2);
-
-	return SFX_ERR_NONE;
-}
-
-uint8_t HT_McuApi_switchPa(uint8_t state) {
-	return ST_RF_API_set_pa(state);
-}
 
 void HT_McuApi_softwareReset(void) {
 	NVIC_SystemReset();

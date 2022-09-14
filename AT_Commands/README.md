@@ -50,9 +50,6 @@
 | AT+CLOSE | **None** | This command closes the SigFox library (Free the allocated memory of SIGFOX_API_open and close RF).<br/><br/>**Example:** AT+CLOSE; |
 | AT+RESET | **None** | Soft reset. | **Example:** AT+RESET; |
 | [AT+DEEPSLEEP](#deepsleep) | **None** | HT32SX low power state.<br/><br/>**Example:** AT+DEEPSLEEP; |
-| AT+SWITCHPA | **PA_EN:** 1 to enable and 0 to disable. | Turns the power amplifier on/off. More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1** (PA ON): AT+SWITCHPA=1;<br/>**Example 2** (PA OFF): AT+SWITCHPA=0; |
-| AT+SWITCHBOOST |  **BOOST_EN:** Enable/disable boost mode. | Enable/disable S2LP boost mode.<br/><br/>**Example 1** (Boost Enable): AT+SWITCHBOOST=1;<br/>**Example 2** (Boost Disable): AT+SWITCHBOOST=0; |
-| AT+REDUCEPOWER | **REDUCE_VALUE:** Reduce factor. | Reduces the output power of the transmitted signal (Reduction*0.5dB against the actual value. A negative value increase the output power).<br/><br/>**Example:** AT+REDUCEPOWER=-27; |
 | AT+FREQOFFSET | **OFFSET_VALUE:** Frequency offset in Hz as an integer. | Sets the RF frequency offset in Hz. <br/><br/>**Example:** AT+FREQOFFSET=1200; |
 | AT+RSSIOFFSET | **OFFSET_VALUE:** RSSI offset as an integer in dB. | Sets a RSSI offset.<br/><br/>**Example:** AT+RSSIOFFSET=-17; |
 | AT+LBTOFFSET | **OFFSET_VALUE:** Integer representing LBT offset in dB. | Sets an offset for turning the LBT mechanism. <br/><br/>**Example:** AT+LBTOFFSET=0; |

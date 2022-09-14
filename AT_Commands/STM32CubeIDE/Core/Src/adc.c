@@ -117,7 +117,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 
 /* USER CODE BEGIN 1 */
 
-#ifdef USE_OOB_MSG
+#ifdef DOWNLINK_FLAG
 
 uint32_t HT_getVrefData(void) {
 	uint32_t ad = 0;

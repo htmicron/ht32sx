@@ -45,7 +45,7 @@ void MX_ADC_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 
-#ifdef USE_OOB_MSG
+#ifdef DOWNLINK_FLAG
 
 /*!******************************************************************
  * \fn uint32_t HT_getTemperatureAD(void)

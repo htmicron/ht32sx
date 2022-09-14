@@ -124,7 +124,7 @@ int main(void)
 		/* USER CODE BEGIN 3 */
 
 		/* Set the wake up time to 5 seconds */
-		HT_McuApi_EnableRTCWkp(10);
+		HT_McuApi_EnableRTCWkp(30);
 		HAL_Delay(50);
 
 		printf("Sleeping...\n");

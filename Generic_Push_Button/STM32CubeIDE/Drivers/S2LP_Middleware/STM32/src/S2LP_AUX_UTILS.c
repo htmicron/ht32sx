@@ -36,6 +36,7 @@
 */
 static volatile uint8_t s_RfModuleBand = 0;
 static volatile uint32_t s_RfXtalFrequency=50000000;
+static volatile S2LPDaughterBoard _daughterBoard = FKI_SERIES;
 
 /**
 * @defgroup SDK_S2LP_MANAGEMENT_FUNCTIONS    SDK S2LP Management Functions

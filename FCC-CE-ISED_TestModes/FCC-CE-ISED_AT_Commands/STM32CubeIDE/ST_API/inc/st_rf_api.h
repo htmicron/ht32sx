@@ -127,16 +127,6 @@ sfx_u8 ST_RF_API_gpio_rx_pin(sfx_u8 gpio_pin);
 sfx_u8 ST_RF_API_gpio_tx_pin(sfx_u8 gpio_pin);
 
 /*!******************************************************************
- * \fn sfx_u8 ST_RF_API_reduce_output_power(sfx_s16 reduction)
- * \brief Reduces the output power of the transmitted signal by a facor (reduction*0.5dB against the actual value).
- * \details       Each positive step of 1 reduces the power at S2-LP level of about 0.5dB. A negative value increase the power level of the same quantity.
- *        <br>The function returns an error if the output power is bigger than the one used dutring cerification.
- * \param[in] sfx_s16 reduction: the reduction factor.
- * \retval 0 if no error, 1 otherwise.
- *******************************************************************/
-sfx_u8 ST_RF_API_reduce_output_power(sfx_s16 reduction);
-
-/*!******************************************************************
  * \fn sfx_u8 ST_RF_API_set_tcxo(sfx_u8 tcxo)
  * \brief Instructs the library to configure the S2-LP for a TCXO or for a XTAL.
  * \param[in] sfx_u8 tcxo: 1 if a TCXO, 0 if XTAL.
@@ -144,24 +134,6 @@ sfx_u8 ST_RF_API_reduce_output_power(sfx_s16 reduction);
  * \retval 0 if no error, 1 otherwise.
  *******************************************************************/
 sfx_u8 ST_RF_API_set_tcxo(sfx_u8 tcxo);
-
-/*!******************************************************************
- * \fn sfx_u8 ST_RF_API_smps(sfx_u8 mode)
- * \brief Instructs the library to configure the S2-LP with a user defined smps frequency.
- * \param[in] sfx_u8 mode: from 1 (1.2V) to 7 (1.8V).
- * \note If this function is not called, the default is to use the S2-LP at 1.5V.
- * \retval 0 if no error, 1 otherwise.
- *******************************************************************/
-sfx_u8 ST_RF_API_smps(sfx_u8 mode);
-
-/*!******************************************************************
- * \fn sfx_u8 ST_RF_API_set_pa(sfx_u8 pa)
- * \brief Instructs the library to configure the S2-LP for a external PA (Power Amplifier).
- * \param[in] sfx_u8 pa: 1 if a PA, 0 if not.
- * \note If this function is not called, the default is not configure an external PA.
- * \retval 0 if no error, 1 otherwise.
- *******************************************************************/
-sfx_u8 ST_RF_API_set_pa(sfx_u8 pa);
 
 /*!******************************************************************
  * \fn sfx_u8 ST_RF_API_get_ramp_duration(void)

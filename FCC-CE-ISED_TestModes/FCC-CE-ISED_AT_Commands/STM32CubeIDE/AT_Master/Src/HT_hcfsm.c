@@ -20,7 +20,7 @@
 #include "HT_mcu_api.h"
 #include "usart.h"
 
-uint8_t auxBuffer[DMA_RX_BUFFER_SIZE];
+extern uint8_t auxBuffer[DMA_RX_BUFFER_SIZE];
 uint8_t cmd[DMA_RX_BUFFER_SIZE];
 uint8_t pLen = 0;
 
@@ -133,8 +133,6 @@ void * AT_Mcu(void) {
 }
 
 void * AT_Mcu_executeCmd(void) {
-	uint8_t integerParam1;
-	int16_t tmp;
 	int32_t argp;
 	char str_tmp[10];
 
@@ -151,31 +149,6 @@ void * AT_Mcu_executeCmd(void) {
 		break;
 	case AT_reset:
 		HT_McuApi_softwareReset();
-		break;
-	case AT_switch_pa:
-		status.AT_mcuCmd = -1;
-		AT_splitString(cmdStr, "=", firstParam);
-		integerParam1 = firstParam[0] - '0';
-
-		HT_McuApi_switchPa(integerParam1);
-
-		break;
-	case AT_switch_boost:
-		status.AT_mcuCmd = -1;
-		AT_splitString(cmdStr, "=", firstParam);
-		integerParam1 = firstParam[0] - '0';
-
-		HT_McuApi_switchBoost(integerParam1);
-
-		break;
-	case AT_reduce_power:
-
-		status.AT_mcuCmd = -1;
-		AT_splitString(cmdStr, "=", str_tmp);
-		tmp = atoi(str_tmp);
-
-		HT_McuApi_reduceOutputPower(tmp);
-
 		break;
 	case AT_freq_offset:
 

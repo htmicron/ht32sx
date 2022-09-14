@@ -86,9 +86,6 @@ typedef enum {
 	AT_SIGFOX_TESTCRED,										/**< SigFox set test credentials command. */
 	AT_MCU_RESET_CMD,										/**< MCU software reset command. */
 	AT_MCU_DEEPSLEEP_CMD,									/**< MCU start deep sleep state command. */
-	AT_MCU_SWITCHPA_CMD,									/**< MCU switch PA (0/1) command. */
-	AT_MCU_SWITCHBOOST_CMD,									/**< MCU switch boost mode (0/1) command. */
-	AT_MCU_REDUCEPOWER_CMD,									/**< MCU reduce output power command. */
 	AT_MCU_FREQOFFSET_CMD,									/**< MCU set frequency offset command. */
 	AT_MCU_RSSIOFFSET_CMD,									/**< MCU set RSSI offset command. */
 	AT_MCU_LBTOFFSET_CMD									/**< MCU set LBT offset command. */

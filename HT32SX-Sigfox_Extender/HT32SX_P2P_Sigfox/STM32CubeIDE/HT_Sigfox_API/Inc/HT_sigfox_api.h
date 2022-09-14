@@ -20,22 +20,4 @@
  *******************************************************************/
 sfx_error_t HT_API_SendFrame(HT_DR_Payload *payload);
 
-/*!******************************************************************
- * \fn void HT_API_ConfigRegion(void)
- * \brief Configures the device with the region specified by the user.
- *
- * \param[in]  rc_mask 	RCZ                  RC of the desired region
- * \param[out] none
- *******************************************************************/
-void HT_API_ConfigRegion(rc_mask RCZ);
-
-/*!******************************************************************
- * \fn void HT_API_setSmpsVoltageAction(sfx_u8 mode)
- * \brief Enable S2LP boost mode.
- *
- * \param[in]  sfx_u8 mode                  Desired output voltage. Check UM2169 for more details.
- * \param[out] none
- *******************************************************************/
-void HT_API_setSmpsVoltageAction(sfx_u8 mode);
-
 #endif /* __HT_SIGFOX_API_H__ */

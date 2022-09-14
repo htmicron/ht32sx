@@ -41,15 +41,6 @@
 extern sfx_error_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_u8 *customer_response, sfx_bool initiate_downlink_flag);
 
 /*!******************************************************************
- * \fn extern void HT_SigfoxApi_configRegion(rc_mask RCZ)
- * \brief Configures the device with the region specified by the user.
- *
- * \param[in]  rc_mask 	RCZ                  RC of the desired region
- * \param[out] none
- *******************************************************************/
-extern void HT_SigfoxApi_configRegion(rc_mask RCZ);
-
-/*!******************************************************************
  * \fn void HT_MonarchApi_closeSigfoxLib(void)
  * \brief This function closes the library (Free the allocated
  *				memory of SIGFOX_API_open and close RF).
@@ -58,24 +49,6 @@ extern void HT_SigfoxApi_configRegion(rc_mask RCZ);
  * \param[out] none
  *******************************************************************/
 void HT_SigfoxApi_closeSigfoxLib(void);
-
-/*!******************************************************************
- * \fn void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode)
- * \brief Enable S2LP boost mode.
- *
- * \param[in]  sfx_u8 mode                  Desired output voltage. Check UM2169 for more details.
- * \param[out] none
- *******************************************************************/
-void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode);
-
-/*!******************************************************************
- * \fn void HT_SigfoxApi_switchPa(uint8_t state)
- * \brief Set PA flag.
- *
- * \param[in]  sfx_u8 state                 PA state.
- * \param[out] none
- *******************************************************************/
-void HT_SigfoxApi_switchPa(uint8_t state);
 
 #endif
 

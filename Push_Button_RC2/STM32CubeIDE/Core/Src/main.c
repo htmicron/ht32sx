@@ -29,7 +29,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "HT_RF_API.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -203,7 +203,7 @@ sfx_error_t HT_API_SendFrameRC2(void) {
 
 	/********** SEND MESSAGE TO RCZ2 ****************************/
 
-	uint8_t customer_data[12]={0xAA, 0xAA, 0xAA, 0xAA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA, 0xBA};
+	uint8_t customer_data[]={"Hello World"};
 	uint8_t customer_resp[8];
 	sfx_error_t err;
 
@@ -211,7 +211,7 @@ sfx_error_t HT_API_SendFrameRC2(void) {
 	/********** THE LAST ONE IS TO REQUEST DOWNLINK ************/
 	/********** 1 - YES, 0 - NO	 ******************************/
 
-	err=SIGFOX_API_send_frame(customer_data,sizeof(customer_data),customer_resp, 3, downlink_request);
+	err=SIGFOX_API_send_frame(customer_data,strlen((char *)customer_data),customer_resp, 3, downlink_request);
 
 	if(downlink_request) {
 		printf("Customer resp: {");
@@ -299,26 +299,10 @@ void MCU_Config(void) {
 
 	ST_RF_API_set_tcxo(0);
 
-	/*			SET PA GAIN IN USE																*/
-	/*			ALWAYS SET IT AS 1																*/
-
-	ST_RF_API_set_pa(1);
-
-	/*			SET OUTPUT POWER TO 22 dBm												*/
-	/*			THIS VALUE CHANGES TO EACH REGION									*/
 
 
-	/*********** RCZ1 ************ 				02 				**********************/
-	/*********** RCZ2 ************ 			-	27 				**********************/
-	/*********** RCZ3 ************ 			-	05 				**********************/
-	/*********** RCZ4 ************ 			-	30	 			**********************/
-	/*********** RCZ5 ************ 			-	05 				**********************/
-	/*********** RCZ6 ************ 			-	02 				**********************/
-	/*********** RCZ7 ************ 			-	02 				**********************/
-
-
-	ST_RF_API_reduce_output_power(-27);
-
+	/*			CONFIG RCZ2 OUTPUT POWER									*/
+	HT_RF_API_set_rcz2();
 }
 
 void ST_Init(void)

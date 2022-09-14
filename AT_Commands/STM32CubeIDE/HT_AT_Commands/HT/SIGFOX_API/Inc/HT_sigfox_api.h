@@ -56,15 +56,6 @@ uint8_t HT_SigfoxApi_sendFrame(sfx_u8 *customer_data, sfx_bool initiate_downlink
 uint8_t HT_SigfoxApi_sendBit(sfx_bool bit_value, sfx_bool initiate_downlink_flag);
 
 /*!******************************************************************
- * \fn extern void HT_SigfoxApi_configRegion(rc_mask RCZ)
- * \brief Configures the device with the region specified by the user.
- *
- * \param[in]  rc_mask 	RCZ                  RC of the desired region
- * \param[out] none
- *******************************************************************/
-uint8_t HT_SigfoxApi_configRegion(rc_mask RCZ);
-
-/*!******************************************************************
  * \fn void HT_MonarchApi_closeSigfoxLib(void)
  * \brief This function closes the library (Free the allocated
  *				memory of SIGFOX_API_open and close RF).
@@ -73,24 +64,6 @@ uint8_t HT_SigfoxApi_configRegion(rc_mask RCZ);
  * \param[out] none
  *******************************************************************/
 uint8_t HT_SigfoxApi_closeSigfoxLib(void);
-
-/*!******************************************************************
- * \fn void HT_SigfoxApi_switchPa(uint8_t state)
- * \brief Set PA flag.
- *
- * \param[in]  sfx_u8 state                 PA state.
- * \param[out] none
- *******************************************************************/
-void HT_SigfoxApi_switchPa(uint8_t state);
-
-/*!******************************************************************
- * \fn void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode)
- * \brief Enable S2LP boost mode.
- *
- * \param[in]  sfx_u8 mode                  Desired output voltage. Check UM2169 for more details.
- * \param[out] none
- *******************************************************************/
-void HT_SigfoxApi_setSmpsVoltageAction(sfx_u8 mode);
 
 /*!******************************************************************
  * \fn uint8_t HT_SigfoxApi_GetCredentials(void)
@@ -145,8 +118,6 @@ uint8_t HT_SigfoxApi_CtMacroChannel(int8_t i);
  * \param[out] none
  *******************************************************************/
 uint8_t HT_SigfoxApi_StartFreqHopping(void);
-
-uint8_t HT_SigfoxApi_SetTestCredentials(uint8_t en);
 
 #endif
 

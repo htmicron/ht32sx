@@ -29,7 +29,6 @@
 
 /* USER CODE BEGIN Includes */
 #include "usart.h"
-#include "st_rf_api.h"
 #include "st_mcu_api.h"
 /* USER CODE END Includes */
 
