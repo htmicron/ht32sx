@@ -46,8 +46,11 @@ static const AT_Command *AT_command_tab[] = {
 		"DEEPSLEEP",
 		"FREQOFFSET",
 		"RSSIOFFSET",
-		"LBTOFFSET"
+		"LBTOFFSET",
+		"TXPOWER"
 };
+
+static uint8_t txpower_val = 0;
 
 /* Function Prototypes ------------------------------------------------------------ */
 
@@ -698,7 +701,7 @@ static HT_AT_ErrorCode HT_AT_TestCredentialsCmd(uint8_t *ptr) {
 		return error;
 	}
 
-	error.at_cmd_error = HT_SigfoxApi_SetTestCredentials(param);
+	//error.at_cmd_error = HT_SigfoxApi_SetTestCredentials(param);
 
 	return error;
 }
@@ -963,6 +966,37 @@ static HT_AT_ErrorCode HT_AT_SendCmd(uint8_t *ptr) {
 	return error;
 }
 
+static HT_AT_ErrorCode HT_AT_TxPowerCmd(uint8_t *ptr) {
+	HT_AT_ErrorCode error = {0};
+	uint8_t param;
+	uint8_t len;
+
+	if(HT_AT_NullParameter(ptr) || !HT_AT_CheckNumberOfParameter(ptr, 1)) {
+		error.at_cmd_error = AT_ERROR_PARAM_CMD;
+		return error;
+	}
+
+	len = strlen((char *)ptr);
+	HT_AT_ParseCommandData((char *)ptr, len, &param);
+
+	if((param >= 0) && (param <= 16)) {
+		HT_SigfoxApi_switchPa(0);
+		error.sigfox_error = ST_RF_API_reduce_output_power(-(param+18));
+		}
+	else if ((param >= 17) && (param <= 40)){
+		HT_SigfoxApi_switchPa(1);
+		error.sigfox_error = ST_RF_API_reduce_output_power(-(param-6));
+	}
+	else{
+		error.at_cmd_error = AT_ERROR_PARAM_CMD;
+			return error;
+	}
+
+
+
+	return error;
+}
+
 HT_AT_ErrorCode HT_AT_ExecuteCommand(uint8_t *ptr, HT_AT_Commands cmd) {
 	HT_AT_ErrorCode error = {0};
 
@@ -1042,6 +1076,10 @@ HT_AT_ErrorCode HT_AT_ExecuteCommand(uint8_t *ptr, HT_AT_Commands cmd) {
 	case AT_MCU_LBTOFFSET_CMD:
 
 		error = HT_AT_LbtOffsetCmd(ptr);
+		break;
+	case AT_MCU_TX_POWER_CMD:
+
+		error = HT_AT_TxPowerCmd(ptr);
 		break;
 	default:
 		break;
