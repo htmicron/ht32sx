@@ -43,10 +43,10 @@
 | AT+SENDBIT | **DOWNLINK_FLAG:** Set this flag to 1 in order to ask for a downlink.<br/><br/>**BIT:** Bit value that is going to be sent to the Sigfox Network **(must be 0 or 1)**. | Send a single bit to the SigFox Network. **_Before calling this function, it is necessary to call the AT+CFGRCZ first._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+SENDBIT=0:0;<br/>**Example 2:** AT+SENDBIT=0:1; |
 | [AT+MONARCH](#monarch) | **RCZ:** RC beacon expected (in order to scan every region available, the RCZ value should be 127).<br/>**TIMEOUT:** Timeout in minutes. It is recommended to use at least 5 minutes of timeout. | Scan a Monarch Beacon and returns the region found. **_The library must be closed before use this command (command AT+CLOSE)._** More details can be found at [Section 4](#cmd_details).<br/><br/>**Example 1:** AT+MONARCH=2:5; (scan only RC2 beacons). <br/>**Example 2:** AT+MONARCH=127:5; |
 | AT+STPMONARCH | **None** | Stop an already running Monarch Scan. Returns 0x0000 if ok.<br/>**Example:** AT+STPMONARCH; |
-| AT+CTMICRO | **MICROCHANNEL:** Microchannel number from 1 to 54. | Starts a continuous transmission in a microchannel. Returns 0x0000 if ok. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details)<br/><br/>**Example:** AT+CTMICRO=1;<br/>**Example:** AT+CTMICRO=54; |
-| AT+CTMACRO | **MACROCHANNEL:** Macrochannel number from 1 to 9. | Starts a continuous transmission in a macrochannel. Returns 0x0000 if ok. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details)<br/><br/>**Example:** AT+CTMACRO=1;<br/>**Example:** AT+CTMACRO=9; |
-| AT+FRQPHOPP | **None** | Starts a frequency hopping test. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details)<br/><br/>**Example:** AT+FREQPHOPP; |
-| AT+TESTCRED | **FLAG:** 1 enable, 0 disable the test mode. | Configures device to operate in test mode, using its test Sigfox Credentials. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details)<br/><br/>**Example 1:** AT+TESTCRED=1;<br/>**Example 2:** AT+TESTCRED=0; |
+| AT+CTMICRO | **MICROCHANNEL:** Microchannel number from 1 to 54. | Starts a continuous transmission in a microchannel. Returns 0x0000 if ok. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details).<br/><br/>**Example:** AT+CTMICRO=1;<br/>**Example:** AT+CTMICRO=54; |
+| AT+CTMACRO | **MACROCHANNEL:** Macrochannel number from 1 to 9. | Starts a continuous transmission in a macrochannel. Returns 0x0000 if ok. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details).<br/><br/>**Example:** AT+CTMACRO=1;<br/>**Example:** AT+CTMACRO=9; |
+| AT+FRQPHOPP | **None** | Starts a frequency hopping test. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details).<br/><br/>**Example:** AT+FREQPHOPP; |
+| AT+TESTCRED | **FLAG:** 1 enable, 0 disable the test mode. | Configures device to operate in test mode, using its test Sigfox Credentials. This is one of the Anatel Certification commands. More details can be found at [Section 5](#anatel_details).<br/><br/>**Example 1:** AT+TESTCRED=1;<br/>**Example 2:** AT+TESTCRED=0; |
 | AT+CLOSE | **None** | This command closes the SigFox library (Free the allocated memory of SIGFOX_API_open and close RF).<br/><br/>**Example:** AT+CLOSE; |
 | AT+RESET | **None** | Soft reset. | **Example:** AT+RESET; |
 | [AT+DEEPSLEEP](#deepsleep) | **None** | HT32SX low power state.<br/><br/>**Example:** AT+DEEPSLEEP; |
@@ -55,6 +55,7 @@
 | AT+LBTOFFSET | **OFFSET_VALUE:** Integer representing LBT offset in dB. | Sets an offset for turning the LBT mechanism. <br/><br/>**Example:** AT+LBTOFFSET=0; |
 | AT+CW | **FREQUENCY:**  Frequency at which the signal has to be generated. | Executes a continuous wave transmission. <br/><br/>**Example:** AT+CW=902200000; |
 | AT+STPCW | **None.** | Stop the current continuous transmission. <br/><br/>**Example:** AT+STPCW; |
+| [AT+TXPOWER](#txpower) | **TX_POWER:** Hexadecimal from 0<sub>16</sub> to 28<sub>16</sub>. | Adjust output power by 0.5dB steps. More details can be found at [Section 4](#txpower). <br/><br/>**Example:** AT+TXPOWER=20; |
 
 <hr>
 
@@ -467,6 +468,46 @@ Set up device to deep sleep mode.
 
 <br/>
 <hr>
+
+<a name="txpower"></a>
+
+### AT+TXPOWER
+
+```
+AT+TXPOWER=<TX_POWER_SETTING>;
+```
+
+Manually set the transmission output power for the device. :warning: __WARNING: Keep in mind the legal operating restrictions of your area.__
+
+#### > Parameters:
+
+> 1. TX_POWER_SETTING: Hexadecimal value from 0<sub>10</sub> to 16<sub>10</sub> (power amplifier disabled) and 17<sub>10</sub> to 40<sub>10</sub> (power amplifier enabled). Each unit increase roughly translates into a 0.5dBm output power increase:
+
+<div align="center"> Table 5.4 - Region default TX_POWER settings. </div>
+<div align="center">
+
+| Sigfox Region | **Parameter Value** | Details |
+|:-----:|:----:|:----:|
+| RC1 | 0E | Power Amplifier disabled. Estimated output of 11dBm. |
+| RC2 | 21 | Power Amplifier enabled. Estimated output of 21.5dBm. |
+| RC3 | 0E | See RC1. |
+| RC4 | 21 | See RC2. |
+| RC5 | 0E | See RC1. |
+| RC6 | 0E | See RC1. |
+| RC7 | 0E | See RC1. |
+
+
+</div>
+
+#### > Example: 
+
+* Setting the output power with parameter "16" (22<sub>10</sub>), which will enable the power amplifier and result into a TX power of roughly 14dBm:
+
+```
+AT+TXPOWER=16;
+```
+
+<br/>
 
 <a name="anatel_details"></a>
 

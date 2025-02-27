@@ -88,7 +88,8 @@ typedef enum {
 	AT_MCU_DEEPSLEEP_CMD,									/**< MCU start deep sleep state command. */
 	AT_MCU_FREQOFFSET_CMD,									/**< MCU set frequency offset command. */
 	AT_MCU_RSSIOFFSET_CMD,									/**< MCU set RSSI offset command. */
-	AT_MCU_LBTOFFSET_CMD									/**< MCU set LBT offset command. */
+	AT_MCU_LBTOFFSET_CMD,									/**< MCU set LBT offset command. */
+	AT_MCU_TX_POWER_CMD									/**< MCU set TX power reduction command. */
 } HT_AT_Commands;
 
 /**
